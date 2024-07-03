@@ -42,10 +42,10 @@ class RegisteredUserController extends Controller
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
             'phone_number' => ['required', new PhoneNumber],
-            'country_code' => ['required', 'max:4']
+            'country_code' => ['required', 'max:4'],
         ]);
 
-        $phone = $request->country_code . ' ' . $request->phone_number;
+        $phone = $request->country_code.' '.$request->phone_number;
 
         $user = User::create([
             'name' => $request->name,
