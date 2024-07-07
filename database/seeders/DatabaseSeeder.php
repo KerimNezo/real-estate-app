@@ -31,8 +31,7 @@ class DatabaseSeeder extends Seeder
         ];
 
         $adminRole = Role::firstOrCreate(['name' => 'admin']);
-        foreach ($adminPermissions as $permission)
-        {
+        foreach ($adminPermissions as $permission) {
             $createdPermission = Permission::firstOrCreate(['name' => $permission]);
             $adminRole->givePermissionTo($createdPermission);
         }

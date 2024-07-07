@@ -22,14 +22,12 @@ class UserSeeder extends Seeder
         ];
 
         $agentRole = Role::firstOrCreate(['name' => 'agent']);
-        foreach ($agentPermissions as $permission)
-        {
+        foreach ($agentPermissions as $permission) {
             $createdPermission = Permission::firstOrCreate(['name' => $permission]);
             $agentRole->givePermissionTo($createdPermission);
         }
 
-        for ($x = 0; $x < 4; $x++)
-        {
+        for ($x = 0; $x < 4; $x++) {
             $user = User::factory()->create();
             $user->assignRole($agentRole);
         }
