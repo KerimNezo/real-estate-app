@@ -46,6 +46,7 @@ class DatabaseSeeder extends Seeder
         $admin->assignRole($adminRole);
 
         $this->call(UserSeeder::class);
+        $this->call(TypeSeeder::class);
 
     }
 }
