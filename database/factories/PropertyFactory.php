@@ -1,0 +1,28 @@
+<?php
+
+namespace Database\Factories;
+
+use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\User;
+use App\Models\Type;
+
+/**
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Property>
+ */
+class PropertyFactory extends Factory
+{
+    /**
+     * Define the model's default state.
+     *
+     * @return array<string, mixed>
+     */
+    public function definition(): array
+    {
+        return [
+            'price' => 120000,
+            'surface' => 59,
+            'lat' => 44.2,
+            'lon' => 17.933333333333334,
+        ];
+    }
+}

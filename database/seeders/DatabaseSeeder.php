@@ -3,11 +3,16 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use App\Models\Type;
+use App\Models\Property;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
+
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 
 class DatabaseSeeder extends Seeder
 {
@@ -18,9 +23,35 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
+        // List all table names that you want to clear
+        $tables = [
+            'model_has_permissions',
+            'model_has_roles',
+            'permissions',
+            'role_has_permissions',
+            'roles',
+            'permissions',
+            'types',
+            'properties',
+            'users',
+            'media',
+            // Add more tables as needed
+        ];
+
+        // Disable foreign key checks
+        Schema::disableForeignKeyConstraints();
+
+        // Truncate all specified tables
+        foreach ($tables as $table) {
+            DB::table($table)->truncate();
+        }
+
+        // Enable foreign key checks
+        Schema::enableForeignKeyConstraints();
+
+
         //trebaš rijesiti problem nakon što obrišeš usere, ne briše se njihov zapis u model_has_roles
         //još uvijek ima njihova veza sa modelom
-        //User::truncate(); - ovo briše sve zapise iz users tabele
 
         $adminPermissions = [
             'create agent',
@@ -47,6 +78,9 @@ class DatabaseSeeder extends Seeder
 
         $this->call(UserSeeder::class);
         $this->call(TypeSeeder::class);
+        $this->call(PropertySeeder::class);
+
+        // ovdje generiši nekoliko officea, kuća i apartmana
 
     }
 }
