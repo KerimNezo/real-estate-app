@@ -14,8 +14,10 @@ class PropertyController extends Controller
      */
     public function index()
     {
+        //kad koristimo ovaj with(), to nam querya i sve podatke koji su relevantni iz tih tabela za primarni query
+        // ovdje odma queryamo i podatke o useru koji je objabio nekretninu i o tipu kojeg je nekretnina
         $properties = Property::latest()
-            ->with(['user','type'])
+            ->with(['user', 'type'])
             ->get()
             ->groupBy('type_id');
 

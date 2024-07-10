@@ -3,16 +3,13 @@
 namespace Database\Seeders;
 
 use App\Models\User;
-use App\Models\Type;
-use App\Models\Property;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Schema;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
-
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Schema;
 
 class DatabaseSeeder extends Seeder
 {
@@ -48,7 +45,6 @@ class DatabaseSeeder extends Seeder
 
         // Enable foreign key checks
         Schema::enableForeignKeyConstraints();
-
 
         //trebaš rijesiti problem nakon što obrišeš usere, ne briše se njihov zapis u model_has_roles
         //još uvijek ima njihova veza sa modelom
