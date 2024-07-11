@@ -75,6 +75,7 @@ class DatabaseSeeder extends Seeder
         $this->call(UserSeeder::class);
         $this->call(TypeSeeder::class);
         $this->call(PropertySeeder::class);
+        $this->call(CitySeeder::class);
 
         // ovdje generiši nekoliko officea, kuća i apartmana
 

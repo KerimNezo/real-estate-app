@@ -42,11 +42,6 @@ class Property extends Model implements HasMedia
         return $this->belongsTo(Type::class);
     }
 
-    // public function type(): BelongsTo
-    // {
-    //     return $this->belongsTo(Location::class);
-    // }
-
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
