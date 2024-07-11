@@ -17,17 +17,25 @@ class PropertySeeder extends Seeder
         // 1 - office, 2 - house, 3 - appartement
         $propertyType = [1, 2, 3];
         $propertyName = ['Business Center', 'Modern 3 bedroom house', '2 bedroom appartement'];
+        $propertyPhoto = ['office', 'house', 'appartement'];
 
         foreach ($propertyType as $type) {
             for ($x = 0; $x < 4; $x++) {
+                if ($x % 2 == 0) {
+                    $street = 'Mejdandžik 11';
+                } else {
+                    $street = 'Adolfa Goldberga 5';
+                }
                 $property = Property::factory()->create([
                     'name' => $propertyName[$type - 1],
                     'user_id' => User::factory()->create(),
                     'type_id' => Type::firstWhere('id', '=', $type),
-                ]);
-                // ->addMedia('/home/rimke/Desktop/slike/le-code.jpg')
-                // ->preservingOriginal()
-                // ->toMediaCollection('logos');
+                    'country' => 'Bosnia & Herzegovina',
+                    'city' => 'Zenica',
+                    'street' => $street,
+                ])->addMedia('/home/rimke/code/diplomski/realestate-app/public/photos/'.$propertyPhoto[$type - 1].'.jpg')
+                    ->preservingOriginal()
+                    ->toMediaCollection('property-photos');
             }
         }
     }
