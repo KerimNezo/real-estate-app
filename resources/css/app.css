@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+section {
+    position: relative; /* to make absolute child elements stay within it */
+}
