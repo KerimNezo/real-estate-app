@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Property;
-use Illuminate\Http\Request;
 
 class WelcomeController extends Controller
 {
@@ -12,8 +11,6 @@ class WelcomeController extends Controller
         $properties = Property::query()
             ->with(['user', 'type'])
             ->get();
-
-        dd($properties);
 
         return view('welcome', ['properties' => $properties]);
     }

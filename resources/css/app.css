@@ -5,3 +5,11 @@
 section {
     position: relative; /* to make absolute child elements stay within it */
 }
+
+div.grid {
+    padding-bottom: 20px;
+    text-align: center;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}

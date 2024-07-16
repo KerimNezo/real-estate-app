@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        @vite('resources/js/app.js')
+        @vite(['resources/js/app.js', 'resources/css/app.css'])
 
         <title>Laravel</title>
 
@@ -23,15 +23,46 @@
                 <div class="relative w-full px-0">
                     @include('components.navbar-guest')
 
+                    <div class="py-16 text-center text-black bg-white" id="property-query" style="height: fit-content;">
+                        <div id="query-title" style="font-size:24px; padding-bottom: 54px; padding-top: 103px;">
+                            <h1>WELCOME TO OUR PAGE</h1>
+                        </div>
+                        <div id="query-sub-title" style="font-size:48px; padding-bottom: 160px;">
+                            <h1>One step closer to your dream home...</h1>
+                        </div>
+                        <div id="query-form-div" style="display:flex; justify-content: center; align-items: center;" class="">
+                            <div id="query-form" style="background-color: rgb(149, 216, 194); width:80%; height:120px; display: grid; grid-template-columns: repeat(5, 1fr); gap: 0px;">
+                                <div class="" style="display: grid; grid-template-columns: repeat(1, 1fr); padding-bottom: 20px; padding-left: 30px; padding-right: 20px; margin-top: auto;">
+                                    <span style="text-align: left; margin-bottom: 5px;">Property type</span>
+                                    <select name="" id="" style="border-radius: 5px; border: 2px solid #989898; height: 35px; width: 220px; padding-left: 10px;">
+                                        <option value="">Choose property type</option>
+                                        <option value="1">Office</option>
+                                        <option value="2">House</option>
+                                        <option value="3">Appartement</option>
+                                    </select>
+                                </div>
+                                <div class="" style="display: grid; grid-template-columns: repeat(1, 1fr); padding-bottom: 20px; margin-top: auto;">
+                                    <span style="text-align: left; margin-bottom: 5px;">Price</span>
+                                    <input type="text" style="border-radius: 5px; border: 2px solid #989898; height: 35px; width: 140px;">
+                                </div>
+                                <div class="grid">
+                                    to
+                                </div>
+                                <div class="grid">
+                                    Item 4
+                                </div>
+                                <div class="grid" style=" padding-right: 30px;">
+                                    <button style="width: 100%; border-radius:5px; height: 50px; background-color:#FF2D20;">Submit</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <main class="">
                         <div class="py-16 text-center text-black" style="background-color:darkviolet;">
                             <h1>Featured Properties</h1>
                         </div>
                     </main>
-
-                    <div class="py-16 text-center text-sm text-black bg-white"  id="property-query">
-                        <h1>Search Property</h1>
-                    </div>
 
                     <div class="py-16 text-center text-sm text-black bg-white"  id="property-types">
                         <h1>Types of property for sale/rent</h1>
