@@ -21,9 +21,7 @@
         <div class="bg-gray-50 text-black/50 dark:bg-black dark:text-white/50">
             <div class="relative min-h-screen flex flex-col items-center justify-center ">
                 <div class="relative w-full px-0">
-                    <header class="grid grid-cols-2 items-center text-center lg:grid-cols-2 bg-zinc-200" style="background-color:brown; padding-bottom: 32px; padding-top: 32px;">
-                        @include('components.navbar-guest')
-                    </header>
+                    @include('components.navbar-guest')
 
                     <main class="">
                         <div class="py-16 text-center text-black" style="background-color:darkviolet;">
