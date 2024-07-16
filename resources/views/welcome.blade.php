@@ -31,8 +31,8 @@
                             <h1>One step closer to your dream home...</h1>
                         </div>
                         <div id="query-form-div" style="display:flex; justify-content: center; align-items: center;" class="">
-                            <div id="query-form" style="background-color: rgb(149, 216, 194); width:80%; height:120px; display: grid; grid-template-columns: repeat(5, 1fr); gap: 0px;">
-                                <div class="" style="display: grid; grid-template-columns: repeat(1, 1fr); padding-bottom: 20px; padding-left: 30px; padding-right: 20px; margin-top: auto;">
+                            <div id="query-form" style="background-color: rgb(149, 216, 194); width:80%; height:120px; display: grid; grid-template-columns: repeat(5, auto);">
+                                <div class="" style="display: grid; grid-template-columns: repeat(1, auto); padding-bottom: 20px; padding-left: 30px; padding-right: 0px; margin-top: auto; float:left;">
                                     <span style="text-align: left; margin-bottom: 5px;">Property type</span>
                                     <select name="" id="" style="border-radius: 5px; border: 2px solid #989898; height: 35px; width: 220px; padding-left: 10px;">
                                         <option value="">Choose property type</option>
@@ -41,17 +41,21 @@
                                         <option value="3">Appartement</option>
                                     </select>
                                 </div>
+
                                 <div class="" style="display: grid; grid-template-columns: repeat(1, 1fr); padding-bottom: 20px; margin-top: auto;">
                                     <span style="text-align: left; margin-bottom: 5px;">Price</span>
-                                    <input type="text" style="border-radius: 5px; border: 2px solid #989898; height: 35px; width: 140px;">
+                                    <input type="text" style="border-radius: 5px; border: 2px solid #989898; height: 35px; width: 200px;">
                                 </div>
-                                <div class="grid">
+
+                                <div class="" style="margin-top: auto; padding-bottom: 20px; height: 51px; width: 30px;">
                                     to
                                 </div>
-                                <div class="grid">
-                                    Item 4
+
+                                <div class="" style="padding-bottom: 20px; margin-top: auto; margin-left: auto; width: 200px;">
+                                    <input type="text" style="border-radius: 5px; border: 2px solid #989898; height: 35px; width: 200px;">
                                 </div>
-                                <div class="grid" style=" padding-right: 30px;">
+
+                                <div class="" style="padding-right: 30px; padding-bottom: 20px; margin-top: auto;">
                                     <button style="width: 100%; border-radius:5px; height: 50px; background-color:#FF2D20;">Submit</button>
                                 </div>
                             </div>
