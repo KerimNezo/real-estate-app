@@ -106,23 +106,28 @@
                     <main class="">
                         <div class="py-16 text-center text-black" style="background-color:darkviolet;">
                             <h1>Featured Properties</h1>
+                            <span>site prima listu featured propertya, koje će ovdje pokazati preko kartica</span>
                         </div>
                     </main>
 
                     <div class="py-16 text-center text-sm text-black bg-white"  id="property-types">
                         <h1>Types of property for sale/rent</h1>
+                        <span>Imamo prikaz ikona svakog propertya koji nudimo na stranici</span>
                     </div>
 
                     <div class="py-16 text-center text-sm text-black bg-white"  id="about-section">
                         <h1>About us</h1>
+                        <span>Prikaz poruke i misije naše kompanije</span>
                     </div>
 
                     <div class="py-16 text-center text-sm text-black bg-white"  id="team-section">
-                        <h1>w</h1>
+                        <h1>Our team</h1>
+                        <span>prikaz agenata</span>
                     </div>
 
                     <footer class="py-16 text-center text-sm text-black bg-white" id="contact-section">
                         <h1>Footer</h1>
+                        <span>Footer stranice, sa svim linkovima, social media linkovima i policy stuff</span>
                     </footer>
                 </div>
             </div>

@@ -17,7 +17,7 @@
             </a>
 
             <a rel="noopener" href="/#contact-section" style="margin-left: auto;">
-                <span>Contact us!</span>
+                <span>Contact us</span>
             </a>
 
         </div>
