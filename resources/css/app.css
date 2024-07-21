@@ -6,3 +6,6 @@ section {
     position: relative; /* to make absolute child elements stay within it */
 }
 
+.text-color {
+    color: #34435E;
+}

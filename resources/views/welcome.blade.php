@@ -23,22 +23,22 @@
                 <div class="relative w-full px-0">
                     @include('components.navbar-guest')
 
-                    <div class="py-16 text-center text-black bg-white" id="property-query" style="height: fit-content;">
+                    <div class="py-32 text-center text-black bg-white" id="property-query" style="height: fit-content; background-image: url('photos/pozadina.jpg'); background-size: cover; background-position:center 900px;">
                         <div id="query-title" style="font-size:24px; padding-bottom: 54px; padding-top: 103px;">
-                            <h1>WELCOME TO OUR PAGE</h1>
+                            <h1 class="text-color">WELCOME TO OUR PAGE</h1>
                         </div>
                         <div id="query-sub-title" style="font-size:48px; padding-bottom: 160px;">
-                            <h1>One step closer to your dream home...</h1>
+                            <h1 class="text-color">One step closer to your dream home...</h1>
                         </div>
-                        <div id="query-form-div" style="display:flex; justify-content: center; align-items: center;" class="">
-                            <div id="query-form" style="background-color: rgb(149, 216, 194); width:80%; height:120px;">
+                        <div id="query-form-div" style="display:flex; justify-content: center; align-items: center; " class="" >
+                            <div id="query-form" style="background-color: #5eb1f0; width:80%; height:120px; border-radius: 5px;">
                                 <table style="width: 100%; margin-bottom: auto; height: 100%;">
                                     <tr style="width: 100%; height: 100%; margin-top: auto;">
                                         <td style="padding-bottom: 20px; padding-left: 30px; padding-right: 0px; width: 220px; vertical-align: bottom;">
                                             <div style="display: flex; flex-direction: column; justify-content: flex-end; height: 100%;">
                                                 <span style="text-align: left; margin-bottom: 5px; width: 220px;">Property type</span>
                                                 <select name="" id="" style="border-radius: 5px; border: 2px solid #989898; height: 35px; width: 220px; padding-left: 10px;">
-                                                    <option value="">Choose property type</option>
+                                                    <option value="" >Choose property type</option>
                                                     <option value="1">Office</option>
                                                     <option value="2">House</option>
                                                     <option value="3">Appartement</option>
@@ -66,45 +66,18 @@
 
                                         <td style="padding-right: 30px; padding-bottom: 20px; margin-bottom: auto; width: auto;">
                                             <div style="display: flex; flex-direction: column; justify-content: flex-end; height: 100%;">
-                                                <button style="width: 220px; border-radius:5px; height: 64px; background-color:#FF2D20; vertical-align: bottom; margin-left: auto;">Submit</button>
+                                                <button style="width: 220px; border-radius:5px; height: 64px; background-color:#ef5d60; vertical-align: bottom; margin-left: auto;">Submit</button>
                                             </div>
                                         </td>
 
                                     </tr>
                                 </table>
-
-                                {{-- <div class="" style="display: grid; grid-template-columns: repeat(1, auto); padding-bottom: 20px; padding-left: 30px; padding-right: 0px; margin-top: auto; float:left; width: 220px;">
-                                    <span style="text-align: left; margin-bottom: 5px; width: 220px;">Property type</span>
-                                    <select name="" id="" style="border-radius: 5px; border: 2px solid #989898; height: 35px; width: 220px; padding-left: 10px;">
-                                        <option value="">Choose property type</option>
-                                        <option value="1">Office</option>
-                                        <option value="2">House</option>
-                                        <option value="3">Appartement</option>
-                                    </select>
-                                </div>
-
-                                <div class="" style="display: grid; grid-template-columns: repeat(1, auto); padding-bottom: 20px; margin-top: auto; width: 200px;">
-                                    <span style="text-align: left; margin-bottom: 5px; width: 200px;">Price</span>
-                                    <input type="text" style="border-radius: 5px; border: 2px solid #989898; height: 35px; width: 200px;">
-                                </div>
-
-                                <div class="" style="margin-top: auto; padding-bottom: 20px; height: 51px; width: auto;">
-                                    <span style="text-align: left; margin-bottom: 5px;">to</span>
-                                </div>
-
-                                <div class="" style="padding-bottom: 20px; margin-top: auto; margin-right: auto; width: auto;">
-                                    <input type="text" style="border-radius: 5px; border: 2px solid #989898; height: 35px; width: 200px;">
-                                </div>
-
-                                <div class="" style="padding-right: 30px; padding-bottom: 20px; margin-top: auto; width: auto;">
-                                    <button style="width: 100%; border-radius:5px; height: 50px; background-color:#FF2D20;">Submit</button>
-                                </div> --}}
                             </div>
                         </div>
                     </div>
 
                     <main class="">
-                        <div class="py-16 text-center text-black" style="background-color:darkviolet;">
+                        <div class="py-16 text-center text-black" style="background-color:#33a488;">
                             <h1>Featured Properties</h1>
                             <span>site prima listu featured propertya, koje će ovdje pokazati preko kartica</span>
                         </div>

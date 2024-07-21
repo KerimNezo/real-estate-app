@@ -1,4 +1,4 @@
-<div style="background-color:brown; width: 100%; height: 100px; position:fixed;">
+<div style="background-color:#6369D1; width: 100%; height: 100px; position:fixed;">
     <header class="grid grid-cols-2 items-center text-center lg:grid-cols-2" style=" padding-bottom: 24px; padding-top: 24px; width:80%; margin-left: 10%;">
         <img src={{ ('photos/logo1.png')}} alt="alt" style="margin-right:auto;">
 
