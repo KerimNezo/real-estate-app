@@ -1,23 +1,23 @@
 <div style="background-color:#6369D1; width: 100%; height: 100px; position:fixed;">
     <header class="grid grid-cols-2 items-center text-center lg:grid-cols-2" style=" padding-bottom: 24px; padding-top: 24px; width:80%; margin-left: 10%;">
-        <img src={{ ('photos/logo1.png')}} alt="alt" style="margin-right:auto;">
+        <img src={{ ('photos/logo1.png')}} alt="alt" style="margin-right:auto; border-radius: 5px;">
 
         <div class="flex justify-center" style="justify-items:end; width: 100%;">
 
-            <a rel="noopener" href="/properties" style="margin-left: auto;">
-                <span>All properties</span>
+            <a rel="noopener" href="/all-properties" style="margin-left: auto;">
+                <span class="navbar-text">All properties</span>
             </a>
 
             <a rel="noopener" href="/#team-section" style="margin-left: auto">
-                <span>Our team</span>
+                <span class="navbar-text">Our team</span>
             </a>
 
             <a rel="noopener" href="/#about-section" style="margin-left: auto;">
-                <span>About us</span>
+                <span class="navbar-text">About us</span>
             </a>
 
             <a rel="noopener" href="/#contact-section" style="margin-left: auto;">
-                <span>Contact us</span>
+                <span class="navbar-text">Contact us</span>
             </a>
 
         </div>

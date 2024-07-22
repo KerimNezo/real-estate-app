@@ -3,11 +3,14 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PropertyController;
 use App\Http\Controllers\WelcomeController;
+use App\Http\Controllers\SearchController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', WelcomeController::class);
 
 Route::get('/nekretnine', [PropertyController::class, 'index']);
+
+Route::get('/search', SearchController::class);
 
 Route::get('/dashboard', function () {
     return view('dashboard');

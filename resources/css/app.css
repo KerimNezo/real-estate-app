@@ -9,3 +9,7 @@ section {
 .text-color {
     color: #34435E;
 }
+
+.navbar-text {
+    font-size: medium;
+}

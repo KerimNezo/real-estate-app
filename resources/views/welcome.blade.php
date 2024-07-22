@@ -34,42 +34,44 @@
                             <div id="query-form" style="background-color: #5eb1f0; width:80%; height:120px; border-radius: 5px;">
                                 <table style="width: 100%; margin-bottom: auto; height: 100%;">
                                     <tr style="width: 100%; height: 100%; margin-top: auto;">
-                                        <td style="padding-bottom: 20px; padding-left: 30px; padding-right: 0px; width: 220px; vertical-align: bottom;">
-                                            <div style="display: flex; flex-direction: column; justify-content: flex-end; height: 100%;">
-                                                <span style="text-align: left; margin-bottom: 5px; width: 220px;">Property type</span>
-                                                <select name="" id="" style="border-radius: 5px; border: 2px solid #989898; height: 35px; width: 220px; padding-left: 10px;">
-                                                    <option value="" >Choose property type</option>
-                                                    <option value="1">Office</option>
-                                                    <option value="2">House</option>
-                                                    <option value="3">Appartement</option>
-                                                </select>
-                                            </div>
-                                        </td>
-                                        <td style="padding-left: 26px; padding-bottom: 20px; width: 200px; vertical-align: bottom;">
-                                            <div style="display: flex; flex-direction: column; justify-content: flex-end; height: 100%;">
-                                                <span style="text-align: left; margin-bottom: 5px; width: 200px;">Price</span>
-                                                <input type="text" placeholder="1.200" style="border-radius: 5px; border: 2px solid #989898; height: 35px; width: 200px;">
-                                            </div>
-                                        </td>
+                                        <form action="/search" method="GET">
+                                            <td style="padding-bottom: 20px; padding-left: 30px; padding-right: 0px; width: 220px; vertical-align: bottom;">
+                                                <div style="display: flex; flex-direction: column; justify-content: flex-end; height: 100%;">
+                                                    <span style="text-align: left; margin-bottom: 5px; width: 220px;">Property type</span>
+                                                    <select id="" style="border-radius: 5px; border: 2px solid #989898; height: 35px; width: 220px; padding-left: 10px;" name="exact[type-of-asset-id]">
+                                                        <option value="" >Choose property type</option>
+                                                        <option value="1">Office</option>
+                                                        <option value="2">House</option>
+                                                        <option value="3">Appartement</option>
+                                                    </select>
+                                                </div>
+                                            </td>
 
-                                        <td style="margin-top: auto; padding-bottom: 26px; height: 51px; width: 26px;">
-                                            <div style="display: flex; flex-direction: column; justify-content: flex-end; height: 100%;">
-                                                <span>to</span>
-                                            </div>
-                                        </td>
+                                            <td style="padding-left: 26px; padding-bottom: 20px; width: 200px; vertical-align: bottom;">
+                                                <div style="display: flex; flex-direction: column; justify-content: flex-end; height: 100%;">
+                                                    <span style="text-align: left; margin-bottom: 5px; width: 200px;">Price</span>
+                                                    <input type="text" placeholder="1200" style="border-radius: 5px; border: 2px solid #989898; height: 35px; width: 200px;" name="min-price">
+                                                </div>
+                                            </td>
 
-                                        <td style="padding-bottom: 20px; margin-top: auto; margin-right: auto; width: 200px;">
-                                            <div style="display: flex; flex-direction: column; justify-content: flex-end; height: 100%;">
-                                                <input type="text" placeholder="100.000" style="border-radius: 5px; border: 2px solid #989898; height: 35px; width: 200px;">
-                                            </div>
-                                        </td>
+                                            <td style="margin-top: auto; padding-bottom: 26px; height: 51px; width: 26px;">
+                                                <div style="display: flex; flex-direction: column; justify-content: flex-end; height: 100%;">
+                                                    <span>to</span>
+                                                </div>
+                                            </td>
 
-                                        <td style="padding-right: 30px; padding-bottom: 20px; margin-bottom: auto; width: auto;">
-                                            <div style="display: flex; flex-direction: column; justify-content: flex-end; height: 100%;">
-                                                <button style="width: 220px; border-radius:5px; height: 64px; background-color:#ef5d60; vertical-align: bottom; margin-left: auto;">Submit</button>
-                                            </div>
-                                        </td>
+                                            <td style="padding-bottom: 20px; margin-top: auto; margin-right: auto; width: 200px;">
+                                                <div style="display: flex; flex-direction: column; justify-content: flex-end; height: 100%;">
+                                                    <input type="text" placeholder="100000" style="border-radius: 5px; border: 2px solid #989898; height: 35px; width: 200px;" name="max-cijena">
+                                                </div>
+                                            </td>
 
+                                            <td style="padding-right: 30px; padding-bottom: 20px; margin-bottom: auto; width: auto;">
+                                                <div style="display: flex; flex-direction: column; justify-content: flex-end; height: 100%;">
+                                                    <button style="width: 220px; border-radius:5px; height: 64px; background-color:#ef5d60; vertical-align: bottom; margin-left: auto;">Submit</button>
+                                                </div>
+                                            </td>
+                                        </form>
                                     </tr>
                                 </table>
                             </div>
