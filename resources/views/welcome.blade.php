@@ -3,11 +3,11 @@
         Realestate
     </x-slot>
 
-    <div class="py-32 text-center text-black bg-white" id="property-query" style="height: fit-content; background-image: url('photos/pozadina.jpg'); background-size: cover; background-position:center 900px;">
-        <div id="query-title" style="font-size:24px; padding-bottom: 54px; padding-top: 103px;">
+    <div class="py-32 text-center text-black bg-white h-fit" id="property-query" style="background-image: url('photos/pozadina.jpg'); background-size: cover; background-position:center 900px;">
+        <div class="text-2xl" id="query-title" style="padding-bottom: 54px; padding-top: 103px;">
             <h1 class="text-color">WELCOME TO OUR PAGE</h1>
         </div>
-        <div id="query-sub-title" style="font-size:48px; padding-bottom: 160px;">
+        <div class="text-5xl" id="query-sub-title" style="padding-bottom: 160px;">
             <h1 class="text-color">One step closer to your dream home...</h1>
         </div>
         <div id="query-form-div" style="display:flex; justify-content: center; align-items: center; " class="" >
@@ -59,9 +59,18 @@
     </div>
 
     <main class="">
-        <div class="py-16 text-black" id="featured-properties" style="height: fit-content; background-color:#33a488; width: 100%;">
+        <div class="py-16 text-black bg-white" id="featured-properties" style="height: fit-content; width: 100%;">
             <x-title position="left"/> <!-- Ovo ako je left, ide lijevo, ako nije left, ide u centar -->
-            <span style="padding-left: 10%;">site prima listu featured propertya, koje će ovdje pokazati preko kartica</span>
+
+            <div class="text-center text-xl py-12">
+                <span>Property list</span>
+            </div>
+
+            <div class="text-center text-xl">
+                <a href="/all-properties">
+                    <span>See all properties →</span>
+                </a>
+            </div>
         </div>
     </main>
 
