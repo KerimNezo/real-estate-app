@@ -4,21 +4,21 @@
     </x-slot>
 
     <div class="py-32 text-center text-black bg-white h-fit" id="property-query" style="background-image: url('photos/pozadina.jpg'); background-size: cover; background-position:center 900px;">
-        <div class="text-2xl" id="query-title" style="padding-bottom: 54px; padding-top: 103px;">
+        <div class="text-2xl pb-[54px] pt-[103px]" id="query-title">
             <h1 class="text-color">WELCOME TO OUR PAGE</h1>
         </div>
-        <div class="text-5xl" id="query-sub-title" style="padding-bottom: 160px;">
+        <div class="text-5xl pb-[160px]" id="query-sub-title">
             <h1 class="text-color">One step closer to your dream home...</h1>
         </div>
-        <div id="query-form-div" style="display:flex; justify-content: center; align-items: center; " class="" >
-            <div id="query-form" style="background-color: #5eb1f0; width:80%; height:120px; border-radius: 5px;">
-                <table style="width: 100%; margin-bottom: auto; height: 100%;">
-                    <tr style="width: 100%; height: 100%; margin-top: auto;">
+        <div id="query-form-div" class="flex justify-center items-center" >
+            <div id="query-form" class="bg-[#5eb1f0] w-[80%] h-[120px] rounded-[5px]">
+                <table class="w-full mb-auto h-full">
+                    <tr class="w-full h-full mt-auto">
                         <form action="/search" method="GET">
-                            <td style="padding-bottom: 20px; padding-left: 30px; padding-right: 0px; width: 220px; vertical-align: bottom;">
-                                <div style="display: flex; flex-direction: column; justify-content: flex-end; height: 100%;">
-                                    <span style="text-align: left; margin-bottom: 5px; width: 220px;">Property type</span>
-                                    <select id="" style="border-radius: 5px; border: 2px solid #989898; height: 35px; width: 220px; padding-left: 10px;" name="exact[type-of-asset-id]">
+                            <td class="pb-[20px] pl-[30px] w-[220px] align-bottom">
+                                <div class="flex flex-col justify-end h-full">
+                                    <span class="mb-[5px] w-[220px] text-left">Property type</span>
+                                    <select id="" class="rounded-[5px] border-2 border-[#989898] border-solid h-[35px] w-[220px] pl-[10px]" name="exact[type-of-asset-id]">
                                         <option value="0" >Choose property type</option>
                                         <option value="1">Office</option>
                                         <option value="2">House</option>
@@ -27,28 +27,28 @@
                                 </div>
                             </td>
 
-                            <td style="padding-left: 26px; padding-bottom: 20px; width: 200px; vertical-align: bottom;">
-                                <div style="display: flex; flex-direction: column; justify-content: flex-end; height: 100%;">
-                                    <span style="text-align: left; margin-bottom: 5px; width: 200px;">Price</span>
-                                    <input type="text" placeholder="1200" style="border-radius: 5px; border: 2px solid #989898; height: 35px; width: 200px;" name="min-price">
+                            <td class="pl-[26px] pb-5 w-[200px] align-bottom">
+                                <div class="flex justify-end flex-col h-full">
+                                    <span class="text-left mb-[5px] w-[200px]">Price</span>
+                                    <input type="text" placeholder="1200" class="rounded-[5px] border-2 border-[#989898] border-solid h-[35px] w-[200px]" name="min-price">
                                 </div>
                             </td>
 
-                            <td style="margin-top: auto; padding-bottom: 26px; height: 51px; width: 26px;">
-                                <div style="display: flex; flex-direction: column; justify-content: flex-end; height: 100%;">
+                            <td class="mt-auto pb-[26px] h-[51px] w-[26px]">
+                                <div class="flex flex-col justify-end h-full">
                                     <span>to</span>
                                 </div>
                             </td>
 
-                            <td style="padding-bottom: 20px; margin-top: auto; margin-right: auto; width: 200px;">
-                                <div style="display: flex; flex-direction: column; justify-content: flex-end; height: 100%;">
-                                    <input type="text" placeholder="100000" style="border-radius: 5px; border: 2px solid #989898; height: 35px; width: 200px;" name="max-cijena">
+                            <td class="pb-5 mt-auto mr-auto w-[200px]">
+                                <div class="flex flex-col justify-end h-full">
+                                    <input type="text" placeholder="100000" class="rounded-[5px] border-2 border-[#989898] border-solid h-[35px] w-[200px]" name="max-cijena">
                                 </div>
                             </td>
 
-                            <td style="padding-right: 30px; padding-bottom: 20px; margin-bottom: auto; width: auto;">
-                                <div style="display: flex; flex-direction: column; justify-content: flex-end; height: 100%;">
-                                    <button style="width: 220px; border-radius:5px; height: 64px; background-color:#ef5d60; vertical-align: bottom; margin-left: auto;">Submit</button>
+                            <td class="pr-[30px] pb-5 mb-auto w-auto">
+                                <div class="flex flex-col justify-end h-full">
+                                    <button class="w-[220px] rounded-[5px] h-16 bg-[#ef5d60] align-bottom ml-auto">Submit</button>
                                 </div>
                             </td>
                         </form>
@@ -58,8 +58,8 @@
         </div>
     </div>
 
-    <main class="">
-        <div class="py-16 text-black bg-white" id="featured-properties" style="height: fit-content; width: 100%;">
+    <main>
+        <div class="py-16 text-black bg-white h-fit w-full" id="featured-properties">
             <x-title position="left"/> <!-- Ovo ako je left, ide lijevo, ako nije left, ide u centar -->
 
             <div class="text-center text-xl py-12">
