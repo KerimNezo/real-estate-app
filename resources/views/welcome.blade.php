@@ -59,9 +59,9 @@
     </div>
 
     <main class="">
-        <div class="py-16 text-center text-black" style="background-color:#33a488;">
-            <h1>Featured Properties</h1>
-            <span>site prima listu featured propertya, koje će ovdje pokazati preko kartica</span>
+        <div class="py-16 text-black" id="featured-properties" style="height: fit-content; background-color:#33a488; width: 100%;">
+            <x-title position="left"/> <!-- Ovo ako je left, ide lijevo, ako nije left, ide u centar -->
+            <span style="padding-left: 10%;">site prima listu featured propertya, koje će ovdje pokazati preko kartica</span>
         </div>
     </main>
 
