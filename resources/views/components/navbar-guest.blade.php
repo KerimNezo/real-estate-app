@@ -4,7 +4,7 @@
 
         <div class="flex justify-center" style="justify-items:end; width: 100%;">
 
-            <a rel="noopener" href="/all-properties" style="margin-left: auto;">
+            <a rel="noopener" href="all-properties" style="margin-left: auto;">
                 <span class="navbar-text">All properties</span>
             </a>
 

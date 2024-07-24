@@ -24,6 +24,7 @@
                     @include('components.navbar-guest')
 
                     {{ $slot }}
+
                 </div>
             </div>
         </div>

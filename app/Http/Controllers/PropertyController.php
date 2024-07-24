@@ -21,7 +21,9 @@ class PropertyController extends Controller
             ->get()
             ->groupBy('type_id');
 
-        dd($properties);
+        //dd($properties);
+
+        return view('all-properties', ['properties' => $properties]);
     }
 
     /**

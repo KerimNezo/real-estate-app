@@ -3,7 +3,7 @@
         Realestate
     </x-slot>
 
-    <div class="py-32 text-center text-black bg-white h-fit" id="property-query" style="background-image: url('photos/pozadina.jpg'); background-size: cover; background-position:center 900px;">
+    <div class="py-32 text-center text-black bg-white h-fit bg-hero-image bg-cover bg-[center 900px]" id="property-query" style="background-image: url('photos/pozadina.jpg')">
         <div class="text-2xl pb-[54px] pt-[103px]" id="query-title">
             <h1 class="text-color">WELCOME TO OUR PAGE</h1>
         </div>
@@ -63,7 +63,13 @@
             <x-title position="left"/> <!-- Ovo ako je left, ide lijevo, ako nije left, ide u centar -->
 
             <div class="text-center text-xl py-12">
-                <span>Property list</span>
+                <div class="px-[10%] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 w-full"> <!-- ovdje sad treba editovati kako se pozicioniraju -->
+                    @foreach ($properties as $property )
+                        <a href="/property/{{$property->id}}">
+                            <x-property-card :$property/>
+                        </a>
+                    @endforeach
+                </div>
             </div>
 
             <div class="text-center text-xl">
