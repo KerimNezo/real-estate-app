@@ -23,7 +23,7 @@ class PropertyController extends Controller
 
         //dd($properties);
 
-        return view('all-properties', ['properties' => $properties]);
+        return view('properties.index', ['properties' => $properties]);
     }
 
     /**
@@ -47,7 +47,7 @@ class PropertyController extends Controller
      */
     public function show(Property $property)
     {
-        //
+        return view('properties.show', ['property' => 'WOOOO IMA NEKRETNINA']);
     }
 
     /**

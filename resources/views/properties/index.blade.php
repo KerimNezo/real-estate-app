@@ -7,6 +7,6 @@
     <title>All properties</title>
 </head>
 <body>
-    <h1>all properties</h1>
+    <h1>all properties :D</h1>
 </body>
 </html>
