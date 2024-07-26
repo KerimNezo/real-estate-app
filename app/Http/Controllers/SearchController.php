@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Property;
 
 class SearchController extends Controller
 {
@@ -11,12 +12,22 @@ class SearchController extends Controller
      */
     public function __invoke(Request $request)
     {
-        dd('Ovo radi, samo sad uradit controller');
+        $properties = Property::query()->with(['user', 'type']);
 
-        dd($request);
+        if(!is_null($asset_id = $request->query('type-of-asset-id'))) {
+            $properties = $properties->where('type_id', '=', $asset_id);
+        }
+        if(!is_null($min_price = $request->query('min-price'))) {
+            $properties = $properties->where('price', '>', $min_price);
+        }
+        if(!is_null($max_price = $request->query('max-price'))) {
+            $properties = $properties->where('price', '<', $max_price);
+        }
 
-        $properties = 1;
+        $result = $properties->get();
 
-        return view('all-properties', ['properties' => $properties]);
+        dd($result);
+
+        return view('properties.index', ['properties' => $properties]);
     }
 }

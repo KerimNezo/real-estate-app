@@ -6,7 +6,8 @@ use App\Http\Controllers\SearchController;
 use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', WelcomeController::class);
+Route::get('/', WelcomeController::class)
+    ->name('home');
 
 Route::get('/nekretnine', [PropertyController::class, 'index']);
 

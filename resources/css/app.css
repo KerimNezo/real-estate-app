@@ -10,6 +10,11 @@ section {
     color: #34435E;
 }
 
+.hr-color {
+    background-color: #34435E;
+}
+
 .navbar-text {
     font-size: medium;
+    color: #e5e7eb;
 }
