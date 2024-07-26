@@ -3,15 +3,19 @@
         Realestate
     </x-slot>
 
+    <!-- Hero section of the page -->
     <div class="py-32 text-center text-black bg-white h-fit bg-hero-image bg-cover bg-[center 900px]" id="property-query" style="background-image: url('photos/pozadina.jpg')">
+        <!-- Hero heading #1 -->
         <div class="text-2xl pb-[54px] pt-[103px]" id="query-title">
             <h1 class="text-color">WELCOME TO OUR PAGE</h1>
         </div>
 
+        <!-- Hero heading #2 -->
         <div class="text-5xl pb-[160px]" id="query-sub-title">
             <h1 class="text-color">One step closer to your dream home...</h1>
         </div>
 
+        <!-- Form for property query -->
         <div id="query-form-div" class="flex justify-center items-center" >
             <div id="query-form" class="bg-[#5eb1f0] w-[80%] h-[120px] rounded-[5px]">
                 <table class="w-full mb-auto h-full">
@@ -21,7 +25,7 @@
                                 <div class="flex flex-col justify-end h-full">
                                     <span class="mb-[5px] w-[220px] text-left">Property type</span>
 
-                                    <select id="" class="rounded-[5px] border-2 border-[#989898] border-solid h-[35px] w-[220px] pl-[10px]" name="exact[type-of-asset-id]">
+                                    <select id="" class="rounded-[5px] border-2 border-[#989898] border-solid h-[35px] w-[220px] pl-[10px]" name="type-of-asset-id">
                                         <option value="0" >Choose property type</option>
                                         <option value="1">Office</option>
                                         <option value="2">House</option>
@@ -48,7 +52,7 @@
 
                             <td class="pb-5 mt-auto mr-auto w-[200px]">
                                 <div class="flex flex-col justify-end h-full">
-                                    <input type="text" placeholder="100000" class="rounded-[5px] border-2 border-[#989898] border-solid h-[35px] w-[200px]" name="max-cijena">
+                                    <input type="text" placeholder="100000" class="rounded-[5px] border-2 border-[#989898] border-solid h-[35px] w-[200px]" name="max-price">
                                 </div>
                             </td>
 
@@ -64,10 +68,13 @@
         </div>
     </div>
 
+    <!-- Display of featured properties -->
     <main>
         <div class="py-16 text-black bg-white h-fit w-full" id="featured-properties">
-            <x-title position="left"/> <!-- Ovo ako je left, ide lijevo, ako nije left, ide u centar -->
+            <!-- Title -->
+            <x-title position="left" text="Featured Properties"/> <!-- Ovo ako je left, ide lijevo, ako nije left, ide u centar -->
 
+            <!-- Grid display of property cards -->
             <div class="text-center text-xl py-12">
                 <div class="px-[10%] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 w-full"> <!-- ovdje sad treba editovati kako se pozicioniraju -->
                     @foreach ($properties as $property )
@@ -78,6 +85,7 @@
                 </div>
             </div>
 
+            <!-- All properties button -->
             <div class="text-center text-xl">
                 <a href="/all-properties">
                     <span>See all properties →</span>
@@ -86,24 +94,46 @@
         </div>
     </main>
 
-    <div class="py-16 text-center text-sm text-black bg-white"  id="property-types">
-        <h1>Types of property for sale/rent</h1>
+    <!-- Type of properties we have to offer -->
+    <div class="pt-16 text-center text-sm text-black bg-[#5eb1f0]"  id="property-types">
+        <!-- Title -->
+        <x-title text="Looking to buy or rent a property..." position="center"/>
 
-        <span>Imamo prikaz ikona svakog propertya koji nudimo na stranici</span>
+        <!-- Content -->
+        <div class="flex justify-center items-center">
+            <div class="py-16 w-[80%] ">
+                <div class="flex flex-row justify-center items-center gap-6">
+                    <x-property-query-card logo="./photos/icons/House.svg" text="House" link="/search?type-of-asset-id=2" />
+                    <hr class="h-[100px] w-[2px] border-[0px] bg-black mb-[30px]">
+                    <x-property-query-card logo="./photos/icons/Hotel.svg" text="Appartement" link="/search?type-of-asset-id=3" />
+                    <hr class="h-[100px] w-[2px] border-[0px] bg-black mb-[30px]">
+                    <x-property-query-card logo="./photos/icons/floor.svg" text="Office" link="/search?type-of-asset-id=1" />
+                </div>
+            </div>
+        </div>
     </div>
 
+    <!-- Our team section, contains some agents and their data-->
+    <div class="pt-16 text-center text-sm text-black bg-white"  id="team-section">
+        <x-title text="Or you want to sell an existing one?" position="center"/>
+
+        <div class="flex justify-center items-center">
+            <div class="py-16 w-[80%] ">
+                <div class="flex flex-row justify-center items-center gap-6">
+                    <span>Forma za kontakt ili podaci za kontakt</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- About us section -->
     <div class="py-16 text-center text-sm text-black bg-white"  id="about-section">
         <h1>About us</h1>
 
         <span>Prikaz poruke i misije naše kompanije</span>
     </div>
 
-    <div class="py-16 text-center text-sm text-black bg-white"  id="team-section">
-        <h1>Our team</h1>
-
-        <span>prikaz agenata</span>
-    </div>
-
+    <!-- Footer of our page, contains basic link, socials and contact info-->
     <footer class="py-16 text-center text-sm text-black bg-white" id="contact-section">
         <h1>Footer</h1>
 
