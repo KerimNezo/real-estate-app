@@ -18,3 +18,9 @@ section {
     font-size: medium;
     color: #e5e7eb;
 }
+
+a.property-type-query:hover {
+    background-color: #e5e7eb;
+    border-radius: 5px;
+    transition-duration: 0.5s;
+}

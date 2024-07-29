@@ -26,7 +26,7 @@
                                     <span class="mb-[5px] w-[220px] text-left">Property type</span>
 
                                     <select id="" class="rounded-[5px] border-2 border-[#989898] border-solid h-[35px] w-[220px] pl-[10px]" name="type-of-asset-id">
-                                        <option value="0" >Choose property type</option>
+                                        <option value="0">Choose property type</option>
                                         <option value="1">Office</option>
                                         <option value="2">House</option>
                                         <option value="3">Appartement</option>
@@ -102,7 +102,7 @@
         <!-- Content -->
         <div class="flex justify-center items-center">
             <div class="py-16 w-[80%] ">
-                <div class="flex flex-row justify-center items-center gap-6">
+                <div class="flex flex-row justify-center items-center ">
                     <x-property-query-card logo="./photos/icons/House.svg" text="House" link="/search?type-of-asset-id=2" />
                     <hr class="h-[100px] w-[2px] border-[0px] bg-black mb-[30px]">
                     <x-property-query-card logo="./photos/icons/Hotel.svg" text="Appartement" link="/search?type-of-asset-id=3" />
@@ -119,24 +119,60 @@
 
         <div class="flex justify-center items-center">
             <div class="py-16 w-[80%] ">
-                <div class="flex flex-row justify-center items-center gap-6">
-                    <span>Forma za kontakt ili podaci za kontakt</span>
+                <div class="flex flex-row justify-center items-center gap-10">
+                    <span>Needs to be done</span>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- About us section -->
-    <div class="py-16 text-center text-sm text-black bg-white"  id="about-section">
-        <h1>About us</h1>
+    <div class="pt-16 pb-16 text-center text-sm text-black bg-white"  id="about-section">
+        <x-title position="center" text="About Us"></x-title>
 
-        <span>Prikaz poruke i misije naše kompanije</span>
+        <div class="flex justify-center items-center">
+            <div class="py-16 w-[80%] ">
+                <div class="flex flex-row justify-between items-center w-full ">
+                    <div class="w-[50%] flex flex-row justify-start items-center">
+                        <img src="./photos/estate.jpg" alt="photo" class="border-[5px] w-[600px] rounded-lg border-[#6369D1]">
+                    </div>
+
+                    <div class="w-[50%] items-start pb-[130px]">
+                        <span class="pl-5 pb-5 flex items-left text-2xl">
+                            We are the best agency... <br>
+                        </span>
+
+                        <div class="pl-5">
+                            <span class="block text-left text-base">
+                                At our real estate agency, we're committed to turning your property dreams into reality. With a team of dedicated experts and a deep understanding of the market, we strive to provide personalized solutions that exceed your expectations. Whether you're buying, selling, or investing, trust us to guide you every step of the way with integrity and professionalism. Welcome to a world of seamless real estate experiences.
+                            </span>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- Footer of our page, contains basic link, socials and contact info-->
-    <footer class="py-16 text-center text-sm text-black bg-white" id="contact-section">
-        <h1>Footer</h1>
-
-        <span>Footer stranice, sa svim linkovima, social media linkovima i policy stuff</span>
+    <footer class="py-3 text-center text-sm text-white bg-black" id="contact-section">
+        <div class="flex justify-center items-center">
+            <div class="pb-16 w-[80%] bg-slate-400 flex justify-between items-center">
+                <div class="bg-red-500 w-[50%] flex-col justify-center items-left">
+                    <img src={{ ('photos/logo1.svg')}} alt="alt" class="py-6 rounded-[5px] w-[380px]">
+                    <h2>tekst</h2>
+                    <h1>powered by</h1>
+                </div>
+                <div class="flex-col justify-center items-center w-[50%]">
+                    <div class="bg-blue-500 w-[100%] flex justify-center items-center">
+                        <div class="w-[50%]">f</div>
+                        <div class="w-[50%]">3t</div>
+                    </div>
+                    <div class="w-[50%] p">
+                        linkovi
+                    </div>
+                </div>
+            </div>
+        </div>
     </footer>
 </x-property>

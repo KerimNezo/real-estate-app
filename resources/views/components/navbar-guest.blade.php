@@ -1,8 +1,10 @@
 <div style="background-color:#6369D1; width: 100%; height: 100px; position:fixed; -webkit-box-shadow: 0px 9px 24px -10px rgba(0,0,0,0.75); -moz-box-shadow: 0px 9px 24px -10px rgba(0,0,0,0.75); box-shadow: 0px 9px 24px -10px rgba(0,0,0,0.75);">
     <header class="grid grid-cols-2 items-center text-center lg:grid-cols-2" style=" padding-bottom: 24px; padding-top: 24px; width:80%; margin-left: 10%;">
-        <a href="/">
-            <img src={{ ('photos/logo1.png')}} alt="alt" style="margin-right:auto; border-radius: 5px;">
-        </a>
+        <div class="pr-auto w-[220px] h-[55px]">
+            <a href="/">
+                <img src={{ ('photos/logo1.svg')}} alt="alt" class="rounded-[5px]">
+            </a>
+        </div>
 
         <div class="flex justify-center" style="justify-items:end; width: 100%;">
 
