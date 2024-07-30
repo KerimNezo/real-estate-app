@@ -156,7 +156,7 @@
     <!-- Footer of our page, contains basic link, socials and contact info-->
     <footer class="py-3 text-center text-sm text-white bg-[#0047AB]" id="contact-section">
         <div class="flex justify-center items-center">
-            <div class="pb-8 w-[80%] flex justify-between items-center">
+            <div class="pb-8 w-[80%] flex justify-between items-center h-[350px]">
                 <div class="w-[50%] flex-col justify-center items-left">
                     <img src={{ ('photos/logo1.svg')}} alt="alt" class="py-6 rounded-[5px] w-[330px]">
 
@@ -172,16 +172,28 @@
                         </span>
                     </div>
                 </div>
-                <div class="flex-col justify-center items-center w-[50%]">
-                    <div class="bg-blue-500 w-[100%] flex justify-center items-center">
-                        <div class="w-[50%]">f</div>
-                        <div class="w-[50%]">3t</div>
+                <div class="flex flex-col justify-center items-center w-[50%] h-full">
+                    <div class="w-full flex justify-center items-center">
+                        <div class="w-[50%] flex flex-col justify-between items-start pl-[150px] gap-2">
+                            <span class="text-lg font-bold pb-2">Links</span>
+                            <span class="text-base">All Properties</span>
+                            <span class="text-base">Our Team</span>
+                            <span class="text-base">About Us</span>
+                            <span class="text-base">Contact Us</span>
+                        </div>
+                        <div class="w-[50%] mb-auto flex flex-col justify-between items-start pl-[100px] gap-2">
+                            <span class="text-lg font-bold pb-2">Contacts</span>
+                            <span class="text-base">+387 61 034 357</span>
+                            <span class="text-base">kerim.nezo@gmail.com</span>
+                        </div>
                     </div>
-                    <div class="w-[100%] pb-auto pt-5 flex justify-center items-center gap-[70px]">
-                        <img src="{{ ('photos/icons/socials/github-icon.svg')}}" alt="gh" class="w-6">
-                        <img src="{{ ('photos/icons/socials/linkedin-icon.svg')}}" alt="in" class="w-6">
-                        <img src="{{ ('photos/icons/socials/instagram-icon.svg')}}" alt="ig" class="w-6">
-                        <img src="{{ ('photos/icons/socials/x-icon.svg')}}" alt="x" class="w-6">
+                    <div class="w-full bg-slate-500">
+                        <div class="w-full flex justify-center items-center gap-[70px]">
+                            <img src="{{ ('photos/icons/socials/github-icon.svg')}}" alt="gh" class="w-6">
+                            <img src="{{ ('photos/icons/socials/linkedin-icon.svg')}}" alt="in" class="w-6">
+                            <img src="{{ ('photos/icons/socials/instagram-icon.svg')}}" alt="ig" class="w-6">
+                            <img src="{{ ('photos/icons/socials/x-icon.svg')}}" alt="x" class="w-6">
+                        </div>
                     </div>
                 </div>
             </div>
