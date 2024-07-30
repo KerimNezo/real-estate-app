@@ -177,8 +177,11 @@
                         <div class="w-[50%]">f</div>
                         <div class="w-[50%]">3t</div>
                     </div>
-                    <div class="w-[50%] p">
-                        linkovi
+                    <div class="w-[100%] pb-auto pt-5 flex justify-center items-center gap-[70px]">
+                        <img src="{{ ('photos/icons/socials/github-icon.svg')}}" alt="gh" class="w-6">
+                        <img src="{{ ('photos/icons/socials/linkedin-icon.svg')}}" alt="in" class="w-6">
+                        <img src="{{ ('photos/icons/socials/instagram-icon.svg')}}" alt="ig" class="w-6">
+                        <img src="{{ ('photos/icons/socials/x-icon.svg')}}" alt="x" class="w-6">
                     </div>
                 </div>
             </div>
