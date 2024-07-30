@@ -147,7 +147,6 @@
                                 At our real estate agency, we're committed to turning your property dreams into reality. With a team of dedicated experts and a deep understanding of the market, we strive to provide personalized solutions that exceed your expectations. Whether you're buying, selling, or investing, trust us to guide you every step of the way with integrity and professionalism. Welcome to a world of seamless real estate experiences.
                             </span>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -155,13 +154,23 @@
     </div>
 
     <!-- Footer of our page, contains basic link, socials and contact info-->
-    <footer class="py-3 text-center text-sm text-white bg-black" id="contact-section">
+    <footer class="py-3 text-center text-sm text-white bg-[#0047AB]" id="contact-section">
         <div class="flex justify-center items-center">
-            <div class="pb-16 w-[80%] bg-slate-400 flex justify-between items-center">
-                <div class="bg-red-500 w-[50%] flex-col justify-center items-left">
-                    <img src={{ ('photos/logo1.svg')}} alt="alt" class="py-6 rounded-[5px] w-[380px]">
-                    <h2>tekst</h2>
-                    <h1>powered by</h1>
+            <div class="pb-8 w-[80%] flex justify-between items-center">
+                <div class="w-[50%] flex-col justify-center items-left">
+                    <img src={{ ('photos/logo1.svg')}} alt="alt" class="py-6 rounded-[5px] w-[330px]">
+
+                    <div class="pl-5">
+                        <span class="block text-left text-base">
+                            At our real estate agency, we're committed to turning your property dreams into reality. With a team of dedicated experts and a deep understanding of the market, we strive to provide personalized solutions that exceed your expectations.
+                        </span>
+                    </div>
+
+                    <div class="pt-10 pl-5">
+                        <span class="block text-left text-base">
+                            Powered by <a href="https://github.com/KerimNezo" target="_blank" class="text-[#EF5D60]">Kerim Nezo</a>
+                        </span>
+                    </div>
                 </div>
                 <div class="flex-col justify-center items-center w-[50%]">
                     <div class="bg-blue-500 w-[100%] flex justify-center items-center">
