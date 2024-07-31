@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Property;
+use Illuminate\Http\Request;
 
 class SearchController extends Controller
 {
@@ -14,13 +14,13 @@ class SearchController extends Controller
     {
         $properties = Property::query()->with(['user', 'type']);
 
-        if(!is_null($asset_id = $request->query('type-of-asset-id'))) {
+        if (! is_null($asset_id = $request->query('type-of-asset-id'))) {
             $properties = $properties->where('type_id', '=', $asset_id);
         }
-        if(!is_null($min_price = $request->query('min-price'))) {
+        if (! is_null($min_price = $request->query('min-price'))) {
             $properties = $properties->where('price', '>', $min_price);
         }
-        if(!is_null($max_price = $request->query('max-price'))) {
+        if (! is_null($max_price = $request->query('max-price'))) {
             $properties = $properties->where('price', '<', $max_price);
         }
 
