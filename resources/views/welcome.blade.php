@@ -176,10 +176,18 @@
                     <div class="w-full h-full flex justify-center items-center">
                         <div class="w-[50%] pt-6 mb-auto flex flex-col justify-between items-start pl-[150px] gap-2">
                             <span class="text-lg font-bold pb-2">Links</span>
-                            <span class="text-base">All Properties</span>
-                            <span class="text-base">Our Team</span>
-                            <span class="text-base">About Us</span>
-                            <span class="text-base">Contact Us</span>
+
+                            <a rel="noopener" href="all-properties" >
+                                <span class="text-base">All Properties</span>
+                            </a>
+
+                            <a rel="noopener" href="/#team-section" >
+                                <span class="text-base">Our Team</span>
+                            </a>
+
+                            <a rel="noopener" href="/#about-section" >
+                                <span class="text-base">About Us</span>
+                            </a>
                         </div>
                         <div class="w-[50%] pt-6 mb-auto flex flex-col justify-between items-start pl-[100px] gap-2">
                             <span class="text-lg font-bold pb-2">Contacts</span>
