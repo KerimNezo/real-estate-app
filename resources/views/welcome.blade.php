@@ -6,17 +6,17 @@
     <!-- Hero section of the page -->
     <div class="py-32 text-center text-black bg-white h-fit bg-hero-image bg-cover bg-[center 900px]" id="property-query" style="background-image: url('photos/pozadina.jpg')">
         <!-- Hero heading #1 -->
-        <div class="text-2xl pb-[54px] pt-[103px]" id="query-title">
+        <div class="text-lg pb-[20px] pt-[40px] sm:text-2xl sm:pb-[54px] sm:pt-[103px]" id="query-title">
             <h1 class="text-color">WELCOME TO OUR PAGE</h1>
         </div>
 
         <!-- Hero heading #2 -->
-        <div class="text-5xl pb-[160px]" id="query-sub-title">
+        <div class="text-2xl pb-[60px] sm:text-5xl sm:pb-[160px]" id="query-sub-title">
             <h1 class="text-color">One step closer to your dream home...</h1>
         </div>
 
         <!-- Form for property query -->
-        <div id="query-form-div" class="flex justify-center items-center" >
+        <div id="query-form-div" class="w-full flex justify-center h-full">
             <div id="query-form" class="bg-[#5eb1f0] w-[80%] h-[120px] rounded-[5px]">
                 <table class="w-full mb-auto h-full">
                     <tr class="w-full h-full mt-auto">
@@ -101,7 +101,7 @@
 
         <!-- Content -->
         <div class="flex justify-center items-center">
-            <div class="py-16 w-[80%] ">
+            <div class="py-16 w-full sm:w-[80%] ">
                 <div class="flex flex-row justify-center items-center ">
                     <x-property-query-card logo="./photos/icons/House.svg" text="House" link="/search?type-of-asset-id=2" />
                     <hr class="h-[100px] w-[2px] border-[0px] bg-black mb-[30px]">
