@@ -127,7 +127,7 @@
     </div>
 
     <!-- About us section -->
-    <div class="py-16 text-center text-sm text-black bg-white"  id="about-section">
+    <div class="py-8 text-center text-sm text-black bg-white"  id="about-section">
         <x-title position="center" text="About Us"></x-title>
 
         <div class="flex justify-center items-center">
