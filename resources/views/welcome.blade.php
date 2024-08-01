@@ -127,17 +127,17 @@
     </div>
 
     <!-- About us section -->
-    <div class="pt-16 pb-16 text-center text-sm text-black bg-white"  id="about-section">
+    <div class="py-16 text-center text-sm text-black bg-white"  id="about-section">
         <x-title position="center" text="About Us"></x-title>
 
         <div class="flex justify-center items-center">
             <div class="py-16 w-[80%] ">
-                <div class="flex flex-row justify-between items-center w-full ">
-                    <div class="w-[50%] flex flex-row justify-start items-center">
+                <div class="" id="about-us-section">
+                    <div class="" id="about-us-photo">
                         <img src="./photos/estate.jpg" alt="photo" class="border-[5px] w-[600px] rounded-lg border-[#6369D1]">
                     </div>
 
-                    <div class="w-[50%] items-start pb-[130px]">
+                    <div class="" id="about-us-text">
                         <span class="pl-5 pb-5 flex items-left text-2xl">
                             We are the best agency... <br>
                         </span>
@@ -156,12 +156,12 @@
     <!-- Footer of our page, contains basic link, socials and contact info-->
     <footer class="py-3 text-center text-sm text-white bg-[#0047AB]" id="contact-section">
         <div class="flex justify-center items-center">
-            <div class="pb-8 w-[80%] flex justify-between items-center h-[350px]">
-                <div class="w-[50%] h-[90%] flex flex-col justify-center items-left">
+            <div class="" id="left-footer">
+                <div class="sm:w-[50%] w-[100%] h-[90%] flex flex-col justify-center items-left">
                     <img src={{ ('photos/logo1.svg')}} alt="alt" class="py-6 rounded-[5px] w-[330px] mb-auto">
 
-                    <div class="pl-5 mb-auto">
-                        <span class="block text-left text-base">
+                    <div class="pl-5 mb-auto py-6">
+                        <span class="block text-left text-sm sm:text-base">
                             At our real estate agency, we're committed to turning your property dreams into reality. With a team of dedicated experts and a deep understanding of the market, we strive to provide personalized solutions that exceed your expectations.
                         </span>
                     </div>
@@ -172,9 +172,9 @@
                         </span>
                     </div>
                 </div>
-                <div class="flex flex-col justify-center items-center w-[50%] h-[90%]">
+                <div class="flex flex-col justify-center items-center sm:w-[50%] w-[100%] h-[100%]">
                     <div class="w-full h-full flex justify-center items-center">
-                        <div class="w-[50%] pt-6 mb-auto flex flex-col justify-between items-start pl-[150px] gap-2">
+                        <div class="w-full sm:w-[50%] pt-6 mb-auto flex flex-col justify-between items-start sm:pl-[150px] pl-[20px] gap-2">
                             <span class="text-lg font-bold pb-2">Links</span>
 
                             <a rel="noopener" href="all-properties" >
@@ -189,14 +189,14 @@
                                 <span class="text-base">About Us</span>
                             </a>
                         </div>
-                        <div class="w-[50%] pt-6 mb-auto flex flex-col justify-between items-start pl-[100px] gap-2">
+                        <div class="w-[50%] pt-6 mb-auto flex flex-col justify-between items-start gap-2">
                             <span class="text-lg font-bold pb-2">Contacts</span>
                             <span class="text-base">+387 61 034 357</span>
                             <span class="text-base">kerim.nezo@gmail.com</span>
                         </div>
                     </div>
                     <div class="w-full">
-                        <div class="w-full flex justify-end items-center gap-[70px] pl-auto">
+                        <div class="" id="footer-icons">
                             <a href="https://github.com/KerimNezo" target="_blank">
                                 <img src="{{ ('photos/icons/socials/github-icon.svg')}}" alt="gh" class="w-6">
                             </a>

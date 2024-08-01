@@ -2,8 +2,85 @@
 @tailwind components;
 @tailwind utilities;
 
+#about-us-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+#footer-icons {
+    display: flex;
+    padding-left: 20px;
+    justify-content: center;
+    width: 100%;
+    align-items: center;
+    gap: 70px;
+    padding-top: 40px;
+}
+
+#left-footer {
+    height: 100%;
+    padding-bottom: 2rem; /* Equivalent to pb-8 */
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#about-us-photo {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+#about-us-text {
+    width: 100%;
+    display: flex; /* Default display for flex items, adjust if necessary */
+    flex-direction: column;
+    padding-top: 50px;
+    align-items: flex-start; /* Equivalent to items-start */
+     /* Equivalent to pb-[130px] */
+}
+
+@media (min-width: 640px) { /* Equivalent to sm: */
+    #left-footer {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    #footer-icons {
+        padding-top: 85px;
+        justify-content: flex-end;
+        padding-left: 0px;
+    }
+
+    #about-us-section {
+        flex-direction: row;
+    }
+
+    #about-us-photo {
+        width: 50%;
+    }
+
+    #about-us-text {
+        width: 50%;
+        padding-top: 0px;
+        padding-bottom: 130px;
+    }
+}
+
 section {
     position: relative; /* to make absolute child elements stay within it */
+}
+
+body, html{
+    margin:0;
+    padding:0;
 }
 
 .text-color {
