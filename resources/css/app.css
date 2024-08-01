@@ -60,6 +60,7 @@
     }
 
     #about-us-section {
+        /* display: none;  ovako ćemo odrediti da se neki dio ne pokazuje kada bude veličina, ovako ćemo fixat navbar*/
         flex-direction: row;
     }
 

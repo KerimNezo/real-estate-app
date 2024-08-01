@@ -161,7 +161,7 @@
                 </div>
                 <div class="flex flex-col justify-center items-center sm:w-[50%] w-[100%] h-[100%]">
                     <div class="w-full h-full flex justify-center items-center">
-                        <div class="w-full sm:w-[50%] pt-6 mb-auto flex flex-col justify-between items-start sm:pl-[150px] pl-[20px] gap-2">
+                        <div class="w-full sm:w-[50%] pt-6 mb-auto flex flex-col justify-start items-start sm:pl-[150px] pl-[20px] gap-2">
                             <span class="text-lg font-bold pb-2">Links</span>
 
                             <a rel="noopener" href="all-properties" >
@@ -169,7 +169,7 @@
                             </a>
 
                             <a rel="noopener" href="/#property-types" >
-                                <span class="text-base">Types of properties</span>
+                                <span class="text-base">Our offer</span>
                             </a>
 
                             <a rel="noopener" href="/#about-section" >
