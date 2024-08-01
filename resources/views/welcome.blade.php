@@ -105,9 +105,9 @@
                 <div class="flex flex-row justify-center items-center ">
                     <x-property-query-card logo="./photos/icons/House.svg" text="House" link="/search?type-of-asset-id=2" />
                     <hr class="h-[100px] w-[2px] border-[0px] bg-black mb-[30px]">
-                    <x-property-query-card logo="./photos/icons/Hotel.svg" text="Appartement" link="/search?type-of-asset-id=3" />
+                    <x-property-query-card logo="./photos/icons/Appartement.svg" text="Appartement" link="/search?type-of-asset-id=3" />
                     <hr class="h-[100px] w-[2px] border-[0px] bg-black mb-[30px]">
-                    <x-property-query-card logo="./photos/icons/floor.svg" text="Office" link="/search?type-of-asset-id=1" />
+                    <x-property-query-card logo="./photos/icons/Office.svg" text="Office" link="/search?type-of-asset-id=1" />
                 </div>
             </div>
         </div>
