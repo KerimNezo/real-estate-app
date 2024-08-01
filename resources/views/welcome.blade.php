@@ -113,19 +113,6 @@
         </div>
     </div>
 
-    <!-- Our team section, contains some agents and their data-->
-    <div class="pt-16 text-center text-sm text-black bg-white"  id="team-section">
-        <x-title text="Or you want to sell an existing one?" position="center"/>
-
-        <div class="flex justify-center items-center">
-            <div class="py-16 w-[80%] ">
-                <div class="flex flex-row justify-center items-center gap-10">
-                    <span>Needs to be done</span>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- About us section -->
     <div class="py-8 text-center text-sm text-black bg-white"  id="about-section">
         <x-title position="center" text="About Us"></x-title>
@@ -181,8 +168,8 @@
                                 <span class="text-base">All Properties</span>
                             </a>
 
-                            <a rel="noopener" href="/#team-section" >
-                                <span class="text-base">Our Team</span>
+                            <a rel="noopener" href="/#property-types" >
+                                <span class="text-base">Types of properties</span>
                             </a>
 
                             <a rel="noopener" href="/#about-section" >

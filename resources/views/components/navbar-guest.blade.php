@@ -12,8 +12,8 @@
                 <span class="navbar-text">All properties</span>
             </a>
 
-            <a rel="noopener" href="/#team-section" style="margin-left: auto">
-                <span class="navbar-text">Our team</span>
+            <a rel="noopener" href="/#property-types" style="margin-left: auto">
+                <span class="navbar-text">Types of properties</span>
             </a>
 
             <a rel="noopener" href="/#about-section" style="margin-left: auto;">
