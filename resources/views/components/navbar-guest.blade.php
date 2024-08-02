@@ -1,5 +1,5 @@
-<div style="background-color:#6369D1; width: 100%; height: 100px; position:fixed; -webkit-box-shadow: 0px 9px 24px -10px rgba(0,0,0,0.75); -moz-box-shadow: 0px 9px 24px -10px rgba(0,0,0,0.75); box-shadow: 0px 9px 24px -10px rgba(0,0,0,0.75);">
-    <header class="grid grid-cols-2 items-center text-center lg:grid-cols-2" style=" padding-bottom: 24px; padding-top: 24px; width:80%; margin-left: 10%;">
+<div id="guest-navbar">
+    <header class="grid grid-cols-2 items-center text-center lg:grid-cols-2" style="padding-bottom: 24px; padding-top: 24px; width:80%; margin-left: 10%;">
         <div class="pr-auto w-[220px] h-[55px]">
             <a href="/">
                 <img src={{ ('photos/logo1.svg')}} alt="alt" class="rounded-[5px]">
@@ -28,3 +28,34 @@
 
     </header>
 </div>
+
+<div id="mobile-guest-navbar">
+    <header class="flex justify-start items-center text-center py-[24px] w-full">
+        <div class="ml-[10%] h-[50px] flex justify-center items-center mr-auto">
+            <a href="/">
+                <img src={{ ('photos/logo1.svg')}} alt="alt" class="rounded-[5px]">
+            </a>
+        </div>
+
+        <div class="mr-[10%] flex justify-center items-center ">
+            <button type="button" id="button" class="collapsible">
+                <img src={{ ('photos/menu-icon.svg')}} alt="menu-icon" class="w-[35px]">
+            </button>
+        </div>
+
+    </header>
+    <div class="content" id="mobile-guest-collapse-content" style="display: none; ">
+        <span>Style</span>
+    </div>
+</div>
+
+<script>
+    document.getElementById('button').addEventListener('click', function() {
+        var content = document.getElementById('mobile-guest-collapse-content');
+        if (content.style.display === 'none') {
+            content.style.display = 'block';
+        } else {
+            content.style.display = 'none';
+        }
+    });
+</script>
