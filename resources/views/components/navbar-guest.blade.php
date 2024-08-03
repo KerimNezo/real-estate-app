@@ -1,3 +1,4 @@
+<!-- Desktop view navbar-->
 <div id="guest-navbar">
     <header class="grid grid-cols-2 items-center text-center lg:grid-cols-2" style="padding-bottom: 24px; padding-top: 24px; width:80%; margin-left: 10%;">
         <div class="pr-auto w-[220px] h-[55px]">
@@ -7,7 +8,6 @@
         </div>
 
         <div class="flex justify-center" style="justify-items:end; width: 100%;">
-
             <a rel="noopener" href="all-properties" style="margin-left: auto;">
                 <span class="navbar-text">All properties</span>
             </a>
@@ -23,12 +23,11 @@
             <a rel="noopener" href="/#contact-section" style="margin-left: auto;">
                 <span class="navbar-text">Contact us</span>
             </a>
-
         </div>
-
     </header>
 </div>
 
+<!-- Mobile view navbar -->
 <div id="mobile-guest-navbar">
     <header class="flex justify-start items-center text-center py-[24px] w-full">
         <div class="ml-[10%] h-[50px] flex justify-center items-center mr-auto">
@@ -44,8 +43,24 @@
         </div>
 
     </header>
-    <div class="content" id="mobile-guest-collapse-content" style="display: none; ">
-        <span>Style</span>
+    <div class="content" id="mobile-guest-collapse-content" style="display: none; padding-top: 20px; padding-bottom: 20px; ">
+        <div class=" flex flex-row justify-center items-center w-[90%] gap-8 mx-auto">
+            <a rel="noopener" href="all-properties" style="">
+                <span class="navbar-text text-base">All properties</span>
+            </a>
+
+            <a rel="noopener" href="/#property-types" style="">
+                <span class="navbar-text text-base">Types of properties</span>
+            </a>
+
+            <a rel="noopener" href="/#about-section" style="">
+                <span class="navbar-text text-base">About us</span>
+            </a>
+
+            <a rel="noopener" href="/#contact-section" style="">
+                <span class="navbar-text text-base">Contact us</span>
+            </a>
+        </div>
     </div>
 </div>
 

@@ -23,11 +23,11 @@
 #mobile-guest-collapse-content {
     position: absolute;
     width: 100%;
-    height: 50px;
+    height: 80px;
     padding: 0 18px;
     display: none;
     overflow: hidden;
-    background-color: #5b3030;
+    background-color: #6369D1;
 }
 
 #about-us-section {
