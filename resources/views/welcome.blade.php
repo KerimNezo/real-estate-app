@@ -178,7 +178,7 @@
                         </div>
                         <div class="w-[50%] pt-6 mb-auto flex flex-col justify-between items-start gap-2">
                             <span class="text-lg font-bold pb-2">Contacts</span>
-                            <span class="text-base">+387 61 034 357</span>
+                            <span class="text-base font-extrabold">+387 61 034 357</span>
                             <span class="text-base">kerim.nezo@gmail.com</span>
                         </div>
                     </div>

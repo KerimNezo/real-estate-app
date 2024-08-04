@@ -44,7 +44,7 @@
 
     </header>
     <div class="content" id="mobile-guest-collapse-content" style="display: none; padding-top: 20px; padding-bottom: 20px; ">
-        <div class=" flex flex-row justify-center items-center w-[90%] gap-8 mx-auto">
+        <div class="flex flex-row justify-center items-center w-[90%] gap-8 mx-auto">
             <a rel="noopener" href="all-properties" style="">
                 <span class="navbar-text text-base">All properties</span>
             </a>
