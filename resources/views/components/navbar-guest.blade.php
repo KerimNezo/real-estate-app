@@ -43,30 +43,30 @@
         </div>
 
     </header>
-    <div class="origin-top" id="mobile-guest-collapse-content" style="display: none; padding-top: 10px; padding-bottom: 20px; ">
-        <div class="flex flex-row items-center w-[90%] gap-8 mx-auto">
-            <div class="w-[50%]">
+    <div class="origin-top" id="mobile-guest-collapse-content" style="display: none; padding-top: 10px;">
+        <div class="flex flex-row items-center w-[100%] gap-4 mx-auto">
+            <div class="w-[50%] pl-[5%]">
                 <a rel="noopener" href="all-properties" style="">
                     <span class="navbar-text text-base">All properties</span>
                 </a>
             </div>
 
             <div class="w-[50%]">
-                <a rel="noopener" href="/#property-types" class="pl-[0px]">
+                <a rel="noopener" href="/#property-types">
                     <span class="navbar-text text-base">Types of properties</span>
                 </a>
             </div>
         </div>
 
-        <div class="flex flex-row items-center w-[90%] gap-8 mx-auto pt-2">
-            <div class="w-[50%]">
-                <a rel="noopener" href="/#about-section" style="">
+        <div class="flex flex-row items-center w-[100%] gap-4 mx-auto pt-2">
+            <div class="w-[50%] pl-[5%]">
+                <a rel="noopener" href="/#about-section">
                     <span class="navbar-text text-base">About us</span>
                 </a>
             </div>
 
             <div class="w-[50%]">
-                <a rel="noopener" href="/#contact-section" class="pl-[0px]">
+                <a rel="noopener" href="/#contact-section">
                     <span class="navbar-text text-base">Contact us</span>
                 </a>
             </div>

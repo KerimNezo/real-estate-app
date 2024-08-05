@@ -74,7 +74,7 @@
             <div class="py-16 w-[80%] ">
                 <div class="" id="about-us-section">
                     <div class="" id="about-us-photo">
-                        <img src="./photos/estate.jpg" alt="photo" class="border-[5px] w-[600px] rounded-lg border-[#6369D1]">
+                        <img src="./photos/estate.jpg" alt="photo" class="border-[5px] w-[100%] rounded-lg border-[#6369D1]">
                     </div>
 
                     <div class="" id="about-us-text">
@@ -98,7 +98,7 @@
         <div class="flex justify-center items-center">
             <div class="" id="left-footer">
                 <div class="sm:w-[50%] w-[100%] h-[90%] flex flex-col justify-center items-left">
-                    <img src={{ ('photos/logo1.svg')}} alt="alt" class="py-6 rounded-[5px] w-[330px] mb-auto">
+                    <img src={{ ('photos/logo1.svg')}} alt="alt" class="py-6 rounded-[5px] mb-auto" id="footer-slika">
 
                     <div class="pl-5 mb-auto py-6">
                         <span class="block text-left text-sm sm:text-base">
