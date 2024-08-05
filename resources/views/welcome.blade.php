@@ -17,54 +17,7 @@
 
         <!-- Form for property query -->
         <div id="query-form-div" class="w-full flex justify-center h-full">
-            <div id="query-form" class="bg-[#5eb1f0] w-[80%] h-[120px] rounded-[5px]">
-                <table class="w-full mb-auto h-full">
-                    <tr class="w-full h-full mt-auto">
-                        <form action="/search" method="GET">
-                            <td class="pb-[20px] pl-[30px] w-[220px] align-bottom">
-                                <div class="flex flex-col justify-end h-full">
-                                    <span class="mb-[5px] w-[220px] text-left">Property type</span>
-
-                                    <select id="" class="rounded-[5px] border-2 border-[#989898] border-solid h-[35px] w-[220px] pl-[10px]" name="type-of-asset-id">
-                                        <option value="0">Choose property type</option>
-                                        <option value="1">Office</option>
-                                        <option value="2">House</option>
-                                        <option value="3">Appartement</option>
-                                    </select>
-                                </div>
-                            </td>
-
-                            <td class="pl-[26px] pb-5 w-[200px] align-bottom">
-                                <div class="flex justify-end flex-col h-full">
-                                    <span class="text-left mb-[5px] w-[200px]">Price</span>
-
-                                    <input type="text" placeholder="1200" class="rounded-[5px] border-2 border-[#989898] border-solid h-[35px] w-[200px]" name="min-price">
-                                </div>
-                            </td>
-
-                            <td class="mt-auto pb-[26px] h-[51px] w-[26px]">
-                                <div class="flex flex-col justify-end h-full">
-                                    <span>
-                                        to
-                                    </span>
-                                </div>
-                            </td>
-
-                            <td class="pb-5 mt-auto mr-auto w-[200px]">
-                                <div class="flex flex-col justify-end h-full">
-                                    <input type="text" placeholder="100000" class="rounded-[5px] border-2 border-[#989898] border-solid h-[35px] w-[200px]" name="max-price">
-                                </div>
-                            </td>
-
-                            <td class="pr-[30px] pb-5 mb-auto w-auto">
-                                <div class="flex flex-col justify-end h-full">
-                                    <button class="w-[220px] rounded-[5px] h-16 bg-[#ef5d60] align-bottom ml-auto">Submit</button>
-                                </div>
-                            </td>
-                        </form>
-                    </tr>
-                </table>
-            </div>
+            <x-property-query-form />
         </div>
     </div>
 

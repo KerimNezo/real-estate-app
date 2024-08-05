@@ -43,23 +43,33 @@
         </div>
 
     </header>
-    <div class="content" id="mobile-guest-collapse-content" style="display: none; padding-top: 20px; padding-bottom: 20px; ">
-        <div class="flex flex-row justify-center items-center w-[90%] gap-8 mx-auto">
-            <a rel="noopener" href="all-properties" style="">
-                <span class="navbar-text text-base">All properties</span>
-            </a>
+    <div class="origin-top" id="mobile-guest-collapse-content" style="display: none; padding-top: 10px; padding-bottom: 20px; ">
+        <div class="flex flex-row items-center w-[90%] gap-8 mx-auto">
+            <div class="w-[50%]">
+                <a rel="noopener" href="all-properties" style="">
+                    <span class="navbar-text text-base">All properties</span>
+                </a>
+            </div>
 
-            <a rel="noopener" href="/#property-types" style="">
-                <span class="navbar-text text-base">Types of properties</span>
-            </a>
+            <div class="w-[50%]">
+                <a rel="noopener" href="/#property-types" class="pl-[0px]">
+                    <span class="navbar-text text-base">Types of properties</span>
+                </a>
+            </div>
+        </div>
 
-            <a rel="noopener" href="/#about-section" style="">
-                <span class="navbar-text text-base">About us</span>
-            </a>
+        <div class="flex flex-row items-center w-[90%] gap-8 mx-auto pt-2">
+            <div class="w-[50%]">
+                <a rel="noopener" href="/#about-section" style="">
+                    <span class="navbar-text text-base">About us</span>
+                </a>
+            </div>
 
-            <a rel="noopener" href="/#contact-section" style="">
-                <span class="navbar-text text-base">Contact us</span>
-            </a>
+            <div class="w-[50%]">
+                <a rel="noopener" href="/#contact-section" class="pl-[0px]">
+                    <span class="navbar-text text-base">Contact us</span>
+                </a>
+            </div>
         </div>
     </div>
 </div>
@@ -67,10 +77,18 @@
 <script>
     document.getElementById('button').addEventListener('click', function() {
         var content = document.getElementById('mobile-guest-collapse-content');
-        if (content.style.display === 'none') {
+        if (content.style.display === 'none' || content.classList.contains('show') === false) {
+            content.classList.add('show');
             content.style.display = 'block';
+            setTimeout(function() {
+                content.style.opacity = 1;
+            }, 10); // Small delay to ensure the transition works
         } else {
-            content.style.display = 'none';
+            content.style.opacity = 0;
+            setTimeout(function() {
+                content.style.display = 'none';
+                content.classList.remove('show');
+            }, 500); // Match this duration with the CSS transition duration
         }
     });
 </script>
