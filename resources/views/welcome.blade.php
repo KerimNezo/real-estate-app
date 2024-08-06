@@ -31,7 +31,7 @@
             <div class="text-center text-xl py-12">
                 <div class="px-[10%] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 w-full"> <!-- ovdje sad treba editovati kako se pozicioniraju -->
                     @foreach ($properties as $property )
-                        <a href="{{ route('single-property', ['id' => $property->id]) }}">
+                        <a href="{{ route('all-properties') }}">
                             <x-property-card :$property/>
                         </a>
                     @endforeach
@@ -40,7 +40,7 @@
 
             <!-- All properties button -->
             <div class="text-center text-xl">
-                <a href="/all-properties">
+                <a href="all-properties">
                     <span>See all properties →</span>
                 </a>
             </div>
@@ -98,7 +98,9 @@
         <div class="flex justify-center items-center">
             <div class="" id="left-footer">
                 <div class="sm:w-[50%] w-[100%] h-[90%] flex flex-col justify-center items-left">
-                    <img src={{ ('photos/logo1.svg')}} alt="alt" class="py-6 rounded-[5px] mb-auto" id="footer-slika">
+                    <a href="/">
+                        <img src={{ ('photos/logo1.svg')}} alt="alt" class="py-6 rounded-[5px] mb-auto" id="footer-slika">
+                    </a>
 
                     <div class="pl-5 mb-auto py-6">
                         <span class="block text-left text-sm sm:text-base">
