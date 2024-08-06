@@ -16,10 +16,10 @@ Route::middleware('guest')->group(function () {
     Route::get('all-properties', [PropertyController::class, 'index'])
         ->name('all-properties');
 
-    // OVDJE TREBA JOŠ RADITI I SKONTATI
     Route::get('property/{id}', [PropertyController::class, 'show'])
         ->name('single-property');
 
+    // OVDJE TREBA JOŠ RADITI I SKONTATI - ispod nisu moje rute
     Route::get('register', [RegisteredUserController::class, 'create'])
         ->name('register');
 

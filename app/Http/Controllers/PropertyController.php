@@ -18,8 +18,7 @@ class PropertyController extends Controller
         // ovdje odma queryamo i podatke o useru koji je objabio nekretninu i o tipu kojeg je nekretnina
         $properties = Property::latest()
             ->with(['user', 'type'])
-            ->get()
-            ->groupBy('type_id');
+            ->get();
 
         //dd($properties);
 
