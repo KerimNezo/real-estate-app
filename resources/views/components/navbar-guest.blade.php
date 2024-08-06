@@ -1,26 +1,26 @@
 <!-- Desktop view navbar-->
 <div id="guest-navbar">
-    <header class="grid grid-cols-2 items-center text-center lg:grid-cols-2" style="padding-bottom: 24px; padding-top: 24px; width:80%; margin-left: 10%;">
+    <header class="grid grid-cols-2 items-center lg:grid-cols-2 py-[24px] w-[80%] ml-[10%]">
         <div class="pr-auto w-[220px] h-[55px]">
             <a href="/">
                 <img src={{ ('photos/logo1.svg')}} alt="alt" class="rounded-[5px]">
             </a>
         </div>
 
-        <div class="flex justify-center" style="justify-items:end; width: 100%;">
-            <a rel="noopener" href="all-properties" style="margin-left: auto;">
+        <div class="flex justify-center items-end w-full">
+            <a rel="noopener" href="all-properties" class="ml-auto">
                 <span class="navbar-text">All properties</span>
             </a>
 
-            <a rel="noopener" href="/#property-types" style="margin-left: auto">
+            <a rel="noopener" href="/#property-types" class="ml-auto">
                 <span class="navbar-text">Types of properties</span>
             </a>
 
-            <a rel="noopener" href="/#about-section" style="margin-left: auto;">
+            <a rel="noopener" href="/#about-section" class="ml-auto">
                 <span class="navbar-text">About us</span>
             </a>
 
-            <a rel="noopener" href="/#contact-section" style="margin-left: auto;">
+            <a rel="noopener" href="/#contact-section" class="ml-auto">
                 <span class="navbar-text">Contact us</span>
             </a>
         </div>
@@ -43,10 +43,10 @@
         </div>
 
     </header>
-    <div class="origin-top" id="mobile-guest-collapse-content" style="display: none; padding-top: 10px;">
+    <div class="origin-top pt-[10px]" id="mobile-guest-collapse-content" style="display: none;">
         <div class="flex flex-row items-center w-[100%] gap-4 mx-auto">
             <div class="w-[50%] pl-[5%]">
-                <a rel="noopener" href="all-properties" style="">
+                <a rel="noopener" href="all-properties">
                     <span class="navbar-text text-base">All properties</span>
                 </a>
             </div>

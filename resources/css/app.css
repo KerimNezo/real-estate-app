@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+.property-type-image {
+    width: 120px;
+}
+
 #guest-navbar {
     display: none;
 }
@@ -49,7 +53,7 @@
 }
 
 #mobile-guest-collapse-content.show {
-    height: 100px;
+    height: 80px;
     animation-duration: 3s;
     padding: 20 20px;
 }
@@ -99,6 +103,12 @@
 }
 
 @media (min-width: 640px) { /* Ovdje su stvari koje želimo da se vide kada je širina ekrana +640px */
+    .property-type-image {
+        width: 180px;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
     #guest-navbar {
         display: flex;
         background-color: #6369D1;
@@ -175,7 +185,7 @@ body, html{
 }
 
 .navbar-text {
-    font-size: medium;
+    font-size: large;
     color: #e5e7eb;
 }
 
