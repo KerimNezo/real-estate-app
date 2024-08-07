@@ -14,7 +14,8 @@
     background-color: #6369D1;
     height: 100px;
     width: 100%; /*Ovako iznad ograničivaš max width, tako ćeš i srediti da ti ide*/
-    position:fixed;
+    position: fixed;
+    z-index: 100;
     -webkit-box-shadow: 0px 9px 24px -10px rgba(0,0,0,0.75);
     -moz-box-shadow: 0px 9px 24px -10px rgba(0,0,0,0.75);
     box-shadow: 0px 9px 24px -10px rgba(0,0,0,0.75);
@@ -114,7 +115,8 @@
         background-color: #6369D1;
         width: 100%;
         height: 100px;
-        position:fixed;
+        position: fixed;
+        z-index: 100;
         -webkit-box-shadow: 0px 9px 24px -10px rgba(0,0,0,0.75);
         -moz-box-shadow: 0px 9px 24px -10px rgba(0,0,0,0.75);
         box-shadow: 0px 9px 24px -10px rgba(0,0,0,0.75);
