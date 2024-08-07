@@ -5,20 +5,26 @@
 
     <main>
         <div class="pt-32 bg-white">
-            <div id="content" class="flex justify-center items center bg-white w-full h-full flex-grow">
-                <div id="filters" class="w-[30%] h-[500px] bg-stone-500">
-                    <p>pongors</p>
+            <div id="content" class="flex justify-center items center bg-white w-[80%] h-full flex-grow mx-auto">
+                <!-- Property query filter form -->
+                <div id="filters" class="w-[40%] h-[500px] bg-stone-500">
+                    <span class="">pongors</span>
                 </div>
 
-                <div id="properites-list" class="flex-col justify-center items-center w-[70%] h-full bg-orange-500">
-                    <div>
-                        <p>fefefe</p>
+                <!-- Property query result -->
+                <div id="properites-list" class="flex-col justify-center items-center w-[60%] h-full">
+                    <div class="flex justify-center items-center h-full py-3">
+                        <p class="mr-auto text-black">We found {{$property_count}} properties you</p>
+
+                        <button class="w-[20%] bg-[#ef5d60] h-12 rounded-[5px]" id="button">Order By</button>
+
+                        <div></div>
                     </div>
 
-                    <div class=" text-black bg-white h-full w-full py-12" id="featured-properties">
+                    <div class=" text-black bg-white h-full w-full py-6" id="featured-properties">
                         <!-- Grid display of property cards -->
                         <div class="text-center text-xl">
-                            <div class="px-[10%] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 w-full"> <!-- ovdje sad treba editovati kako se pozicioniraju -->
+                            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8 w-full"> <!-- ovdje sad treba editovati kako se pozicioniraju -->
                                 @foreach ($properties as $property )
                                     <a href="{{ route('single-property', ['id' => $property->id]) }}">
                                         <x-property-card :$property/>
@@ -107,3 +113,22 @@
         </div>
     </footer>
 </x-property>
+
+<script>
+    document.getElementById('button').addEventListener('click', function() {
+        var content = document.getElementById('mobile-guest-collapse-content');
+        if (content.style.display === 'none' || content.classList.contains('show') === false) {
+            content.classList.add('show');
+            content.style.display = 'block';
+            setTimeout(function() {
+                content.style.opacity = 1;
+            }, 10); // Small delay to ensure the transition works
+        } else {
+            content.style.opacity = 0;
+            setTimeout(function() {
+                content.style.display = 'none';
+                content.classList.remove('show');
+            }, 500); // Match this duration with the CSS transition duration
+        }
+    });
+</script>
