@@ -12,7 +12,9 @@ class WelcomeController extends Controller
             ->with(['user', 'type'])
             ->get();
 
-        return view('welcome', ['properties' => $properties]);
+        $propertyCount = $properties->count();
+
+        return view('welcome', ['properties' => $properties, 'property_count' => $propertyCount]);
     }
 }
 //->where('featured', '=', '1')

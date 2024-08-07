@@ -14,15 +14,15 @@ class PropertyController extends Controller
      */
     public function index()
     {
-        //kad koristimo ovaj with(), to nam querya i sve podatke koji su relevantni iz tih tabela za primarni query
+        // kad koristimo ovaj with(), to nam querya i sve podatke koji su relevantni iz tih tabela za primarni query
         // ovdje odma queryamo i podatke o useru koji je objabio nekretninu i o tipu kojeg je nekretnina
-        $properties = Property::latest()
+        $properties = Property::query()
             ->with(['user', 'type'])
             ->get();
 
-        //dd($properties);
+        $propertyCount = $properties->count();
 
-        return view('properties.index', ['properties' => $properties]);
+        return view('properties.index', ['properties' => $properties, 'property_count' => $propertyCount]);
     }
 
     /**

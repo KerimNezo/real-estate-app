@@ -15,23 +15,23 @@ class SearchController extends Controller
     {
         $properties = Property::query()->with(['user', 'type']);
 
-        if (! is_null($asset_id = $request->query('type-of-asset-id')) && $asset_id > 0) {
-            logger('Assets id is {asset-id}', ['asset-id' => $asset_id]);
-            $properties = $properties->where('type_id', '=', $asset_id);
+        if (! is_null($assetId = $request->query('type-of-asset-id')) && $assetId > 0) {
+            logger('Assets id is {asset-id}', ['asset-id' => $assetId]);
+            $properties = $properties->where('type_id', '=', $assetId);
         }
-        if (! is_null($min_price = $request->query('min-price'))) {
-            logger('Minimal price is {min-price}', ['min-price' => $min_price]);
-            $properties = $properties->where('price', '>', $min_price);
+        if (! is_null($minPrice = $request->query('min-price'))) {
+            logger('Minimal price is {min-price}', ['min-price' => $minPrice]);
+            $properties = $properties->where('price', '>', $minPrice);
         }
-        if (! is_null($max_price = $request->query('max-price'))) {
-            logger('Maximal price is {max-price}', ['max-price' => $max_price]);
-            $properties = $properties->where('price', '<', $max_price);
+        if (! is_null($maxPrice = $request->query('max-price'))) {
+            logger('Maximal price is {max-price}', ['max-price' => $maxPrice]);
+            $properties = $properties->where('price', '<', $maxPrice);
         }
 
         $result = $properties->get();
 
-        dd($result);
+        $propertyCount = $result->count();
 
-        return view('properties.index', ['properties' => $properties]);
+        return view('properties.index', ['properties' => $result, 'property_count' => $propertyCount]);
     }
 }
