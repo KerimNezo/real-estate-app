@@ -17,6 +17,7 @@ class PropertyController extends Controller
         // kad koristimo ovaj with(), to nam querya i sve podatke koji su relevantni iz tih tabela za primarni query
         // ovdje odma queryamo i podatke o useru koji je objabio nekretninu i o tipu kojeg je nekretnina
         $properties = Property::query()
+            ->latest()
             ->with(['user', 'type'])
             ->get();
 

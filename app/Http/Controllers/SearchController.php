@@ -13,7 +13,7 @@ class SearchController extends Controller
      */
     public function __invoke(Request $request)
     {
-        $properties = Property::query()->with(['user', 'type']);
+        $properties = Property::query()->latest()->with(['user', 'type']);
 
         if (! is_null($assetId = $request->query('type-of-asset-id')) && $assetId > 0) {
             logger('Assets id is {asset-id}', ['asset-id' => $assetId]);
