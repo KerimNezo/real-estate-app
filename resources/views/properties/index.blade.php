@@ -1,3 +1,7 @@
+@php
+    $order = 'Most recent';
+@endphp
+
 <x-property>
     <x-slot:title>
         All properties
@@ -5,7 +9,7 @@
 
     <main>
         <div class="pt-32 bg-white">
-            <div id="content" class="flex justify-center items center bg-white w-[80%] h-full flex-grow mx-auto">
+            <div id="content" class="flex justify-center items center bg-white w-[80%] h-full flex-grow mx-auto relative">
                 <!-- Property query filter form -->
                 <div id="filters" class="w-[40%] h-[500px] bg-stone-500">
                     <span class="">pongors</span>
@@ -13,14 +17,22 @@
 
                 <!-- Property query result -->
                 <div id="properites-list" class="flex-col justify-center items-center w-[60%] h-full">
+                    <!-- Header of query result section-->
                     <div class="flex justify-center items-center h-full py-3">
                         <p class="mr-auto text-black">We found {{$property_count}} properties you</p>
 
-                        <button class="w-[20%] bg-[#ef5d60] h-12 rounded-[5px]" id="button">Order By</button>
+                        <div class="w-[25%] relative">
+                            <button class="w-full !bg-[#ef5d60] h-[48px] rounded-[5px]" id="dropdown-button" type="button">Order By: {{$order}}</button>
 
-                        <div></div>
+                            <div id="dropdown" class="w-full bg-teal-800 h-[140px] px-5 py-4 gap-3 rounded-[5px] flex-col justify-start items-start" style="display: none; z-index: 90; position: absolute;">
+                                <div>Most recent</div>
+                                <div>Price: Low - High</div>
+                                <div>Price: High - Low</div>
+                            </div>
+                        </div>
                     </div>
 
+                    <!-- Content of query result section-->
                     <div class=" text-black bg-white h-full w-full py-6" id="featured-properties">
                         <!-- Grid display of property cards -->
                         <div class="text-center text-xl">
@@ -46,89 +58,30 @@
     </main>
 
     <!-- Footer of our page, contains basic link, socials and contact info-->
-    <footer class="py-3 text-center text-sm text-white bg-[#0047AB] mt-auto" id="contact-section">
-        <div class="flex justify-center items-center">
-            <div class="" id="left-footer">
-                <div class="sm:w-[50%] w-[100%] h-[90%] flex flex-col justify-center items-left">
-                    <a href="/">
-                        <img src={{ ('photos/logo1.svg')}} alt="alt" class="py-6 rounded-[5px] mb-auto" id="footer-slika">
-                    </a>
-
-                    <div class="pl-5 mb-auto py-6">
-                        <span class="block text-left text-sm sm:text-base">
-                            At our real estate agency, we're committed to turning your property dreams into reality. With a team of dedicated experts and a deep understanding of the market, we strive to provide personalized solutions that exceed your expectations.
-                        </span>
-                    </div>
-
-                    <div class="pl-5 pt-4">
-                        <span class="block text-left text-base">
-                            Powered by <a href="https://github.com/KerimNezo" target="_blank" class="text-[#EF5D60]">Kerim Nezo</a>
-                        </span>
-                    </div>
-                </div>
-                <div class="flex flex-col justify-center items-center sm:w-[50%] w-[100%] h-[100%]">
-                    <div class="w-full h-full flex justify-center items-center">
-                        <div class="w-full sm:w-[50%] pt-6 mb-auto flex flex-col justify-start items-start sm:pl-[150px] pl-[20px] gap-2">
-                            <span class="text-lg font-bold pb-2">Links</span>
-
-                            <a rel="noopener" href="all-properties" >
-                                <span class="text-base">All Properties</span>
-                            </a>
-
-                            <a rel="noopener" href="/#property-types" >
-                                <span class="text-base">Our offer</span>
-                            </a>
-
-                            <a rel="noopener" href="/#about-section" >
-                                <span class="text-base">About Us</span>
-                            </a>
-                        </div>
-                        <div class="w-[50%] pt-6 mb-auto flex flex-col justify-between items-start gap-2">
-                            <span class="text-lg font-bold pb-2">Contacts</span>
-                            <span class="text-base font-extrabold">+387 61 034 357</span>
-                            <span class="text-base">kerim.nezo@gmail.com</span>
-                        </div>
-                    </div>
-                    <div class="w-full">
-                        <div class="" id="footer-icons">
-                            <a href="https://github.com/KerimNezo" target="_blank">
-                                <img src="{{ ('photos/icons/socials/github-icon.svg')}}" alt="gh" class="w-6">
-                            </a>
-
-                            <a href="https://x.com/neyolino" target="_blank">
-                                <img src="{{ ('photos/icons/socials/x-icon.svg')}}" alt="x" class="w-6">
-                            </a>
-
-                            <a href="https://www.instagram.com/knezo_01/" target="_blank">
-                                <img src="{{ ('photos/icons/socials/instagram-icon.svg')}}" alt="ig" class="w-6">
-                            </a>
-
-                            <a href="https://www.linkedin.com/in/kerim-nezo/" target="_blank">
-                                <img src="{{ ('photos/icons/socials/linkedin-icon.svg')}}" alt="in" class="w-6">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
+    <x-property-page-footer />
 </x-property>
 
 <script>
-    document.getElementById('button').addEventListener('click', function() {
-        var content = document.getElementById('mobile-guest-collapse-content');
-        if (content.style.display === 'none' || content.classList.contains('show') === false) {
-            content.classList.add('show');
-            content.style.display = 'block';
-            setTimeout(function() {
-                content.style.opacity = 1;
-            }, 10); // Small delay to ensure the transition works
+    // Function that opens/closes dropdown div whenever the button is clicked
+    document.getElementById('dropdown-button').addEventListener('click', function() {
+        var dropdown = document.getElementById('dropdown');
+        console.log('Hello');
+
+        if (dropdown.style.display === 'none') {
+            dropdown.style.display = 'flex';
         } else {
-            content.style.opacity = 0;
-            setTimeout(function() {
-                content.style.display = 'none';
-                content.classList.remove('show');
-            }, 500); // Match this duration with the CSS transition duration
+            dropdown.style.display = 'none';
+        }
+    });
+
+    // Function that closes the dropdown div whenever part of the page is pressed
+    document.addEventListener('click', function(event) {
+        var dropdown = document.getElementById('dropdown');
+        var button = document.getElementById('dropdown-button');
+
+        // Check if the click is outside the dropdown or button
+        if (!button.contains(event.target) && !dropdown.contains(event.target)) {
+            dropdown.style.display = 'none';
         }
     });
 </script>
