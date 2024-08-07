@@ -26,7 +26,12 @@
                                 @endforeach
                             </div>
 
-                            <!-- Ovdje treba negdje i paginaciju dodati-->
+                            <!-- Ovdje treba negdje i paginaciju dodati -->
+                            <!--
+                                <div class="mt-8">
+                                    {/{ $properties->links() }/}
+                                </div>
+                            -->
                         </div>
                     </div>
                 </div>
