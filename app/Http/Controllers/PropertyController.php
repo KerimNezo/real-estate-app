@@ -25,7 +25,7 @@ class PropertyController extends Controller
 
         $cities = $properties->pluck('city')->unique()->values();
 
-        logger($cities);
+        //logger($cities); we alog all cities plucked from $properties
 
         return view('properties.index', ['properties' => $properties, 'property_count' => $propertyCount, 'cities' => $cities]);
     }
