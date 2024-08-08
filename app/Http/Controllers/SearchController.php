@@ -13,6 +13,11 @@ class SearchController extends Controller
      */
     public function __invoke(Request $request)
     {
+        $cities = Property::query()
+            ->select('city') // Select only the city column
+            ->distinct()     // Ensure cities are unique
+            ->pluck('city'); // Get the cities as a collection
+
         $properties = Property::query()->latest()->with(['user', 'type']);
 
         if (! is_null($assetId = $request->query('type-of-asset-id')) && $assetId > 0) {
@@ -32,6 +37,10 @@ class SearchController extends Controller
 
         $propertyCount = $result->count();
 
-        return view('properties.index', ['properties' => $result, 'property_count' => $propertyCount]);
+        //$cities = $properties->pluck('city')->unique()->values(); ovdje ima mana
+
+        logger($cities);
+
+        return view('properties.index', ['properties' => $result, 'property_count' => $propertyCount, 'cities' => $cities]);
     }
 }
