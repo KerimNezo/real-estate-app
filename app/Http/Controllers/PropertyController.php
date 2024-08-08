@@ -23,7 +23,11 @@ class PropertyController extends Controller
 
         $propertyCount = $properties->count();
 
-        return view('properties.index', ['properties' => $properties, 'property_count' => $propertyCount]);
+        $cities = $properties->pluck('city')->unique()->values();
+
+        logger($cities);
+
+        return view('properties.index', ['properties' => $properties, 'property_count' => $propertyCount, 'cities' => $cities]);
     }
 
     /**
