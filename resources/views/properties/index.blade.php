@@ -9,9 +9,9 @@
 
     <main>
         <div class="pt-32 bg-white">
-            <div id="content" class="flex justify-center items center bg-white w-[80%] h-full flex-grow mx-auto relative pb-24 pt-9">
+            <div id="content" class="flex justify-center items center bg-white w-[90%] h-full flex-grow mx-auto relative pb-24 pt-9">
                 <!-- Property query filter form -->
-                <div id="filters" class="w-[40%] h-[500px] bg-slate-500 flex flex-col justify-center items-center">
+                <div id="filters" class="w-[40%] h-[500px] flex flex-col justify-center items-center">
                     <!-- Filter clear & text-->
                     <div class="flex justify-center items-center w-[70%] py-4">
                         <p class="text-lg text-black">Find you home</p>
