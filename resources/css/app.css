@@ -103,7 +103,41 @@
     align-items: flex-start;
 }
 
+#property-index-content {
+    display: flex;
+    flex-direction: column;
+}
+
+#property-index-filters {
+    width: 100%;
+    align-items: center;
+}
+
+#property-index-filters div{
+    width: 100%;
+}
+
+#filter-button {
+    width: 60%;
+    margin-left: auto;
+}
+
 @media (min-width: 640px) { /* Ovdje su stvari koje želimo da se vide kada je širina ekrana +640px */
+
+    #filter-button {
+        width: 100%;
+    }
+
+    #property-index-filters {
+        width: 40%;
+        align-items: flex-start;
+    }
+
+    #property-index-content {
+        display: flex;
+        flex-direction: row;
+    }
+
     .property-type-image {
         width: 180px;
         padding-left: 10px;

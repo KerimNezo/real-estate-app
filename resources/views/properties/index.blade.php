@@ -9,21 +9,21 @@
 
     <main>
         <div class="pt-32 bg-white">
-            <div id="content" class="flex justify-center items center bg-white w-[90%] h-full flex-grow mx-auto relative pb-24 pt-9">
+            <div id="property-index-content" class="flex justify-center bg-white w-[80%] h-full flex-grow mx-auto relative pb-24 pt-9">
                 <!-- Property query filter form -->
-                <div id="filters" class="w-[40%] h-[500px] flex flex-col justify-center items-center">
+                <div id="property-index-filters" class="h-[500px] flex flex-col justify-center items-start">
                     <!-- Filter clear & text-->
-                    <div class="flex justify-center items-center w-[70%] py-4">
-                        <p class="text-lg text-black">Find you home</p>
+                    <div id="" class="flex justify-center items-center w-[80%] py-4">
+                        <p class="text-lg text-black w-[150px]">Find you home</p>
 
                         <!-- Filter button-->
-                        <div class="ml-auto">
-                            <button class="w-full !bg-[#ef5d60] h-[48px] rounded-[5px] text-base px-4" id="clear-filter-button" type="button">Clear filters</button>
+                        <div class="mx-auto">
+                            <button id="filter-button" class=" !bg-[#ef5d60] h-[48px] rounded-[5px] text-base px-4" type="button">Clear filters</button>
                         </div>
                     </div>
 
                     <!-- Query form -->
-                    <div id="" class="bg-[#5eb1f0] w-[70%] h-full rounded-[5px] flex justify-center items-center">
+                    <div id="" class="bg-[#5eb1f0] w-[80%] h-full rounded-[5px] flex justify-center items-center">
                         <table class="w-full mb-auto h-full ">
                             <form action="/search" method="GET">
                                 <!-- Property location input-->
