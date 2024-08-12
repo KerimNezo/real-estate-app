@@ -13,21 +13,21 @@
                 <!-- Property query filter form -->
                 <div id="property-index-filters" class="h-[500px] flex flex-col justify-center items-start">
                     <!-- Filter clear & text-->
-                    <div id="" class="flex justify-center items-center w-[80%] py-4">
+                    <div id="" class="flex justify-start items-center w-[90%] pt-3">
                         <p class="text-lg text-black w-[150px]">Find you home</p>
 
                         <!-- Filter button-->
-                        <div class="mx-auto">
+                        <div class="ml-auto">
                             <button id="filter-button" class=" !bg-[#ef5d60] h-[48px] rounded-[5px] text-base px-4" type="button">Clear filters</button>
                         </div>
                     </div>
 
                     <!-- Query form -->
-                    <div id="" class="bg-[#5eb1f0] w-[80%] h-full rounded-[5px] flex justify-center items-center">
-                        <table class="w-full mb-auto h-full ">
+                    <div id="" class="bg-[#5eb1f0] w-[90%] h-full rounded-[5px] flex justify-center items-center mt-5">
+                        <table class="w-full pb-auto h-full">
                             <form action="/search" method="GET">
                                 <!-- Property location input-->
-                                <x-form-select-input heading="Property location" selectId="property-location">
+                                <x-form-select-input heading="Property location" selectId="asset-location">
                                     <option value="" disabled selected>Select a location</option>
                                     @foreach ($cities as $city)
                                         <option value="{{$city}}">{{$city}}</option>
@@ -35,14 +35,14 @@
                                 </x-form-select-input>
 
                                 <!-- Property type input-->
-                                <x-form-select-input heading="Offer type" selectId="property-offer-id">
+                                <x-form-select-input heading="Offer type" selectId="asset-offer-id">
                                     <option value="" disabled selected>Select an offer</option>
                                     <option value="0">Sale</option>
                                     <option value="1">Rent</option>
                                 </x-form-select-input>
 
                                 <!-- Property type input-->
-                                <x-form-select-input heading="Property type" selectId="type-of-property-id">
+                                <x-form-select-input heading="Property type" selectId="type-of-asset-id">
                                     <option value="" disabled selected>Choose property type</option>
                                     <option value="1">Office</option>
                                     <option value="2">House</option>
@@ -86,7 +86,7 @@
                 </div>
 
                 <!-- Property query result -->
-                <div id="properites-list" class="flex-col justify-center items-center w-[60%] h-full">
+                <div id="properites-list" class="flex-col justify-center items-center w-[75%] h-full">
                     <!-- Header of query result section-->
                     <div class="flex justify-center items-center h-full pt-3">
                         <p class="mr-auto text-black text-lg">We found {{$property_count}} properties you</p>

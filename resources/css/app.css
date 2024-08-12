@@ -108,12 +108,12 @@
     flex-direction: column;
 }
 
-#property-index-filters {
+#property-index-filter {
     width: 100%;
     align-items: center;
 }
 
-#property-index-filters div{
+#property-index-filter div{
     width: 100%;
 }
 
@@ -128,7 +128,7 @@
         width: 100%;
     }
 
-    #property-index-filters {
+    #property-index-filter {
         width: 40%;
         align-items: flex-start;
     }
