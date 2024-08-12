@@ -19,14 +19,30 @@ class SearchController extends Controller
 
         $properties = Property::query()->latest()->with(['user', 'type']);
 
+        if (! is_null($assetLocation = $request->query('asset-location'))) {
+            logger('Assets location is {assetLocation}', ['assetLocation' => $assetLocation]);
+            $properties = $properties->where('city', '=', $assetLocation);
+        }
+
+        if (! is_null($assetOffer = $request->query('asset-offer-id'))) {
+            logger('Assets offer is {asset-offer}', ['asset-offer' => $assetOffer]);
+            $properties = match ($assetOffer) {
+                '0' => $properties->whereNull('lease_duration'), // sell
+                '1' => $properties->whereNotNull('lease_duration'), // rent
+                default => $properties,
+            };
+        }
+
         if (! is_null($assetId = $request->query('type-of-asset-id')) && $assetId > 0) {
             logger('Assets id is {asset-id}', ['asset-id' => $assetId]);
             $properties = $properties->where('type_id', '=', $assetId);
         }
+
         if (! is_null($minPrice = $request->query('min-price'))) {
             logger('Minimal price is {min-price}', ['min-price' => $minPrice]);
             $properties = $properties->where('price', '>', $minPrice);
         }
+
         if (! is_null($maxPrice = $request->query('max-price'))) {
             logger('Maximal price is {max-price}', ['max-price' => $maxPrice]);
             $properties = $properties->where('price', '<', $maxPrice);
@@ -35,8 +51,6 @@ class SearchController extends Controller
         $result = $properties->get();
 
         $propertyCount = $result->count();
-
-        //$cities = $properties->pluck('city')->unique()->values(); ovdje ima mana
 
         logger($cities);
 
