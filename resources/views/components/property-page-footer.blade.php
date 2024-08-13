@@ -6,13 +6,13 @@
                     <img src={{ ('photos/logo1.svg')}} alt="alt" class="py-6 rounded-[5px] mb-auto" id="footer-slika">
                 </a>
 
-                <div class="pl-5 mb-auto py-6">
+                <div class="mb-auto py-6">
                     <span class="block text-left text-sm sm:text-base">
                         At our real estate agency, we're committed to turning your property dreams into reality. With a team of dedicated experts and a deep understanding of the market, we strive to provide personalized solutions that exceed your expectations.
                     </span>
                 </div>
 
-                <div class="pl-5 pt-4">
+                <div class="pt-4">
                     <span class="block text-left text-base">
                         Powered by <a href="https://github.com/KerimNezo" target="_blank" class="text-[#EF5D60]">Kerim Nezo</a>
                     </span>
@@ -20,7 +20,7 @@
             </div>
             <div class="flex flex-col justify-center items-center sm:w-[50%] w-[100%] h-[100%]">
                 <div class="w-full h-full flex justify-center items-center">
-                    <div class="w-full sm:w-[50%] pt-6 mb-auto flex flex-col justify-start items-start sm:pl-[150px] pl-[20px] gap-2">
+                    <div class="w-full sm:w-[50%] pt-6 mb-auto flex flex-col justify-start items-start sm:pl-[150px]  gap-2">
                         <span class="text-lg font-bold pb-2">Links</span>
 
                         <a rel="noopener" href="all-properties" >
