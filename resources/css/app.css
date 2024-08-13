@@ -105,6 +105,9 @@
 #property-index-content {
     display: flex;
     flex-direction: column;
+    width: 90%;
+    justify-content: center;
+    padding-left: 5%;
 }
 
 #property-index-filter {
@@ -117,11 +120,82 @@
 }
 
 #filter-button {
-    width: 60%;
+    width: 100%;
     margin-left: auto;
 }
 
+#query-form-all-properties {
+    width: 95%;
+}
+
+#form-heading {
+    width: 95%;
+}
+
+#properites-list {
+    width: 95%;
+    padding-top: 16px;
+}
+
+#properites-list-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 0px;
+}
+
+#property-list-button {
+    width: 60%;
+    margin-top: 16px;
+    margin-left: 0px;
+    margin-right: auto;
+}
+
+#price div p {
+    font-size: 15px;
+    line-height: 24px;
+}
+
 @media (min-width: 640px) { /* Ovdje su stvari koje želimo da se vide kada je širina ekrana +640px */
+
+    #property-list-button {
+        width: 25%;
+        margin-top: 0px;
+        margin-left: auto;
+        margin-right: 0px;
+    }
+
+    #properites-list-header {
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+        align-items: center;
+        padding-top: 12px;
+    }
+
+    #price span {
+        font-size: 18px;
+        line-height: 28px;
+    }
+
+    #properites-list {
+        width: 75%;
+        padding-top: 0px;
+    }
+
+    #properties-list div {
+        display: flex;
+        flex-direction: column;
+    }
+
+    #form-heading {
+        width: 90%;
+    }
+
+    #query-form-all-properties {
+        width: 90%;
+    }
 
     #filter-button {
         width: 100%;
@@ -135,6 +209,8 @@
     #property-index-content {
         display: flex;
         flex-direction: row;
+        justify-content: center;
+        width: 80%;
     }
 
     .property-type-image {

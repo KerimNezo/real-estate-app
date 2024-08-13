@@ -9,21 +9,21 @@
 
     <main>
         <div class="pt-32 bg-white">
-            <div id="property-index-content" class="flex justify-center bg-white w-[80%] h-full flex-grow mx-auto relative pb-24 pt-9">
+            <div id="property-index-content" class="justify-center bg-white h-full flex-grow mx-auto relative pb-24 pt-9">
                 <!-- Property query filter form -->
                 <div id="property-index-filters" class="h-[500px] flex flex-col justify-center items-start">
                     <!-- Filter clear & text-->
-                    <div id="" class="flex justify-start items-center w-[90%] pt-3">
+                    <div id="form-heading" class="flex justify-start items-center pt-3">
                         <p class="text-lg text-black w-[150px]">Find you home</p>
 
                         <!-- Filter button-->
-                        <div class="ml-auto">
-                            <button id="filter-button" class=" !bg-[#ef5d60] h-[48px] rounded-[5px] text-base px-4" type="button">Clear filters</button>
+                        <div class="ml-auto w-fit">
+                            <button id="filter-button" class="!bg-[#ef5d60] h-[48px] rounded-[5px] text-base px-4" type="button">Clear filters</button>
                         </div>
                     </div>
 
                     <!-- Query form -->
-                    <div id="" class="bg-[#5eb1f0] w-[90%] h-full rounded-[5px] flex justify-center items-center mt-5">
+                    <div id="query-form-all-properties" class="bg-[#5eb1f0] h-full rounded-[5px] flex justify-center items-center mt-5">
                         <table class="w-full pb-auto h-full">
                             <form action="/search" method="GET">
                                 <!-- Property location input-->
@@ -86,16 +86,16 @@
                 </div>
 
                 <!-- Property query result -->
-                <div id="properites-list" class="flex-col justify-center items-center w-[75%] h-full">
+                <div id="properites-list" class="flex-col justify-center items-center h-full">
                     <!-- Header of query result section-->
-                    <div class="flex justify-center items-center h-full pt-3">
+                    <div id="properites-list-header" class="flex flex-col justify-center items-center h-full pt-3">
                         <p class="mr-auto text-black text-lg">We found {{$property_count}} properties you</p>
 
-                        <div class="w-[25%] relative">
+                        <div id="property-list-button" class="relative">
                             <button class="w-full !bg-[#ef5d60] h-[48px] rounded-[5px] text-base" id="dropdown-button" type="button">Order By: {{$order}}</button>
 
                             <div id="dropdown" class="w-full bg-teal-800 h-[140px] px-5 py-4 gap-3 rounded-[5px] flex-col justify-start items-start" style="display: none; z-index: 90; position: absolute;">
-                                <div class="">Most recent</div>
+                                <div>Most recent</div>
                                 <div>Price: Low - High</div>
                                 <div>Price: High - Low</div>
                             </div>
