@@ -1,6 +1,6 @@
 @props(['property'])
 
-<ul class="flex justify-start items-start gap-3 w-full px-6">
+<ul class="flex justify-start items-center gap-3 w-full px-6">
     <x-card-footer-attribute :var="$property->bedrooms" imagePath="./photos/icons/bedroom.svg" :text="$property->bedrooms" :sqr="0"/>
 
     <x-card-footer-attribute :var="$property->surface" imagePath="./photos/icons/square.svg" :text="$property->surface" :sqr="1" />
