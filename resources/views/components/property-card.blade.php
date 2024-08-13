@@ -16,7 +16,7 @@
     </div>
 
     <!-- section about property attributes -->
-    <div id="attributes" class="pb-4 text-base w-full flex item-start ml-6">
+    <div id="attributes" class="pb-4 text-base w-full flex item-start">
         @switch($property->type_id)
             @case(1)    <!-- office -->
                 <x-card-footer-office :$property/>
