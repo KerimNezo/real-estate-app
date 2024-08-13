@@ -7,7 +7,7 @@
     <!-- section about price and property name -->
     <div id="price" class="m-0 p-0 flex flex-col justify-start w-full ">
         <span class="mr-auto px-6 text-lg font-bold">$ {{ $property->price}}</span>
-        <span class="mr-auto px-6 text-lg ">{{ $property->name}}</span>
+        <span class="mr-auto px-6 text-lg ">{{$property->name}} - {{$property->city}}</span>
     </div>
 
     <!-- breakpoint -->
