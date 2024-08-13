@@ -92,9 +92,9 @@
                         <p class="mr-auto text-black text-lg">We found {{$property_count}} properties you</p>
 
                         <div id="property-list-button" class="relative">
-                            <button class="w-full !bg-[#ef5d60] h-[48px] rounded-[5px] text-base" id="dropdown-button" type="button">Order By: {{$order}}</button>
+                            <button class="w-full !bg-[#ef5d60] h-[48px] rounded-[5px] px-2 text-base" id="dropdown-button" type="button">Order By: {{$order}}</button>
 
-                            <div id="dropdown" class="w-full bg-teal-800 h-[140px] px-5 py-4 gap-3 rounded-[5px] flex-col justify-start items-start" style="display: none; z-index: 90; position: absolute;">
+                            <div id="dropdown" class="w-full bg-teal-800 h-[140px] px-4  py-4 gap-3 rounded-[5px] flex-col justify-start items-start" style="display: none; z-index: 90; position: absolute;">
                                 <div>Most recent</div>
                                 <div>Price: Low - High</div>
                                 <div>Price: High - Low</div>
