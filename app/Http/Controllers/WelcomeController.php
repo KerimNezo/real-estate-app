@@ -14,7 +14,9 @@ class WelcomeController extends Controller
 
         $propertyCount = $properties->count();
 
-        return view('welcome', ['properties' => $properties, 'property_count' => $propertyCount]);
+        return view('welcome')
+            ->with('properties', $properties)
+            ->with('property_count', $propertyCount);
     }
 }
 //->where('featured', '=', '1')

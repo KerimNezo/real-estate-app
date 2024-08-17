@@ -54,6 +54,9 @@ class SearchController extends Controller
 
         logger($cities);
 
-        return view('properties.index', ['properties' => $result, 'property_count' => $propertyCount, 'cities' => $cities]);
+        return view('properties.index')
+            ->with('properties', $result)
+            ->with('property_count', $propertyCount)
+            ->with('cities', $cities);
     }
 }
