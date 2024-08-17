@@ -1,4 +1,4 @@
-<x-property>
+<x-app-layout>
     <x-slot:title>
         Realestate
     </x-slot>
@@ -92,7 +92,4 @@
             </div>
         </div>
     </div>
-
-    <!-- Footer of our page, contains basic link, socials and contact info-->
-    <x-property-page-footer />
-</x-property>
+</x-app-layout>

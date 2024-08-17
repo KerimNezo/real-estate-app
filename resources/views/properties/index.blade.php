@@ -2,7 +2,7 @@
     $order = 'Most recent';
 @endphp
 
-<x-property>
+<x-app-layout>
     <x-slot:title>
         All properties
     </x-slot>
@@ -126,10 +126,7 @@
             </div>
         </div>
     </main>
-
-    <!-- Footer of our page, contains basic link, socials and contact info-->
-    <x-property-page-footer />
-</x-property>
+</x-app-layout>
 
 <script>
     // Function that opens/closes dropdown div whenever the button is clicked
