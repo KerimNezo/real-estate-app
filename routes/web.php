@@ -3,7 +3,14 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\WelcomeController;
+use App\Livewire\Counter;
 use Illuminate\Support\Facades\Route;
+
+Route::get('/livewire', function () {
+    return view('livewire');
+});
+
+Route::get('/counter', Counter::class);
 
 Route::get('/', WelcomeController::class)
     ->name('home');
