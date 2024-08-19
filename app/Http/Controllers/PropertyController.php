@@ -51,7 +51,7 @@ class PropertyController extends Controller
      */
     public function show(Property $property)
     {
-        return view('properties.show', ['property' => 'WOOOO IMA NEKRETNINA']);
+        return view('properties.show', ['property' => 'Ovo je text koji se proslijedio u action funkciji u controlleru.']);
     }
 
     /**

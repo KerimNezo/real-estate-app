@@ -34,3 +34,5 @@
         </div>
     </body>
 </html>
+
+<!-- Default app layout created alongside new project -->

@@ -7,6 +7,6 @@
     <title>Document</title>
 </head>
 <body>
-    {{ $property}}
+    {{ $property }}
 </body>
 </html>
