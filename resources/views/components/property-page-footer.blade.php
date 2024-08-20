@@ -3,7 +3,7 @@
         <div class="" id="left-footer">
             <div class="sm:w-[50%] w-[100%] h-[90%] flex flex-col justify-center items-left">
                 <a href="/">
-                    <img src={{ ('photos/logo1.svg')}} alt="alt" class="py-6 rounded-[5px] mb-auto" id="footer-slika">
+                    <img src={{ asset('photos/logo1.svg')}} alt="alt" class="py-6 rounded-[5px] mb-auto" id="footer-slika">
                 </a>
 
                 <div class="mb-auto py-6">
@@ -23,7 +23,7 @@
                     <div class="w-full sm:w-[50%] pt-6 mb-auto flex flex-col justify-start items-start sm:pl-[150px]  gap-2">
                         <span class="text-lg font-bold pb-2">Links</span>
 
-                        <a rel="noopener" href="all-properties" >
+                        <a rel="noopener" href="{{ route('all-properties') }}" >
                             <span class="text-base">All Properties</span>
                         </a>
 
@@ -44,19 +44,19 @@
                 <div class="w-full">
                     <div class="" id="footer-icons">
                         <a href="https://github.com/KerimNezo" target="_blank">
-                            <img src="{{ ('photos/icons/socials/github-icon.svg')}}" alt="gh" class="w-6">
+                            <img src="{{ asset('photos/icons/socials/github-icon.svg')}}" alt="gh" class="w-6">
                         </a>
 
                         <a href="https://x.com/neyolino" target="_blank">
-                            <img src="{{ ('photos/icons/socials/x-icon.svg')}}" alt="x" class="w-6">
+                            <img src="{{ asset('photos/icons/socials/x-icon.svg')}}" alt="x" class="w-6">
                         </a>
 
                         <a href="https://www.instagram.com/knezo_01/" target="_blank">
-                            <img src="{{ ('photos/icons/socials/instagram-icon.svg')}}" alt="ig" class="w-6">
+                            <img src="{{ asset('photos/icons/socials/instagram-icon.svg')}}" alt="ig" class="w-6">
                         </a>
 
                         <a href="https://www.linkedin.com/in/kerim-nezo/" target="_blank">
-                            <img src="{{ ('photos/icons/socials/linkedin-icon.svg')}}" alt="in" class="w-6">
+                            <img src="{{ asset('photos/icons/socials/linkedin-icon.svg')}}" alt="in" class="w-6">
                         </a>
                     </div>
                 </div>

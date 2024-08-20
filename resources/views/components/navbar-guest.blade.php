@@ -3,12 +3,12 @@
     <header class="grid grid-cols-2 items-center lg:grid-cols-2 py-[24px] w-[80%] ml-[10%]">
         <div class="pr-auto w-[220px] h-[55px]">
             <a href="/">
-                <img src={{ ('photos/logo1.svg')}} alt="alt" class="rounded-[5px]">
+                <img src={{ asset('photos/logo1.svg')}} alt="alt" class="rounded-[5px]">
             </a>
         </div>
 
         <div class="flex justify-center items-end w-full">
-            <a rel="noopener" href="all-properties" class="ml-auto">
+            <a rel="noopener" href="{{ route('all-properties') }}" class="ml-auto">
                 <span class="navbar-text">All properties</span>
             </a>
 
@@ -32,13 +32,13 @@
     <header class="flex justify-start items-center text-center py-[24px] w-full">
         <div class="ml-[10%] h-[50px] flex justify-center items-center mr-auto">
             <a href="/">
-                <img src={{ ('photos/logo1.svg')}} alt="alt" class="rounded-[5px]">
+                <img src={{ asset('photos/logo1.svg')}} alt="alt" class="rounded-[5px]">
             </a>
         </div>
 
         <div class="mr-[10%] flex justify-center items-center ">
             <button type="button" id="button" class="collapsible">
-                <img src={{ ('photos/menu-icon.svg')}} alt="menu-icon" class="w-[35px]">
+                <img src={{ asset('photos/menu-icon.svg')}} alt="menu-icon" class="w-[35px]">
             </button>
         </div>
 
@@ -46,7 +46,7 @@
     <div class="origin-top pt-[10px]" id="mobile-guest-collapse-content" style="display: none;">
         <div class="flex flex-row items-center w-[100%] gap-4 mx-auto">
             <div class="w-[50%] pl-[5%]">
-                <a rel="noopener" href="all-properties">
+                <a rel="noopener" href="{{ route('all-properties') }}">
                     <span class="navbar-text text-base">All properties</span>
                 </a>
             </div>
