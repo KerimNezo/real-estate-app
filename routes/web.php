@@ -10,8 +10,6 @@ Route::get('/livewire', function () {
     return view('livewire');
 });
 
-Route::get('/counter', Counter::class);
-
 Route::get('/', WelcomeController::class)
     ->name('home');
 
