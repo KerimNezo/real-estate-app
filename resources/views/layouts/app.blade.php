@@ -26,7 +26,6 @@
 
                     {{ $slot }}
 
-
                     @include('components.property-page-footer')
                 </div>
             </div>
@@ -34,4 +33,4 @@
     </body>
 </html>
 
-{{-- Layout za obicnog korisnika page --}}
+<!-- Layout za obicnog korisnika page -->
