@@ -1,12 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    {{ $property }}
-</body>
-</html>
+<x-app-layout>
+    <x-slot:title>
+        Property name
+    </x-slot:title>
+
+    <main class="w-full h-full pt-32 bg-slate-500">
+        <div class="h-[500px]">
+            {{ $property }}
+        </div>
+    </main>
+</x-app-layout>
