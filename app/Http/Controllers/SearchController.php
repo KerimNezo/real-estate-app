@@ -56,7 +56,7 @@ class SearchController extends Controller
 
         return view('properties.index')
             ->with('properties', $result)
-            ->with('property_count', $propertyCount)
+            ->with('propertyCount', $propertyCount)
             ->with('cities', $cities);
     }
 }
