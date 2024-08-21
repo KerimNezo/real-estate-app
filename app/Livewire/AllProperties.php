@@ -1,0 +1,70 @@
+<?php
+
+namespace App\Livewire;
+
+use Livewire\Component;
+use App\Models\Property;
+
+class AllProperties extends Component
+{
+    public $cities;
+    public $propertyCount;
+    public $order;
+    public $properties;
+
+    public function mount()
+    {
+        $this->fetchProperties();
+    }
+
+    public function fetchProperties()
+    {
+        $query = Property::query();
+
+        // if ($this->filters['location']) {
+        //     $query->where('city', $this->filters['location']);
+        // }
+
+        // if ($this->filters['offer_type']) {
+        //     $query->where('offer_type', $this->filters['offer_type']);
+        // }
+
+        // if ($this->filters['property_type']) {
+        //     $query->where('property_type', $this->filters['property_type']);
+        // }
+
+        // if ($this->filters['min_price']) {
+        //     $query->where('price', '>=', $this->filters['min_price']);
+        // }
+
+        // if ($this->filters['max_price']) {
+        //     $query->where('price', '<=', $this->filters['max_price']);
+        // }
+
+        switch ($this->order) {
+            case 'lowestfirst':
+                $query->orderBy('price', 'asc');
+                break;
+            case 'highestfirst':
+                $query->orderBy('price', 'desc');
+                break;
+            default:
+                $query->latest();
+                break;
+        }
+
+        $this->properties = $query->get();
+        $this->propertyCount = $this->properties->count();
+    }
+
+    public function sort($order)
+    {
+        $this->order = $order;
+        $this->fetchProperties();
+    }
+
+    public function render()
+    {
+        return view('livewire.all-properties');
+    }
+}

@@ -29,7 +29,7 @@ class PropertyController extends Controller
 
         return view('properties.index')
             ->with('properties', $properties)
-            ->with('property_count', $propertyCount)
+            ->with('propertyCount', $propertyCount)
             ->with('cities', $cities);
     }
 
