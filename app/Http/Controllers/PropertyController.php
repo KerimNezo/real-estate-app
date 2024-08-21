@@ -27,7 +27,10 @@ class PropertyController extends Controller
 
         //logger($cities); we alog all cities plucked from $properties
 
-        return view('properties.index', ['properties' => $properties, 'property_count' => $propertyCount, 'cities' => $cities]);
+        return view('properties.index')
+            ->with('properties', $properties)
+            ->with('property_count', $propertyCount)
+            ->with('cities', $cities);
     }
 
     /**
@@ -51,7 +54,8 @@ class PropertyController extends Controller
      */
     public function show(Property $property)
     {
-        return view('properties.show', ['property' => 'Ovo je text koji se proslijedio u action funkciji u controlleru.']);
+        return view('properties.show')
+            ->with('property', 'Ovo je text koji se proslijedio u action funkciji u controlleru.');
     }
 
     /**

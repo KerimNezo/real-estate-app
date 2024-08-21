@@ -3,11 +3,13 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\WelcomeController;
-use App\Livewire\Counter;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/livewire', function () {
-    return view('livewire');
+
+    $count = 10;
+    return view('livewire')
+        ->with('count', $count);
 });
 
 Route::get('/', WelcomeController::class)
