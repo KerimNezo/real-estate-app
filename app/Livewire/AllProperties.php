@@ -26,18 +26,22 @@ class AllProperties extends Component
 
     public function fetchProperties()
     {
-        $query = Property::query();
+        $query = Property::query()->with(['user', 'type']);
 
         if ($this->filters['location']) {
-            $query->where('city', $this->filters['location']);
+            $query->where('city', '=', $this->filters['location']);
         }
 
         if ($this->filters['offer_type']) {
-            $query->where('offer_type', $this->filters['offer_type']);
+            $query = match ($this->filters['offer_type']) {
+                '1' => $query->whereNull('lease_duration'), // sell
+                '2' => $query->whereNotNull('lease_duration'), // rent
+                default => $query,
+            };
         }
 
         if ($this->filters['property_type']) {
-            $query->where('property_type', $this->filters['property_type']);
+            $query->where('type_id', '=', $this->filters['property_type']);
         }
 
         if ($this->filters['min_price']) {
@@ -92,7 +96,8 @@ class AllProperties extends Component
 
     public function searchProperties()
     {
-
+        $this->fetchProperties();
+        $this->clearForm();
     }
 
     public function render()

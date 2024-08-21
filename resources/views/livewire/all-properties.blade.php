@@ -16,7 +16,7 @@
                 <!-- Query form -->
                 <div id="query-form-all-properties" class="bg-[#5eb1f0] h-full rounded-[5px] flex justify-center items-center mt-5">
                     <table class="w-full pb-auto h-full">
-                        <form action="/search" method="GET" wire:submit="searchProperties">
+                        <form wire:submit="searchProperties">
                             <!-- Property location input-->
                             <x-form-select-input modelName="filters.location" heading="Property location" selectId="asset-location">
                                 <option value="" selected>Select a location</option>
@@ -28,8 +28,8 @@
                             <!-- Property type input-->
                             <x-form-select-input modelName="filters.offer_type" heading="Offer type" selectId="asset-offer-id">
                                 <option value="" selected>Select an offer</option>
-                                <option value="0">Sale</option>
-                                <option value="1">Rent</option>
+                                <option value="1">Sale</option>
+                                <option value="2">Rent</option>
                             </x-form-select-input>
 
                             <!-- Property type input-->

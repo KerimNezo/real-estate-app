@@ -27,8 +27,8 @@ class SearchController extends Controller
         if (! is_null($assetOffer = $request->query('asset-offer-id'))) {
             logger('Assets offer is {asset-offer}', ['asset-offer' => $assetOffer]);
             $properties = match ($assetOffer) {
-                '0' => $properties->whereNull('lease_duration'), // sell
-                '1' => $properties->whereNotNull('lease_duration'), // rent
+                '1' => $properties->whereNull('lease_duration'), // sell
+                '2' => $properties->whereNotNull('lease_duration'), // rent
                 default => $properties,
             };
         }
