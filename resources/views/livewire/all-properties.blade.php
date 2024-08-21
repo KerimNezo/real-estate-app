@@ -9,32 +9,32 @@
 
                     <!-- Filter button-->
                     <div class="ml-auto w-fit">
-                        <button id="filter-button" class="!bg-[#ef5d60] h-[48px] rounded-[5px] text-base px-4" type="button">Clear filters</button>
+                        <button wire:click="clearForm()" id="filter-button" class="!bg-[#ef5d60] h-[48px] rounded-[5px] text-base px-4" type="button">Clear filters</button>
                     </div>
                 </div>
 
                 <!-- Query form -->
                 <div id="query-form-all-properties" class="bg-[#5eb1f0] h-full rounded-[5px] flex justify-center items-center mt-5">
                     <table class="w-full pb-auto h-full">
-                        <form action="/search" method="GET">
+                        <form action="/search" method="GET" wire:submit="searchProperties">
                             <!-- Property location input-->
-                            <x-form-select-input heading="Property location" selectId="asset-location">
-                                <option value="" disabled selected>Select a location</option>
+                            <x-form-select-input modelName="filters.location" heading="Property location" selectId="asset-location">
+                                <option value="" selected>Select a location</option>
                                 @foreach ($cities as $city)
                                     <option value="{{$city}}">{{$city}}</option>
                                 @endforeach
                             </x-form-select-input>
 
                             <!-- Property type input-->
-                            <x-form-select-input heading="Offer type" selectId="asset-offer-id">
-                                <option value="" disabled selected>Select an offer</option>
+                            <x-form-select-input modelName="filters.offer_type" heading="Offer type" selectId="asset-offer-id">
+                                <option value="" selected>Select an offer</option>
                                 <option value="0">Sale</option>
                                 <option value="1">Rent</option>
                             </x-form-select-input>
 
                             <!-- Property type input-->
-                            <x-form-select-input heading="Property type" selectId="type-of-asset-id">
-                                <option value="" disabled selected>Choose property type</option>
+                            <x-form-select-input modelName="filters.property_type" heading="Property type" selectId="type-of-asset-id">
+                                <option value="" selected>Choose property type</option>
                                 <option value="1">Office</option>
                                 <option value="2">House</option>
                                 <option value="3">Appartement</option>
@@ -51,13 +51,13 @@
                                         </div>
 
                                         <div class="flex flex-row justify-center items-center w-[90%] pl-[10%]">
-                                            <input type="text" placeholder="1200" class="rounded-[5px] border-2 border-[#989898] border-solid w-[45%] h-[35px] text-black" name="min-price">
+                                            <input wire:model="filters.min_price" type="text" placeholder="1200" class="rounded-[5px] border-2 border-[#989898] border-solid w-[45%] h-[35px] text-black" name="min-price">
 
                                             <div class="w-[10%] flex ">
                                                 <span class="ml-auto mr-auto">to</span>
                                             </div>
 
-                                            <input type="text" placeholder="100000" class="rounded-[5px] border-2 border-[#989898] border-solid w-[45%] h-[35px] text-black" name="max-price">
+                                            <input wire:model="filters.max_price" type="text" placeholder="100000" class="rounded-[5px] border-2 border-[#989898] border-solid w-[45%] h-[35px] text-black" name="max-price">
                                         </div>
                                     </div>
                                 </td>
@@ -84,9 +84,9 @@
 
                     <div id="property-list-button" class="relative">
                         <select wire:model="order" name="" id="dropdown-button" class="w-full !bg-[#ef5d60] h-[48px] rounded-[5px] px-2 text-base">
-                            <option wire:click="sort('recent')" value="recent">Most recent</option>
-                            <option wire:click="sort('lowestfirst')" value="lowestfirst">Price: Low - High ↓</option>
-                            <option wire:click="sort('highestfirst')" value="highestfirst">Price: High - Low ↑</option>
+                            <option wire:click="sortProperties('recent')" value="recent">Most recent</option>
+                            <option wire:click="sortProperties('lowestfirst')" value="lowestfirst">Price: Low - High ↓</option>
+                            <option wire:click="sortProperties('highestfirst')" value="highestfirst">Price: High - Low ↑</option>
                         </select>
                     </div>
                 </div>

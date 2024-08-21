@@ -11,6 +11,13 @@ class AllProperties extends Component
     public $propertyCount;
     public $order;
     public $properties;
+    public $filters = [
+        'location' => null,
+        'offer_type' => null,
+        'property_type' => null,
+        'min_price' => null,
+        'max_price' => null,
+    ];
 
     public function mount()
     {
@@ -21,25 +28,25 @@ class AllProperties extends Component
     {
         $query = Property::query();
 
-        // if ($this->filters['location']) {
-        //     $query->where('city', $this->filters['location']);
-        // }
+        if ($this->filters['location']) {
+            $query->where('city', $this->filters['location']);
+        }
 
-        // if ($this->filters['offer_type']) {
-        //     $query->where('offer_type', $this->filters['offer_type']);
-        // }
+        if ($this->filters['offer_type']) {
+            $query->where('offer_type', $this->filters['offer_type']);
+        }
 
-        // if ($this->filters['property_type']) {
-        //     $query->where('property_type', $this->filters['property_type']);
-        // }
+        if ($this->filters['property_type']) {
+            $query->where('property_type', $this->filters['property_type']);
+        }
 
-        // if ($this->filters['min_price']) {
-        //     $query->where('price', '>=', $this->filters['min_price']);
-        // }
+        if ($this->filters['min_price']) {
+            $query->where('price', '>=', $this->filters['min_price']);
+        }
 
-        // if ($this->filters['max_price']) {
-        //     $query->where('price', '<=', $this->filters['max_price']);
-        // }
+        if ($this->filters['max_price']) {
+            $query->where('price', '<=', $this->filters['max_price']);
+        }
 
         switch ($this->order) {
             case 'lowestfirst':
@@ -57,10 +64,35 @@ class AllProperties extends Component
         $this->propertyCount = $this->properties->count();
     }
 
-    public function sort($order)
+    public function sortProperties($order)
     {
         $this->order = $order;
-        $this->fetchProperties();
+        switch ($this->order) {
+            case 'lowestfirst':
+                $sorted = $this->properties->sortBy('price');
+                break;
+            case 'highestfirst':
+                $sorted = $this->properties->sortByDesc('price');
+                break;
+            default:
+                $sorted = $this->properties->sortByDesc('created_at');
+                break;
+        }
+        $this->properties = $sorted;
+    }
+
+    public function clearForm()
+    {
+        $this->filters['location'] = null;
+        $this->filters['offer_type'] = null;
+        $this->filters['property_type'] = null;
+        $this->filters['min_price'] = null;
+        $this->filters['max_price'] = null;
+    }
+
+    public function searchProperties()
+    {
+
     }
 
     public function render()
