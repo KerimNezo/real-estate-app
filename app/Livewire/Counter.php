@@ -18,10 +18,7 @@ class Counter extends Component
         $this->count--;
     }
 
-    public function add()
-    {
-
-    }
+    public function add() {}
 
     public function render()
     {

@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/livewire', function () {
 
     $count = 10;
+
     return view('livewire')
         ->with('count', $count);
 });
