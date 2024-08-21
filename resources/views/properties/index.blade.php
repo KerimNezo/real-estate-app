@@ -14,7 +14,7 @@
                 <div id="property-index-filters" class="h-[500px] flex flex-col justify-center items-start">
                     <!-- Filter clear & text-->
                     <div id="form-heading" class="flex justify-start items-center pt-3">
-                        <p class="text-lg text-black w-[150px]">Find you home</p>
+                        <p class="text-lg text-black w-[150px]">Find your home</p>
 
                         <!-- Filter button-->
                         <div class="ml-auto w-fit">

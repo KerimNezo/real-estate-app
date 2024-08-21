@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot:title>
-        Realestate
+        Realestate App
     </x-slot>
 
     <!-- Hero section of the page -->
