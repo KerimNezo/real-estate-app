@@ -2,15 +2,19 @@
 
 namespace App\Livewire;
 
-use Livewire\Component;
 use App\Models\Property;
+use Livewire\Component;
 
 class AllProperties extends Component
 {
     public $cities;
+
     public $propertyCount;
+
     public $order;
+
     public $properties;
+
     public $filters = [
         'location' => null,
         'offer_type' => null,
@@ -21,11 +25,16 @@ class AllProperties extends Component
 
     public function mount()
     {
-        $this->fetchProperties();
+        if ($this->properties) {
+        } else {
+            $this->fetchProperties();
+        }
+
     }
 
     public function fetchProperties()
     {
+        logger($this->properties);
         $query = Property::query()->with(['user', 'type']);
 
         if ($this->filters['location']) {
