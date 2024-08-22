@@ -31,6 +31,10 @@ class AllProperties extends Component
         }
 
     }
+    // mount() is used to set up our component for its initial display on our page
+
+    // updated() is hook used to manage to our component property and its value before they hit our controller
+    // could be used to check input and validate user data -> This is where we do validation
 
     public function fetchProperties()
     {
