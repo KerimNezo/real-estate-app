@@ -54,6 +54,7 @@ class PropertyController extends Controller
      */
     public function show(string $id)
     {
+        // ovdje ćemo nekako morati ubaciti item-based collaborative filtering
         return view('properties.show')
             ->with('property', Property::with(['user'])->findOrFail($id));
     }
