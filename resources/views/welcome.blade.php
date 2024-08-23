@@ -31,7 +31,7 @@
             <div class="text-center text-xl py-12">
                 <div class="px-[10%] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 w-full"> <!-- ovdje sad treba editovati kako se pozicioniraju -->
                     @foreach ($properties as $property )
-                        <a href="{{ route('all-properties') }}">
+                        <a href="{{ route('single-property', ['id' => $property->id]) }}">
                             <x-property-card :$property/>
                         </a>
                     @endforeach
