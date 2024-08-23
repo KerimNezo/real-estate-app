@@ -21,11 +21,8 @@ class PropertySeeder extends Seeder
 
         foreach ($propertyType as $type) {
             for ($x = 0; $x < 4; $x++) {
-                if ($x % 2 == 0) {
-                    $street = 'Mejdandžik 11';
-                } else {
-                    $street = 'Adolfa Goldberga 5';
-                }
+                $street = ($x % 2 == 0) ? 'Mejdandžik 11' : 'Adolfa Goldberga 5';
+
                 $property = Property::factory()->create([
                     'name' => $propertyName[$type - 1],
                     'user_id' => User::factory()->create(),
