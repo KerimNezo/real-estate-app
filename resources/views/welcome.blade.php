@@ -56,11 +56,11 @@
         <div class="flex justify-center items-center">
             <div class="py-16 w-full sm:w-[80%] ">
                 <div class="flex flex-row justify-center items-center ">
-                    <x-property-query-card logo="./photos/icons/House.svg" text="House" link="/search?type-of-asset-id=2" />
+                    <x-property-query-card logo="./photos/icons/property_types/House.svg" text="House" link="/search?type-of-asset-id=2" />
                     <hr class="h-[100px] w-[2px] border-[0px] bg-black mb-[30px]">
-                    <x-property-query-card logo="./photos/icons/Appartement.svg" text="Appartement" link="/search?type-of-asset-id=3" />
+                    <x-property-query-card logo="./photos/icons/property_types/Appartement.svg" text="Appartement" link="/search?type-of-asset-id=3" />
                     <hr class="h-[100px] w-[2px] border-[0px] bg-black mb-[30px]">
-                    <x-property-query-card logo="./photos/icons/Office.svg" text="Office" link="/search?type-of-asset-id=1" />
+                    <x-property-query-card logo="./photos/icons/property_types/Office.svg" text="Office" link="/search?type-of-asset-id=1" />
                 </div>
             </div>
         </div>
