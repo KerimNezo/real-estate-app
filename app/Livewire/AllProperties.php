@@ -38,7 +38,6 @@ class AllProperties extends Component
 
     public function fetchProperties()
     {
-        logger($this->properties);
         $query = Property::query()->with(['user', 'type']);
 
         if ($this->filters['location']) {
@@ -79,6 +78,11 @@ class AllProperties extends Component
 
         $this->properties = $query->get();
         $this->propertyCount = $this->properties->count();
+        logger($this->properties);
+        if($this->properties->isEmpty())
+        {
+            logger('empty je je');
+        }
     }
 
     public function sortProperties($order)

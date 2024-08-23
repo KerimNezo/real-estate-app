@@ -95,13 +95,25 @@
                 <div class=" text-black bg-white h-full w-full py-5" id="featured-properties">
                     <!-- Grid display of property cards -->
                     <div class="text-center text-xl">
-                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8 w-full"> <!-- ovdje sad treba editovati kako se pozicioniraju -->
-                            @foreach ($properties as $property )
-                                <a href="{{ route('single-property', ['id' => $property->id]) }}">
-                                    <x-property-card :$property/>
-                                </a>
-                            @endforeach
-                        </div>
+                        @if ($properties->isEmpty())
+                            <div class="flex-col justify-center items-center mx-auto">
+                                <div class="pt-[100px]">
+                                    <img src="./photos/icons/no-result.svg" alt="" class="w-[100px] mx-auto">
+                                </div>
+
+                                <div class="pt-[40px]">
+                                    <p>It seems like there are no matching results <br> for your search...</p>
+                                </div>
+                            </div>
+                        @else
+                            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8 w-full"> <!-- ovdje sad treba editovati kako se pozicioniraju -->
+                                @foreach ($properties as $property )
+                                    <a href="{{ route('single-property', ['id' => $property->id]) }}">
+                                        <x-property-card :$property/>
+                                    </a>
+                                @endforeach
+                            </div>
+                        @endif
 
                         <!-- Ovdje treba negdje i paginaciju dodati -->
                         <!--
