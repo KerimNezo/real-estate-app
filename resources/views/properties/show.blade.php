@@ -5,7 +5,7 @@
 
     <main class="w-full h-full pt-32 bg-slate-500">
         <div class="h-[500px]">
-            {{ $property }}
+            {{ $property->name }}
         </div>
     </main>
 </x-app-layout>

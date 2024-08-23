@@ -52,10 +52,10 @@ class PropertyController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Property $property)
+    public function show(string $id)
     {
         return view('properties.show')
-            ->with('property', 'Ovo je text koji se proslijedio u action funkciji u controlleru.');
+            ->with('property', Property::with(['user'])->findOrFail($id));
     }
 
     /**
