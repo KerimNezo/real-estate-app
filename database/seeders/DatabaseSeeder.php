@@ -18,20 +18,18 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
         // List all table names that you want to clear
         $tables = [
+            'permissions',
+            'media',
             'model_has_permissions',
             'model_has_roles',
             'permissions',
+            'properties',
             'role_has_permissions',
             'roles',
-            'permissions',
             'types',
-            'properties',
             'users',
-            'media',
             // Add more tables as needed
         ];
 
@@ -67,7 +65,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'admin',
             'email' => 'kerim.nezo@gmail.com',
             'phone_number' => '+387 61 034 357',
-            'password' => Hash::make('judaspriest'),
+            'password' => Hash::make('judaspriest1970'),
         ]);
 
         $admin->assignRole($adminRole);
@@ -75,7 +73,6 @@ class DatabaseSeeder extends Seeder
         $this->call(UserSeeder::class);
         $this->call(TypeSeeder::class);
         $this->call(PropertySeeder::class);
-        $this->call(CitySeeder::class);
 
         // ovdje generiši nekoliko officea, kuća i apartmana
 
