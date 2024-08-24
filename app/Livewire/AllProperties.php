@@ -79,8 +79,7 @@ class AllProperties extends Component
         $this->properties = $query->get();
         $this->propertyCount = $this->properties->count();
         logger($this->properties);
-        if($this->properties->isEmpty())
-        {
+        if ($this->properties->isEmpty()) {
             logger('empty je je');
         }
     }

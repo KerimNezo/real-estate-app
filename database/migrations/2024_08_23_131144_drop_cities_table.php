@@ -30,4 +30,3 @@ class DropCitiesTable extends Migration
         });
     }
 }
-
