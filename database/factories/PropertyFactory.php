@@ -17,7 +17,7 @@ class PropertyFactory extends Factory
     public function definition(): array
     {
         return [
-            'price' => 120000,
+            'price' => $this->faker->numberBetween(500, 200000),
             'surface' => 59,
             'lat' => 44.2,
             'lon' => 17.933333333333334,
