@@ -15,9 +15,11 @@ class PropertySeeder extends Seeder
     public function run(): void
     {
         // 1 - office, 2 - house, 3 - appartement
+        // moram jos uraditi da se storea više slika po nekretnini i treba naći slike
         $propertyType = [1, 2, 3];
         $propertyName = ['Business Center', 'Modern 3 bedroom house', '2 bedroom appartement'];
         $propertyPhoto = ['office', 'house', 'appartement'];
+        $propertyCity = ['Zenica', 'Sarajevo', 'Mostar', 'Banja Luka'];
 
         foreach ($propertyType as $type) {
             for ($x = 0; $x < 4; $x++) {
@@ -28,7 +30,7 @@ class PropertySeeder extends Seeder
                     'user_id' => User::factory()->create(),
                     'type_id' => Type::firstWhere('id', '=', $type),
                     'country' => 'Bosnia & Herzegovina',
-                    'city' => 'Zenica',
+                    'city' => $propertyCity[$x],
                     'street' => $street,
                 ])->addMedia('/home/rimke/code/diplomski/realestate-app/public/photos/'.$propertyPhoto[$type - 1].'.jpg')
                     ->preservingOriginal()
