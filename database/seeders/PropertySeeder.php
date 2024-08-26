@@ -25,7 +25,7 @@ class PropertySeeder extends Seeder
         foreach ($propertyType as $type) {
             for ($x = 0; $x < 4; $x++) {
                 $street = ($x % 2 == 0) ? 'Mejdandžik 11' : 'Adolfa Goldberga 5';
-                $lease =  ($x % 2 == 0) ? 5 : null; // ili ce lease duraiton biti 5 ili null
+                $lease = ($x % 2 == 0) ? 5 : null; // ili ce lease duraiton biti 5 ili null
 
                 $property = Property::factory()->create([
                     'name' => $propertyName[$type - 1],
@@ -37,13 +37,13 @@ class PropertySeeder extends Seeder
                     'street' => $street,
                 ]);
 
-                $property->addMedia(''.$path.'/'.$propertyPhoto[$type-1].'s/'.$propertyPhoto[$type - 1].'0.jpg')
+                $property->addMedia(''.$path.'/'.$propertyPhoto[$type - 1].'s/'.$propertyPhoto[$type - 1].'0.jpg')
                     ->preservingOriginal()
                     ->toMediaCollection('property-photos');
 
                 // ovako dodajemo samo na nekretninu svaku još po 5 slika, ne onako kao prije
                 for ($y = 1; $y < 6; $y++) {
-                    $property->addMedia(''.$path.'/'.$propertyPhoto[$type-1].'s/'.$propertyPhoto[$type - 1].''.$y.'.jpg')
+                    $property->addMedia(''.$path.'/'.$propertyPhoto[$type - 1].'s/'.$propertyPhoto[$type - 1].''.$y.'.jpg')
                         ->preservingOriginal()
                         ->toMediaCollection('property-photos');
 
