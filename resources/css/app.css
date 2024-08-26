@@ -15,7 +15,7 @@
     height: 100px;
     width: 100%; /*Ovako iznad ograničivaš max width, tako ćeš i srediti da ti ide*/
     position: fixed;
-    z-index: 100;
+    z-index: 110;
     -webkit-box-shadow: 0px 9px 24px -10px rgba(0,0,0,0.75);
     -moz-box-shadow: 0px 9px 24px -10px rgba(0,0,0,0.75);
     box-shadow: 0px 9px 24px -10px rgba(0,0,0,0.75);
@@ -157,6 +157,55 @@
     line-height: 24px;
 }
 
+#dugmeDesno {
+    left: auto;
+    right: 12px;
+    text-align: center;
+    position: absolute;
+    top: 15%;
+    background-color: #fff;
+    width: 52px;
+    height: 52px;
+    box-shadow: 0 0 7px 0 rgba(0, 0, 0, 0.07);
+    line-height: 52px;
+    font-size: 28px;
+    border-radius: 50%;
+    color: #696969;
+    z-index: 100;
+}
+
+#dugmeLijevo {
+    right: auto;
+    left: 12px;
+    text-align: center;
+    position: absolute;
+    top: 15%;
+    background-color: #fff;
+    width: 52px;
+    height: 52px;
+    box-shadow: 0 0 7px 0 rgba(0, 0, 0, 0.07);
+    line-height: 52px;
+    font-size: 28px;
+    border-radius: 50%;
+    color: #696969;
+    z-index: 100;
+}
+
+#mainPhoto {
+    height: 230px;
+    width: 100%;
+    border-radius: 5px;
+    background-color: inherit;
+}
+
+#photoList {
+    width: 20%;
+    height: 60px;
+    border-radius: 5px;
+    background-color: inherit;
+    display: none;
+}
+
 @media (min-width: 640px) { /* Ovdje su stvari koje želimo da se vide kada je širina ekrana +640px */
 
     #property-list-button {
@@ -214,6 +263,55 @@
         padding-left: 0%;
     }
 
+    #dugmeDesno {
+        left: auto;
+        right: 127px;
+        text-align: center;
+        position: absolute;
+        top: 24.5%;
+        background-color: #fff;
+        width: 52px;
+        height: 52px;
+        box-shadow: 0 0 7px 0 rgba(0, 0, 0, 0.07);
+        line-height: 52px;
+        font-size: 28px;
+        border-radius: 50%;
+        color: #696969;
+        z-index: 100;
+    }
+
+    #dugmeLijevo {
+        right: auto;
+        left: 127px;
+        text-align: center;
+        position: absolute;
+        top: 24.5%;
+        background-color: #fff;
+        width: 52px;
+        height: 52px;
+        box-shadow: 0 0 7px 0 rgba(0, 0, 0, 0.07);
+        line-height: 52px;
+        font-size: 28px;
+        border-radius: 50%;
+        color: #696969;
+        z-index: 100;
+    }
+
+    #mainPhoto {
+        height: 600px;
+        width: 100%;
+        border-radius: 5px;
+        background-color: inherit;
+    }
+
+    #photoList {
+        width: 20%;
+        height: 130px;
+        border-radius: 5px;
+        background-color: inherit;
+        display: block;
+    }
+
     .property-type-image {
         width: 180px;
         padding-left: 10px;
@@ -226,7 +324,7 @@
         width: 100%;
         height: 100px;
         position: fixed;
-        z-index: 100;
+        z-index: 110;
         -webkit-box-shadow: 0px 9px 24px -10px rgba(0,0,0,0.75);
         -moz-box-shadow: 0px 9px 24px -10px rgba(0,0,0,0.75);
         box-shadow: 0px 9px 24px -10px rgba(0,0,0,0.75);
