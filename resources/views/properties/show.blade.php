@@ -16,18 +16,23 @@
             </div>
 
             <!-- Property/agent information -->
-            <div class="h-[200px] bg-green-400 w-[80%] rounded-[10px] flex justify-center items-center">
+            <div class="h-full w-[80%] rounded-[10px] flex justify-center items-center py-5">
                 <!-- Property information -->
-                <div class="w-[50%] flex flex-col justify-center items-center">
-                    {{ $property->name }} <br>
+                <div class="w-[60%] h-full flex flex-col justify-center items-center bg-yellow-200 py-5 mr-4 rounded-[5px]">
+                    <div class="w-[50%] h-[15%] bg-white rounded-[5px] flex justify-start items-center" >
+                        <p class="ml-4">{{ $property->name }}</p>
+                    </div>
+                    <br>
                     Cijena: {{ $property->price }} KM <br>
                     Ostali podaci <br>
                     Mapa
                 </div>
 
                 <!-- Agents informations (podaci o "useru")-->
-                <div class="w-[50%] flex flex-col justify-center items-center">
-                    Agent: {{ $property->user->name }}
+                <div class="w-[40%] h-full flex flex-col justify-center items-center bg-teal-300 py-5 rounded-[5px]">
+                    <div>
+                        Agent: {{ $property->user->name }}
+                    </div>
                 </div>
             </div>
 
