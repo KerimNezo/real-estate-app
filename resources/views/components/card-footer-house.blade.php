@@ -7,7 +7,7 @@
 
     <x-card-footer-attribute :var="$property->toilets" imagePath="./photos/icons/bathroom.svg" :text="$property->toilets" :sqr="0"/>
 
-    <x-card-footer-attribute :var="$property->garage" imagePath="./photos/icons/garage.svg" text="" :sqr="0"/>
+    <x-card-footer-attribute :var="$property->garage" imagePath="./photos/icons/garage.svg" :text="$property->garage" :sqr="0"/>
 
     <x-card-footer-attribute :var="$property->furnished" imagePath="./photos/icons/furnished.svg" text="" :sqr="0"/>
 </ul>

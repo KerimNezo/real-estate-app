@@ -54,7 +54,17 @@ class PropertyController extends Controller
      */
     public function show(string $id)
     {
-        // ovdje ćemo nekako morati ubaciti item-based collaborative filtering
+
+
+        // ovdje ćemo nekako morati ubaciti item-based collaborative filtering i to mi daje do znanja da ću morati posebno
+        //
+        /*
+        Ovdje ću morati ubaciti item-based collaborative filtering sistem,
+        To zamišljam kao neku funkciju koja će raditi taj filtering
+        similarProperties($property)
+        i vraća mi listu koja ima 5 property-a koji su slični
+        primarno se gleda, sell/rent->lokacija->price->kvadratura.... ugl trebat će istražiti tačno kako jedan takav sistem radi
+        */
         return view('properties.show')
             ->with('property', Property::with(['user'])->findOrFail($id));
     }
