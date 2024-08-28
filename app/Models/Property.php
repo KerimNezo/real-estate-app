@@ -35,6 +35,7 @@ class Property extends Model implements HasMedia
         'video_intercom',
         'keycard_entry',
         'elevator',
+        'description',
     ];
 
     public function type(): BelongsTo
