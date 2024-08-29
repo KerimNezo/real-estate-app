@@ -18,15 +18,22 @@
             <!-- Property/agent information -->
             <div class="h-full w-[80%] rounded-[10px] flex justify-center items-center py-5">
                 <!-- Property information -->
-                <div class="w-[60%] h-full flex flex-col justify-center items-center bg-yellow-200 py-5 mr-4 rounded-[5px]">
-                    <div class="w-[50%] h-[15%] bg-white rounded-[5px] flex justify-start items-center" >
-                        <p class="ml-4">{{ $property->name }}</p>
+                <div class="flex flex-col justify-center items-center w-[60%] gap-4">
+                    <div class="w-full h-full flex flex-col justify-center items-center bg-yellow-200 py-5 mr-4 rounded-[5px]">
+                        <div class="w-[50%] h-[15%] bg-white rounded-[5px] flex justify-start items-center" >
+                            <h6 class="ml-4 text-3xl">{{ $property->name }}</h6>
+                        </div>
+                        <br>
+                        Cijena: {{ $property->price }} KM <br>
+                        Ostali podaci <br>
+                        Mapa
                     </div>
-                    <br>
-                    Cijena: {{ $property->price }} KM <br>
-                    Ostali podaci <br>
-                    Mapa
+
+                    <div class="w-full h-full flex flex-col justify-center items-center bg-yellow-200 py-5 mr-4 rounded-[5px]">
+                        <div id="map"></div>
+                    </div>
                 </div>
+
 
                 <!-- Agents informations (podaci o "useru")-->
                 <div class="w-[40%] h-full flex flex-col justify-center items-center bg-teal-300 py-5 rounded-[5px]">
@@ -46,3 +53,12 @@
         </div>
     </main>
 </x-app-layout>
+
+
+<script>
+        // initialize the map on the "map" div with a given center and zoom
+    var map = L.map('map', {
+        center: [51.505, -0.09],
+        zoom: 13
+    });
+</script>

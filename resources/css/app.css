@@ -206,7 +206,15 @@
     display: none;
 }
 
+#map {
+    height: 180px;
+}
+
 @media (min-width: 640px) { /* Ovdje su stvari koje želimo da se vide kada je širina ekrana +640px */
+
+    #map {
+        height: 180px;
+    }
 
     #property-list-button {
         width: 25%;
