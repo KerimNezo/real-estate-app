@@ -4,6 +4,7 @@
     $lon = $property->lon;
     $lat = $property->lat;
     $propertyName = $property->name;
+    $similarProperties = [$property, $property, $property];
 @endphp
 
 <x-app-layout>
@@ -43,17 +44,25 @@
                 <!-- Agents informations (podaci o "useru")-->
                 <div class="w-[40%] h-full flex flex-col justify-center items-center bg-teal-300 mb-auto py-5 rounded-[5px]">
                     <div>
-                        Agent: {{ $property->user->name }}
+                        <p>
+                            Agent: {{ $property->user->name }}
+                        </p>
+
+                        <p>
+                            Contant us: {{ $property->user->phone_number }}
+                        </p>
                     </div>
                 </div>
             </div>
 
             <!-- Similar properties -->
-            <div class="h-[200px] bg-orange-400 w-[80%] my-4 rounded-[10px]">
+            <div class="h-[400px] bg-orange-400 w-[80%] my-4 rounded-[10px] flex justify-center items-center content-stretch">
                 <!-- Ovdje ćemo dobiti samo listu propertya koji su bliski sa otvorenim propertyem koje ćemo izlistati -->
-                <div class="mt-4 ml-4 w-full">
-                    Similar properties
-                </div>
+                @foreach ($similarProperties as $property )
+                    <a href="{{ route('single-property', ['id' => $property->id]) }}">
+                        <x-property-card :$property/>
+                    </a>
+                @endforeach
             </div>
         </div>
     </main>

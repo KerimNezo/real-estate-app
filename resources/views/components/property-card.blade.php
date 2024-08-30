@@ -16,7 +16,7 @@
 
     <!-- breakpoint -->
     <div id="breakpoint" class="px-4 py-2">
-        <hr class="w-[100%] ">
+        <hr class="w-full">
     </div>
 
     <!-- section about property attributes -->
