@@ -55,7 +55,6 @@ class PropertyController extends Controller
     public function show(string $id)
     {
 
-
         // ovdje ćemo nekako morati ubaciti item-based collaborative filtering i to mi daje do znanja da ću morati posebno
         //
         /*

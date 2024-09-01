@@ -29,17 +29,15 @@ class PropertySeeder extends Seeder
                 $elevator = ($type != 2 && $x % 2 == 0) ? 1 : null;
                 $keycard = ($type != 2 && $x % 2 == 0) ? 1 : null;
                 $floors = ($type == 2 || $type % 2 == 0) ? 2 : null;
-                $rooms = ($type == 2 || $type == 3) ? $type+1 : null;
+                $rooms = ($type == 2 || $type == 3) ? $type + 1 : null;
                 $garage = ($x % 2 == 0) ? 2 : null;
-                $bedrooms = ($type == 2 || $type == 3) ? $type+1 : null;
+                $bedrooms = ($type == 2 || $type == 3) ? $type + 1 : null;
 
-                $toilets = match($type) {
+                $toilets = match ($type) {
                     1 => 5,
                     2 => 2,
                     default => 1,
                 };
-
-
 
                 $property = Property::factory()->create([
                     'name' => $propertyName[$type - 1],
