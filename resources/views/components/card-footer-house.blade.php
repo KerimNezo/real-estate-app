@@ -1,13 +1,39 @@
 @props(['property'])
 
 <ul class="flex justify-start items-center gap-3 w-full px-6">
-    <x-card-footer-attribute :var="$property->bedrooms" imagePath="./photos/icons/bedroom.svg" :text="$property->bedrooms" :sqr="0"/>
+    @if (!is_null($property->bedrooms))
+        <li class="flex justify-center items-center gap-1">
+            <x-ionicon-bed class="w-[30px] h-[30px] fill-[#EF5D60]"/>
+            <p class="text-sm">{{ $property->bedrooms }}</p>
+        </li>
+    @endif
 
-    <x-card-footer-attribute :var="$property->surface" imagePath="./photos/icons/square.svg" :text="$property->surface" :sqr="1" />
+    @if (!is_null($property->surface))
+        <li class="flex justify-center items-center gap-1">
+            <x-phosphor-square-half-light class="w-[36px] h-[36px] fill-[#EF5D60]"/>
+            <p class="text-sm">{{ $property->surface }} m&sup2; </p>
+        </li>
+    @endif
 
-    <x-card-footer-attribute :var="$property->toilets" imagePath="./photos/icons/bathroom.svg" :text="$property->toilets" :sqr="0"/>
+    @if (!is_null($property->toilets))
+        <li class="flex justify-center items-center gap-1">
+            <x-eos-shower-o class="w-[32px] h-[32px] fill-[#EF5D60]"/>
+            <p class="text-sm">{{ $property->toilets }}</p>
+        </li>
+    @endif
 
-    <x-card-footer-attribute :var="$property->garage" imagePath="./photos/icons/garage.svg" :text="$property->garage" :sqr="0"/>
+    @if (!is_null($property->garage))
+        <li class="flex justify-center items-center gap-1">
+            <x-bxs-car-garage class="w-[30px] h-[30px] fill-[#EF5D60]"/>
+            <p class="text-sm">{{ $property->garage }}</p>
+        </li>
+    @endif
 
-    <x-card-footer-attribute :var="$property->furnished" imagePath="./photos/icons/furnished.svg" text="" :sqr="0"/>
+    @if (!is_null($property->furnished))
+        <li class="flex justify-center items-center gap-1">
+            <x-maki-furniture class="w-[26px] h-[26px] fill-[#EF5D60]"/>
+            <p class="text-sm"></p>
+        </li>
+    @endif
 </ul>
+
