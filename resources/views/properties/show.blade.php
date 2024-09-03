@@ -70,7 +70,6 @@
 
 
 <script>
-        // initialize the map on the "map" div with a given center and zoom
     var map = L.map('map');
 
     map.setView([{{ $lat }}, {{ $lon }}], 17);
@@ -83,5 +82,4 @@
     var marker = L.marker([{{ $lat }}, {{ $lon }}]).addTo(map)
         .bindPopup('{{ $propertyName }}')
         .openPopup();
-
 </script>
