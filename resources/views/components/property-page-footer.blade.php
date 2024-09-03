@@ -3,7 +3,7 @@
         <div class="" id="left-footer">
             <div class="sm:w-[50%] w-[100%] h-[90%] flex flex-col justify-center items-left">
                 <a href="/">
-                    <img src={{ asset('photos/logo1.svg')}} alt="alt" class="py-6 rounded-[5px] mb-auto" id="footer-slika">
+                    <img src={{ asset('photos/icons/logo1.svg')}} alt="alt" class="py-6 rounded-[5px] mb-auto" id="footer-slika">
                 </a>
 
                 <div class="mb-auto py-6">

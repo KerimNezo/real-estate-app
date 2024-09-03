@@ -18,7 +18,7 @@
         <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100 dark:bg-gray-900">
             <div>
                 <a href="/" >
-                    <img src={{ ('photos/logo1.svg')}} alt="alt" class="rounded-[5px] h-[80px]">
+                    <img src={{ ('photos/icons/logo1.svg')}} alt="alt" class="rounded-[5px] h-[80px]">
                 </a>
             </div>
 

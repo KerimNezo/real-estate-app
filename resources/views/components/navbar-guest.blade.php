@@ -3,7 +3,7 @@
     <header class="grid grid-cols-2 items-center lg:grid-cols-2 py-[24px] w-[80%] ml-[10%]">
         <div class="pr-auto w-[220px] h-[55px]">
             <a href="/">
-                <img src={{ asset('photos/logo1.svg')}} alt="alt" class="rounded-[5px]">
+                <img src={{ asset('photos/icons/logo1.svg')}} alt="alt" class="rounded-[5px]">
             </a>
         </div>
 
@@ -32,13 +32,13 @@
     <header class="flex justify-start items-center text-center py-[24px] w-full">
         <div class="ml-[10%] h-[50px] flex justify-center items-center mr-auto">
             <a href="/">
-                <img src={{ asset('photos/logo1.svg')}} alt="alt" class="rounded-[5px]">
+                <img src={{ asset('photos/icons/logo1.svg')}} alt="alt" class="rounded-[5px]">
             </a>
         </div>
 
         <div class="mr-[10%] flex justify-center items-center ">
             <button type="button" id="button" class="collapsible">
-                <img src={{ asset('photos/menu-icon.svg')}} alt="menu-icon" class="w-[35px]">
+                <img src={{ asset('photos/icons/menu-icon.svg')}} alt="menu-icon" class="w-[35px]">
             </button>
         </div>
 
