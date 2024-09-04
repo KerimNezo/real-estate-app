@@ -80,6 +80,6 @@
     }).addTo(map);
 
     var marker = L.marker([{{ $lat }}, {{ $lon }}]).addTo(map)
-        .bindPopup('{{ $propertyName }}')
+        .bindPopup('Vaša nekretnina')
         .openPopup();
 </script>
