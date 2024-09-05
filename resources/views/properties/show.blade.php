@@ -94,7 +94,7 @@
                         <div class="mb-[10px] h-[100px] bg-green-300 rounded-[5px] flex flex-col py-5 px-5 justify-center items-center">
                             <!-- Property price -->
                             <div class="rounded-[5px] flex justify-start items-center pb-2 w-full">
-                                <h6 class="text-xl mr-auto">
+                                <h6 class="text-3xl mr-auto">
                                     Price: ${{$price}}
                                 </h6>
                             </div>
