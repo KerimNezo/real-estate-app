@@ -29,7 +29,7 @@
             </div>
 
             <!-- Property/agent information -->
-            <div class="h-full w-[80%] rounded-[10px] flex justify-center items-center py-5 gap-4" >
+            <div class="h-full w-[80%] rounded-[10px] flex justify-center items-center py-4 gap-4" >
                 <!-- Property information -->
                 <div class="flex flex-col justify-center items-center w-[60%]">
                     <!-- Property information -->
