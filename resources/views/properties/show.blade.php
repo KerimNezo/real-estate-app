@@ -93,10 +93,11 @@
                     <div class="w-full sticky top-[0] z-[100]">
                         <div class="mb-[10px] h-[100px] bg-green-300 rounded-[5px] flex flex-col py-5 px-5 justify-center items-center">
                             <!-- Property price -->
-                            <div class="rounded-[5px] flex justify-start items-center pb-2 w-full">
-                                <h6 class="text-3xl mr-auto">
+                            <div class="rounded-[5px] flex justify-start items-center pb-5 w-full">
+                                <h6 class="text-2xl mr-auto">
                                     Price: ${{$price}}
                                 </h6>
+                                <!-- Ovdje gledaj da dodaš možda kontakte kompanije, socials i to -->
                             </div>
 
                             <!-- Lease duration -->
@@ -106,8 +107,12 @@
                                 </h3>
                             </div>
                         </div>
-                        <div class="w-full flex flex-col justify-center items-center bg-teal-300 mb-auto py-5 rounded-[5px]">
-                            <div>
+                        <div class="w-full flex flex-col justify-center items-center bg-teal-300 mb-auto py-5 px-5 rounded-[5px]">
+                            <div class="mr-auto text-xl font-bold">
+                                <p>Contact Us</p>
+                            </div>
+
+                            <div class="mr-auto pt-4">
                                 <p>
                                     Agent: {{ $property->user->name }}
                                 </p>
