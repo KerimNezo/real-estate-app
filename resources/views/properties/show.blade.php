@@ -29,9 +29,9 @@
             </div>
 
             <!-- Property/agent information -->
-            <div class="h-full w-[80%] rounded-[10px] flex justify-center items-center py-4 gap-4" >
+            <div class="h-full w-[80%] rounded-[10px] flex justify-center items-stretch py-4 gap-4">
                 <!-- Property information -->
-                <div class="flex flex-col justify-center items-center w-[60%]">
+                <div id="PropertyInfo" class="flex flex-col justify-center items-center w-[60%] flex-1">
                     <!-- Property information -->
                     <div class="flex flex-col justify-center items-center w-full gap-4 pb-2">
                         <div class="px-5 py-5 w-full h-full flex flex-col justify-center items-center bg-yellow-200 rounded-[5px]">
@@ -76,7 +76,7 @@
                     </div>
 
                     <!-- Property location on map -->
-                    <div class="w-full h-full flex flex-col justify-center items-center rounded-[5px] px-5 py-10 bg-yellow-200 ">
+                    <div class="w-full h-full flex flex-col justify-center items-center rounded-[5px] px-5 py-10 bg-yellow-200">
                         <div class="text-2xl mr-auto pb-10">
                             <b>Location</b>
                         </div>
@@ -87,17 +87,16 @@
                     </div>
                 </div>
 
-
-                <!-- Agents informations (podaci o "useru")-->
-                <div class="w-[40%] min-h-screen relative mb-auto">
-                    <div class="w-full sticky top-[0] z-[100]">
-                        <div class="mb-[10px] h-[100px] bg-green-300 rounded-[5px] flex flex-col py-5 px-5 justify-center items-center">
+                <!-- Agents information -->
+                <div id="AgentInfo" class="w-[40%] flex-1 min-h-screen relative">
+                    <div class="w-full sticky top-[0] z-[100] flex flex-col justify-center items-center mb-auto">
+                        <!-- Property price -->
+                        <div id="" class="mb-[10px] h-[100px] w-full bg-green-300 rounded-[5px] flex flex-col py-5 px-5 justify-center items-center">
                             <!-- Property price -->
                             <div class="rounded-[5px] flex justify-start items-center pb-5 w-full">
                                 <h6 class="text-2xl mr-auto">
                                     Price: ${{$price}}
                                 </h6>
-                                <!-- Ovdje gledaj da dodaš možda kontakte kompanije, socials i to -->
                             </div>
 
                             <!-- Lease duration -->
@@ -107,7 +106,9 @@
                                 </h3>
                             </div>
                         </div>
-                        <div class="w-full flex flex-col justify-center items-center bg-teal-300 mb-auto py-5 px-5 rounded-[5px]">
+
+                        <!-- Agent data -->
+                        <div id="" class="w-full flex mb-auto flex-col justify-center items-center bg-teal-300 py-5 px-5 rounded-[5px]">
                             <div class="mr-auto text-xl font-bold">
                                 <p>Contact Us</p>
                             </div>
@@ -118,13 +119,14 @@
                                 </p>
 
                                 <p>
-                                    Contant us: {{ $property->user->phone_number }}
+                                    Contact us: {{ $property->user->phone_number }}
                                 </p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
 
             <!-- Similar properties -->
             <div class="h-[400px] bg-orange-400 w-[80%] my-4 rounded-[10px] flex justify-center items-center content-stretch">
