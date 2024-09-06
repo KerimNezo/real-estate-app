@@ -82,8 +82,10 @@
                             <div class="w-full flex justify-center items-center">
                                 <!-- First row -->
                                 <div class="w-full flex justify-center items-center">
-                                    <div class="flex justify-center items-end bg-slate-100 p-2 rounded-[10px]">
-                                        <x-phosphor-square-half-light class="w-[48px] h-[48px] fill-[#EF5D60]"/>
+                                    <div class="flex justify-center items-end">
+                                        <div class="bg-slate-100 p-[2px] rounded-[10px]">
+                                            <x-phosphor-square-half-light class="w-[48px] h-[48px] fill-[#EF5D60]"/>
+                                        </div>
                                         <p class="text-2xl pb-[2px] pr-1">{{ $property->surface }} m&sup2; </p>
                                     </div>
 
