@@ -31,12 +31,12 @@
             <!-- Property/agent information -->
             <div class="h-full w-[80%] rounded-[10px] flex justify-center items-stretch py-4 gap-4">
                 <!-- Property information -->
-                <div id="PropertyInfo" class="flex flex-col justify-center items-center w-[60%] flex-1">
+                <div id="PropertyInfo" class="flex flex-col justify-center items-center w-[65%] flex-1">
                     <!-- Property information -->
                     <div class="flex flex-col justify-center items-center w-full gap-4 pb-2">
                         <div class="px-5 py-5 w-full h-full flex flex-col justify-center items-center bg-yellow-200 rounded-[5px]">
                             <!-- Property title and offer -->
-                            <div class="h-[15%] rounded-[5px] flex justify-start items-center pb-2 w-full">
+                            <div class="rounded-[5px] flex justify-start items-center pb-2 w-full">
                                 <h3 class="bg-{{$color}}-600 text-white rounded-[5px] p-2 font-bold flex justify-center items-center">
                                     {{ $propertyOffer }}
                                 </h3>
@@ -46,14 +46,14 @@
                             </div>
 
                             <!-- Property location -->
-                            <div class="h-[15%] rounded-[5px] flex justify-start items-center pb-7 w-full">
+                            <div class="rounded-[5px] flex justify-start items-center pb-7 w-full">
                                 <h3 class="mr-auto">
                                     {{ $property->city }}, {{ $property->country }}
                                 </h3>
                             </div>
 
                             <!-- Description title -->
-                            <div class="h-[15%] rounded-[5px] flex justify-start items-center pb-2 w-full">
+                            <div class="rounded-[5px] flex justify-start items-center pb-2 w-full">
                                 <h3 class="text-2xl mr-auto">
                                     Description
                                 </h3>
@@ -71,7 +71,33 @@
                     <!-- Property details (sqrf, lease, price, other details..) -->
                     <div class="flex flex-col justify-center items-center w-full gap-4 pb-2">
                         <div class="px-5 py-10 w-full h-full flex flex-col justify-center items-center bg-yellow-200 rounded-[5px]">
-                            Dodatni detalji o nekretnini
+                            <!-- Section title -->
+                            <div class="rounded-[5px] flex justify-start items-center pb-2 w-full">
+                                <h3 class="text-2xl mr-auto">
+                                    Basic details
+                                </h3>
+                            </div>
+
+                            <!-- Proprerty details content (ovdje trebaju sada ići podaci za property-->
+                            <div class="w-full flex justify-center items-center">
+                                <!-- First row -->
+                                <div class="w-full flex justify-center items-center">
+                                    <div class="flex justify-center items-end bg-slate-100 p-2 rounded-[10px]">
+                                        <x-phosphor-square-half-light class="w-[48px] h-[48px] fill-[#EF5D60]"/>
+                                        <p class="text-2xl pb-[2px] pr-1">{{ $property->surface }} m&sup2; </p>
+                                    </div>
+
+                                    <div class="flex justify-center items-end">
+                                        <x-phosphor-square-half-light class="w-[48px] h-[48px] fill-[#EF5D60]"/>
+                                        <p class="text-2xl pb-[2px] pr-1">{{ $property->surface }} m&sup2; </p>
+                                    </div>
+                                </div>
+
+                                <!-- Second row -->
+                                <div>
+
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -88,12 +114,12 @@
                 </div>
 
                 <!-- Agents information -->
-                <div id="AgentInfo" class="w-[40%] flex-1 min-h-screen relative">
-                    <div class="w-full sticky top-[0] z-[100] flex flex-col justify-center items-center mb-auto">
+                <div id="AgentInfo" class="!w-[35%]  min-h-screen relative">
+                    <div class="sticky top-[0] z-[100] flex flex-col justify-center items-center mb-auto">
                         <!-- Property price -->
                         <div id="" class="mb-[10px] h-[100px] w-full bg-green-300 rounded-[5px] flex flex-col py-5 px-5 justify-center items-center">
                             <!-- Property price -->
-                            <div class="rounded-[5px] flex justify-start items-center pb-5 w-full">
+                            <div class="rounded-[5px] flex justify-start items-center pb-4 w-full">
                                 <h6 class="text-2xl mr-auto">
                                     Price: ${{$price}}
                                 </h6>
@@ -109,10 +135,12 @@
 
                         <!-- Agent data -->
                         <div id="" class="w-full flex mb-auto flex-col justify-center items-center bg-teal-300 py-5 px-5 rounded-[5px]">
+                            <!-- Section header -->
                             <div class="mr-auto text-xl font-bold">
                                 <p>Contact Us</p>
                             </div>
 
+                            <!-- Agent information -->
                             <div class="mr-auto pt-4">
                                 <p>
                                     Agent: {{ $property->user->name }}
