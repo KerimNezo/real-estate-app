@@ -70,7 +70,7 @@
 
                     <!-- Property details (sqrf, lease, price, other details..) -->
                     <div class="flex flex-col justify-center items-center w-full gap-4 pb-2">
-                        <div class="px-5 py-10 w-full h-full flex flex-col justify-center items-center bg-yellow-200 rounded-[5px]">
+                        <div class="px-5 py-4 w-full h-full flex flex-col justify-center items-center bg-yellow-200 rounded-[5px]">
                             <!-- Section title -->
                             <div class="rounded-[5px] flex justify-start items-center pb-2 w-full">
                                 <h3 class="text-2xl mr-auto">
@@ -104,8 +104,8 @@
                     </div>
 
                     <!-- Property location on map -->
-                    <div class="w-full h-full flex flex-col justify-center items-center rounded-[5px] px-5 py-10 bg-yellow-200">
-                        <div class="text-2xl mr-auto pb-10">
+                    <div class="w-full h-full flex flex-col justify-center items-center rounded-[5px] px-5 py-4 bg-yellow-200">
+                        <div class="text-2xl mr-auto pb-7">
                             <b>Location</b>
                         </div>
 
@@ -159,7 +159,7 @@
 
 
             <!-- Similar properties -->
-            <div class="h-[400px] bg-orange-400 w-[80%] my-4 rounded-[10px] flex justify-center items-center content-stretch">
+            <div class="h-[400px] bg-orange-400 w-[80%] my-4 gap-8 rounded-[10px] flex justify-center items-center content-stretch">
                 <!-- Ovdje ćemo dobiti samo listu propertya koji su bliski sa otvorenim propertyem koje ćemo izlistati -->
                 @foreach ($similarProperties as $property )
                     <a href="{{ route('single-property', ['id' => $property->id]) }}">
