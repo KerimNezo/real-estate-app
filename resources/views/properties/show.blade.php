@@ -14,6 +14,16 @@
     }
     $cijena = $property->price;
     $price = number_format($cijena, 0, '.',',');
+    if (is_null($property->furnished)) {
+        $furnished = "No";
+    } else {
+        $furnished = "Yes";
+    }
+    if (is_null($property->video_intercom)) {
+        $video = "No";
+    } else {
+        $video = "Yes";
+    }
 @endphp
 
 <x-app-layout>
@@ -34,10 +44,10 @@
                 <div id="PropertyInfo" class="flex flex-col justify-center items-center w-[65%] flex-1">
                     <!-- Property information -->
                     <div class="flex flex-col justify-center items-center w-full gap-4 pb-2">
-                        <div class="px-5 py-5 w-full h-full flex flex-col justify-center items-center bg-yellow-200 rounded-[5px]">
+                        <div class="px-5 py-5 w-full h-full flex flex-col justify-center items-center bg-[#ededed] rounded-[5px]">
                             <!-- Property title and offer -->
                             <div class="rounded-[5px] flex justify-start items-center pb-2 w-full">
-                                <h3 class="bg-{{$color}}-600 text-white rounded-[5px] p-2 font-bold flex justify-center items-center">
+                                <h3 class="bg-{{$color}}-600 text-white rounded-[5px] p-2 font-bold                             flex justify-center items-center">
                                     {{ $propertyOffer }}
                                 </h3>
                                 <h6 class="ml-4 text-3xl mr-auto">
@@ -70,41 +80,39 @@
 
                     <!-- Property details (sqrf, lease, price, other details..) -->
                     <div class="flex flex-col justify-center items-center w-full gap-4 pb-2">
-                        <div class="px-5 py-4 w-full h-full flex flex-col justify-center items-center bg-yellow-200 rounded-[5px]">
+                        <div class="px-5 py-4 w-full h-full flex flex-col justify-center items-center bg-[#ededed] rounded-[5px]">
                             <!-- Section title -->
                             <div class="rounded-[5px] flex justify-start items-center pb-2 w-full">
-                                <h3 class="text-2xl mr-auto">
+                                <h3 class="text-2xl mr-auto pb-2">
                                     Basic details
                                 </h3>
                             </div>
 
                             <!-- Proprerty details content (ovdje trebaju sada ići podaci za property-->
-                            <div class="w-full flex justify-center items-center">
+                            <div class="w-full flex flex-col justify-center items-center gap-7">
                                 <!-- First row -->
                                 <div class="w-full flex justify-center items-center">
-                                    <div class="flex justify-center items-end">
-                                        <div class="bg-slate-100 p-[2px] rounded-[10px]">
-                                            <x-phosphor-square-half-light class="w-[48px] h-[48px] fill-[#EF5D60]"/>
-                                        </div>
-                                        <p class="text-2xl pb-[2px] pr-1">{{ $property->surface }} m&sup2; </p>
-                                    </div>
+                                    <x-property-detail icon='phosphor-square-half-light' title="SQM" :text="$property->surface" unit="m&sup2" css='w-[48px] h-[48px]' />
 
-                                    <div class="flex justify-center items-end">
-                                        <x-phosphor-square-half-light class="w-[48px] h-[48px] fill-[#EF5D60]"/>
-                                        <p class="text-2xl pb-[2px] pr-1">{{ $property->surface }} m&sup2; </p>
-                                    </div>
+                                    <x-property-detail icon='ionicon-calendar' title="Lease" :text="$property->lease_duration" unit="months" css='w-[40px] h-[40px]' />
+
+                                    <x-property-detail icon='bxs-car-garage' title="Garage" :text="$property->garage" unit="" css='w-[40px] h-[40px]' />
                                 </div>
 
                                 <!-- Second row -->
-                                <div>
+                                <div class="w-full flex justify-center items-center">
+                                    <x-property-detail icon='maki-furniture' title="Furnished" :text="$furnished" unit="" css='w-[40px] h-[40px] fill-[#EF5D60]' />
 
+                                    <x-property-detail icon='phosphor-security-camera-duotone' title="Video interface" :text="$video" unit="" css='w-[40px] h-[40px] fill-[#EF5D60]' />
+
+                                    <x-property-detail icon='govicon-construction' title="Year built" :text="$property->year_built" unit="" css='w-[48px] h-[48px] fill-[#EF5D60]' />
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     <!-- Property location on map -->
-                    <div class="w-full h-full flex flex-col justify-center items-center rounded-[5px] px-5 py-4 bg-yellow-200">
+                    <div class="w-full h-full flex flex-col justify-center items-center rounded-[5px] px-5 py-4 bg-[#ededed]">
                         <div class="text-2xl mr-auto pb-7">
                             <b>Location</b>
                         </div>
@@ -159,7 +167,7 @@
 
 
             <!-- Similar properties -->
-            <div class="h-[400px] bg-orange-400 w-[80%] my-4 gap-8 rounded-[10px] flex justify-center items-center content-stretch">
+            <div class="h-[400px] bg-[#5eb1f0] w-[80%] my-4 gap-8 rounded-[10px] flex justify-center items-center content-stretch">
                 <!-- Ovdje ćemo dobiti samo listu propertya koji su bliski sa otvorenim propertyem koje ćemo izlistati -->
                 @foreach ($similarProperties as $property )
                     <a href="{{ route('single-property', ['id' => $property->id]) }}">
