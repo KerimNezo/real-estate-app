@@ -1,25 +1,15 @@
 @php
     $mediaItems = $property->getMedia('property-photos');
     $photoCount = count($mediaItems);
+
     $similarProperties = [$property, $property, $property];
+
     $price = number_format($property->price, 0, '.',',');
-    if (is_null($property->lease_duration)) {
-        $propertyOffer = "FOR SELL";
-        $color = "red";
-    } else {
-        $propertyOffer = "FOR RENT";
-        $color = "sky";
-    }
-    if (is_null($property->furnished)) {
-        $furnished = "No";
-    } else {
-        $furnished = "Yes";
-    }
-    if (is_null($property->video_intercom)) {
-        $video = "No";
-    } else {
-        $video = "Yes";
-    }
+
+    $propertyOffer = is_null($property->lease_duration) ? "FOR SELL" : "FOR RENT";
+    $color = is_null($property->lease_duration) ? "red" : "sky";
+    $property->furnsihed === null ? $furnished = "No" : $furnished = "Yes";
+    $property->video_intercom === null ? $video = "No" : $video = "Yes";
 @endphp
 
 <x-app-layout>
@@ -90,18 +80,27 @@
                                 <div class="flex items-center justify-center w-full">
                                     <x-property-detail icon='phosphor-square-half-light' title="SQM" :text="$property->surface" unit="m&sup2" css='w-[48px] h-[48px]' />
 
-                                    <x-property-detail icon='ionicon-calendar' title="Lease" :text="$property->lease_duration" unit="months" css='w-[40px] h-[40px]' />
+                                    <x-property-detail icon='govicon-construction' title="Year built" :text="$property->year_built" unit="" css='w-[48px] h-[48px] fill-[#EF5D60]' />
 
                                     <x-property-detail icon='bxs-car-garage' title="Garage" :text="$property->garage" unit="" css='w-[40px] h-[40px]' />
                                 </div>
 
                                 <!-- Second row -->
                                 <div class="flex items-center justify-center w-full">
+                                    <!-- $furnished is not from the db, it is variable declared at the top of the file -->
                                     <x-property-detail icon='maki-furniture' title="Furnished" :text="$furnished" unit="" css='w-[40px] h-[40px] fill-[#EF5D60]' />
 
+                                    <!-- $video is not from the db, it is variable declared at the top of the file -->
                                     <x-property-detail icon='phosphor-security-camera-duotone' title="Video interface" :text="$video" unit="" css='w-[40px] h-[40px] fill-[#EF5D60]' />
 
-                                    <x-property-detail icon='govicon-construction' title="Year built" :text="$property->year_built" unit="" css='w-[48px] h-[48px] fill-[#EF5D60]' />
+                                    <!-- We created this property detail this way, because it looks better when property is on SALE -->
+                                    @if (!is_null($property->lease_duration))
+                                        <x-property-detail icon='ionicon-calendar' title="Lease" :text="$property->lease_duration" unit="months" css='w-[40px] h-[40px]' />
+                                    @else
+                                        <div class="bg-[#ededed] w-full">
+
+                                        </div>
+                                    @endif
                                 </div>
                             </div>
                         </div>
