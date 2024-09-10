@@ -1,5 +1,5 @@
 <div>
-    <div class="h-full w-full">
+    <div class="w-full h-full">
         <!-- Primary photo -->
         <div class="w-full">
             <div>
@@ -21,7 +21,7 @@
 
         <!-- All photos -->
         <div class="w-full py-4">
-            <div class="flex justify-center content-center gap-2">
+            <div class="flex content-center justify-center gap-2">
                 @for ($i = 0; $i < 6; $i++)
                     <img src="{{ $mediaItems[$i]->getUrl() }}" wire:click="makeMainPhoto({{$i}})" alt="slika" id="photoList">
                 @endfor
