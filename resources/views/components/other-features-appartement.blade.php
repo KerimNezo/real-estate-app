@@ -1,7 +1,7 @@
 @props(['elevator', 'keycard'])
 
 @php
-    $keycard_entry === null ? $keycard = "No" : $keycard = "Yes";
+    $keycard === null ? $keycard = "No" : $keycard = "Yes";
     $elevator === null ? $elevator = "No" : $elevator = "Yes";
 @endphp
 
