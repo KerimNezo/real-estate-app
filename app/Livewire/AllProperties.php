@@ -25,10 +25,9 @@ class AllProperties extends Component
 
     public function mount()
     {
-        if ($this->properties) {
-        } else {
-            $this->fetchProperties();
-        }
+        // All properties are already fetched in the index action of the propertyController class
+        // here I should create it that if the fetch there fails I should fetch
+        is_null($this->properties) === true ? $this->fetchProperties() : logger('index() action fetched properties.');
 
     }
     // mount() is used to set up our component for its initial display on our page
@@ -78,10 +77,10 @@ class AllProperties extends Component
 
         $this->properties = $query->get();
         $this->propertyCount = $this->properties->count();
-        logger($this->properties);
         if ($this->properties->isEmpty()) {
-            logger('empty je je');
+            logger('There are no properties that match entered filters.');
         }
+        logger('I fetched!');
     }
 
     public function sortProperties($order)
