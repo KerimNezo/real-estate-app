@@ -10,6 +10,12 @@
     $color = is_null($property->lease_duration) ? "red" : "sky";
     $property->furnsihed === null ? $furnished = "No" : $furnished = "Yes";
     $property->video_intercom === null ? $video = "No" : $video = "Yes";
+
+    $elevator = $property->elevator;
+    $keycard = $property->keycard_entry;
+
+    // 1 - office, 2 - house, 3 - appartement
+    $propertyType = $property->type->id;
 @endphp
 
 <x-app-layout>
@@ -74,7 +80,7 @@
                                 </h3>
                             </div>
 
-                            <!-- Proprerty details content -->
+                            <!-- Property details content -->
                             <div class="flex flex-col items-center justify-center w-full gap-7">
                                 <!-- First row -->
                                 <div class="flex items-center justify-center w-full">
@@ -91,7 +97,7 @@
                                     <x-property-detail icon='maki-furniture' title="Furnished" :text="$furnished" unit="" css='w-[40px] h-[40px] fill-[#EF5D60]' />
 
                                     <!-- $video is not from the db, it is variable declared at the top of the file -->
-                                    <x-property-detail icon='phosphor-security-camera-duotone' title="Video interface" :text="$video" unit="" css='w-[40px] h-[40px] fill-[#EF5D60]' />
+                                    <x-property-detail icon='phosphor-security-camera-duotone' title="Video intercom" :text="$video" unit="" css='w-[40px] h-[40px] fill-[#EF5D60]' />
 
                                     <!-- We created this property detail this way, because it looks better when property is on SALE -->
                                     @if (!is_null($property->lease_duration))
@@ -101,6 +107,33 @@
 
                                         </div>
                                     @endif
+                                </div>
+                            </div>
+
+
+                            <!-- Other features details -->
+                            <div class="rounded-[5px] flex justify-start items-center pb-2 pt-10 w-full">
+                                <h3 class="pb-2 mr-auto text-2xl">
+                                    Other features
+                                </h3>
+                            </div>
+
+                            <!-- Property other features content -->
+                            <div class="flex flex-col items-center justify-center w-full gap-7">
+                                <!-- First row -->
+                                <div class="flex items-center justify-center w-full">
+                                    @switch($propertyType)
+                                        @case(3)
+                                            <x-other-features-appartement :$elevator :$keycard />
+                                            @break
+
+                                        @case(2)
+                                            <x-other-features-house :$floor :$garden />
+                                            @break
+
+                                        @default
+                                            <x-other-features-office :$elevator :$keycard />
+                                    @endswitch
                                 </div>
                             </div>
                         </div>
