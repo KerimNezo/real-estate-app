@@ -86,28 +86,30 @@ class AllProperties extends Component
 
     public function sortProperties($order)
     {
-        $this->order = $order;
-        switch ($this->order) {
-            case 'lowestfirst':
-                $sorted = $this->properties->sortBy('price');
-                break;
-            case 'highestfirst':
-                $sorted = $this->properties->sortByDesc('price');
-                break;
-            default:
-                $sorted = $this->properties->sortByDesc('created_at');
-                break;
-        }
-        $this->properties = $sorted;
+        // assigns by what property do we want to sort our list of properties
+        $sortBy = match ($order) {
+            'lowestfirst' => 'price',
+            'highestfirst' => 'price',
+            default => 'created_at',
+        };
+
+        // Here we are using ternary operator to check if the order is lowestfirst
+        // if that is true we will just order properties by price going from cheapest first in ascending order
+        // if it is false, we will descend from either most expensive property, or the one created last in the DB
+        $this->properties = $order === 'lowestfirst'
+            ? $this->properties->sortBy($sortBy)
+            : $this->properties->sortByDesc($sortBy);
     }
 
     public function clearForm()
     {
-        $this->filters['location'] = null;
-        $this->filters['offer_type'] = null;
-        $this->filters['property_type'] = null;
-        $this->filters['min_price'] = null;
-        $this->filters['max_price'] = null;
+        // Will array assign the value null to form inputs
+        $this->filters = array_fill_keys([
+            'location',
+            'offer_type',
+            'property_type',
+            'min_price',
+            'max_price'], null);
     }
 
     public function searchProperties()
