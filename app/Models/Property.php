@@ -36,6 +36,8 @@ class Property extends Model implements HasMedia
         'keycard_entry',
         'elevator',
         'description',
+        'year_built',
+        'garden',
     ];
 
     public function type(): BelongsTo
