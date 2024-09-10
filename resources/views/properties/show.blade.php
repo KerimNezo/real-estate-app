@@ -14,6 +14,9 @@
     $elevator = $property->elevator;
     $keycard = $property->keycard_entry;
 
+    $floor = $property->floors;
+    $garden = $property->garden;
+
     // 1 - office, 2 - house, 3 - appartement
     $propertyType = $property->type->id;
 @endphp
