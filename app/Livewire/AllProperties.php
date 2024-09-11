@@ -7,11 +7,12 @@ use Livewire\Component;
 
 class AllProperties extends Component
 {
+
     public $cities;
 
-    public $propertyCount;
-
     public $order;
+
+    public $propertyCount;
 
     public $properties;
 
@@ -23,21 +24,13 @@ class AllProperties extends Component
         'max_price' => null,
     ];
 
-    public function mount()
-    {
-        // All properties are already fetched in the index action of the propertyController class
-        // here I should create it that if the fetch there fails I should fetch
-        is_null($this->properties) === true ? $this->fetchProperties() : logger('index() action fetched properties.');
-
-    }
-    // mount() is used to set up our component for its initial display on our page
-
-    // updated() is hook used to manage to our component property and its value before they hit our controller
-    // could be used to check input and validate user data -> This is where we do validation
-
     public function fetchProperties()
     {
-        $query = Property::query()->with(['user', 'type']);
+        $query = Property::query()
+        ->select('id', 'type_id', 'name', 'price', 'city', 'bedrooms', 'garage', 'furnished', 'floors', 'lease_duration', 'keycard_entry', 'surface', 'toilets')
+        ->with(['user', 'type', 'media' => function ($query) {
+            $query->limit(1);
+        }]);
 
         if ($this->filters['location']) {
             $query->where('city', '=', $this->filters['location']);
@@ -77,24 +70,16 @@ class AllProperties extends Component
 
         $this->properties = $query->get();
         $this->propertyCount = $this->properties->count();
-        if ($this->properties->isEmpty()) {
-            logger('There are no properties that match entered filters.');
-        }
-        logger('I fetched!');
     }
 
     public function sortProperties($order)
     {
-        // assigns by what property do we want to sort our list of properties
         $sortBy = match ($order) {
             'lowestfirst' => 'price',
             'highestfirst' => 'price',
             default => 'created_at',
         };
 
-        // Here we are using ternary operator to check if the order is lowestfirst
-        // if that is true we will just order properties by price going from cheapest first in ascending order
-        // if it is false, we will descend from either most expensive property, or the one created last in the DB
         $this->properties = $order === 'lowestfirst'
             ? $this->properties->sortBy($sortBy)
             : $this->properties->sortByDesc($sortBy);
@@ -102,7 +87,6 @@ class AllProperties extends Component
 
     public function clearForm()
     {
-        // Will array assign the value null to form inputs
         $this->filters = array_fill_keys([
             'location',
             'offer_type',
