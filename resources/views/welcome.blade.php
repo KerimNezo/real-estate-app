@@ -16,19 +16,19 @@
         </div>
 
         <!-- Form for property query -->
-        <div id="query-form-div" class="w-full flex justify-center h-full">
+        <div id="query-form-div" class="flex justify-center w-full h-full">
             <x-property-query-form />
         </div>
     </div>
 
     <!-- Display of featured properties -->
     <main>
-        <div class="py-16 text-black bg-white h-fit w-full" id="featured-properties">
+        <div class="w-full py-16 text-black bg-white h-fit" id="featured-properties">
             <!-- Title -->
             <x-title position="left" text="Featured Properties"/> <!-- Ovo ako je left, ide lijevo, ako nije left, ide u centar -->
 
             <!-- Grid display of property cards -->
-            <div class="text-center text-xl py-12">
+            <div class="py-12 text-xl text-center">
                 <div class="px-[10%] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 w-full"> <!-- ovdje sad treba editovati kako se pozicioniraju -->
                     @foreach ($properties as $property )
                         <a href="{{ route('single-property', ['id' => $property->id]) }}">
@@ -39,7 +39,7 @@
             </div>
 
             <!-- All properties button -->
-            <div class="text-center text-xl">
+            <div class="text-xl text-center">
                 <a href="all-properties">
                     <span>See all properties →</span>
                 </a>
@@ -53,9 +53,9 @@
         <x-title text="Looking to buy or rent a property..." position="center"/>
 
         <!-- Content -->
-        <div class="flex justify-center items-center">
+        <div class="flex items-center justify-center">
             <div class="py-16 w-full sm:w-[80%] ">
-                <div class="flex flex-row justify-center items-center ">
+                <div class="flex flex-row items-center justify-center ">
                     <x-property-query-card logo="./photos/icons/property_types/House.svg" text="House" link="/search?type-of-asset-id=2" />
                     <hr class="h-[100px] w-[2px] border-[0px] bg-black mb-[30px]">
                     <x-property-query-card logo="./photos/icons/property_types/Appartement.svg" text="Appartement" link="/search?type-of-asset-id=3" />
@@ -67,10 +67,10 @@
     </div>
 
     <!-- About us section -->
-    <div class="py-8 text-center text-sm text-black bg-white"  id="about-section">
+    <div class="py-8 text-sm text-center text-black bg-white"  id="about-section">
         <x-title position="center" text="About Us"></x-title>
 
-        <div class="flex justify-center items-center">
+        <div class="flex items-center justify-center">
             <div class="py-16 w-[80%] ">
                 <div class="" id="about-us-section">
                     <div class="" id="about-us-photo">
@@ -78,12 +78,12 @@
                     </div>
 
                     <div class="" id="about-us-text">
-                        <span class="pl-5 pb-5 flex items-left text-2xl">
+                        <span class="flex pb-5 pl-5 text-2xl items-left">
                             We are the best agency... <br>
                         </span>
 
                         <div class="pl-5">
-                            <span class="block text-left text-base">
+                            <span class="block text-base text-left">
                                 At our real estate agency, we're committed to turning your property dreams into reality. With a team of dedicated experts and a deep understanding of the market, we strive to provide personalized solutions that exceed your expectations. Whether you're buying, selling, or investing, trust us to guide you every step of the way with integrity and professionalism. Welcome to a world of seamless real estate experiences.
                             </span>
                         </div>

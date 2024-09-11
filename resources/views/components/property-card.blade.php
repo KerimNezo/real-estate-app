@@ -5,12 +5,12 @@
     <x-property-offer :lease="$property->lease_duration" />
 
     <!-- section about price and property name -->
-    <div id="price" class="m-0 p-0 flex flex-col justify-start w-full ">
-        <div class="mr-auto px-6">
-            <p class="font-bold backdrop-blur-sm bg-white/10 rounded-[5px] px-1">$ {{ $property->price}}</p>
+    <div id="price" class="flex flex-col justify-start w-full p-0 m-0 ">
+        <div class="px-6 mr-auto">
+            <p class="font-bold backdrop-blur-sm bg-white/10 rounded-[5px] px-1">$ {{ $property->price }}</p>
         </div>
-        <div class="mr-auto px-6 mt-1">
-            <p class="font-bold backdrop-blur-sm bg-white/10 rounded-[5px] px-1">{{$property->name}} - {{$property->city}}</p>
+        <div class="px-6 mt-1 mr-auto">
+            <p class="font-bold backdrop-blur-sm bg-white/10 rounded-[5px] px-1">{{ $property->name }} - {{ $property->city }}</p>
         </div>
     </div>
 
@@ -20,7 +20,7 @@
     </div>
 
     <!-- section about property attributes -->
-    <div id="attributes" class="pb-4 text-base w-full flex item-start">
+    <div id="attributes" class="flex w-full pb-4 text-base item-start">
         @switch($property->type_id)
             @case(1)    <!-- office -->
                 <x-card-footer-office :$property/>
