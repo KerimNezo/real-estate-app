@@ -28,7 +28,7 @@ class AllProperties extends Component
     {
         $query = Property::query()
         ->select('id', 'type_id', 'name', 'price', 'city', 'bedrooms', 'garage', 'furnished', 'floors', 'lease_duration', 'keycard_entry', 'surface', 'toilets')
-        ->with(['user', 'type', 'media' => function ($query) {
+        ->with(['media' => function ($query) {
             $query->limit(1);
         }]);
 
