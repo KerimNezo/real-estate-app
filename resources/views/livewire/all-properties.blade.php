@@ -1,10 +1,10 @@
 <div>
     <div class="pt-32 bg-white">
-        <div id="property-index-content" class="justify-center bg-white h-full flex-grow mx-auto relative pb-24 pt-9">
+        <div id="property-index-content" class="relative justify-center flex-grow h-full pb-24 mx-auto bg-white pt-9">
             <!-- Property query filter form -->
             <div id="property-index-filters" class="h-[500px] flex flex-col justify-center items-start">
                 <!-- Filter clear & text-->
-                <div id="form-heading" class="flex justify-start items-center pt-3">
+                <div id="form-heading" class="flex items-center justify-start pt-3">
                     <p class="text-lg text-black w-[150px]">Find your home</p>
 
                     <!-- Filter button-->
@@ -15,7 +15,7 @@
 
                 <!-- Query form -->
                 <div id="query-form-all-properties" class="bg-[#5eb1f0] h-full rounded-[5px] flex justify-center items-center mt-5">
-                    <table class="w-full pb-auto h-full">
+                    <table class="w-full h-full pb-auto">
                         <form wire:submit="searchProperties">
                             <!-- Property location input-->
                             <x-form-select-input modelName="filters.location" heading="Property location" selectId="asset-location">
@@ -51,13 +51,13 @@
                                         </div>
 
                                         <div class="flex flex-row justify-center items-center w-[90%] pl-[10%]">
-                                            <input wire:model="filters.min_price" type="text" placeholder="1200" class="rounded-[5px] border-2 border-[#989898] border-solid w-[45%] h-[35px] text-black" name="min-price">
+                                            <input wire:model.defer="filters.min_price" type="text" placeholder="1200" class="rounded-[5px] border-2 border-[#989898] border-solid w-[45%] h-[35px] text-black" name="min-price">
 
                                             <div class="w-[10%] flex ">
                                                 <span class="ml-auto mr-auto">to</span>
                                             </div>
 
-                                            <input wire:model="filters.max_price" type="text" placeholder="100000" class="rounded-[5px] border-2 border-[#989898] border-solid w-[45%] h-[35px] text-black" name="max-price">
+                                            <input wire:model.defer="filters.max_price" type="text" placeholder="100000" class="rounded-[5px] border-2 border-[#989898] border-solid w-[45%] h-[35px] text-black" name="max-price">
                                         </div>
                                     </div>
                                 </td>
@@ -77,13 +77,13 @@
             </div>
 
             <!-- Property query result -->
-            <div id="properites-list" class="flex-col justify-center items-center h-full">
+            <div id="properites-list" class="flex-col items-center justify-center h-full">
                 <!-- Header of query result section-->
-                <div id="properites-list-header" class="flex flex-col justify-center items-center h-full pt-3">
-                    <p class="mr-auto text-black text-lg">We found {{$propertyCount}} properties you</p>
+                <div id="properites-list-header" class="flex flex-col items-center justify-center h-full pt-3">
+                    <p class="mr-auto text-lg text-black">We found {{$propertyCount}} properties you</p>
 
                     <div id="property-list-button" class="relative">
-                        <select wire:model="order" name="" id="dropdown-button" class="w-full !bg-[#ef5d60] h-[48px] rounded-[5px] px-2 text-base">
+                        <select wire:model.defer="order" name="" id="dropdown-button" class="w-full !bg-[#ef5d60] h-[48px] rounded-[5px] px-2 text-base">
                             <option wire:click="sortProperties('recent')" value="recent">Most recent</option>
                             <option wire:click="sortProperties('lowestfirst')" value="lowestfirst">Price: Low - High ↓</option>
                             <option wire:click="sortProperties('highestfirst')" value="highestfirst">Price: High - Low ↑</option>
@@ -92,11 +92,11 @@
                 </div>
 
                 <!-- Content of query result section-->
-                <div class=" text-black bg-white h-full w-full py-5" id="featured-properties">
+                <div class="w-full h-full py-5 text-black bg-white " id="featured-properties">
                     <!-- Grid display of property cards -->
-                    <div class="text-center text-xl">
+                    <div class="text-xl text-center">
                         @if ($properties->isEmpty())
-                            <div class="flex-col justify-center items-center mx-auto">
+                            <div class="flex-col items-center justify-center mx-auto">
                                 <div class="pt-[100px]">
                                     <img src="./photos/icons/no-result.svg" alt="" class="w-[100px] mx-auto">
                                 </div>
@@ -106,7 +106,7 @@
                                 </div>
                             </div>
                         @else
-                            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8 w-full"> <!-- ovdje sad treba editovati kako se pozicioniraju -->
+                            <div class="grid w-full grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-2"> <!-- ovdje sad treba editovati kako se pozicioniraju -->
                                 @foreach ($properties as $property )
                                     <a href="{{ route('single-property', ['id' => $property->id]) }}">
                                         <x-property-card :$property/>
