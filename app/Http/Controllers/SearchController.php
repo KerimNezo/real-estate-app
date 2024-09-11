@@ -17,15 +17,18 @@ class SearchController extends Controller
             ->distinct()     // Ensure cities are unique
             ->pluck('city'); // Get the cities as a collection
 
-        $properties = Property::query()->latest()->with(['user', 'type']);
+        $properties = Property::query()
+        ->select('id', 'type_id', 'name', 'price', 'city', 'bedrooms', 'garage', 'furnished', 'floors', 'lease_duration', 'keycard_entry', 'surface', 'toilets')
+        ->latest()
+        ->with(['media' => function ($query) {
+            $query->limit(1);
+        }]);
 
         if (! is_null($assetLocation = $request->query('asset-location'))) {
-            logger('Assets location is {assetLocation}', ['assetLocation' => $assetLocation]);
             $properties = $properties->where('city', '=', $assetLocation);
         }
 
         if (! is_null($assetOffer = $request->query('asset-offer-id'))) {
-            logger('Assets offer is {asset-offer}', ['asset-offer' => $assetOffer]);
             $properties = match ($assetOffer) {
                 '1' => $properties->whereNull('lease_duration'), // sell
                 '2' => $properties->whereNotNull('lease_duration'), // rent
@@ -34,25 +37,20 @@ class SearchController extends Controller
         }
 
         if (! is_null($assetId = $request->query('type-of-asset-id')) && $assetId > 0) {
-            logger('Assets id is {asset-id}', ['asset-id' => $assetId]);
             $properties = $properties->where('type_id', '=', $assetId);
         }
 
         if (! is_null($minPrice = $request->query('min-price'))) {
-            logger('Minimal price is {min-price}', ['min-price' => $minPrice]);
             $properties = $properties->where('price', '>', $minPrice);
         }
 
         if (! is_null($maxPrice = $request->query('max-price'))) {
-            logger('Maximal price is {max-price}', ['max-price' => $maxPrice]);
             $properties = $properties->where('price', '<', $maxPrice);
         }
 
         $result = $properties->get();
 
         $propertyCount = $result->count();
-
-        logger($cities);
 
         return view('properties.index')
             ->with('properties', $result)

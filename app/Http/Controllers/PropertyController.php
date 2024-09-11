@@ -17,8 +17,11 @@ class PropertyController extends Controller
         // kad koristimo ovaj with(), to nam querya i sve podatke koji su relevantni iz tih tabela za primarni query
         // ovdje odma queryamo i podatke o useru koji je objabio nekretninu i o tipu kojeg je nekretnina
         $properties = Property::query()
-            ->latest()
-            ->with(['user', 'type'])
+        ->select('id', 'type_id', 'name', 'price', 'city', 'bedrooms', 'garage', 'furnished', 'floors', 'lease_duration', 'keycard_entry', 'surface', 'toilets')
+        ->latest()
+            ->with(['media' => function ($query) {
+                $query->limit(1);
+            }])
             ->get();
 
         $propertyCount = $properties->count();
@@ -62,7 +65,7 @@ class PropertyController extends Controller
         primarno se gleda, sell/rent->lokacija->price->kvadratura.... ugl trebat će istražiti tačno kako jedan takav sistem radi
         */
         return view('properties.show')
-            ->with('property', Property::with(['user'])->findOrFail($id));
+            ->with('property', Property::with([])->findOrFail($id));
     }
 
     /**

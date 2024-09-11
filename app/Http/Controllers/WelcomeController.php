@@ -9,7 +9,10 @@ class WelcomeController extends Controller
     public function __invoke()
     {
         $properties = Property::query()
-            ->with(['user', 'type'])
+            ->select('id', 'type_id', 'name', 'price', 'city', 'bedrooms', 'garage', 'furnished', 'floors', 'lease_duration', 'keycard_entry', 'surface', 'toilets')
+            ->with(['media' => function ($query) {
+                $query->limit(1);
+            }])
             ->get();
 
         $propertyCount = $properties->count();
@@ -19,4 +22,3 @@ class WelcomeController extends Controller
             ->with('property_count', $propertyCount);
     }
 }
-//->where('featured', '=', '1')
