@@ -1,6 +1,6 @@
 @props(['property'])
 
-<div id="pozadina" class="group w-full h-[300px] text-white rounded-[15px] flex flex-col justify-end bg-cover" style="background-image:linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.73)), url('{{ $property->getFirstMediaUrl("property-photos")}}')">
+<div id="pozadina" class="group w-full h-[300px] text-white rounded-[15px] flex flex-col justify-end bg-cover" style="background-image:linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.73)), url('{{ $property->getFirstMediaUrl("property-photos") }}')">
     <!-- section about properties offer -->
     <x-property-offer :lease="$property->lease_duration" />
 
