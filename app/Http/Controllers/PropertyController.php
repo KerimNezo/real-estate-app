@@ -15,18 +15,16 @@ class PropertyController extends Controller
     public function index()
     {
         $properties = Property::query()
-        ->select('id', 'type_id', 'name', 'price', 'city', 'bedrooms', 'garage', 'furnished', 'floors', 'lease_duration', 'keycard_entry', 'surface', 'toilets')
-        ->latest()
-        ->with(['media' => function ($query) {
-            $query->limit(1);
-        }])
-        ->get();
+            ->select('id', 'type_id', 'name', 'price', 'city', 'bedrooms', 'garage', 'furnished', 'floors', 'lease_duration', 'keycard_entry', 'surface', 'toilets')
+            ->latest()
+            ->with(['media' => function ($query) {
+                $query->limit(1);
+            }])
+            ->get();
 
         $propertyCount = $properties->count();
 
         $cities = $properties->pluck('city')->unique()->values();
-
-        logger($cities);// we log all cities plucked from $properties
 
         return view('properties.index')
             ->with('properties', $properties)

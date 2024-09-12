@@ -18,11 +18,11 @@ class SearchController extends Controller
             ->pluck('city'); // Get the cities as a collection
 
         $properties = Property::query()
-        ->select('id', 'type_id', 'name', 'price', 'city', 'bedrooms', 'garage', 'furnished', 'floors', 'lease_duration', 'keycard_entry', 'surface', 'toilets')
-        ->latest()
-        ->with(['media' => function ($query) {
-            $query->limit(1);
-        }]);
+            ->select('id', 'type_id', 'name', 'price', 'city', 'bedrooms', 'garage', 'furnished', 'floors', 'lease_duration', 'keycard_entry', 'surface', 'toilets')
+            ->latest()
+            ->with(['media' => function ($query) {
+                $query->limit(1);
+            }]);
 
         if (! is_null($assetLocation = $request->query('asset-location'))) {
             $properties = $properties->where('city', '=', $assetLocation);
