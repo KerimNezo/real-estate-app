@@ -9,7 +9,7 @@
 
     <main>
         <div class="w-full pt-24 bg-white ">
-            <div id="property-index-content" class="relative items-start justify-center flex-grow w-full h-full pb-24 mx-auto bg-white pt-9">
+            <div id="property-index-content" class="relative items-start justify-center w-full h-full pb-24 mx-auto bg-white pt-9">
                 <!-- Property query filter form -->
                 <livewire:property-filter-form :$cities />
 

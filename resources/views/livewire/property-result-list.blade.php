@@ -1,4 +1,4 @@
-<div>
+<div class="flex-grow w-full">
     <!-- Property query result -->
     <div id="properites-list" class="flex flex-col items-center justify-center w-full h-full">
         <!-- Header of query result section-->

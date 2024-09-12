@@ -1,4 +1,4 @@
-<div>
+<div class="mr-auto">
     <!-- Property query filter form -->
     <div id="property-index-filters" class="h-[500px] flex flex-col justify-center items-start w-full">
         <!-- Filter clear & text-->
