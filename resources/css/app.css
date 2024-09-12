@@ -133,6 +133,7 @@
 }
 
 #properites-list {
+    padding-left: 0px;
     width: 95%;
     padding-top: 16px;
 }
@@ -238,7 +239,8 @@
     }
 
     #properites-list {
-        width: 75%;
+        padding-left: 40px;
+        width: 100%;
         padding-top: 0px;
     }
 
@@ -248,11 +250,12 @@
     }
 
     #form-heading {
-        width: 90%;
+        width: 100%;
+        margin: 0;
     }
 
     #query-form-all-properties {
-        width: 90%;
+        width: 100%;
     }
 
     #filter-button {
