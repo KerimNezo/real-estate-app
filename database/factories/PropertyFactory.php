@@ -21,7 +21,7 @@ class PropertyFactory extends Factory
             'surface' => 59,
             'lat' => 44.2,
             'lon' => 17.933333333333334,
-            'year_built' => $this->faker->numberBetween(1980, 2020)
+            'year_built' => $this->faker->numberBetween(1980, 2020),
         ];
     }
 }
