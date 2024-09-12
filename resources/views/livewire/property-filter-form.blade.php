@@ -1,8 +1,8 @@
 <div>
     <!-- Property query filter form -->
-    <div id="property-index-filters" class="h-[500px] flex flex-col justify-center items-start">
+    <div id="property-index-filters" class="h-[500px] flex flex-col justify-center items-start w-full">
         <!-- Filter clear & text-->
-        <div id="form-heading" class="flex items-center justify-start pt-3">
+        <div id="form-heading" class="flex items-center justify-start w-full pt-3">
             <p class="text-lg text-black w-[150px]">Find your home</p>
 
             <!-- Filter button-->
@@ -12,9 +12,9 @@
         </div>
 
         <!-- Query form -->
-        <div id="query-form-all-properties" class="bg-[#5eb1f0] h-full rounded-[5px] flex justify-center items-center mt-5">
+        <div id="query-form-all-properties" class="bg-[#5eb1f0] h-full rounded-[5px] w-full flex justify-center items-center mt-5">
             <table class="w-full h-full pb-auto">
-                <form wire:submit="searchProperties">
+                <form wire:submit="submitForm">
                     <!-- Property location input-->
                     <x-form-select-input modelName="filters.location" heading="Property location" selectId="asset-location">
                         <option value="" selected>Select a location</option>

@@ -3,9 +3,14 @@
 namespace App\Livewire;
 
 use Livewire\Component;
+use Livewire\Attributes\Locked;
 
 class PropertyFilterForm extends Component
 {
+
+    #[Locked]
+    public $cities;
+
     public $filters = [
         'location' => null,
         'offer_type' => null,
@@ -13,6 +18,16 @@ class PropertyFilterForm extends Component
         'min_price' => null,
         'max_price' => null,
     ];
+
+    public function clearForm()
+    {
+        $this->filters = array_fill_keys([
+            'location',
+            'offer_type',
+            'property_type',
+            'min_price',
+            'max_price'], null);
+    }
 
     public function submitForm()
     {
