@@ -8,6 +8,14 @@
     </x-slot>
 
     <main>
-        <livewire:all-properties :cities='$cities' :propertyCount='$propertyCount' order='Most recent' :properties='$properties'/>
+        <div class="w-full pt-24 bg-white ">
+            <div id="property-index-content" class="relative items-start justify-center flex-grow w-full h-full pb-24 mx-auto bg-white pt-9">
+                <!-- Property query filter form -->
+                <livewire:property-filter-form :$cities />
+
+                <!-- Property query result list -->
+                <livewire:property-result-list :$propertyCount order='Most recent' :$properties/>
+            </div>
+        </div>
     </main>
 </x-app-layout>
