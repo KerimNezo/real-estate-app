@@ -39,11 +39,10 @@
                 @endif
 
                 <!-- Ovdje treba negdje i paginaciju dodati -->
-                <!--
-                    <div class="mt-8">
-                        {/{ $properties->links() }/}
-                    </div>
-                -->
+
+                {{-- <div class="mt-8">
+                    {{ $properties }}
+                </div> --}}
             </div>
         </div>
     </div>
