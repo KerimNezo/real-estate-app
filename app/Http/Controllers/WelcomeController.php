@@ -11,7 +11,8 @@ class WelcomeController extends Controller
         $properties = Property::query()
             ->select('id', 'type_id', 'name', 'price', 'city', 'bedrooms', 'garage', 'furnished', 'floors', 'lease_duration', 'keycard_entry', 'surface', 'toilets')
             ->with(['media' => function ($query) {
-                $query->limit(1);
+                $query->orderBy('order_column', 'asc')
+                      ->limit(1);
             }])
             ->get();
 
