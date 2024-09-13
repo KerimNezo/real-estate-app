@@ -67,9 +67,13 @@ class PropertyResultList extends Component
             ? $this->properties->sortBy($sortBy)
             : $this->properties->sortByDesc($sortBy);
     }
-
     public function render()
     {
         return view('livewire.property-result-list');
     }
 }
+
+/**
+ * I will eventually have to add pagination here, because as of rn index aciton return all properties from the db.
+ * When there ton of properties this will not be acceptable. So this is something I will have to return to.
+ */
