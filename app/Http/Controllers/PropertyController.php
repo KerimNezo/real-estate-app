@@ -19,7 +19,7 @@ class PropertyController extends Controller
             ->latest()
             ->with(['media' => function ($query) {
                 $query->orderBy('order_column', 'asc')
-                      ->limit(1);
+                    ->limit(1);
             }])
             ->get();
 

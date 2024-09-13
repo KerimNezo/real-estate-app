@@ -22,7 +22,7 @@ class SearchController extends Controller
             ->latest()
             ->with(['media' => function ($query) {
                 $query->orderBy('order_column', 'asc')
-                      ->limit(1);
+                    ->limit(1);
             }]);
 
         if (! is_null($assetLocation = $request->query('asset-location'))) {
