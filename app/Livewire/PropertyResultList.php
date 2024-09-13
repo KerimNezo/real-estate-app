@@ -12,12 +12,11 @@ class PropertyResultList extends Component
 
     public $propertyCount = 0;
 
-    public $query;
 
     #[On('form-submitted')]
     public function updateProperties($filters)
     {
-        $this->reset(['query', 'properties', 'propertyCount']);
+        $this->reset(['properties', 'propertyCount']);
 
         $query = Property::query()
             ->select('id', 'type_id', 'name', 'price', 'city', 'bedrooms', 'garage', 'furnished', 'floors', 'lease_duration', 'keycard_entry', 'surface', 'toilets');
