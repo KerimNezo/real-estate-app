@@ -50,6 +50,7 @@ class PropertyResultList extends Component
                 $query->orderBy('order_column', 'asc')
                     ->limit(1);
             }])
+            ->latest()
             ->get();
 
         $this->propertyCount = $this->properties->count();
