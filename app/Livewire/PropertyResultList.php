@@ -10,10 +10,12 @@ class PropertyResultList extends Component
 {
     public $properties = [];
 
+    public $query;
+
     #[On('form-submitted')]
     public function updateProperties($filters)
     {
-        $this->reset(['properties', 'propertyCount']);
+        $this->reset(['properties']);
 
         $query = Property::query()
             ->select('id', 'type_id', 'name', 'price', 'city', 'bedrooms', 'garage', 'furnished', 'floors', 'lease_duration', 'keycard_entry', 'surface', 'toilets');
@@ -49,8 +51,6 @@ class PropertyResultList extends Component
             }])
             ->latest()
             ->get();
-
-        $this->propertyCount = $this->properties->count();
     }
 
     public function sortProperties($order)
@@ -64,10 +64,6 @@ class PropertyResultList extends Component
         $this->properties = $order === 'lowestfirst'
             ? $this->properties->sortBy($sortBy)
             : $this->properties->sortByDesc($sortBy);
-    }
-    public function render()
-    {
-        return view('livewire.property-result-list');
     }
 }
 
