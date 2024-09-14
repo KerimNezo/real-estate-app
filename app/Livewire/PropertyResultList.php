@@ -10,8 +10,6 @@ class PropertyResultList extends Component
 {
     public $properties = [];
 
-    public $propertyCount = 0;
-
     #[On('form-submitted')]
     public function updateProperties($filters)
     {

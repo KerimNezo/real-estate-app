@@ -14,7 +14,7 @@
                 <livewire:property-filter-form :$cities />
 
                 <!-- Property query result list -->
-                <livewire:property-result-list :$propertyCount order='Most recent' :$properties/>
+                <livewire:property-result-list order='Most recent' :$properties/>
             </div>
         </div>
     </main>

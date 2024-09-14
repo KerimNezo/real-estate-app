@@ -23,13 +23,10 @@ class PropertyController extends Controller
             }])
             ->get();
 
-        $propertyCount = $properties->count();
-
         $cities = $properties->pluck('city')->unique()->values();
 
         return view('properties.index')
             ->with('properties', $properties)
-            ->with('propertyCount', $propertyCount)
             ->with('cities', $cities);
     }
 
