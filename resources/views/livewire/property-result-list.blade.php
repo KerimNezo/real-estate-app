@@ -31,9 +31,11 @@
                 @else
                     <div class="grid w-full grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-2"> <!-- ovdje sad treba editovati kako se pozicioniraju -->
                         @foreach ($properties as $property )
-                            <a href="{{ route('single-property', ['id' => $property->id]) }}">
-                                <x-property-card :$property/>
-                            </a>
+                            <div wire:key="{{ $property->id }}">
+                                <a href="{{ route('single-property', ['id' => $property->id]) }}">
+                                    <x-property-card :$property/>
+                                </a>
+                            </div>
                         @endforeach
                     </div>
                 @endif
