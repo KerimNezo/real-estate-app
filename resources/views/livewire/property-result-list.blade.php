@@ -14,6 +14,13 @@
             </div>
         </div>
 
+        <!--When I reorder properties, it loads all of their photos, it makes 2 queries, one that queries the "snapped data"
+            other one that queries their photos from media table, i don't really know why does this happen or if it even should
+            happen in the first place. Will need to look this up tommorow. All you need to do is keep on working. You're back
+            form the vacation, time to work.
+
+            Good luck, Kerim -->
+
         <!-- Content of query result section-->
         <div class="w-full h-full py-5 text-black bg-white " id="featured-properties">
             <!-- Grid display of property cards -->
