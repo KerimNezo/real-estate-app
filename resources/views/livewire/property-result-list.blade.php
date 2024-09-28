@@ -50,7 +50,7 @@
                 <!-- Ovdje treba negdje i paginaciju dodati -->
 
                 {{-- <div class="mt-8">
-                    {{ $properties }}
+                    {{ $properties->links() }}
                 </div> --}}
             </div>
         </div>
