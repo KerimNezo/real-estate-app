@@ -7,9 +7,9 @@
 
             <div id="property-list-button" class="relative">
                 <select wire:model.defer="order" name="" id="dropdown-button" class="w-full !bg-[#ef5d60] h-[48px] rounded-[5px] px-2 text-base">
-                    <option wire:click="sortProperties('recent')" value="recent">Most recent</option>
-                    <option wire:click="sortProperties('lowestfirst')" value="lowestfirst">Price: Low - High ↓</option>
-                    <option wire:click="sortProperties('highestfirst')" value="highestfirst">Price: High - Low ↑</option>
+                    <option wire:click="sortProperties('recent')">Most recent</option>
+                    <option wire:click="sortProperties('lowestfirst')">Price: Low - High ↓</option>
+                    <option wire:click="sortProperties('highestfirst')">Price: High - Low ↑</option>
                 </select>
             </div>
         </div>
@@ -19,6 +19,16 @@
             happen in the first place. Will need to look this up tommorow. All you need to do is keep on working. You're back
             form the vacation, time to work.
 
+
+            29.09. dodatak, read this again
+            https://livewire.laravel.com/docs/properties#eloquent-constraints-arent-preserved-between-requests
+            vidjet ćeš da ćeš morati eventualno preraditi logiku da pređeš na computed propertije. Jer kao što vidiš
+            nakon što livewire hydrira json snapshot u php na request, gubi se select constraint.
+
+            Ali opet ne znam kako će i hoće li se ovo moći uraditi, jer forma određuje constrint i neće uvijek biti isti
+            tako da se mora nekako skontati taj sistem da forma šalje sve isto, i vamo da se provjerava za null i constrainta
+            samo ono što nije null. Da bude computed, ali se onda mijenjaju sve rute koje si do sada radio.
+            Tako da ima posla.
             Good luck, Kerim -->
 
         <!-- Content of query result section-->

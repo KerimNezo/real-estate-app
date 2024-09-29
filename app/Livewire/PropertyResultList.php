@@ -61,6 +61,7 @@ class PropertyResultList extends Component
             default => 'created_at',
         };
 
+        $s = collect($this->properties);
         $this->properties = $order === 'lowestfirst'
             ? $this->properties->sortBy($sortBy)
             : $this->properties->sortByDesc($sortBy);
