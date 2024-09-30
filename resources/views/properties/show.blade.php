@@ -42,7 +42,7 @@
                         <div class="px-5 py-5 w-full h-full flex flex-col justify-center items-center bg-[#ededed] rounded-[5px]">
                             <!-- Property title and offer -->
                             <div class="rounded-[5px] flex justify-start items-center pb-2 w-full">
-                                <h3 class="bg-{{$color}}-600 text-white rounded-[5px] p-2 font-bold                             flex justify-center items-center">
+                                <h3 class="bg-{{$color}}-600 text-white rounded-[5px] p-2 font-bold flex justify-center items-center">
                                     {{ $propertyOffer }}
                                 </h3>
                                 <h6 class="ml-4 mr-auto text-3xl">
@@ -58,7 +58,7 @@
                             </div>
 
                             <!-- Description title -->
-                            <div class="rounded-[5px] flex justify-start items-center pb-2 w-full">
+                            <div class="rounded-[5px] flex justify-start items-center pb-4 w-full">
                                 <h3 class="mr-auto text-2xl">
                                     Description
                                 </h3>
@@ -78,7 +78,7 @@
                         <div class="px-5 py-4 w-full h-full flex flex-col justify-center items-center bg-[#ededed] rounded-[5px]">
                             <!-- Section title -->
                             <div class="rounded-[5px] flex justify-start items-center pb-2 w-full">
-                                <h3 class="pb-2 mr-auto text-2xl">
+                                <h3 class="pb-3 mr-auto text-2xl">
                                     Basic details
                                 </h3>
                             </div>
@@ -116,7 +116,7 @@
 
                             <!-- Other features details -->
                             <div class="rounded-[5px] flex justify-start items-center pb-2 pt-10 w-full">
-                                <h3 class="pb-2 mr-auto text-2xl">
+                                <h3 class="pb-3 mr-auto text-2xl">
                                     Other features
                                 </h3>
                             </div>
@@ -144,8 +144,8 @@
 
                     <!-- Property location on map -->
                     <div class="w-full h-full flex flex-col justify-center items-center rounded-[5px] px-5 py-4 bg-[#ededed]">
-                        <div class="mr-auto text-2xl pb-7">
-                            <b>Location</b>
+                        <div class="pb-5 mr-auto text-2xl">
+                            <h3> Location </h3>
                         </div>
 
                         <div id="map" class="w-full rounded-[5px] border-[3px]">
@@ -198,11 +198,15 @@
 
 
             <!-- Similar properties -->
-            <div class="h-[360px] bg-[#ededed] w-[80%] mt-4 mb-8 rounded-[10px] flex">
+            <div class="h-full bg-[#ededed] w-[80%] mt-4 mb-8 rounded-[10px] p-5 flex flex-col justify-center items-center">
+                <div class="pb-5 mr-auto text-2xl">
+                    <h3> Similar Properties You May Like </h3>
+                </div>
+
                 <!-- Ovdje ćemo dobiti samo listu propertya koji su bliski sa otvorenim propertyem koje ćemo izlistati -->
-                <div class="flex items-center justify-center w-full gap-[20px]">
+                <div class="flex items-center justify-center w-full gap-[20px] ">
                     @foreach ($similarProperties as $property )
-                        <a href="{{ route('single-property', ['id' => $property->id]) }}">
+                        <a href="{{ route('single-property', ['id' => $property->id]) }}" class="w-full">
                             <x-similar-property-card :imageUrl='$property->getFirstMediaUrl("property-photos")' :$property/>
                         </a>
                     @endforeach
