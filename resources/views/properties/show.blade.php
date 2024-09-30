@@ -198,13 +198,15 @@
 
 
             <!-- Similar properties -->
-            <div class="h-[400px] bg-[#ededed] w-[80%] my-4 rounded-[10px] flex justify-center items-center content-between">
+            <div class="h-[360px] bg-[#ededed] w-[80%] mt-4 mb-8 rounded-[10px] flex">
                 <!-- Ovdje ćemo dobiti samo listu propertya koji su bliski sa otvorenim propertyem koje ćemo izlistati -->
-                @foreach ($similarProperties as $property )
-                    <a href="{{ route('single-property', ['id' => $property->id]) }}">
-                        <x-property-card :imageUrl='$property->getFirstMediaUrl("property-photos")' :$property/>
-                    </a>
-                @endforeach
+                <div class="flex items-center justify-center w-full gap-[20px]">
+                    @foreach ($similarProperties as $property )
+                        <a href="{{ route('single-property', ['id' => $property->id]) }}">
+                            <x-similar-property-card :imageUrl='$property->getFirstMediaUrl("property-photos")' :$property/>
+                        </a>
+                    @endforeach
+                </div>
             </div>
         </div>
     </main>
