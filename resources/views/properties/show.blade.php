@@ -225,10 +225,10 @@
 <script>
     var map = L.map('map');
 
-    map.setView([{{ $property->lat }}, {{ $property->lon }}], 17);
+    map.setView([{{ $property->lat }}, {{ $property->lon }}], 16);
 
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 16,
+        maxZoom: 19,
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(map);
 
