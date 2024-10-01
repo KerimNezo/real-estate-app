@@ -34,14 +34,14 @@
             </div>
 
             <!-- Property/agent information -->
-            <div id="show-information-section" class="h-full w-[80%] rounded-[10px] flex justify-center items-stretch py-4 gap-4">
+            <div id="show-information-section" class="h-full rounded-[10px] flex justify-center items-stretch py-4 gap-4">
                 <!-- Property information -->
-                <div id="PropertyInfo" class="flex flex-col justify-center items-center w-[65%] flex-1">
+                <div id="property-info" class="flex flex-col items-center justify-center flex-1">
                     <!-- Property information -->
                     <div class="flex flex-col items-center justify-center w-full gap-4 pb-2">
                         <div class="px-5 py-5 w-full h-full flex flex-col justify-center items-center bg-[#ededed] rounded-[5px]">
                             <!-- Property title and offer -->
-                            <div class="rounded-[5px] flex justify-start items-center pb-2 w-full">
+                            <div id="offer-header" class="rounded-[5px] justify-start items-center pb-2 w-full">
                                 <h3 class="bg-{{$color}}-600 text-white rounded-[5px] p-2 font-bold flex justify-center items-center">
                                     {{ $propertyOffer }}
                                 </h3>
@@ -159,10 +159,10 @@
                 </div>
 
                 <!-- Agents information -->
-                <div id="AgentInfo" class="!w-[35%] min-h-screen relative">
-                    <div class="sticky top-[0] z-[100] flex flex-col justify-center items-center mb-auto">
+                <div id="agent-info" class="w-[35%]">
+                    <div id="sticky" class="flex flex-col items-center justify-center mb-auto">
                         <!-- Property price -->
-                        <div id="" class="mb-[10px] h-[100px] w-full bg-[#ededed] rounded-[5px] flex flex-col py-5 px-5 justify-center items-center">
+                        <div class="mb-[10px] h-[100px] w-full bg-[#ededed] rounded-[5px] flex flex-col py-5 px-5 justify-center items-center">
                             <!-- Property price -->
                             <div class="rounded-[5px] flex justify-start items-center pb-4 w-full">
                                 <h6 class="mr-auto text-2xl">
@@ -227,7 +227,7 @@
     map.setView([{{ $property->lat }}, {{ $property->lon }}], 17);
 
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 19,
+        maxZoom: 16,
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(map);
 

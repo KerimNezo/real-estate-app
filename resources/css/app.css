@@ -163,7 +163,7 @@
     right: 12px;
     text-align: center;
     position: absolute;
-    top: 4.7%;
+    top: 5.2%;
     background-color: #ededed;
     width: 52px;
     height: 52px;
@@ -180,7 +180,7 @@
     left: 12px;
     text-align: center;
     position: absolute;
-    top: 4.7%;
+    top: 5.2%;
     background-color: #ededed;
     width: 52px;
     height: 52px;
@@ -208,7 +208,7 @@
 }
 
 #map {
-    height: 180px;
+    height: 400px;
     z-index: 80;
 }
 
@@ -233,19 +233,63 @@
 }
 
 #show-information-section {
-    height: 100%;                   /* h-full */
-    width: 80%;                     /* w-[80%] */
-    border-radius: 10px;             /* rounded-[10px] */
+    width: 100%;                     /* w-[95%] */
     display: flex;
     flex-direction: column;                  /* flex */
+    align-items: center;
+}
+
+#property-info {
+    width: 95%;                      /* w-[65%] */
+}
+
+#offer-header {
+    display: flex;
+    flex-direction: row;
+    border-radius: 5px;              /* rounded-[5px] */
+    justify-content: flex-start;     /* justify-start */
+    align-items: center;             /* items-center */
+    padding-bottom: 0.5rem;          /* pb-2 */
+    width: 100%;
+}
+
+#agent-info {
+    width: 95%;
+}
+
+#sticky {
+    display: flex;                   /* flex */
+    flex-direction: column;          /* flex-col */
     justify-content: center;         /* justify-center */
-    align-items: stretch;            /* items-stretch */
-    padding-top: 1rem;               /* py-4 (top and bottom padding) */
-    padding-bottom: 1rem;
-    gap: 1rem;
+    align-items: center;             /* items-center */
+    margin-bottom: auto;
 }
 
 @media (min-width: 640px) { /* Ovdje su stvari koje želimo da se vide kada je širina ekrana +640px */
+
+    #agent-info {
+        width: 35%;
+    }
+
+    #sticky {
+        position: sticky;                /* sticky */
+        top: 0;                          /* top-[0] */
+        z-index: 100;                    /* z-[100] */
+        display: flex;                   /* flex */
+        flex-direction: column;          /* flex-col */
+        justify-content: center;         /* justify-center */
+        align-items: center;             /* items-center */
+        margin-bottom: auto;
+    }
+
+    #property-info {
+        width: 65%;                      /* w-[65%] */
+    }
+
+    #offer-header {
+        display: flex;
+        flex-direction: row;
+    }
 
     #map {
         height: 480px;
@@ -253,16 +297,10 @@
     }
 
     #show-information-section {
-        height: 100%;                   /* h-full */
         width: 80%;                     /* w-[80%] */
-        border-radius: 10px;             /* rounded-[10px] */
         display: flex;
         flex-direction: row;                  /* flex */
-        justify-content: center;         /* justify-center */
-        align-items: stretch;            /* items-stretch */
-        padding-top: 1rem;               /* py-4 (top and bottom padding) */
-        padding-bottom: 1rem;
-        gap: 1rem;
+        align-items: stretch;
     }
 
     #property-list-button {
