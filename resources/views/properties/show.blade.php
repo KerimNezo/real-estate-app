@@ -10,6 +10,7 @@
     $color = is_null($property->lease_duration) ? "red" : "sky";
     $property->furnsihed === null ? $furnished = "No" : $furnished = "Yes";
     $property->video_intercom === null ? $video = "No" : $video = "Yes";
+    $property->garage === null ? $garage = "No" : $garage = $property->garage;
 
     $elevator = $property->elevator;
     $keycard = $property->keycard_entry;
@@ -63,9 +64,9 @@
 
                             <!-- Description title -->
                             <div class="rounded-[5px] flex justify-start items-center pb-4 w-full">
-                                <h3 class="mr-auto text-2xl">
-                                    Description
-                                </h3>
+                                <div class="mr-auto text-2xl font-bold">
+                                    <p>Description</p>
+                                </div>
                             </div>
 
                             <!-- Proprerty description content-->
@@ -82,9 +83,9 @@
                         <div class="px-5 py-4 w-full h-full flex flex-col justify-center items-center bg-[#ededed] rounded-[5px]">
                             <!-- Section title -->
                             <div class="rounded-[5px] flex justify-start items-center pb-2 w-full">
-                                <h3 class="pb-3 mr-auto text-2xl">
-                                    Basic Details
-                                </h3>
+                                <div class="pb-4 mr-auto text-xl font-bold">
+                                    <p>Basic Details</p>
+                                </div>
                             </div>
 
                             <!-- Property details content -->
@@ -95,7 +96,7 @@
 
                                     <x-property-detail icon='govicon-construction' title="Year built" :text="$property->year_built" unit="" css='w-[48px] h-[48px] fill-[#EF5D60]' />
 
-                                    <x-property-detail icon='bxs-car-garage' title="Garage" :text="$property->garage" unit="" css='w-[40px] h-[40px]' />
+                                    <x-property-detail icon='bxs-car-garage' title="Garage" :text="$garage" unit="" css='w-[40px] h-[40px]' />
                                 </div>
 
                                 <!-- Second row -->
@@ -118,17 +119,17 @@
                             </div>
 
 
-                            <!-- Other features details -->
+                            <!-- Other features title -->
                             <div class="rounded-[5px] flex justify-start items-center pb-2 pt-10 w-full">
-                                <h3 class="pb-3 mr-auto text-2xl">
-                                    Other Features
-                                </h3>
+                                <div class="mr-auto text-xl font-bold">
+                                    <p>Other Features</p>
+                                </div>
                             </div>
 
-                            <!-- Property other features content -->
+                            <!-- Other features content -->
                             <div class="flex flex-col items-center justify-center w-full gap-7">
                                 <!-- First row -->
-                                <div class="flex items-center justify-center w-full">
+                                <div class="w-full">
                                     @switch($propertyType)
                                         @case(3)
                                             <x-other-features-appartement :$elevator :$keycard />
@@ -148,8 +149,8 @@
 
                     <!-- Property location on map -->
                     <div class="w-full h-full flex flex-col justify-center items-center rounded-[5px] px-5 py-4 bg-[#ededed]">
-                        <div class="pb-5 mr-auto text-2xl">
-                            <h3> Location </h3>
+                        <div class="pb-4 mr-auto text-2xl font-bold">
+                            <p>Location</p>
                         </div>
 
                         <div id="map" class="w-full rounded-[5px] border-[3px]">
@@ -202,9 +203,9 @@
 
 
             <!-- Similar properties -->
-            <div id="similar-properties" class="h-full bg-[#ededed] w-[80%] mt-4 mb-8 rounded-[10px] p-5 flex flex-col justify-center items-center">
-                <div class="pb-5 mr-auto text-2xl">
-                    <h3> Similar Properties You May Like </h3>
+            <div id="similar-properties" class="h-full bg-[#ededed] w-[80%] mb-8 rounded-[10px] p-5 flex flex-col justify-center items-center">
+                <div class="pb-4 mr-auto text-2xl font-bold">
+                    <p>Similar Properties You May Like</p>
                 </div>
 
                 <!-- Ovdje ćemo dobiti samo listu propertya koji su bliski sa otvorenim propertyem koje ćemo izlistati -->
