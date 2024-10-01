@@ -1,6 +1,6 @@
 @props(['title', 'text', 'icon', 'unit', 'css'])
 
-<div class="flex items-center justify-start w-full ">
+<div id="property-detail" class="flex items-center justify-start w-[33%] ">
     <div class="bg-white p-[2px] rounded-[10px] w-[50px] h-[50px] flex justify-center items-center" style="color: #EF5D60;">
         @svg($icon, $css)
     </div>
