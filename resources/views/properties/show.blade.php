@@ -79,7 +79,7 @@
                             <!-- Section title -->
                             <div class="rounded-[5px] flex justify-start items-center pb-2 w-full">
                                 <h3 class="pb-3 mr-auto text-2xl">
-                                    Basic details
+                                    Basic Details
                                 </h3>
                             </div>
 
@@ -117,7 +117,7 @@
                             <!-- Other features details -->
                             <div class="rounded-[5px] flex justify-start items-center pb-2 pt-10 w-full">
                                 <h3 class="pb-3 mr-auto text-2xl">
-                                    Other features
+                                    Other Features
                                 </h3>
                             </div>
 
@@ -204,7 +204,7 @@
                 </div>
 
                 <!-- Ovdje ćemo dobiti samo listu propertya koji su bliski sa otvorenim propertyem koje ćemo izlistati -->
-                <div class="flex items-center justify-center w-full gap-[20px] ">
+                <div class="flex items-center justify-center w-full gap-[35px] ">
                     @foreach ($similarProperties as $property )
                         <a href="{{ route('single-property', ['id' => $property->id]) }}" class="w-full">
                             <x-similar-property-card :imageUrl='$property->getFirstMediaUrl("property-photos")' :$property/>
