@@ -34,7 +34,7 @@
             </div>
 
             <!-- Property/agent information -->
-            <div class="h-full w-[80%] rounded-[10px] flex justify-center items-stretch py-4 gap-4">
+            <div id="show-information-section" class="h-full w-[80%] rounded-[10px] flex justify-center items-stretch py-4 gap-4">
                 <!-- Property information -->
                 <div id="PropertyInfo" class="flex flex-col justify-center items-center w-[65%] flex-1">
                     <!-- Property information -->
@@ -55,6 +55,7 @@
                                 <div class="pr-1">
                                     <x-ionicon-location-sharp class="w-[20px]"/>
                                 </div>
+
                                 <h3 class="mr-auto">
                                     {{ $property->city }}, {{ $property->country }}
                                 </h3>
@@ -158,10 +159,10 @@
                 </div>
 
                 <!-- Agents information -->
-                <div id="AgentInfo" class="!w-[35%]  min-h-screen relative">
+                <div id="AgentInfo" class="!w-[35%] min-h-screen relative">
                     <div class="sticky top-[0] z-[100] flex flex-col justify-center items-center mb-auto">
                         <!-- Property price -->
-                        <div id="" class="mb-[10px] h-[100px] w-full bg-green-300 rounded-[5px] flex flex-col py-5 px-5 justify-center items-center">
+                        <div id="" class="mb-[10px] h-[100px] w-full bg-[#ededed] rounded-[5px] flex flex-col py-5 px-5 justify-center items-center">
                             <!-- Property price -->
                             <div class="rounded-[5px] flex justify-start items-center pb-4 w-full">
                                 <h6 class="mr-auto text-2xl">
@@ -178,7 +179,7 @@
                         </div>
 
                         <!-- Agent data -->
-                        <div id="" class="w-full flex mb-auto flex-col justify-center items-center bg-teal-300 py-5 px-5 rounded-[5px]">
+                        <div id="" class="w-full flex mb-auto flex-col justify-center items-center bg-[#ededed] py-5 px-5 rounded-[5px]">
                             <!-- Section header -->
                             <div class="mr-auto text-xl font-bold">
                                 <p>Contact Us</p>
@@ -201,13 +202,13 @@
 
 
             <!-- Similar properties -->
-            <div class="h-full bg-[#ededed] w-[80%] mt-4 mb-8 rounded-[10px] p-5 flex flex-col justify-center items-center">
+            <div id="similar-properties" class="h-full bg-[#ededed] w-[80%] mt-4 mb-8 rounded-[10px] p-5 flex flex-col justify-center items-center">
                 <div class="pb-5 mr-auto text-2xl">
                     <h3> Similar Properties You May Like </h3>
                 </div>
 
                 <!-- Ovdje ćemo dobiti samo listu propertya koji su bliski sa otvorenim propertyem koje ćemo izlistati -->
-                <div class="flex items-center justify-center w-full gap-[35px] ">
+                <div id="similar-properties-list" class="flex items-center justify-center w-full gap-[35px]">
                     @foreach ($similarProperties as $property )
                         <a href="{{ route('single-property', ['id' => $property->id]) }}" class="w-full">
                             <x-similar-property-card :imageUrl='$property->getFirstMediaUrl("property-photos")' :$property/>
