@@ -214,7 +214,7 @@
 
 #similar-properties {
     width: 95%;
-    margin-top: 1rem;   /* mt-4 */
+    margin-top: 0rem;   /* mt-4 */
     margin-bottom: 2rem; /* mb-8 */
     padding: 1.25rem;    /* p-5 */
     display: flex;
@@ -265,7 +265,18 @@
     margin-bottom: auto;
 }
 
+#other-features {
+}
+
+#property-detail {
+    width: 50%;
+}
+
 @media (min-width: 640px) { /* Ovdje su stvari koje želimo da se vide kada je širina ekrana +640px */
+
+    #property-detail {
+        width: 33%;
+    }
 
     #agent-info {
         width: 35%;
