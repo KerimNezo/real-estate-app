@@ -52,6 +52,9 @@
 
                             <!-- Property location -->
                             <div class="rounded-[5px] flex justify-start items-center pb-7 w-full">
+                                <div class="pr-1">
+                                    <x-ionicon-location-sharp class="w-[20px]"/>
+                                </div>
                                 <h3 class="mr-auto">
                                     {{ $property->city }}, {{ $property->country }}
                                 </h3>
