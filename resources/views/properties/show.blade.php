@@ -180,7 +180,7 @@
                                 </h6>
                             </div>
 
-                            <!-- Lease duration -->
+                            <!-- Property location -->
                             <div class="h-[15%] rounded-[5px] flex justify-start items-center w-full">
                                 <h3 class="mr-auto">
                                     {{ $property->city }}, {{ $property->country }}
