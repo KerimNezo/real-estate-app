@@ -3,16 +3,23 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\WelcomeController;
+use App\Http\Controllers\PropertyController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', WelcomeController::class)
     ->name('home');
 
+Route::get('/all-properties', [PropertyController::class, 'index'])
+    ->name('all-properties');
+
+Route::get('property/{id}', [PropertyController::class, 'show'])
+    ->name('single-property');
+
 Route::get('/search', SearchController::class);
 
 // Not my routes
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('admin.index');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
