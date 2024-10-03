@@ -101,7 +101,7 @@
                                     </div>
 
                                     <div class="w-[33%] justify-center items-center">
-                                            <x-property-detail icon='bxs-car-garage' title="Garage" :text="$garage" unit="" css='w-[40px] h-[40px]' />
+                                        <x-property-detail icon='bxs-car-garage' title="Garage" :text="$garage" unit="" css='w-[48px] h-[48px]' />
                                     </div>
                                 </div>
 
@@ -136,7 +136,7 @@
                             </div>
 
                             <!-- Other features content -->
-                            <div class="flex flex-col items-center justify-center w-full pl-[3px]">
+                            <div class="flex flex-col items-center justify-center w-full">
                                 <!-- First row -->
                                 <div class="w-full">
                                     @switch($propertyType)
