@@ -5,14 +5,6 @@ use App\Http\Controllers\SearchController;
 use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/livewire', function () {
-
-    $count = 10;
-
-    return view('livewire')
-        ->with('count', $count);
-});
-
 Route::get('/', WelcomeController::class)
     ->name('home');
 
