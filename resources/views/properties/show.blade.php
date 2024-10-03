@@ -89,32 +89,41 @@
                             </div>
 
                             <!-- Property details content -->
-                            <div class="flex flex-col items-center justify-center w-full gap-7">
+                            <div id="basic-property-details">
                                 <!-- First row -->
-                                <div class="flex items-center justify-center w-full">
-                                    <x-property-detail icon='phosphor-square-half-light' title="SQM" :text="$property->surface" unit="m&sup2" css='w-[48px] h-[48px]' />
+                                <div id="basic-details-first-row">
+                                    <div class="w-[33%] justify-start items-center">
+                                        <x-property-detail icon='phosphor-square-half-light' title="SQM" :text="$property->surface" unit="m&sup2" css='w-[48px] h-[48px] fill-[#EF5D60]' />
+                                    </div>
 
-                                    <x-property-detail icon='govicon-construction' title="Year built" :text="$property->year_built" unit="" css='w-[48px] h-[48px] fill-[#EF5D60]' />
+                                    <div class="w-[33%] justify-start items-center">
+                                        <x-property-detail icon='govicon-construction' title="Year&nbsp;built" :text="$property->year_built" unit="" css='w-[48px] h-[48px] fill-[#EF5D60]' />
+                                    </div>
 
-                                    <x-property-detail icon='bxs-car-garage' title="Garage" :text="$garage" unit="" css='w-[40px] h-[40px]' />
+                                    <div class="w-[33%] justify-center items-center">
+                                            <x-property-detail icon='bxs-car-garage' title="Garage" :text="$garage" unit="" css='w-[40px] h-[40px]' />
+                                    </div>
                                 </div>
 
                                 <!-- Second row -->
-                                <div class="flex items-center justify-center w-full">
-                                    <!-- $furnished is not from the db, it is variable declared at the top of the file -->
-                                    <x-property-detail icon='maki-furniture' title="Furnished" :text="$furnished" unit="" css='w-[40px] h-[40px] fill-[#EF5D60]' />
+                                <div id="basic-details-second-row">
+                                    <div class="w-[33%] justify-start items-center">
+                                        <x-property-detail icon='maki-furniture' title="Furnished" :text="$furnished" unit="" css='w-[48px] h-[48px] fill-[#EF5D60]' />
+                                    </div>
 
-                                    <!-- $video is not from the db, it is variable declared at the top of the file -->
-                                    <x-property-detail icon='phosphor-security-camera-duotone' title="Video intercom" :text="$video" unit="" css='w-[40px] h-[40px] fill-[#EF5D60]' />
+                                    <div class="w-[33%] justify-start items-center">
+                                        <x-property-detail icon='phosphor-security-camera-duotone' title="Surveillance" :text="$video" unit="" css='w-[46px] h-[48px] fill-[#EF5D60]' />
+                                    </div>
 
-                                    <!-- We created this property detail this way, because it looks better when property is on SALE -->
-                                    @if (!is_null($property->lease_duration))
-                                        <x-property-detail icon='ionicon-calendar' title="Lease" :text="$property->lease_duration" unit="months" css='w-[40px] h-[40px]' />
-                                    @else
-                                        <div class="bg-[#ededed] w-full">
+                                    <div class="w-[33%] justify-center items-center">
+                                        @if (!is_null($property->lease_duration))
+                                            <x-property-detail icon='ionicon-calendar' title="Lease" :text="$property->lease_duration" unit="months" css='w-[46px] h-[48px] fill-[#EF5D60]' />
+                                        @else
+                                            <div class="bg-[#ededed] w-[33%]">
 
-                                        </div>
-                                    @endif
+                                            </div>
+                                        @endif
+                                    </div>
                                 </div>
                             </div>
 
@@ -127,7 +136,7 @@
                             </div>
 
                             <!-- Other features content -->
-                            <div class="flex flex-col items-center justify-center w-full gap-7">
+                            <div class="flex flex-col items-center justify-center w-full pl-[3px]">
                                 <!-- First row -->
                                 <div class="w-full">
                                     @switch($propertyType)
