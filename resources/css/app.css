@@ -265,14 +265,83 @@
     margin-bottom: auto;
 }
 
-#other-features {
-}
-
 #property-detail {
     width: 50%;
 }
 
+#basic-property-details {
+    display: flex;
+    flex-direction:row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 28px;
+}
+
+#basic-details-first-row {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: start;
+    width: 100%;
+    gap: 15px;
+}
+
+#basic-details-second-row {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: center;
+    width: 100%;
+    gap: 15px;
+}
+
+#details-text {
+    width: 100%;
+    padding-left: 0.25rem; /* or 4px */
+    padding-right: 0.25rem; /* or 4px */
+    font-size: 1rem; /* or 18px */
+    line-height: 1.5rem /* or 28px */;
+}
+
+#details-title {
+    padding-left: 0.25rem; /* or 4px */
+    padding-right: 0.25rem; /* or 4px */
+    font-size: 0.875rem; /* or 18px */
+    line-height: 1.25rem /* or 28px */;
+    font-weight: 700;
+}
+
 @media (min-width: 640px) { /* Ovdje su stvari koje želimo da se vide kada je širina ekrana +640px */
+
+    #details-text {
+    width: 100%;
+    padding-left: 0.25rem; /* or 4px */
+    padding-right: 0.25rem; /* or 4px */
+    font-size: 1.125rem; /* or 18px */
+    line-height: 1.75rem /* or 28px */;
+}
+
+#details-title {
+    padding-left: 0.25rem; /* or 4px */
+    padding-right: 0.25rem; /* or 4px */
+    font-size: 1rem; /* or 18px */
+    line-height: 1.5rem /* or 28px */;
+    font-weight: 700;
+}
+
+    #basic-property-details {
+        display: flex;
+        flex-direction:column;
+    }
+
+    #basic-details-first-row {
+        flex-direction: row;
+    }
+
+    #basic-details-second-row {
+        flex-direction: row;
+    }
 
     #property-detail {
         width: 33%;
@@ -537,4 +606,8 @@ a.property-type-query:hover {
     max-width: 100vw !important;
     padding: 0;
     margin: 0;
+}
+
+p {
+    white-space: normal;
 }
