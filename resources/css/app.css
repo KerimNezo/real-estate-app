@@ -275,7 +275,7 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-    gap: 28px;
+    gap: 0px;
 }
 
 #basic-details-first-row {
@@ -284,7 +284,7 @@
     align-items: left;
     justify-content: start;
     width: 100%;
-    gap: 15px;
+    gap: 20px;
 }
 
 #basic-details-second-row {
@@ -293,7 +293,8 @@
     align-items: left;
     justify-content: center;
     width: 100%;
-    gap: 15px;
+    gap: 20px;
+    margin-bottom: auto;
 }
 
 #details-text {
@@ -315,24 +316,25 @@
 @media (min-width: 640px) { /* Ovdje su stvari koje želimo da se vide kada je širina ekrana +640px */
 
     #details-text {
-    width: 100%;
-    padding-left: 0.25rem; /* or 4px */
-    padding-right: 0.25rem; /* or 4px */
-    font-size: 1.125rem; /* or 18px */
-    line-height: 1.75rem /* or 28px */;
-}
+        width: 100%;
+        padding-left: 0.25rem; /* or 4px */
+        padding-right: 0.25rem; /* or 4px */
+        font-size: 1.125rem; /* or 18px */
+        line-height: 1.75rem /* or 28px */;
+    }
 
-#details-title {
-    padding-left: 0.25rem; /* or 4px */
-    padding-right: 0.25rem; /* or 4px */
-    font-size: 1rem; /* or 18px */
-    line-height: 1.5rem /* or 28px */;
-    font-weight: 700;
-}
+    #details-title {
+        padding-left: 0.25rem; /* or 4px */
+        padding-right: 0.25rem; /* or 4px */
+        font-size: 1rem; /* or 18px */
+        line-height: 1.5rem /* or 28px */;
+        font-weight: 700;
+    }
 
     #basic-property-details {
         display: flex;
         flex-direction:column;
+        gap: 28px;
     }
 
     #basic-details-first-row {
@@ -341,6 +343,7 @@
 
     #basic-details-second-row {
         flex-direction: row;
+        margin-bottom: 0px;
     }
 
     #property-detail {
