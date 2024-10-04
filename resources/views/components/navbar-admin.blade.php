@@ -1,29 +1,15 @@
-<!-- Desktop view navbar-->
-<div id="guest-navbar" class="flex items-center justify-center mx-auto">
-    <header class="flex items-center justify-center w-[80%]">
-        <div class="ml-5 mr-auto">
-            <span class="navbar-text">
-                Welcome back, {{ Auth::user()->name}}
-            </span>
-        </div>
-
-        {{-- <div class=" w-[220px] h-[55px] mr-auto ml-auto">
+<!-- Desktop view sidebar-->
+<div id="admin-sidebar" class="flex items-center justify-center mx-auto">
+    <div class="flex flex-col w-full h-full items-left justify-left">
+        <div class="py-5">
             <a href="/">
-                <img src={{ asset('photos/icons/logo1.svg')}} alt="alt" class="rounded-[5px]">
+                <img src={{ asset('photos/icons/logo1.svg')}} alt="alt" class="w-[160px] rounded-[5px] mx-auto">
             </a>
-        </div> --}}
-
-        <div class="flex items-end justify-center ml-auto">
-            <button type="button" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="">
-                <span class="navbar-text">
-                    Log out
-                </span>
-            </button>
         </div>
-    </header>
+    </div>
 </div>
 
-<!-- Mobile view navbar -->
+<!-- Mobile view sidebar -->
 <div id="mobile-guest-navbar">
     <header class="flex justify-start items-center text-center py-[24px] w-full">
         <div class="ml-[10%] h-[50px] flex justify-center items-center mr-auto">
@@ -89,6 +75,3 @@
     });
 </script>
 
-<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-    @csrf <!-- This token is necessary to prevent CSRF attacks -->
-</form>
