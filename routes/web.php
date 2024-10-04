@@ -17,6 +17,10 @@ Route::get('property/{id}', [PropertyController::class, 'show'])
 
 Route::get('/search', SearchController::class);
 
+// This ProfileController action does not exist, and I will need to finish it
+Route::get('/user/{id}', [ProfileController::class, 'show'])
+    ->name('user.show');
+
 // Not my routes
 Route::get('/dashboard', function () {
     return view('admin.index');
