@@ -4,11 +4,16 @@
     </x-slot:title>
 
     <!-- Page content -->
-    <div class="pl-[200px] h-full bg-gray-900 flex flex-col justify-center items-center w-full">
+    <div class="flex flex-col items-center justify-center w-full h-full bg-gray-900">
         <!-- Admin topbar -->
         <div class="flex items-center justify-center w-full py-6 bg-gray-800 h-[100px]">
+            <div class="relative flex items-center justify-center w-full px-10">
+                <div class="mr-auto">
+                    <a href="/">
+                        <img src={{ asset('photos/icons/logo1.svg')}} alt="alt" class="rounded-[5px]">
+                    </a>
+                </div>
 
-            <div class="relative flex items-center justify-center px-10 ml-auto"> <!-- Make this div relative -->
                 <div class="font-bold">
                     <p>{{ Auth::user()->name }}</p>
                 </div>
@@ -38,7 +43,7 @@
         </div>
 
         <div class="h-[800px] w-full flex justify-center items-center z-9 pt-[100px]">
-            <p class="mb-[60%]">welcome back to profile page, {{ Auth::user()->name }}</p>
+            <p class="mb-auto">welcome back to profile page, {{ Auth::user()->name }}</p>
         </div>
 
         <!--footer -->
