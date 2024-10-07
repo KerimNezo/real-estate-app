@@ -39,7 +39,12 @@ class ProfileController extends Controller
 
     public function show(Request $request, $id)
     {
-        return view('admin.show');
+        // Check if the authenticated user has the 'admin' role
+        if ($request->user()->hasRole('admin')) {
+            return view('admin.show');
+        }
+
+        abort(403, 'Unauthorized action.');
     }
 
     /**
