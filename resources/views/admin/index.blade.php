@@ -11,15 +11,12 @@
         </div>
 
         <div class="flex w-full pt-[100px]">
-            <!-- Sidebar -->
-            <div class="fixed top-[100px] left-0 w-[220px] h-screen px-10 bg-stone-900 z-10">
-                <p>Sidebar Content</p>
-            </div>
+            @include('components.sidebar-admin')
 
             <!-- Main content-->
             <div class="ml-[200px] w-full pt-[100px] bg-gray-900">
                 <div class="h-[800px] w-full flex justify-center items-center z-9">
-                    <p class="mb-auto">welcome back to profile page, {{ Auth::user()->name }}</p>
+                    <p class="mb-auto">welcome back to dashboard page, {{ Auth::user()->name }}</p>
                 </div>
 
                 <!--footer -->
