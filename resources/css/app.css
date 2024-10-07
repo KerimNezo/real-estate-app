@@ -317,10 +317,34 @@
 
 }
 
+#admin-sidebar-logo {
+    display: flex;
+}
+
+#admin-topbar-logo {
+    display: none;
+}
+
+#admin-topbar-button {
+    display:flex;
+}
+
 @media (min-width: 640px) { /* Ovdje su stvari koje želimo da se vide kada je širina ekrana +640px */
 
     #desktop-admin-dropdown {
 
+    }
+
+    #admin-topbar-logo {
+        display: flex;
+    }
+
+    #admin-topbar-button {
+        display: none;
+    }
+
+    #admin-sidebar-logo {
+        display: none;
     }
 
     #details-text {
