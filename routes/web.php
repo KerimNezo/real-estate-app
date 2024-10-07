@@ -21,11 +21,12 @@ Route::get('/search', SearchController::class);
 Route::get('/user/{id}', [ProfileController::class, 'show'])
     ->name('user.show');
 
-// Not my routes
+// Will need to create controller that will redirect agent to agent.index and admin to admin.index
 Route::get('/dashboard', function () {
     return view('admin.index');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+// Not my routes
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
