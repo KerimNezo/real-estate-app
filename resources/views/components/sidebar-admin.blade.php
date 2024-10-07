@@ -1,5 +1,14 @@
 <!-- Sidebar -->
 <div class="fixed top-[100px] left-0 w-[220px] h-screen px-10 bg-gray-900 z-10 flex flex-col items-center justify-center">
+    <!-- Logo -->
+    <div id="admin-sidebar-logo">
+        <div class="mx-auto mt-5">
+            <a href="/">
+                <img src={{ asset('photos/icons/logo1.svg')}} alt="alt" class="rounded-[5px] h-12">
+            </a>
+        </div>
+    </div>
+
     <!-- Agents -->
     <div class="mr-auto">
         <x-section-title text="Agents" image="heroicon-s-user"/>
