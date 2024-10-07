@@ -18,8 +18,6 @@
         <div class="bg-gray-50 text-black/50 dark:bg-black dark:text-white/50">
             <div class="relative flex flex-col items-center justify-center min-h-screen ">
                 <div class="relative w-full px-0">
-                    @include('components.navbar-admin')
-
                     {{ $slot }}
                 </div>
             </div>
