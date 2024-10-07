@@ -1,4 +1,4 @@
-<div class="flex items-center justify-center w-full py-6 bg-gray-800 h-[100px]">
+<div class="flex items-center justify-center w-full py-6 bg-gray-800 h-[100px] fixed">
     <div class="relative flex items-center justify-center w-full px-10">
         <div class="mr-auto">
             <a href="/">
