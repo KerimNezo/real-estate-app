@@ -39,7 +39,7 @@ class ProfileController extends Controller
 
     public function show(Request $request, $id)
     {
-        dd($id);
+        return view('admin.show');
     }
 
     /**
