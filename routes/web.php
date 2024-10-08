@@ -29,6 +29,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 // Here we will add routes that user with admin role will have access to
 Route::middleware(['role:admin', 'auth', 'verified'])->group(function () {
     Route::get('/dashboard', function () {return view('admin.index');})->name('dashboard');
+    Route::get('/agents/index', function() {return view('admin.agents');})->name('all-agents');
 });
 
 // Here we will add routes that user with agent role will have access to
