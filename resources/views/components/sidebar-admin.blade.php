@@ -12,7 +12,11 @@
     <div class="mr-auto">
         <x-section-title text="Agents" image="heroicon-s-user"/>
 
-        <x-section-option text="List" link="{{ route('all-agents') }}"/>
+        <div class="flex flex-col items-center justify-center gap-4">
+            <x-section-option text="List" link="{{ route('all-agents') }}"/>
+
+            <x-section-option text="Add new" link="{{ route('new-agent') }}"/>
+        </div>
     </div>
 
     <!-- Properties -->
@@ -20,11 +24,13 @@
         <x-section-title text="Properties" image="phosphor-house-line-fill"/>
 
         <div class="flex flex-col items-center justify-center gap-4">
-            <x-section-option text="Houses" link="{{ route('all-houses') }}"/>
+            <x-section-option text="All properties" link="{{ route('admin-properties') }}"/>
 
-            <x-section-option text="Offices" link="{{ route('all-offices') }}"/>
+            <x-section-option text="Houses" link="/property-index?type-of-asset-id=2"/>
 
-            <x-section-option text="Appartements" link="{{ route('all-appartements') }}"/>
+            <x-section-option text="Offices" link="/property-index?type-of-asset-id=1"/>
+
+            <x-section-option text="Appartements" link="/property-index?type-of-asset-id=3"/>
         </div>
     </div>
 
