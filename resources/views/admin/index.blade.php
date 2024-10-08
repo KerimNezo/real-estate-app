@@ -29,12 +29,4 @@
         </div>
     </div>
 
-    <form id="goto-profile-form" action="{{ route('user.show', ['id' => Auth::user()->id])}}" method="GET" style="display: none;">
-    </form>
-
-    <!-- Logout form-->
-    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-        @csrf <!-- This token is necessary to prevent CSRF attacks -->
-    </form>
-
 </x-admin-layout>
