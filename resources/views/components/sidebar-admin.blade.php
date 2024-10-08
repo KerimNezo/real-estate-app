@@ -20,11 +20,11 @@
         <x-section-title text="Properties" image="phosphor-house-line-fill"/>
 
         <div class="flex flex-col items-center justify-center gap-4">
-            <x-section-option text="Houses" link="/property/houses"/>
+            <x-section-option text="Houses" link="{{ route('all-houses') }}"/>
 
-            <x-section-option text="Offices" link="/property/offices"/>
+            <x-section-option text="Offices" link="{{ route('all-offices') }}"/>
 
-            <x-section-option text="Appartements" link="/property/appartements"/>
+            <x-section-option text="Appartements" link="{{ route('all-appartements') }}"/>
         </div>
     </div>
 
