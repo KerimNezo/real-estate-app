@@ -12,7 +12,7 @@
     <div class="mr-auto">
         <x-section-title text="Agents" image="heroicon-s-user"/>
 
-        <x-section-option text="List" link="/agents/index"/>
+        <x-section-option text="List" link="{{ route('all-agents') }}"/>
     </div>
 
     <!-- Properties -->
@@ -22,7 +22,7 @@
         <div class="flex flex-col items-center justify-center gap-4">
             <x-section-option text="Houses" link="/property/houses"/>
 
-            <x-section-option text="Offices" link="/property/pffices"/>
+            <x-section-option text="Offices" link="/property/offices"/>
 
             <x-section-option text="Appartements" link="/property/appartements"/>
         </div>
@@ -32,7 +32,7 @@
     <div class="mb-auto mr-auto">
         <x-section-title text="Dashboard" image="simpleline-graph"/>
 
-        <x-section-option text="Stats" link="/dashboard"/>
+        <x-section-option text="Stats" link="{{ route('dashboard') }}"/>
     </div>
 
      <!-- mobile view menu button script -->
