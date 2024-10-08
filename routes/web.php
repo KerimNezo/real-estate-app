@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\WelcomeController;
@@ -29,7 +30,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
 // Here we will add routes that user with admin role will have access to
 Route::middleware(['role:admin', 'auth', 'verified'])->group(function () {
     Route::get('/dashboard', function () {return view('admin.index');})->name('dashboard');
-    Route::get('/agents/index', function() {return view('admin.agents');})->name('all-agents');
+    Route::get('/agent/index', [AdminController::class, 'showAgents'])->name('all-agents');
+    //Route::get('/agent/{id}', [AdminController::class, 'showAgent'])->name('single-agent');
+
+    Route::get('/property/houses', [AdminController::class, 'showHouses'])->name('all-houses');
+    Route::get('/property/offices', [AdminController::class, 'showOffices'])->name('all-offices');
+    Route::get('/property/appartements', [AdminController::class, 'showAppartements'])->name('all-appartements');
 });
 
 // Here we will add routes that user with agent role will have access to
