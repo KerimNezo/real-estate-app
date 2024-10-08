@@ -17,14 +17,24 @@ Route::get('property/{id}', [PropertyController::class, 'show'])
 
 Route::get('/search', SearchController::class);
 
-// This ProfileController action does not exist, and I will need to finish it
-Route::get('/user/{id}', [ProfileController::class, 'show'])
-    ->name('user.show');
+// Here we will add routes that user with admin role will have access to
+Route::middleware(['auth', 'verified'])->group(function () {
+    // Here we will have routes that both admin and agent will have access to
+    // but we will limit what each of them will have displayed based on their roles
 
-// Will need to create controller that will redirect agent to agent.index and admin to admin.index
-Route::get('/dashboard', function () {
-    return view('admin.index');
-})->middleware(['auth', 'verified'])->name('dashboard');
+    Route::get('/user/{id}', [ProfileController::class, 'show'])
+        ->name('user.show');
+});
+
+// Here we will add routes that user with admin role will have access to
+Route::middleware(['role:admin', 'auth', 'verified'])->group(function () {
+    Route::get('/dashboard', function () {return view('admin.index');})->name('dashboard');
+});
+
+// Here we will add routes that user with agent role will have access to
+Route::middleware(['role:agent', 'auth', 'verified'])->group(function () {
+    // Here we wil have routes that agents will use
+});
 
 // Not my routes
 Route::middleware('auth')->group(function () {
