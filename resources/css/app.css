@@ -329,7 +329,15 @@
     display:flex;
 }
 
+#main-content {
+    margin-left: 0px;
+}
+
 @media (min-width: 640px) { /* Ovdje su stvari koje želimo da se vide kada je širina ekrana +640px */
+
+    #main-content {
+        margin-left: 200px;
+    }
 
     #desktop-admin-dropdown {
 
