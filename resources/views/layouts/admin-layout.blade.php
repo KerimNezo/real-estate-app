@@ -14,8 +14,8 @@
         <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
 
     </head>
-    <body class="font-sans antialiased dark:bg-black dark:text-white/50">
-        <div class="bg-gray-50 text-black/50 dark:bg-black dark:text-white/50">
+    <body class="font-sans antialiased dark:bg-gray-900 dark:text-white/50">
+        <div class="bg-gray-50 text-black/50 dark:bg-gray-900 dark:text-white/50">
             <div class="relative flex flex-col items-center justify-center min-h-screen ">
                 <div class="relative w-full px-0">
                     {{ $slot }}
