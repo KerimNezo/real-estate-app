@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Property;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
-    public function showAgents()
+    public function indexAgent()
     {
         $agents = User::query()
             ->select('name', 'email', 'phone_number')
@@ -31,24 +32,55 @@ class AdminController extends Controller
             ->with('agent', $agent);
     }
 
-    public function showHouses()
+    public function createAgent()
     {
-        //query houses
+        //action that opens up a page with a form to create new agent
 
-        return 'sve kuce';
+        return view('admin.create-agent');
     }
 
-    public function showOffices()
+
+    // ovi ispod će svi otvarati isti view
+    public function showProperites()
     {
-        //query offcies
+        dd('HAJD RADI');
 
-        return 'svi ofisi';
-    }
+        // $properties = Property::query()
+        //     ->select('id', 'type_id', 'name', 'price', 'city', 'bedrooms', 'garage', 'furnished', 'floors', 'lease_duration', 'keycard_entry', 'surface', 'toilets')
+        //     ->latest()
+        //     ->with(['media' => function ($query) {
+        //         $query->orderBy('order_column', 'asc')
+        //             ->limit(1);
+        //     }]);
 
-    public function showAppartements()
-    {
-        //query appartements
+        // if (! is_null($assetLocation = $request->query('asset-location'))) {
+        //     $properties = $properties->where('city', '=', $assetLocation);
+        // }
 
-        return 'svi stanovi';
+        // if (! is_null($assetOffer = $request->query('asset-offer-id'))) {
+        //     $properties = match ($assetOffer) {
+        //         '1' => $properties->whereNull('lease_duration'), // sell
+        //         '2' => $properties->whereNotNull('lease_duration'), // rent
+        //         default => $properties,
+        //     };
+        // }
+
+        // if (! is_null($assetId = $request->query('type-of-asset-id')) && $assetId > 0) {
+        //     $properties = $properties->where('type_id', '=', $assetId);
+        // }
+
+        // if (! is_null($minPrice = $request->query('min-price'))) {
+        //     $properties = $properties->where('price', '>', $minPrice);
+        // }
+
+        // if (! is_null($maxPrice = $request->query('max-price'))) {
+        //     $properties = $properties->where('price', '<', $maxPrice);
+        // }
+
+        // $result = $properties->get();
+
+        // $propertyCount = $result->count();
+
+        return view('admin.index-properties');
     }
 }
