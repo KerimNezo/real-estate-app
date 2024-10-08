@@ -14,7 +14,7 @@
             @include('components.sidebar-admin')
 
             <!-- Main content-->
-            <div class="ml-[200px] w-full pt-[100px] bg-gray-900">
+            <div id="main-content" class="w-full pt-[100px] bg-gray-900">
                 <div class="h-[800px] w-full flex justify-center items-center z-9">
                     <p class="mb-auto">welcome back to profile page, {{ Auth::user()->name }}</p>
                 </div>
@@ -37,33 +37,4 @@
         @csrf <!-- This token is necessary to prevent CSRF attacks -->
     </form>
 
-    <script>
-        document.getElementById('dugme').addEventListener('click', function() {
-            var content = document.getElementById('desktop-admin-dropdown');
-            if (content.style.display === 'none') {
-                content.style.display = 'block';
-                setTimeout(function() {
-                    content.style.opacity = 1;
-                }, 10);
-            } else {
-                content.style.opacity = 0;
-                setTimeout(function() {
-                    content.style.display = 'none';
-                }, 300);
-            }
-        });
-
-        // Hide the dropdown if clicking outside
-        document.addEventListener('click', function(event) {
-            var dropdown = document.getElementById('desktop-admin-dropdown');
-            var button = document.getElementById('dugme');
-
-            if (!dropdown.contains(event.target) && !button.contains(event.target)) {
-                dropdown.style.opacity = 0;
-                setTimeout(function() {
-                    dropdown.style.display = 'none';
-                }, 300);
-            }
-        });
-    </script>
 </x-admin-layout>
