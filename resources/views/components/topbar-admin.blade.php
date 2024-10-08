@@ -7,7 +7,7 @@
         </div>
 
         <div id="admin-topbar-button" class="mr-[10%] flex justify-center items-center">
-            <button type="button" id="button" class="collapsible">
+            <button type="button" id="menu" class="collapsible">
                 <x-iconic-menu class="w-[35px]" />
             </button>
         </div>
@@ -38,4 +38,35 @@
             </div>
         </div>
     </div>
+
+    <!-- Display profile options button -->
+    <script>
+        document.getElementById('dugme').addEventListener('click', function() {
+            var content = document.getElementById('desktop-admin-dropdown');
+            if (content.style.display === 'none') {
+                content.style.display = 'block';
+                setTimeout(function() {
+                    content.style.opacity = 1;
+                }, 10);
+            } else {
+                content.style.opacity = 0;
+                setTimeout(function() {
+                    content.style.display = 'none';
+                }, 300);
+            }
+        });
+
+        // Hide the dropdown if clicking outside
+        document.addEventListener('click', function(event) {
+            var dropdown = document.getElementById('desktop-admin-dropdown');
+            var button = document.getElementById('dugme');
+
+            if (!dropdown.contains(event.target) && !button.contains(event.target)) {
+                dropdown.style.opacity = 0;
+                setTimeout(function() {
+                    dropdown.style.display = 'none';
+                }, 300);
+            }
+        });
+    </script>
 </div>
