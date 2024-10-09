@@ -77,16 +77,130 @@
                         </div>
                     </div>
                 @else
-                    <!-- Properties Found -->
-                    <div class="h-full py-12 text-xl text-center">
-                        <div class="px-[6%] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 w-full">
-                            @foreach ($properties as $property)
-                                <a href="{{ route('single-property', ['id' => $property->id]) }}">
-                                    <x-property-card :imageUrl='$property->getFirstMediaUrl("property-photos")' :$property/>
-                                </a>
-                            @endforeach
+                <!-- Properties Found -->
+                <div class="h-full py-12 text-xl text-center px-[6%]">
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full overflow-hidden bg-gray-800 rounded-xl">
+                            <thead class="bg-gray-800 border-gray-700">
+                                <tr id="table-header">
+                                    <!-- Image -->
+                                    <x-table.table-header title="Image" />
+                                    <!-- Agent -->
+                                    <x-table.table-header title="Agent" />
+                                    <!-- Price-->
+                                    <x-table.table-header title="Price" />
+                                    <!-- City -->
+                                    <x-table.table-header title="City" />
+                                    <!-- Offer type -->
+                                    <x-table.table-header title="Offer Type" />
+                                    <!-- Property type -->
+                                    <x-table.table-header title="Property Type" />
+                                    <!-- Year built -->
+                                    <x-table.table-header title="Year Built" />
+                                    <!-- Status -->
+                                    <x-table.table-header title="Status" />
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($properties as $property)
+                                <tr class="border-t border-gray-700">
+                                    <!-- Image -->
+                                    <td class="px-4 py-2 text-base">
+                                        <div class="flex items-center justify-start">
+                                            <p>
+                                                <img src="{{ $property->getFirstMediaUrl('property-photos') }}" alt="Property Image" class="w-[100px] h-[75px] object-cover rounded-lg">
+                                            </p>
+                                        </div>
+                                    </td>
+                                    <!-- Agent name -->
+                                    <td class="px-4 py-2 text-base">
+                                        <div class="flex items-center justify-start">
+                                            <p>
+                                                {{ $property->user->name }}
+                                            </p>
+                                        </div>
+                                    </td>
+                                    <!-- Property price -->
+                                    <td class="px-4 py-2 text-base">
+                                        <div class="flex items-center justify-start">
+                                            <p>
+                                                {{ number_format($property->price, 0) }} $
+                                            </p>
+                                        </div>
+                                    </td>
+                                    <!-- City -->
+                                    <td class="px-4 py-2 text-base">
+                                        <div class="flex items-center justify-start">
+                                            <p>
+                                                {{ $property->city }}
+                                            </p>
+                                        </div>
+                                    </td>
+                                    <!-- Property Offer -->
+                                    <td class="px-4 py-2 text-base">
+                                        @if (is_null($property->lease_duration))
+                                            <div id="type" class="mb-auto mr-auto bg-red-600 rounded-[5px] w-[80px] h-7 text-sm font-bold flex items-center justify-center">
+                                                <div class="align-middle">FOR SALE</div>
+                                            </div>
+                                        @else
+                                            <div id="type" class="mb-auto mr-auto bg-sky-600 rounded-[5px] w-[80px] h-7 text-sm font-bold flex items-center justify-center">
+                                                <div class="align-middle">FOR RENT</div>
+                                            </div>
+                                        @endif
+                                    </td>
+                                    <!-- Property Type-->
+                                    <td class="px-4 py-2 mr-auto text-base">
+                                        @if ($property->type_id == 1)
+                                            <div class="flex items-center justify-start">
+                                                <p>
+                                                    Office
+                                                </p>
+                                            </div>
+                                        @elseif ($property->type_id == 2)
+                                            <div class="flex items-center justify-start">
+                                                <p>
+                                                    House
+                                                </p>
+                                            </div>
+                                        @elseif ($property->type_id == 3)
+                                            <div class="flex items-center justify-start">
+                                                <p>
+                                                    Appartement
+                                                </p>
+                                            </div>
+                                        @else
+                                            Unknown
+                                        @endif
+                                    </td>
+                                    <!-- Year Built -->
+                                    <td class="px-4 py-2 text-base ">
+                                        <div class="flex items-center justify-start">
+                                            <p>
+                                                {{ $property->year_built }}
+                                            </p>
+                                        </div>
+                                    </td>
+                                    <!-- Status -->
+                                    <td class="px-4 py-2 text-base ">
+                                        <div class="flex items-center justify-start">
+                                            <p>
+                                                TO DO
+                                            </p>
+                                        </div>
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+
+                        <!-- Pagination -->
+                        <div class="flex items-center justify-between py-2">
+                            {{ $properties->links() }}
                         </div>
+
                     </div>
+                </div>
+
                 @endif
 
                 <!-- Footer -->
