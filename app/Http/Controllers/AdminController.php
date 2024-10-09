@@ -48,13 +48,12 @@ class AdminController extends Controller
             ->pluck('city'); // Get the cities as a collection
 
         $properties = Property::query()
-            ->select('id', 'type_id', 'name', 'price', 'city', 'bedrooms', 'garage', 'furnished', 'floors', 'lease_duration', 'keycard_entry', 'surface', 'toilets')
+            ->select('user_id', 'id', 'type_id', 'name', 'price', 'city', 'lease_duration', 'year_built')
             ->latest()
             ->with(['media' => function ($query) {
-                // ovo ovdje nam govori da uzme sliku od nekretnine koja je po redosljedu prva
                 $query->orderBy('order_column', 'asc')
                     ->limit(1);
-            }]);
+            }, 'user']);
 
         if (! is_null($assetLocation = $request->query('asset-location'))) {
             $properties = $properties->where('city', '=', $assetLocation);
@@ -80,13 +79,11 @@ class AdminController extends Controller
             $properties = $properties->where('price', '<', $maxPrice);
         }
 
-        $result = $properties->get();
-
-        $propertyCount = $result->count();
+        $result = $properties->paginate(10);
 
         return view('admin.index-properties')
             ->with('cities', $cities)
             ->with('properties', $result)
-            ->with('propertyCount', $propertyCount);
+            ->with('propertyCount', $result->count());
     }
 }
