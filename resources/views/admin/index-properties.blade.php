@@ -31,8 +31,8 @@
                         </div> --}}
 
                         <!-- cities -->
-                        <div class="flex-col items-center justify-center pb-2 pr-3 lg:mr-0 lg:ml-auto sm:ml-0 sm:mr-auto lg:pb-0">
-                            <select id="" class="rounded-[5px] h-[35px] pl-[10px] pr-8 text-[#989898]-black bg-gray-800" name="asset-location">
+                        <div class="flex-col items-center justify-center pb-2 lg:pr-3 lg:mr-0 lg:ml-auto sm:ml-0 sm:mr-auto lg:pb-0">
+                            <select id="" class="rounded-[5px] h-[35px] pl-[10px] pr-8 text-[#989898]-black bg-gray-800 w-full" name="asset-location">
                                 <option value="0" disabled selected>City</option>
                                 @foreach ($cities as $city)
                                     <option value="{{$city}}">{{$city}}</option>
@@ -41,8 +41,8 @@
                         </div>
 
                         <!-- property type -->
-                        <div class="flex-col items-center justify-center pb-2 pr-3 lg:pb-0 sm:mr-auto lg:mr-0">
-                            <select id="" class="rounded-[5px] h-[35px] pl-[10px] pr-8 text-[#989898]-black bg-gray-800" name="type-of-asset-id">
+                        <div class="flex-col items-center justify-center pb-2 lg:pr-3 lg:pb-0 sm:mr-auto lg:mr-0">
+                            <select id="" class="w-full rounded-[5px] h-[35px] pl-[10px] pr-8 text-[#989898]-black bg-gray-800" name="type-of-asset-id">
                                 <option value="0" disabled selected>Choose property type</option>
                                 <option value="1">Office</option>
                                 <option value="2">House</option>
@@ -51,13 +51,13 @@
                         </div>
 
                         <!-- price -->
-                        <div class="flex-col items-center justify-center pb-2 pr-3 lg:pb-0 sm:mr-auto lg:mr-0">
+                        <div class="flex-col items-center justify-center pb-2 lg:pr-3 lg:pb-0 sm:mr-auto lg:mr-0">
                             <div class="flex flex-col justify-center w-full gap-2 sm:items-start lg:items-center lg:flex-row">
-                                <input type="text" placeholder="1200" class="rounded-[5px] w-[150px] h-[35px] text-[#989898] bg-gray-800" name="min-price">
+                                <input type="text" placeholder="1200" class="rounded-[5px] h-[35px] text-[#989898] bg-gray-800 lg:w-[150px] " name="min-price">
 
                                 <span>to</span>
 
-                                <input type="text" placeholder="100000" class="rounded-[5px] w-[150px] h-[35px] text-[#989898] bg-gray-800" name="max-price">
+                                <input type="text" placeholder="100000" class="rounded-[5px] h-[35px] text-[#989898] bg-gray-800 lg:w-[150px] " name="max-price">
                             </div>
                         </div>
 
@@ -105,7 +105,7 @@
                                 @foreach ($properties as $property)
                                 <tr class="border-t border-gray-700">
                                     <!-- Image -->
-                                    <td class="px-4 py-2 text-base">
+                                    <td id="table-data">
                                         <div class="flex items-center justify-start">
                                             <p>
                                                 <img src="{{ $property->getFirstMediaUrl('property-photos') }}" alt="Property Image" class="w-[100px] h-[75px] object-cover rounded-lg">
@@ -113,7 +113,7 @@
                                         </div>
                                     </td>
                                     <!-- Agent name -->
-                                    <td class="px-4 py-2 text-base">
+                                    <td id="table-data">
                                         <div class="flex items-center justify-start">
                                             <p>
                                                 {{ $property->user->name }}
@@ -121,7 +121,7 @@
                                         </div>
                                     </td>
                                     <!-- Property price -->
-                                    <td class="px-4 py-2 text-base">
+                                    <td id="table-data">
                                         <div class="flex items-center justify-start">
                                             <p>
                                                 {{ number_format($property->price, 0) }} $
@@ -129,7 +129,7 @@
                                         </div>
                                     </td>
                                     <!-- City -->
-                                    <td class="px-4 py-2 text-base">
+                                    <td id="table-data">
                                         <div class="flex items-center justify-start">
                                             <p>
                                                 {{ $property->city }}
@@ -137,7 +137,7 @@
                                         </div>
                                     </td>
                                     <!-- Property Offer -->
-                                    <td class="px-4 py-2 text-base">
+                                    <td id="table-data">
                                         @if (is_null($property->lease_duration))
                                             <div id="type" class="mb-auto mr-auto bg-red-600 rounded-[5px] w-[80px] h-7 text-sm font-bold flex items-center justify-center">
                                                 <div class="align-middle">FOR SALE</div>
@@ -149,7 +149,7 @@
                                         @endif
                                     </td>
                                     <!-- Property Type-->
-                                    <td class="px-4 py-2 mr-auto text-base">
+                                    <td id="table-data">
                                         @if ($property->type_id == 1)
                                             <div class="flex items-center justify-start">
                                                 <p>
@@ -173,7 +173,7 @@
                                         @endif
                                     </td>
                                     <!-- Year Built -->
-                                    <td class="px-4 py-2 text-base ">
+                                    <td id="table-data">
                                         <div class="flex items-center justify-start">
                                             <p>
                                                 {{ $property->year_built }}
@@ -181,7 +181,7 @@
                                         </div>
                                     </td>
                                     <!-- Status -->
-                                    <td class="px-4 py-2 text-base ">
+                                    <td id="table-data">
                                         <div class="flex items-center justify-start">
                                             <p>
                                                 TO DO
