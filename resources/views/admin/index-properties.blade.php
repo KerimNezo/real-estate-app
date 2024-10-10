@@ -17,8 +17,8 @@
             <div id="main-content" class="flex flex-col flex-grow w-full pt-10 bg-gray-900">
                 <!-- Index query form -->
                 <form id="submit-form" action="{{ route('admin-properties')}}" method="GET">
-                    <div class="flex items-center justify-center w-full z-9 px-[6%]">
-                        <p class="mr-auto text-base">All properties</p>
+                    <div class="flex lg:flex-row flex-col sm:items-start lg:items-center justify-center w-full z-9 px-[6%]">
+                        <p class="pb-2 mr-auto text-base lg:pb-0">All properties</p>
 
                         <!-- Status (Sold - For Sale - Rent) -->
                         {{-- <div class="flex-col items-center justify-center pr-3 ml-auto">
@@ -31,7 +31,7 @@
                         </div> --}}
 
                         <!-- cities -->
-                        <div class="flex-col items-center justify-center pr-3 ml-auto">
+                        <div class="flex-col items-center justify-center pb-2 pr-3 lg:mr-0 lg:ml-auto sm:ml-0 sm:mr-auto lg:pb-0">
                             <select id="" class="rounded-[5px] h-[35px] pl-[10px] pr-8 text-[#989898]-black bg-gray-800" name="asset-location">
                                 <option value="0" disabled selected>City</option>
                                 @foreach ($cities as $city)
@@ -41,7 +41,7 @@
                         </div>
 
                         <!-- property type -->
-                        <div class="flex-col items-center justify-center pr-3">
+                        <div class="flex-col items-center justify-center pb-2 pr-3 lg:pb-0 sm:mr-auto lg:mr-0">
                             <select id="" class="rounded-[5px] h-[35px] pl-[10px] pr-8 text-[#989898]-black bg-gray-800" name="type-of-asset-id">
                                 <option value="0" disabled selected>Choose property type</option>
                                 <option value="1">Office</option>
@@ -51,8 +51,8 @@
                         </div>
 
                         <!-- price -->
-                        <div class="flex-col items-center justify-center pr-3">
-                            <div class="flex-row justify-start w-full items-star">
+                        <div class="flex-col items-center justify-center pb-2 pr-3 lg:pb-0 sm:mr-auto lg:mr-0">
+                            <div class="flex flex-col justify-center w-full gap-2 sm:items-start lg:items-center lg:flex-row">
                                 <input type="text" placeholder="1200" class="rounded-[5px] w-[150px] h-[35px] text-[#989898] bg-gray-800" name="min-price">
 
                                 <span>to</span>
@@ -192,12 +192,11 @@
                                 @endforeach
                             </tbody>
                         </table>
+                    </div>
 
-                        <!-- Pagination -->
-                        <div class="flex items-center justify-between py-2">
-                            {{ $properties->links() }}
-                        </div>
-
+                    <!-- Pagination -->
+                    <div class="static flex items-center justify-between w-full py-2">
+                        {{ $properties->links() }}
                     </div>
                 </div>
 
