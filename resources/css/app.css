@@ -342,7 +342,19 @@
     line-height: 1.5rem /* 24px */;
 }
 
+#header-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 @media (min-width: 640px) { /* Ovdje su stvari koje želimo da se vide kada je širina ekrana +640px */
+
+    #header-title {
+        display: flex;
+        justify-content: left;
+        align-items: center;
+    }
 
     #table-data {
         padding-left: 1rem /* 16px */;
