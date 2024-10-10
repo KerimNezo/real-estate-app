@@ -32,7 +32,7 @@
 
                         <!-- cities -->
                         <div class="flex-col items-center justify-center pb-2 lg:pr-3 lg:mr-0 lg:ml-auto sm:ml-0 sm:mr-auto lg:pb-0">
-                            <select id="" class="rounded-[5px] h-[35px] pl-[10px] pr-8 text-[#989898]-black bg-gray-800 w-full" name="asset-location">
+                            <select id="" class="rounded-[5px] h-[40px] pl-[10px] pr-8 text-[#989898]-black bg-gray-800 w-full" name="asset-location">
                                 <option value="0" disabled selected>City</option>
                                 @foreach ($cities as $city)
                                     <option value="{{$city}}">{{$city}}</option>
@@ -42,7 +42,7 @@
 
                         <!-- property type -->
                         <div class="flex-col items-center justify-center pb-2 lg:pr-3 lg:pb-0 sm:mr-auto lg:mr-0">
-                            <select id="" class="w-full rounded-[5px] h-[35px] pl-[10px] pr-8 text-[#989898]-black bg-gray-800" name="type-of-asset-id">
+                            <select id="" class="w-full rounded-[5px] h-[40px] pl-[10px] pr-8 text-[#989898]-black bg-gray-800" name="type-of-asset-id">
                                 <option value="0" disabled selected>Choose property type</option>
                                 <option value="1">Office</option>
                                 <option value="2">House</option>
@@ -53,11 +53,11 @@
                         <!-- price -->
                         <div class="flex-col items-center justify-center pb-2 lg:pr-3 lg:pb-0 sm:mr-auto lg:mr-0">
                             <div class="flex flex-col justify-center w-full gap-2 sm:items-start lg:items-center lg:flex-row">
-                                <input type="text" placeholder="1200" class="rounded-[5px] h-[35px] text-[#989898] bg-gray-800 lg:w-[150px] " name="min-price">
+                                <input type="text" placeholder="1200" class="rounded-[5px] h-[40px] text-[#989898] bg-gray-800 lg:w-[150px] " name="min-price">
 
                                 <span>to</span>
 
-                                <input type="text" placeholder="100000" class="rounded-[5px] h-[35px] text-[#989898] bg-gray-800 lg:w-[150px] " name="max-price">
+                                <input type="text" placeholder="100000" class="rounded-[5px] h-[40px] text-[#989898] bg-gray-800 lg:w-[150px] " name="max-price">
                             </div>
                         </div>
 
