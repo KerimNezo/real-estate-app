@@ -6,6 +6,8 @@ use Livewire\Attributes\Computed;
 use Livewire\Component;
 use App\Models\Property;
 use Livewire\WithPagination;
+use Livewire\Attributes\On;
+
 
 class PropertyIndex extends Component
 {
@@ -24,6 +26,9 @@ class PropertyIndex extends Component
         $this->assetTypeId = $assetTypeId;
     }
 
+    // ovo cu morati posebno, mislim da ću morati dodati formu u komponentu. Samo nisam siguran kako ću onda soritari podatke i izdvajati
+    // pogledam to večeras
+    #[On('admin-form-submitted')]
     #[Computed]
     public function properties()
     {
