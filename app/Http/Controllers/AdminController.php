@@ -16,7 +16,7 @@ class AdminController extends Controller
             ->get();
         //ovdje će se biti možda i profilna slika
 
-        return view('admin.agents')
+        return view('admin.agent.index')
             ->with('agents', $agents);
     }
 
@@ -28,7 +28,7 @@ class AdminController extends Controller
             ->get();
         //ovdje će se biti možda i profilna slika
 
-        return view('admin.agent')
+        return view('admin.agent.show')
             ->with('agent', $agent);
     }
 
@@ -36,7 +36,7 @@ class AdminController extends Controller
     {
         //action that opens up a page with a form to create new agent
 
-        return view('admin.create-agent');
+        return view('admin.agent.create');
     }
 
     // ovi ispod će svi otvarati isti view
@@ -81,9 +81,23 @@ class AdminController extends Controller
 
         $result = $properties->paginate(10);
 
-        return view('admin.index-properties')
+        return view('admin.property.index')
             ->with('cities', $cities)
             ->with('properties', $result)
             ->with('propertyCount', $result->count());
+    }
+
+    public function createProperty()
+    {
+        // action that opens up a page with a form to create new agent
+
+        return view('admin.property.create');
+    }
+
+    public function showProperty()
+    {
+        // action that opens up a page that shows a property information
+
+        return view('admin.property.show');
     }
 }
