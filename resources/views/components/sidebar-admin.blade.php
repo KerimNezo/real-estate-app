@@ -31,6 +31,8 @@
             <x-section-option text="Offices" link="/property-index?type-of-asset-id=1"/>
 
             <x-section-option text="Appartements" link="/property-index?type-of-asset-id=3"/>
+
+            <x-section-option text="Add new" link="{{ route('new-property') }}"/>
         </div>
     </div>
 
