@@ -10,36 +10,39 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', WelcomeController::class)
     ->name('home');
 
-Route::get('/all-properties', [PropertyController::class, 'index'])
+Route::get('all-properties', [PropertyController::class, 'index'])
     ->name('all-properties');
 
 Route::get('property/{id}', [PropertyController::class, 'show'])
     ->name('single-property');
 
-Route::get('/search', SearchController::class);
+Route::get('search', SearchController::class);
 
 // Here we will add routes that user with admin role will have access to
 Route::middleware(['auth', 'verified'])->group(function () {
     // Here we will have routes that both admin and agent will have access to
     // but we will limit what each of them will have displayed based on their roles
 
-    Route::get('/user/{id}', [ProfileController::class, 'show'])
+    Route::get('user/{id}', [ProfileController::class, 'show'])
         ->name('user.show');
 });
 
 // Here we will add routes that user with admin role will have access to
 Route::middleware(['role:admin', 'auth', 'verified'])->group(function () {
-    Route::get('/dashboard', function () {return view('admin.dashboard');})
+    Route::get('dashboard', function () {return view('admin.dashboard');})
         ->name('dashboard');
-    Route::get('/agent/index', [AdminController::class, 'indexAgent'])
+    Route::get('agent/index', [AdminController::class, 'indexAgent'])
         ->name('all-agents');
-    Route::get('/agent/create', [AdminController::class, 'createAgent'])
+    Route::get('create/agent', [AdminController::class, 'createAgent'])
         ->name('new-agent');
-    //Route::get('/agent/{id}', [AdminController::class, 'showAgent'])
-    //    ->name('single-agent');
+    Route::get('/agent/{id}', [AdminController::class, 'showAgent'])
+       ->name('single-agent');
 
     Route::get('property-index', [AdminController::class, 'showProperites'])
         ->name('admin-properties');
+    Route::get('create/property', [AdminController::class, 'createProperty'])
+        ->name('new-property');
+
 });
 
 // Here we will add routes that user with agent role will have access to
