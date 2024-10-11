@@ -16,7 +16,7 @@
             <!-- Main content-->
             <div id="main-content" class="w-full pt-[100px] bg-gray-900">
                 <div class="h-[800px] w-full flex justify-center items-center z-9">
-                    <p class="mb-auto">welcome back to show agent information page, {{ Auth::user()->name }}</p>
+                    <p class="mb-auto">welcome back to show agents {{ $agent->name }} information page, {{ Auth::user()->name }}</p>
                 </div>
 
                 <!--footer -->
