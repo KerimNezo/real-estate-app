@@ -26,11 +26,11 @@
         <div class="flex flex-col items-center justify-center gap-4">
             <x-section-option text="All properties" link="{{ route('admin-properties') }}"/>
 
-            <x-section-option text="Houses" link="/property-index?type-of-asset-id=2"/>
+            <x-section-option text="Houses" link="{{ route('admin-properties', ['type-of-asset-id' => 2]) }}"/>
 
-            <x-section-option text="Offices" link="/property-index?type-of-asset-id=1"/>
+            <x-section-option text="Offices" link="{{ route('admin-properties', ['type-of-asset-id' => 1]) }}"/>
 
-            <x-section-option text="Appartements" link="/property-index?type-of-asset-id=3"/>
+            <x-section-option text="Appartements" link="{{ route('admin-properties', ['type-of-asset-id' => 3]) }}"/>
 
             <x-section-option text="Add new" link="{{ route('new-property') }}"/>
         </div>
