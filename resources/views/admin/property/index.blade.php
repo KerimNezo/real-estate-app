@@ -116,7 +116,7 @@
                                         <!-- Agent name -->
                                         <td id="table-data">
                                             <div class="flex items-center justify-start">
-                                                <a href="/agent/{{ $property->user->id }}">
+                                                <a href="{{ route('single-agent', $id = $property->user->id) }}">
                                                     <p class="hover:text-white">
                                                         {{ $property->user->name }}
                                                     </p>
