@@ -20,12 +20,11 @@ class AdminController extends Controller
             ->with('agents', $agents);
     }
 
-    public function showAgent($id)
+    public function showAgent(string $id)
     {
         $agent = User::query()
             ->select('name', 'email', 'phone_number')
-            ->where('id', '==', $id)
-            ->get();
+            ->findOrFail($id);
         //ovdje će se biti možda i profilna slika
 
         return view('admin.agent.show')
@@ -40,7 +39,7 @@ class AdminController extends Controller
     }
 
     // ovi ispod će svi otvarati isti view
-    public function showProperites(Request $request)
+    public function indexProperites(Request $request)
     {
         $cities = Property::query()
             ->select('city') // Select only the city column
@@ -94,7 +93,7 @@ class AdminController extends Controller
         return view('admin.property.create');
     }
 
-    public function showProperty()
+    public function showProperty(Request $request)
     {
         // action that opens up a page that shows a property information
 
