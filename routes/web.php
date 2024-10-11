@@ -18,36 +18,39 @@ Route::get('property/{id}', [PropertyController::class, 'show'])
 
 Route::get('search', SearchController::class);
 
-// Here we will add routes that user with admin role will have access to
 Route::middleware(['auth', 'verified'])->group(function () {
-    // Here we will have routes that both admin and agent will have access to
-    // but we will limit what each of them will have displayed based on their roles
-
     Route::get('user/{id}', [ProfileController::class, 'show'])
         ->name('user.show');
 });
 
-// Here we will add routes that user with admin role will have access to
 Route::middleware(['role:admin', 'auth', 'verified'])->group(function () {
-    Route::get('dashboard', function () {return view('admin.dashboard');})
+    Route::get('admin/dashboard', function () {return view('admin.dashboard');})
         ->name('dashboard');
-    Route::get('agent/index', [AdminController::class, 'indexAgent'])
+
+    // Agent routes
+    Route::get('admin/agent/index', [AdminController::class, 'indexAgent'])
         ->name('all-agents');
-    Route::get('create/agent', [AdminController::class, 'createAgent'])
+
+    Route::get('admin/agent/create', [AdminController::class, 'createAgent'])
         ->name('new-agent');
-    Route::get('/agent/{id}', [AdminController::class, 'showAgent'])
+
+    Route::get('admin/agent/{id}', [AdminController::class, 'showAgent'])
        ->name('single-agent');
 
-    Route::get('property-index', [AdminController::class, 'showProperites'])
+    // Property routes
+    Route::get('admin/property/index', [AdminController::class, 'indexProperites'])
         ->name('admin-properties');
-    Route::get('create/property', [AdminController::class, 'createProperty'])
+
+    Route::get('admin/property/create', [AdminController::class, 'createProperty'])
         ->name('new-property');
+
+    Route::get('admin/property/{id}', [AdminController::class, 'showProperty'])
+        ->name('single-property');
 
 });
 
-// Here we will add routes that user with agent role will have access to
 Route::middleware(['role:agent', 'auth', 'verified'])->group(function () {
-    // Here we wil have routes that agents will use
+
 });
 
 // Not my routes
