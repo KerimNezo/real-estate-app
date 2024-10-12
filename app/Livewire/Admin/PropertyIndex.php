@@ -3,6 +3,7 @@
 namespace App\Livewire\Admin;
 
 use Livewire\Attributes\Computed;
+use Livewire\Attributes\Locked;
 use Livewire\Component;
 use App\Models\Property;
 use Livewire\WithPagination;
@@ -18,6 +19,9 @@ class PropertyIndex extends Component
     public $assetTypeId;
     public $assetLocation;
 
+    #[Locked]
+    public $cities;
+
     public function mount($assetLocation = null, $minPrice = null, $maxPrice = null, $assetTypeId = null)
     {
         $this->assetLocation = $assetLocation;
@@ -26,12 +30,18 @@ class PropertyIndex extends Component
         $this->assetTypeId = $assetTypeId;
     }
 
-    // ovo cu morati posebno, mislim da ću morati dodati formu u komponentu. Samo nisam siguran kako ću onda soritari podatke i izdvajati
-    // pogledam to večeras
-    #[On('admin-form-submitted')]
+    public function resetForm()
+    {
+        $this->assetLocation = '';
+        $this->assetTypeId = '';
+        $this->minPrice = '';
+        $this->maxPrice = '';
+    }
+
     #[Computed]
     public function properties()
     {
+        logger('ucitali property');
         $prop = Property::query()
             ->select('user_id', 'id', 'type_id', 'name', 'price', 'city', 'lease_duration', 'year_built')
             ->latest()
@@ -40,7 +50,7 @@ class PropertyIndex extends Component
                     ->limit(1);
             }, 'user']);
 
-        if (! is_null($this->assetLocation)) {
+        if (! is_null($this->assetLocation) && $this->assetLocation != '') {
             $prop = $prop->where('city', '=', $this->assetLocation);
         }
 
@@ -56,6 +66,14 @@ class PropertyIndex extends Component
             $prop = $prop->where('price', '<', $this->maxPrice);
         }
 
+        // This code here will reset the form
+        $this->reset(['minPrice', 'maxPrice', 'assetLocation', 'assetTypeId']);
+
         return $prop->paginate(10);
+    }
+
+    public function submitForm()
+    {
+        logger('aloo ?');
     }
 }
