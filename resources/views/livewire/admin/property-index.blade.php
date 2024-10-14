@@ -92,7 +92,9 @@
                             <td id="table-data">
                                 <div class="flex items-center justify-start">
                                     <p>
-                                        <img src="{{ $property->getFirstMediaUrl('property-photos') }}" alt="Property Image" class="w-[100px] h-[75px] object-cover rounded-lg">
+                                        <a href=" {{ route('single-property', $property->id)}}">
+                                            <img src="{{ $property->getFirstMediaUrl('property-photos') }}" alt="Property Image" class="w-[100px] h-[75px] object-cover rounded-lg">
+                                        </a>
                                     </p>
                                 </div>
                             </td>
