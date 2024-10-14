@@ -53,6 +53,7 @@
     </form>
 
     @if($this->properties->isEmpty())
+    <!-- Propreties Not Found -->
         <div class="flex-grow flex items-center justify-center px-[6%] py-24 mb-5">
             <div class="text-center">
                 <img src="{{ asset('photos/icons/no-result.svg') }}" alt="No results" class="w-[100px] mx-auto">
