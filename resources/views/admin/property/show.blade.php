@@ -19,12 +19,7 @@
                     <p class="mb-auto">welcome back to show property of id: {{ $property->id }} information page, {{ Auth::user()->name }}</p>
                 </div>
 
-                <!--footer -->
-                <div class="flex items-center justify-center mb-4">
-                    <p>
-                        Powered by <a href="https://github.com/KerimNezo" target="_blank" class="text-[#EF5D60]">Kerim Nezo</a>
-                    </p>
-                </div>
+                @include('admin.footer')
             </div>
         </div>
     </div>

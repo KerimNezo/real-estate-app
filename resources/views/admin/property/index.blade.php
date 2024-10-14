@@ -18,12 +18,7 @@
                 <!-- SearchForm/Table -->
                 <livewire:admin.property-index :$minPrice :$maxPrice :$assetLocation :$assetTypeId :$cities/>
 
-                <!-- Footer -->
-                <footer class="flex items-center justify-center py-4 mt-auto lg:mr-[200px]">
-                    <p>
-                        Powered by <a href="https://github.com/KerimNezo" target="_blank" class="text-[#EF5D60]">Kerim Nezo</a>
-                    </p>
-                </footer>
+                @include('admin.footer')
             </div>
         </div>
     </div>
