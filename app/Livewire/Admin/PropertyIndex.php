@@ -22,13 +22,8 @@ class PropertyIndex extends Component
     #[Locked]
     public $cities;
 
-    public function mount($assetLocation = null, $minPrice = null, $maxPrice = null, $assetTypeId = null)
-    {
-        $this->assetLocation = $assetLocation;
-        $this->minPrice = $minPrice;
-        $this->maxPrice = $maxPrice;
-        $this->assetTypeId = $assetTypeId;
-    }
+    // Have no need for mount() lifecycle hook
+    // because Livewire will automatically set the passed values to properties with the same name
 
     public function resetForm()
     {
