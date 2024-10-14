@@ -16,7 +16,7 @@
             <!-- Main content-->
             <div id="main-content" class="w-full pt-[100px] bg-gray-900">
                 <div class="h-[800px] w-full flex justify-center items-center z-9">
-                    <p class="mb-auto">welcome back to show property information page, {{ Auth::user()->name }}</p>
+                    <p class="mb-auto">welcome back to show property of id: {{ $property->id }} information page, {{ Auth::user()->name }}</p>
                 </div>
 
                 <!--footer -->
