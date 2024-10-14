@@ -87,7 +87,7 @@
                     </thead>
                     <tbody>
                         @foreach ($this->properties as $property)
-                        <tr class="border-t border-gray-700">
+                        <tr class="border-t border-gray-700" wire:key="{{ $property->id }}">
                             <!-- Image -->
                             <td id="table-data">
                                 <div class="flex items-center justify-start">
