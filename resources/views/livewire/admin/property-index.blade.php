@@ -46,7 +46,7 @@
             </div>
 
             <!-- submit button -->
-            <button class="bg-[#ef5d60] py-2 px-4 rounded-[5px]">
+            <button class="bg-[#ef5d60] py-2 px-4 rounded-[5px] hover:bg-red-400">
                 <p class="text-base">Submit</p>
             </button>
         </div>
