@@ -73,7 +73,7 @@ class PropertyIndex extends Component
 
     public function submitForm()
     {
-        logger('aloo ?');
+        logger('Form submitted');
         // this action here will just change the values of component properties, and when those change
         // by default the computed property will update.
     }
