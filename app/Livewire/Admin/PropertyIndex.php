@@ -41,7 +41,6 @@ class PropertyIndex extends Component
     #[Computed]
     public function properties()
     {
-        logger('ucitali property');
         $prop = Property::query()
             ->select('user_id', 'id', 'type_id', 'name', 'price', 'city', 'lease_duration', 'year_built')
             ->latest()
@@ -75,5 +74,7 @@ class PropertyIndex extends Component
     public function submitForm()
     {
         logger('aloo ?');
+        // this action here will just change the values of component properties, and when those change
+        // by default the computed property will update.
     }
 }
