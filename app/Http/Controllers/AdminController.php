@@ -66,10 +66,13 @@ class AdminController extends Controller
         return view('admin.property.create');
     }
 
-    public function showProperty(Request $request)
+    public function showProperty(string $id)
     {
-        // action that opens up a page that shows a property information
+        $property = Property::query()
+            ->with(['media', 'user']) // Adjust relations as needed
+            ->findOrFail($id);
 
-        return view('admin.property.show');
+        return view('admin.property.show')
+            ->with('property', $property);
     }
 }
