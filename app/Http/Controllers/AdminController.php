@@ -63,13 +63,34 @@ class AdminController extends Controller
 
     public function showProperty(User $user, Property $property)
     {
-        $propertyAttributes = $property->getAttributes();
+        $propertyData = $property->getAttributes();
+        $userData = $user->getAttributes();
 
-        unset($propertyAttributes['created_at'], $propertyAttributes['updated_at']);
+        $media = $property->getMedia('property-photos');
+
+        $propertyData['Type'] = $this->changeTypeData($propertyData['type_id']);
+
+        unset($propertyData['type_id'], $propertyData['created_at'], $propertyData['updated_at'], $propertyData['user_id'], $propertyData['id']);
+
+        unset($userData['created_at'], $userData['updated_at'], $userData['email_verified_at'], $userData['password'], $userData['remember_token']);
 
         return view('admin.property.show')
             ->with('property', $property)
-            ->with('propertyAttributes', $propertyAttributes)
-            ->with('user', $user);
+            ->with('propertyData', $propertyData)
+            ->with('userData', $userData)
+            ->with('media', $media);
+    }
+
+    public function changeTypeData(int $number) {
+        switch ($number) {
+            case 1:
+                return 'Office';
+            case 2:
+                return 'House';
+            case 3:
+                return 'Appartement';
+            default:
+                return 'Unknown';
+        }
     }
 }
