@@ -20,15 +20,10 @@ class AdminController extends Controller
             ->with('agents', $agents);
     }
 
-    public function showAgent(string $id)
+    public function showAgent(User $user)
     {
-        $agent = User::query()
-            ->select('name', 'email', 'phone_number')
-            ->findOrFail($id);
-        //ovdje će se biti možda i profilna slika
-
         return view('admin.agent.show')
-            ->with('agent', $agent);
+            ->with('agent', $user);
     }
 
     public function createAgent()
