@@ -15,16 +15,12 @@
 
             <!-- Main content-->
             <div id="main-content" class="w-full pt-[100px] bg-gray-900">
-                <div class="h-[800px] w-full flex justify-center items-center z-9">
-                    <p class="mb-auto">welcome back to show agents {{ $agent->name }} information page, {{ Auth::user()->name }}</p>
+                <div class="h-[600px] w-full flex justify-center items-center z-9">
+                    <p class="">welcome back to show agents {{ $agent->name }} information page, {{ Auth::user()->name }}</p>
+                    <p class="">phone number {{ $agent->phone_number }} </p>
                 </div>
 
-                <!--footer -->
-                <div class="flex items-center justify-center mb-4">
-                    <p>
-                        Powered by <a href="https://github.com/KerimNezo" target="_blank" class="text-[#EF5D60]">Kerim Nezo</a>
-                    </p>
-                </div>
+                @include('admin.footer')
             </div>
         </div>
     </div>
