@@ -63,7 +63,12 @@ class AdminController extends Controller
 
     public function showProperty(Property $property)
     {
+        $propertyAttributes = $property->getAttributes();
+
+        unset($propertyAttributes['created_at'], $propertyAttributes['updated_at']);
+
         return view('admin.property.show')
-            ->with('property', $property);
+            ->with('property', $property)
+            ->with('propertyAttributes', $propertyAttributes);
     }
 }
