@@ -62,7 +62,7 @@
         </div>
     @else
     <!-- Properties Found -->
-        <div class="h-full py-12 text-xl text-center px-[6%]">
+        <div class="py-8 text-xl text-center px-[6%]">
             <div class="overflow-x-auto">
                 <table class="min-w-full overflow-hidden bg-gray-800 rounded-xl">
                     <thead class="bg-gray-800 border-gray-700">
@@ -92,7 +92,7 @@
                             <td id="table-data">
                                 <div class="flex items-center justify-start">
                                     <p>
-                                        <a href=" {{ route('single-property', $property->id)}}">
+                                        <a href=" {{ route('single-property', $property)}}">
                                             <img src="{{ $property->getFirstMediaUrl('property-photos') }}" alt="Property Image" class="w-[100px] h-[75px] object-cover rounded-lg">
                                         </a>
                                     </p>
