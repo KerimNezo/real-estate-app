@@ -101,7 +101,7 @@
                             <!-- Agent name -->
                             <td id="table-data">
                                 <div class="flex items-center justify-start">
-                                    <a href="{{ route('single-agent', $id = $property->user->id) }}">
+                                    <a href="{{ route('single-agent', $user = $property->user) }}">
                                         <p class="hover:text-white">
                                             {{ $property->user->name }}
                                         </p>
