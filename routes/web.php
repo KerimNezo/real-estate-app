@@ -44,7 +44,7 @@ Route::middleware(['role:admin', 'auth', 'verified'])->group(function () {
     Route::get('admin/property/create', [AdminController::class, 'createProperty'])
         ->name('new-property');
 
-    Route::get('admin/property/{$property}', [AdminController::class, 'showProperty'])
+    Route::get('admin/property/{property}', [AdminController::class, 'showProperty'])
         ->name('single-property');
 
 });
