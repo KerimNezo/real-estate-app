@@ -61,7 +61,7 @@ class AdminController extends Controller
         return view('admin.property.create');
     }
 
-    public function showProperty(Property $property)
+    public function showProperty(User $user, Property $property)
     {
         $propertyAttributes = $property->getAttributes();
 
@@ -69,6 +69,7 @@ class AdminController extends Controller
 
         return view('admin.property.show')
             ->with('property', $property)
-            ->with('propertyAttributes', $propertyAttributes);
+            ->with('propertyAttributes', $propertyAttributes)
+            ->with('user', $user);
     }
 }
