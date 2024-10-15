@@ -4,13 +4,13 @@
     </x-slot:title>
 
     <!-- Page content -->
-    <div class="flex flex-col w-full h-screen bg-gray-900">
+    <div class="flex flex-col min-h-screen bg-gray-900">
         <!-- Admin topbar -->
         <div class="fixed top-0 left-0 z-10 w-full bg-gray-800">
             @include('components.topbar-admin')
         </div>
 
-        <div class="flex w-full pt-[100px]">
+        <div class="flex w-full pt-[100px] flex-grow">
             @include('components.sidebar-admin')
 
             <!-- Main content-->
@@ -18,9 +18,9 @@
                 <div class="h-[800px] w-full flex justify-center items-center z-9">
                     <p class="mb-auto">welcome back to profile page, {{ Auth::user()->name }}</p>
                 </div>
-
-                @include('admin.footer')
             </div>
         </div>
+
+        @include('admin.footer')
     </div>
 </x-admin-layout>

@@ -14,12 +14,12 @@
             @include('components.sidebar-admin')
 
             <!-- Main content -->
-            <div id="main-content" class="flex flex-col flex-grow w-full pt-10 bg-gray-900">
+            <div id="main-content" class="flex flex-col flex-grow w-full pt-6 bg-gray-900">
                 <!-- SearchForm/Table -->
                 <livewire:admin.property-index :$minPrice :$maxPrice :$assetLocation :$assetTypeId :$cities/>
-
-                @include('admin.footer')
             </div>
         </div>
+
+        @include('admin.footer')
     </div>
 </x-admin-layout>

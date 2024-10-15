@@ -4,7 +4,7 @@
     </x-slot:title>
 
     <!-- Page content -->
-    <div class="flex flex-col w-full h-screen bg-gray-900">
+    <div class="flex flex-col min-h-screen bg-gray-900">
         <!-- Admin topbar -->
         <div class="fixed top-0 left-0 z-10 w-full bg-gray-800">
             @include('components.topbar-admin')
@@ -19,9 +19,9 @@
                     <p class="">welcome back to show agents {{ $agent->name }} information page, {{ Auth::user()->name }}</p>
                     <p class="">phone number {{ $agent->phone_number }} </p>
                 </div>
-
-                @include('admin.footer')
             </div>
         </div>
+
+        @include('admin.footer')
     </div>
 </x-admin-layout>
