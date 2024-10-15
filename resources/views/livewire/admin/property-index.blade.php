@@ -96,7 +96,7 @@
                             <td id="table-data">
                                 <div class="flex items-center justify-start">
                                     <p>
-                                        <a href=" {{ route('single-property', $property)}}">
+                                        <a href=" {{ route('single-property', ['property' => $property, 'user' => $property->user])}}">
                                             <img src="{{ $property->getFirstMediaUrl('property-photos') }}" alt="Property Image" class="w-[100px] h-[75px] object-cover rounded-lg">
                                         </a>
                                     </p>
