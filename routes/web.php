@@ -38,14 +38,15 @@ Route::middleware(['role:admin', 'auth', 'verified'])->group(function () {
        ->name('single-agent');
 
     // Property routes
+    Route::get('admin/agent/{user}/property/{property}', [AdminController::class, 'showProperty'])
+        ->name('single-property')
+        ->scopeBindings();
+
     Route::get('admin/property/index', [AdminController::class, 'indexProperites'])
         ->name('admin-properties');
 
     Route::get('admin/property/create', [AdminController::class, 'createProperty'])
         ->name('new-property');
-
-    Route::get('admin/property/{property}', [AdminController::class, 'showProperty'])
-        ->name('single-property');
 
 });
 
