@@ -37,7 +37,7 @@ class PropertyIndex extends Component
     public function properties()
     {
         $prop = Property::query()
-            ->select('user_id', 'id', 'type_id', 'name', 'price', 'city', 'lease_duration', 'year_built')
+            ->select()
             ->latest()
             ->with(['media' => function ($query) {
                 $query->orderBy('order_column', 'asc')
