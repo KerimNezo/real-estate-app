@@ -74,11 +74,16 @@ class AdminController extends Controller
 
         unset($userData['created_at'], $userData['updated_at'], $userData['email_verified_at'], $userData['password'], $userData['remember_token']);
 
+        foreach ($media as $slike) {
+            $urlovi[$slike->order_column] = $slike->getUrl();
+        }
+
         return view('admin.property.show')
             ->with('property', $property)
             ->with('propertyData', $propertyData)
             ->with('userData', $userData)
-            ->with('media', $media);
+            ->with('media', $media)
+            ->with('urlovi', $urlovi);
     }
 
     public function changeTypeData(int $number) {
