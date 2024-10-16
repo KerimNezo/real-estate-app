@@ -17,39 +17,39 @@
             <div id="main-content" class="w-full bg-gray-900">
                 <div class="flex items-center justify-center w-full z-9">
                     <!-- table to display property data -->
-                    <div class="py-8 text-xl text-center px-[6%]">
-                        <div class="overflow-x-auto">
-                            <table class="min-w-full overflow-hidden bg-gray-800 table-auto rounded-xl">
+                    <div class="py-8 text-xl text-center px-[6%] w-full">
+                        <div class="w-full overflow-x-auto">
+                            <table class="min-w-full overflow-hidden bg-gray-800 rounded-xl">
                                 <!-- Header of the table -->
-                                <thead class="bg-gray-800 border-gray-700">
-                                    <tr id="table-header w-full">
+                                <thead class="w-full bg-gray-800 border-gray-700">
+                                    <tr id="table-header" style="width: 100%">
                                         <!-- Key -->
                                         <th class="px-4 py-2 text-lg border-b border-gray-700">
-                                            <div id="header-title">
+                                            <div class="flex items-center justify-start">
                                                 <p class="text-lg">Key</p>
                                             </div>
                                         </th>
 
                                         <!-- Data -->
                                         <th class="w-full px-4 py-2 text-lg border-b border-gray-700">
-                                            <div id="header-title">
+                                            <div class="flex items-center justify-start">
                                                 <p class="text-lg">Data</p>
                                             </div>
                                         </th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody class="w-full">
                                     <!-- media section -->
                                     <tr class="w-full border-t border-gray-700">
                                         <!-- Key -->
-                                        <td class="px-4 py-4 text-base leading-6">
+                                        <td class="" id="table-data">
                                             <div class="flex items-center justify-start">
                                                 <p class="text-left w-36">Media</p>
                                             </div>
                                         </td>
                                         <!-- Value -->
-                                        <td class="w-full px-4 py-4 text-base leading-6">
-                                            <div class="flex items-center justify-start space-x-2">
+                                        <td class="w-full" id="table-data">
+                                            <div class="flex items-center justify-start w-full space-x-2">
                                                 @foreach($property->getMedia('property-photos') as $index => $media)
                                                     <img src="{{ $media->getUrl() }}"
                                                          alt="Property Photo"
@@ -64,7 +64,7 @@
                                         @if ($key === 'id')
                                         <!-- Don't display his id -->
                                         @else
-                                        <tr class="border-t border-gray-700">
+                                        <tr class="w-full border-t border-gray-700">
                                             <!-- Key -->
                                             <td class="px-4 py-4 text-base leading-6">
                                                 <div class="flex items-center justify-start">
@@ -74,7 +74,7 @@
                                                 </div>
                                             </td>
                                             <!-- Value -->
-                                            <td class="px-4 py-4 text-base leading-6">
+                                            <td class="w-full px-4 py-4 text-base leading-6">
                                                 <div class="flex items-center justify-start">
                                                     <p class="text-left">
                                                         {{ $value }}
@@ -86,7 +86,7 @@
                                     @endforeach
                                     <!-- property data -->
                                     @foreach ($propertyData as $key => $value)
-                                    <tr class="border-t border-gray-700">
+                                    <tr class="w-full border-t border-gray-700">
                                         <!-- Key -->
                                         <td class="px-4 py-4 text-base leading-6">
                                             <div class="flex items-center justify-start">
@@ -96,7 +96,7 @@
                                             </div>
                                         </td>
                                         <!-- Value -->
-                                        <td class="px-4 py-4 text-base leading-6">
+                                        <td class="w-full px-4 py-4 text-base leading-6">
                                             <div class="flex items-center justify-start">
                                                 <p class="text-left">
                                                     @if ($key === 'price')
@@ -124,7 +124,7 @@
     <div id="imageModal" class="fixed inset-0 z-50 items-center justify-center hidden bg-black bg-opacity-75 cursor-pointer" onclick="closeModal()">
         <div class="relative max-w-4xl mx-auto cursor-auto" onclick="event.stopPropagation()">
             <span class="absolute flex items-center justify-center px-[9px] py-0 text-2xl text-white bg-gray-700 rounded-full cursor-pointer top-2 right-2" onclick="closeModal()">&times;</span>
-            <img id="modalImage" src="" alt="Full View Image" class="mx-auto w-[800px]" onclick="closeModal()">
+            <img id="modalImage" src="" alt="Full View Image" class="mx-auto w-[800px] rounded-[20px]" onclick="closeModal()">
 
             <!-- Previous and Next buttons -->
             <button id="prevButton" class="absolute h-[52px] w-[52px] px-2 pb-1 text-3xl text-white bg-gray-700 rounded-full cursor-pointer left-2 top-1/2"
