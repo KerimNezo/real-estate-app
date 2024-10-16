@@ -18,26 +18,22 @@
                 <div class="flex items-center justify-center w-full z-9">
                     <!-- table to display property data -->
                     <div class="py-8 text-xl text-center px-[6%]">
-                        <div class="overflow-x-auto">
-                            <table class="min-w-full overflow-hidden bg-gray-800 rounded-xl">
+                        <div class="w-full overflow-x-auto">
+                            <table class="min-w-full bg-gray-800 table-auto rounded-xl">
                                 <!-- Header of the table -->
                                 <thead class="bg-gray-800 border-gray-700">
                                     <tr id="table-header">
                                         <!-- Image -->
-                                        <th class="py-2 pl-12 pr-3 text-lg border-b border-gray-700">
+                                        <th class="px-4 py-2 text-lg border-b border-gray-700">
                                             <div id="header-title">
-                                                <p class="text-lg">
-                                                    Key
-                                                </p>
+                                                <p class="text-lg">Key</p>
                                             </div>
                                         </th>
 
                                         <!-- Agent -->
-                                        <th class="py-2 pl-12 pr-3 text-lg border-b border-gray-700">
+                                        <th class="px-4 py-2 text-lg border-b border-gray-700">
                                             <div id="header-title">
-                                                <p class="text-lg">
-                                                    Data
-                                                </p>
+                                                <p class="text-lg">Data</p>
                                             </div>
                                         </th>
                                     </tr>
@@ -46,18 +42,19 @@
                                     <!-- media section -->
                                     <tr class="border-t border-gray-700">
                                         <!-- Key -->
-                                        <td class="py-4 pl-12 text-base leading-6">
+                                        <td class="px-4 py-4 text-base leading-6">
                                             <div class="flex items-center justify-start">
-                                                <p class="text-left w-36">
-                                                    Media
-                                                </p>
+                                                <p class="text-left w-36">Media</p>
                                             </div>
                                         </td>
                                         <!-- Value -->
-                                        <td class="py-4 pl-12 pr-4 text-base leading-6">
+                                        <td class="px-4 py-4 text-base leading-6">
                                             <div class="flex items-center justify-start space-x-2">
-                                                @foreach($property->getMedia('property-photos') as $media)
-                                                    <img src="{{ $media->getUrl() }}" alt="Property Photo" class="w-[120px] h-[90px] object-cover rounded-lg">
+                                                @foreach($property->getMedia('property-photos') as $index => $media)
+                                                    <img src="{{ $media->getUrl() }}"
+                                                         alt="Property Photo"
+                                                         class="w-[120px] h-[90px] object-cover rounded-lg cursor-pointer"
+                                                         onclick="openModal('{{ $media->getUrl() }}', {{ $media->order_column }})">
                                                 @endforeach
                                             </div>
                                         </td>
@@ -69,7 +66,7 @@
                                         @else
                                         <tr class="border-t border-gray-700">
                                             <!-- Key -->
-                                            <td class="py-4 pl-12 text-base leading-6">
+                                            <td class="px-4 py-4 text-base leading-6">
                                                 <div class="flex items-center justify-start">
                                                     <p class="text-left w-36">
                                                         {{ ucwords(str_replace('_', ' ', $key)) }}
@@ -77,7 +74,7 @@
                                                 </div>
                                             </td>
                                             <!-- Value -->
-                                            <td class="py-4 pl-12 pr-4 text-base leading-6">
+                                            <td class="px-4 py-4 text-base leading-6">
                                                 <div class="flex items-center justify-start">
                                                     <p class="text-left">
                                                         {{ $value }}
@@ -91,7 +88,7 @@
                                     @foreach ($propertyData as $key => $value)
                                     <tr class="border-t border-gray-700">
                                         <!-- Key -->
-                                        <td class="py-4 pl-12 text-base leading-6">
+                                        <td class="px-4 py-4 text-base leading-6">
                                             <div class="flex items-center justify-start">
                                                 <p class="text-left w-36">
                                                     {{ ucwords(str_replace('_', ' ', $key)) }}
@@ -99,7 +96,7 @@
                                             </div>
                                         </td>
                                         <!-- Value -->
-                                        <td class="py-4 pl-12 pr-4 text-base leading-6">
+                                        <td class="px-4 py-4 text-base leading-6">
                                             <div class="flex items-center justify-start">
                                                 <p class="text-left">
                                                     @if ($key === 'price')
@@ -122,4 +119,70 @@
 
         @include('admin.footer')
     </div>
+
+    <!-- Full-size image modal -->
+    <div id="imageModal" class="fixed inset-0 z-50 items-center justify-center hidden bg-black bg-opacity-75 cursor-pointer" onclick="closeModal()">
+        <div class="relative max-w-4xl mx-auto cursor-auto" onclick="event.stopPropagation()">
+            <span class="absolute text-3xl text-white cursor-pointer top-2 right-2" onclick="closeModal()">&times;</span>
+            <img id="modalImage" src="" alt="Full View Image" class="mx-auto" onclick="closeModal()">
+
+            <!-- Previous and Next buttons -->
+            <button id="prevButton" class="absolute h-[52px] w-[52px] px-2 pb-1 text-3xl text-white bg-gray-700 rounded-full cursor-pointer left-2 top-1/2"
+                    onclick="prevImage()">&#8249;</button>
+            <button id="nextButton" class="absolute h-[52px] w-[52px] px-2 pb-1 text-3xl text-white bg-gray-700 rounded-full cursor-pointer right-2 top-1/2"
+                    onclick="nextImage()">&#8250;</button>
+        </div>
+    </div>
+
+    <script>
+        let currentIndex = 0;
+        let mediaUrls = @json($urlovi);
+        let nextButton = document.getElementById('nextButton');
+        let previousButton = document.getElementById('prevButton');
+        const photoCount = Object.keys(mediaUrls).length;
+
+        function openModal(imageUrl, index) {
+            nextButton.classList.remove('hidden');
+            previousButton.classList.remove('hidden');
+            currentIndex = index;
+            if (currentIndex === photoCount) {
+                nextButton.classList.add('hidden');
+            } else if (currentIndex === 1) {
+                previousButton.classList.add('hidden');
+            }
+            document.getElementById('modalImage').src = imageUrl;
+            document.getElementById('imageModal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('imageModal').classList.add('hidden');
+            document.getElementById('modalImage').src = ''; // Clear the image
+            previousButton.classList.remove('hidden');
+            previousButton.classList.remove('hidden');
+        }
+
+        function nextImage() {
+            if (currentIndex === 1) {
+                previousButton.classList.remove('hidden');
+            }
+            currentIndex = currentIndex + 1
+            document.getElementById('modalImage').src = mediaUrls[currentIndex];
+            if (currentIndex === photoCount) {
+                nextButton.classList.add('hidden');
+            }
+        }
+
+        function prevImage() {
+            if (currentIndex === photoCount) {
+                nextButton.classList.remove('hidden');
+                console.log('makelo je hidden');
+            }
+            currentIndex = currentIndex - 1
+            document.getElementById('modalImage').src = mediaUrls[currentIndex];
+            if(currentIndex === 1) {
+                previousButton.classList.add('hidden');
+            }
+        }
+    </script>
+
 </x-admin-layout>
