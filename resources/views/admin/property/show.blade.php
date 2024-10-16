@@ -18,19 +18,19 @@
                 <div class="flex items-center justify-center w-full z-9">
                     <!-- table to display property data -->
                     <div class="py-8 text-xl text-center px-[6%]">
-                        <div class="w-full overflow-x-auto">
-                            <table class="min-w-full bg-gray-800 table-auto rounded-xl">
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full overflow-hidden bg-gray-800 table-auto rounded-xl">
                                 <!-- Header of the table -->
                                 <thead class="bg-gray-800 border-gray-700">
                                     <tr id="table-header">
-                                        <!-- Image -->
+                                        <!-- Key -->
                                         <th class="px-4 py-2 text-lg border-b border-gray-700">
                                             <div id="header-title">
                                                 <p class="text-lg">Key</p>
                                             </div>
                                         </th>
 
-                                        <!-- Agent -->
+                                        <!-- Data -->
                                         <th class="px-4 py-2 text-lg border-b border-gray-700">
                                             <div id="header-title">
                                                 <p class="text-lg">Data</p>
@@ -48,7 +48,7 @@
                                             </div>
                                         </td>
                                         <!-- Value -->
-                                        <td class="px-4 py-4 text-base leading-6">
+                                        <td class="w-full px-4 py-4 text-base leading-6">
                                             <div class="flex items-center justify-start space-x-2">
                                                 @foreach($property->getMedia('property-photos') as $index => $media)
                                                     <img src="{{ $media->getUrl() }}"
