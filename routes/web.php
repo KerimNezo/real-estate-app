@@ -52,7 +52,9 @@ Route::middleware(['role:admin', 'auth', 'verified'])->group(function () {
 
 });
 
-Route::middleware(['role:agent', 'auth', 'verified'])->group(function () {});
+Route::middleware(['role:agent', 'auth', 'verified'])->group(function () {
+
+});
 
 // Not my routes
 Route::middleware('auth')->group(function () {
