@@ -39,7 +39,7 @@ Route::middleware(['role:admin', 'auth', 'verified'])->group(function () {
 
     // Property routes
     Route::get('admin/agent/{user}/property/{property}', [AdminController::class, 'showProperty'])
-        ->name('single-property')
+        ->name('admin-single-property')
         ->scopeBindings();
 
     Route::get('admin/property/index', [AdminController::class, 'indexProperites'])
