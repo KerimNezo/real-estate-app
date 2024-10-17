@@ -165,6 +165,10 @@
                                                 <p class="text-left">
                                                     @if ($key === 'price')
                                                     {{ number_format($value, 0) }} $
+                                                    @elseif ($key === 'surface')
+                                                    {{ $value }} m<sup>2</sup>
+                                                    @elseif ($key === 'lease_duration' && $value !== 'No')
+                                                    {{ $value }} months
                                                     @else
                                                     {{ $value ?? 'No'}}
                                                     @endif
