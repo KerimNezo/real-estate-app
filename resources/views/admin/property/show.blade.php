@@ -49,7 +49,7 @@
                                         </td>
                                         <!-- Value -->
                                         <td class="w-full" id="table-data">
-                                            <div class="flex items-center justify-start w-full space-x-2">
+                                            <div class="flex items-center justify-start w-full space-x-2 overflow-x-auto whitespace-nowrap">
                                                 @foreach($property->getMedia('property-photos') as $index => $media)
                                                     <img src="{{ $media->getUrl() }}"
                                                          alt="Property Photo"
