@@ -2,9 +2,9 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PropertyController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\WelcomeController;
-use App\Http\Controllers\PropertyController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', WelcomeController::class)
@@ -24,7 +24,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
 });
 
 Route::middleware(['role:admin', 'auth', 'verified'])->group(function () {
-    Route::get('admin/dashboard', function () {return view('admin.dashboard');})
+    Route::get('admin/dashboard', function () {
+        return view('admin.dashboard');
+    })
         ->name('dashboard');
 
     // Agent routes
@@ -35,7 +37,7 @@ Route::middleware(['role:admin', 'auth', 'verified'])->group(function () {
         ->name('new-agent');
 
     Route::get('admin/agent/{user}', [AdminController::class, 'showAgent'])
-       ->name('single-agent');
+        ->name('single-agent');
 
     // Property routes
     Route::get('admin/agent/{user}/property/{property}', [AdminController::class, 'showProperty'])
@@ -50,9 +52,7 @@ Route::middleware(['role:admin', 'auth', 'verified'])->group(function () {
 
 });
 
-Route::middleware(['role:agent', 'auth', 'verified'])->group(function () {
-
-});
+Route::middleware(['role:agent', 'auth', 'verified'])->group(function () {});
 
 // Not my routes
 Route::middleware('auth')->group(function () {

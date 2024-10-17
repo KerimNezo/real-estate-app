@@ -2,10 +2,10 @@
 
 namespace App\Livewire\Admin;
 
+use App\Models\Property;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Locked;
 use Livewire\Component;
-use App\Models\Property;
 use Livewire\WithPagination;
 
 class PropertyIndex extends Component
@@ -13,8 +13,11 @@ class PropertyIndex extends Component
     use WithPagination;
 
     public $minPrice;
+
     public $maxPrice;
+
     public $assetTypeId;
+
     public $assetLocation;
 
     #[Locked]
@@ -43,7 +46,7 @@ class PropertyIndex extends Component
                     ->limit(6);
             }, 'user' => function ($userQuery) {
                 $userQuery->select('id', 'name');
-            }  ]);
+            }]);
 
         // Ovdje loadam sve slike, samo 6 ako mu slučajno spasi više, jer šaljemo cijeli property objekat na rutu
         // da ne bih morao queryat ponovo na show-property ruti

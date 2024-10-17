@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use App\Models\Property;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -88,7 +88,8 @@ class AdminController extends Controller
             ->with('urlovi', $urlovi);
     }
 
-    public function changeTypeData(int $number) {
+    public function changeTypeData(int $number)
+    {
         switch ($number) {
             case 1:
                 return 'Office';
@@ -101,14 +102,15 @@ class AdminController extends Controller
         }
     }
 
-    public function reorderArray($array) {
+    public function reorderArray($array)
+    {
         $reorderedArray = [];
 
         $desiredOrder = [
-            "name", "Type", "price","city", "street", "country", "surface",
-            "year_built", "lat", "lon", "rooms", "bedrooms", "toilets",
-            "garage", "furnished", "floors", "garden", "lease_duration",
-            "video_intercom", "keycard_entry", "elevator", "description"
+            'name', 'Type', 'price', 'city', 'street', 'country', 'surface',
+            'year_built', 'lat', 'lon', 'rooms', 'bedrooms', 'toilets',
+            'garage', 'furnished', 'floors', 'garden', 'lease_duration',
+            'video_intercom', 'keycard_entry', 'elevator', 'description',
         ];
 
         foreach ($desiredOrder as $key) {
@@ -120,7 +122,8 @@ class AdminController extends Controller
         return $reorderedArray;
     }
 
-    public function numberToBool($value) {
+    public function numberToBool($value)
+    {
         if ($value === 0 || $value === null) {
             return $value = 'No';
         } else {
@@ -128,8 +131,9 @@ class AdminController extends Controller
         }
     }
 
-    public function numberOrNo($value) {
-        if ($value === null || $value === 0 ) {
+    public function numberOrNo($value)
+    {
+        if ($value === null || $value === 0) {
             return $value = 'No';
         } else {
             return $value;

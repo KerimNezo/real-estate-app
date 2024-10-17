@@ -2,10 +2,10 @@
 
 namespace App\Livewire\Admin;
 
+use App\Models\User;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
 use Livewire\WithPagination;
-use App\Models\User;
 
 class AgentIndex extends Component
 {
