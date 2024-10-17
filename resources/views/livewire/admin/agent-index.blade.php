@@ -1,5 +1,88 @@
 <div>
     <div class="px-[6%]">
-        <p>EVOOO ME</p>
+        @if($this->agents->isEmpty())
+    <!-- Propreties Not Found -->
+        <div class="flex-grow flex items-center justify-center px-[6%] py-24 mb-5">
+            <div class="text-center">
+                <img src="{{ asset('photos/icons/no-result.svg') }}" alt="No results" class="w-[100px] mx-auto">
+                <p class="pt-[40px]">It seems like there are no matching results for your search...</p>
+            </div>
+        </div>
+    @else
+    <!-- Properties Found -->
+        <div class="py-8 text-xl text-center px-[6%]">
+            <div class="overflow-x-auto">
+                <table class="min-w-full overflow-hidden bg-gray-800 rounded-xl">
+                    <thead class="bg-gray-800 border-gray-700">
+                        <tr id="table-header">
+                            <!-- Image -->
+                            <x-table.table-header title="Id" />
+                            <!-- Agent -->
+                            <x-table.table-header title="Name" />
+                            <!-- Price-->
+                            <x-table.table-header title="Email" />
+                            <!-- City -->
+                            <x-table.table-header title="Phone Number" />
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($this->agents as $agent)
+                        <tr class="border-t border-gray-700" wire:key="{{ $agent->id }}">
+                            {{-- <!-- Image -->
+                            <td id="table-data">
+                                <div class="flex items-center justify-start">
+                                    <p>
+                                        <a href=" {{ route('admin-single-agent', ['agent' => $property, 'user' => $property->user])}}">
+                                            <img src="{{ $property->getFirstMediaUrl('property-photos') }}" alt="Property Image" class="w-[100px] h-[75px] object-cover rounded-lg">
+                                        </a>
+                                    </p>
+                                </div>
+                            </td> --}}
+                            <!-- Agent id -->
+                            <td id="table-data">
+                                <div class="flex items-center justify-start">
+                                    <p>
+                                        {{ $agent->id }}
+                                    </p>
+                                </div>
+                            </td>
+                            <!-- Agent Name -->
+                            <td id="table-data">
+                                <div class="flex items-center justify-start">
+                                    <a href="{{ route('single-agent', ['user' => $agent])}}">
+                                        <p class="hover:text-white">
+                                            {{ $agent->name }}
+                                        </p>
+                                    </a>
+                                </div>
+                            </td>
+                            <!-- Agent Email -->
+                            <td id="table-data">
+                                <div class="flex items-center justify-start">
+                                    <p>
+                                        {{ $agent->email }}
+                                    </p>
+                                </div>
+                            </td>
+                            <!-- Agent Phone Number -->
+                            <td id="table-data">
+                                <div class="flex items-center justify-start">
+                                    <p>
+                                        {{ $agent->phone_number }}
+                                    </p>
+                                </div>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Pagination -->
+            <div class="static flex items-center justify-between w-full py-2">
+                {{ $this->agents->links() }}
+            </div>
+        </div>
+    @endif
     </div>
 </div>
