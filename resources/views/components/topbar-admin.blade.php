@@ -12,12 +12,12 @@
             </button>
         </div>
 
-        <div class="ml-auto font-bold">
+        <div class="pr-4 ml-auto font-bold">
             <p>{{ Auth::user()->name }}</p>
         </div>
 
-        <button id="dugme" class="w-5 pl-12 pr-8 smy-auto" type="button">
-            <x-heroicon-s-user class="h-8" />
+        <button id="dugme" class="w-12 pr-8 my-auto" type="button">
+            <img src="{{ Auth::user()->getFirstMediaUrl('admin-pfp') }}" alt="Admin Photo" class="h-[50px] w-[50px] rounded-[5px]">
         </button>
 
         <!-- dropdown which waits for a click on the user icon -->
