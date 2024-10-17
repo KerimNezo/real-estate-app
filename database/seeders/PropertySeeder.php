@@ -61,12 +61,17 @@ class PropertySeeder extends Seeder
                     'description' => "If you have older kids or frequent guests, this home is meant for you. A spacious loft at the top of the stairs adjoins two bedrooms with walk-in closets and a shared bath, providing just the right amount of privacy for everyone.With an open-concept layout in the great room, kitchen and casual dining, there's plenty of space and seating to bring the whole family together. Stream your favorite videos. Adjust the lighting. Check the front door without leaving your comfy seat. Our HomeSmart features are included and connect tech to your device.",
                 ]);
 
-                // dodajemo prvu sliku na nekretninu
+                // Adding profile picture for a property agent
+                $property->user->addMedia(''.$path.'/icons/realestateagent.png')
+                    ->preservingOriginal()
+                    ->toMediaCollection('agent-pfps');
+
+                // Adding first property photo
                 $property->addMedia(''.$path.'/'.$propertyPhoto[$type - 1].'s/'.$propertyPhoto[$type - 1].'0.jpg')
                     ->preservingOriginal()
                     ->toMediaCollection('property-photos');
 
-                // dodajemo na nekretninu još po 5 slika
+                // Adding rest of property photos
                 for ($y = 1; $y < 6; $y++) {
                     $property->addMedia(''.$path.'/'.$propertyPhoto[$type - 1].'s/'.$propertyPhoto[$type - 1].''.$y.'.jpg')
                         ->preservingOriginal()

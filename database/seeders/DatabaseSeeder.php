@@ -68,6 +68,12 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('judaspriest1970'),
         ]);
 
+        $path = '/home/rimke/code/diplomski/realestate-app/public/photos';
+
+        $admin->addMedia(''.$path.'/icons/adminPhoto.png')
+        ->preservingOriginal()
+        ->toMediaCollection('admin-pfp');
+
         $admin->assignRole($adminRole);
 
         $this->call(UserSeeder::class);
