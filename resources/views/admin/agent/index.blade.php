@@ -15,9 +15,7 @@
 
             <!-- Main content-->
             <div id="main-content" class="w-full pt-[100px] bg-gray-900">
-                <div class="h-[800px] w-full flex justify-center items-center z-9">
-                    <p class="mb-auto">welcome back to agents page, {{ Auth::user()->name }}</p>
-                </div>
+                <livewire:admin.agent-index />
             </div>
         </div>
 
