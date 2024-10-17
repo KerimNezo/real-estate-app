@@ -32,9 +32,7 @@
                             <td id="table-data">
                                 <div class="flex items-center justify-start">
                                     <p>
-                                        <a href=" {{ route('admin-single-agent', ['agent' => $property, 'user' => $property->user])}}">
-                                            <img src="{{ $property->getFirstMediaUrl('property-photos') }}" alt="Property Image" class="w-[100px] h-[75px] object-cover rounded-lg">
-                                        </a>
+                                        <img src="{{ $property->getFirstMediaUrl('property-photos') }}" alt="Property Image" class="w-[100px] h-[75px] object-cover rounded-lg">
                                     </p>
                                 </div>
                             </td> --}}
