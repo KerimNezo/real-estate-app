@@ -14,7 +14,8 @@
             @include('components.sidebar-admin')
 
             <!-- Main content-->
-            <div id="main-content" class="w-full pt-[100px] bg-gray-900">
+            <div id="main-content" class="w-full pt-6 bg-gray-900">
+                <!-- Agent table -->
                 <livewire:admin.agent-index />
             </div>
         </div>
