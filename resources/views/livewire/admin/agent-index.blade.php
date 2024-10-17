@@ -15,6 +15,8 @@
                 <table class="min-w-full overflow-hidden bg-gray-800 rounded-xl">
                     <thead class="bg-gray-800 border-gray-700">
                         <tr id="table-header">
+                            <!-- Profile photo -->
+                            <x-table.table-header title="Photo" />
                             <!-- Image -->
                             <x-table.table-header title="Id" />
                             <!-- Agent -->
@@ -28,14 +30,14 @@
                     <tbody>
                         @foreach ($this->agents as $agent)
                         <tr class="border-t border-gray-700" wire:key="{{ $agent->id }}">
-                            {{-- <!-- Image -->
+                            <!-- Image -->
                             <td id="table-data">
                                 <div class="flex items-center justify-start">
                                     <p>
-                                        <img src="{{ $property->getFirstMediaUrl('property-photos') }}" alt="Property Image" class="w-[100px] h-[75px] object-cover rounded-lg">
+                                        <img src="{{ $agent->getFirstMediaUrl('agent-pfps') }}" alt="Agent Profile Photo" class="w-[75px] h-[75px] object-cover rounded-lg">
                                     </p>
                                 </div>
-                            </td> --}}
+                            </td>
                             <!-- Agent id -->
                             <td id="table-data">
                                 <div class="flex items-center justify-start">
