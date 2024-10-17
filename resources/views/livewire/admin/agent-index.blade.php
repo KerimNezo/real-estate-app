@@ -34,7 +34,7 @@
                             <td id="table-data">
                                 <div class="flex items-center justify-start">
                                     <p>
-                                        <img src="{{ $agent->getFirstMediaUrl('agent-pfps') }}" alt="Agent Profile Photo" class="w-[75px] h-[75px] object-cover rounded-lg">
+                                        <img src="{{ $agent->getFirstMediaUrl('agent-pfps') }}" alt="Agent Profile Photo" class="w-[65px] h-[65px] object-cover rounded-[5px]">
                                     </p>
                                 </div>
                             </td>
