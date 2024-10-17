@@ -1,7 +1,7 @@
 <div class="flex items-center justify-center w-full py-6 bg-gray-800 h-[100px] fixed">
     <div class="relative flex items-center justify-center w-full px-10">
         <div id="admin-topbar-logo" class="mr-auto">
-            <a href="/">
+            <a href="{{ route('home') }}">
                 <img src={{ asset('photos/icons/logo1.svg')}} alt="alt" class="rounded-[5px]">
             </a>
         </div>

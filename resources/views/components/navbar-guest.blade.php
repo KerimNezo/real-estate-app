@@ -2,12 +2,12 @@
 <div id="guest-navbar">
     <header class="grid grid-cols-2 items-center lg:grid-cols-2 py-[24px] w-[80%] ml-[10%]">
         <div class="pr-auto w-[220px] h-[55px]">
-            <a href="/">
+            <a href="{{ route('home') }}">
                 <img src={{ asset('photos/icons/logo1.svg')}} alt="alt" class="rounded-[5px]">
             </a>
         </div>
 
-        <div class="flex justify-center items-end w-full">
+        <div class="flex items-end justify-center w-full">
             <a rel="noopener" href="{{ route('all-properties') }}" class="ml-auto">
                 <span class="navbar-text">All properties</span>
             </a>
@@ -47,13 +47,13 @@
         <div class="flex flex-row items-center w-[100%] gap-4 mx-auto">
             <div class="w-[50%] pl-[5%]">
                 <a rel="noopener" href="{{ route('all-properties') }}">
-                    <span class="navbar-text text-base">All properties</span>
+                    <span class="text-base navbar-text">All properties</span>
                 </a>
             </div>
 
             <div class="w-[50%]">
                 <a rel="noopener" href="/#property-types">
-                    <span class="navbar-text text-base">Types of properties</span>
+                    <span class="text-base navbar-text">Types of properties</span>
                 </a>
             </div>
         </div>
@@ -61,13 +61,13 @@
         <div class="flex flex-row items-center w-[100%] gap-4 mx-auto pt-2">
             <div class="w-[50%] pl-[5%]">
                 <a rel="noopener" href="/#about-section">
-                    <span class="navbar-text text-base">About us</span>
+                    <span class="text-base navbar-text">About us</span>
                 </a>
             </div>
 
             <div class="w-[50%]">
                 <a rel="noopener" href="/#contact-section">
-                    <span class="navbar-text text-base">Contact us</span>
+                    <span class="text-base navbar-text">Contact us</span>
                 </a>
             </div>
         </div>
