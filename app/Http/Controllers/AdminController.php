@@ -78,6 +78,15 @@ class AdminController extends Controller
             $urlovi[$slike->order_column] = $slike->getUrl();
         }
 
+        $propertyData['garden'] = $this->numberToBool($propertyData['garden']);
+        $propertyData['furnished'] = $this->numberToBool($propertyData['furnished']);
+        $propertyData['keycard_entry'] = $this->numberToBool($propertyData['keycard_entry']);
+        $propertyData['elevator'] = $this->numberToBool($propertyData['elevator']);
+        $propertyData['video_intercom'] = $this->numberToBool($propertyData['video_intercom']);
+        $propertyData['garage'] = $this->numberOrNo($propertyData['garage']);
+
+        $propertyData = $this->reorderArray($propertyData);
+
         return view('admin.property.show')
             ->with('property', $property)
             ->with('propertyData', $propertyData)
@@ -96,6 +105,41 @@ class AdminController extends Controller
                 return 'Appartement';
             default:
                 return 'Unknown';
+        }
+    }
+
+    public function reorderArray($array) {
+        $reorderedArray = [];
+
+        $desiredOrder = [
+            "name", "Type", "price","city", "street", "country", "surface",
+            "year_built", "lat", "lon", "rooms", "bedrooms", "toilets",
+            "garage", "furnished", "floors", "garden", "lease_duration",
+            "video_intercom", "keycard_entry", "elevator", "description"
+        ];
+
+        foreach ($desiredOrder as $key) {
+            if (isset($array[$key])) {
+                $reorderedArray[$key] = $array[$key];
+            }
+        }
+
+        return $reorderedArray;
+    }
+
+    public function numberToBool($value) {
+        if ($value === 0 || $value === null) {
+            return $value = 'No';
+        } else {
+            return $value = 'Yes';
+        }
+    }
+
+    public function numberOrNo($value) {
+        if ($value === null || $value === 0 ) {
+            return $value = 'No';
+        } else {
+            return $value;
         }
     }
 }
