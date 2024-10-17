@@ -104,9 +104,17 @@
                                             <!-- Value -->
                                             <td class="w-full px-4 py-4 text-base leading-6">
                                                 <div class="flex items-center justify-start">
+                                                    @if ($key === 'name')
+                                                    <a href="{{ route('single-agent', $user = $property->user) }}">
+                                                        <p class="text-left hover:text-white">
+                                                            {{ $value }}
+                                                        </p>
+                                                    </a>
+                                                    @else
                                                     <p class="text-left">
                                                         {{ $value }}
                                                     </p>
+                                                    @endif
                                                 </div>
                                             </td>
                                         </tr>
