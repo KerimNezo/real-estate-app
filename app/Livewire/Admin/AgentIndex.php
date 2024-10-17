@@ -11,8 +11,15 @@ class AgentIndex extends Component
 {
     use WithPagination;
 
-    public function render()
+    #[Computed]
+    public function agents()
     {
-        return view('livewire.admin.agent-index');
+        $agents = User::query()
+            ->select('id', 'name', 'email', 'phone_number')
+            ->where('name', '!=', 'admin')
+            ->latest()
+            ->with(['properties']);
+
+        return $agents->paginate(10);
     }
 }
