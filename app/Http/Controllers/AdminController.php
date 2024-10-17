@@ -10,14 +10,7 @@ class AdminController extends Controller
 {
     public function indexAgent()
     {
-        $agents = User::query()
-            ->select('name', 'email', 'phone_number')
-            ->where('name', '!=', 'admin')
-            ->get();
-        //ovdje će se biti možda i profilna slika
-
-        return view('admin.agent.index')
-            ->with('agents', $agents);
+        return view('admin.agent.index');
     }
 
     public function showAgent(User $user)
