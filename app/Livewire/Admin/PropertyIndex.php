@@ -7,8 +7,6 @@ use Livewire\Attributes\Locked;
 use Livewire\Component;
 use App\Models\Property;
 use Livewire\WithPagination;
-use Livewire\Attributes\On;
-
 
 class PropertyIndex extends Component
 {
@@ -24,6 +22,7 @@ class PropertyIndex extends Component
 
     // Have no need for mount() lifecycle hook
     // because Livewire will automatically set the passed values to properties with the same name
+    // same as render()
 
     public function resetForm()
     {
@@ -65,7 +64,6 @@ class PropertyIndex extends Component
             $prop = $prop->where('price', '<', $this->maxPrice);
         }
 
-        // This code here will reset the form
         $this->reset(['minPrice', 'maxPrice', 'assetLocation', 'assetTypeId']);
 
         return $prop->paginate(10);
