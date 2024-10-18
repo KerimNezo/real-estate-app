@@ -71,8 +71,8 @@ class DatabaseSeeder extends Seeder
         $path = '/home/rimke/code/diplomski/realestate-app/public/photos';
 
         $admin->addMedia(''.$path.'/icons/adminPhoto.png')
-        ->preservingOriginal()
-        ->toMediaCollection('admin-pfp');
+            ->preservingOriginal()
+            ->toMediaCollection('admin-pfp');
 
         $admin->assignRole($adminRole);
 
