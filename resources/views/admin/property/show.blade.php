@@ -1,6 +1,6 @@
 <x-admin-layout>
     <x-slot:title>
-        Admin Panel
+        Property: {{ $property->name }}
     </x-slot:title>
 
     <!-- Page content -->
