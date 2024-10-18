@@ -15,8 +15,14 @@ class AdminController extends Controller
 
     public function showAgent(User $user)
     {
+        $agentData = $user->getAttributes();
+
+        unset($agentData['created_at'], $agentData['updated_at'], $agentData['email_verified_at'], $agentData['password'], $agentData['remember_token']);
+
+
         return view('admin.agent.show')
-            ->with('agent', $user);
+            ->with('agent', $user)
+            ->with('agentData', $agentData);
     }
 
     public function createAgent()
