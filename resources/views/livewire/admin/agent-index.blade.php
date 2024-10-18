@@ -12,19 +12,26 @@
     <!-- Properties Found -->
         <div class="py-8 text-xl text-center px-[6%]">
             <div class="overflow-x-auto">
+                <div>
+                    <p class="pb-2 text-sm text-left">
+                        All agents list
+                    </p>
+                </div>
                 <table class="min-w-full overflow-hidden bg-gray-800 rounded-xl">
                     <thead class="bg-gray-800 border-gray-700">
                         <tr id="table-header">
                             <!-- Profile photo -->
                             <x-table.table-header title="Avatar" />
-                            <!-- Image -->
+                            <!-- Agents Id -->
                             <x-table.table-header title="Id" />
-                            <!-- Agent -->
+                            <!-- Agent name -->
                             <x-table.table-header title="Name" />
-                            <!-- Price-->
+                            <!-- Email-->
                             <x-table.table-header title="Email" />
-                            <!-- City -->
+                            <!-- Phone Number -->
                             <x-table.table-header title="Phone Number" />
+                            <!-- One property display -->
+                            <x-table.table-header title="Agent properties" />
                         </tr>
                     </thead>
                     <tbody>
@@ -70,6 +77,16 @@
                                     <p>
                                         {{ $agent->phone_number }}
                                     </p>
+                                </div>
+                            </td>
+                            <!-- Agent Property section -->
+                            <td id="table-data">
+                                <div class="flex items-center justify-start">
+                                    <a href="/admin/agent/{{ $agent->id }}/#agent-properties">
+                                        <p>
+                                            <img src="{{ $agent->properties[0]->getFirstMediaUrl('property-photos') }}" alt="Agent Property Photo" class="w-[100px] h-[75px] object-cover rounded-[5px]">
+                                        </p>
+                                    </a>
                                 </div>
                             </td>
                         </tr>
