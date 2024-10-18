@@ -70,7 +70,7 @@
             <div class="overflow-x-auto">
                 <div>
                     <p class="pb-2 text-sm text-left">
-                        Property table
+                        Properties table
                     </p>
                 </div>
                 <table class="min-w-full overflow-hidden bg-gray-800 rounded-xl">
