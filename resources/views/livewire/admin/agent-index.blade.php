@@ -16,7 +16,7 @@
                     <thead class="bg-gray-800 border-gray-700">
                         <tr id="table-header">
                             <!-- Profile photo -->
-                            <x-table.table-header title="Photo" />
+                            <x-table.table-header title="Avatar" />
                             <!-- Image -->
                             <x-table.table-header title="Id" />
                             <!-- Agent -->
