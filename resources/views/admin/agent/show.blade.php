@@ -97,7 +97,7 @@
                             </div>
 
                             <!-- Property data -->
-                            <div>
+                            <div id="#agent-properties">
                                 @if($propertyData->isEmpty())
                                 <!-- Propreties Not Found -->
                                     <div class="flex-grow flex items-center justify-center px-[6%] py-4 mb-5">
