@@ -18,7 +18,8 @@ class PropertyResultList extends Component
         $this->reset(['properties']);
 
         $query = Property::query()
-            ->select('id', 'type_id', 'name', 'price', 'city', 'bedrooms', 'garage', 'furnished', 'floors', 'lease_duration', 'keycard_entry', 'surface', 'toilets');
+            ->select('id', 'type_id', 'name', 'price', 'city', 'bedrooms', 'garage', 'furnished', 'floors', 'lease_duration', 'keycard_entry', 'surface', 'toilets')
+            ->where('status', '=', 'Available');
 
         if ($filters['location']) {
             $query->where('city', '=', $filters['location']);

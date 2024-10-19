@@ -10,6 +10,7 @@ class WelcomeController extends Controller
     {
         $properties = Property::query()
             ->select('id', 'type_id', 'name', 'price', 'city', 'bedrooms', 'garage', 'furnished', 'floors', 'lease_duration', 'keycard_entry', 'surface', 'toilets')
+            ->where('status', '=', 'Available')
             ->with(['media' => function ($query) {
                 $query->orderBy('order_column', 'asc')
                     ->limit(1);
