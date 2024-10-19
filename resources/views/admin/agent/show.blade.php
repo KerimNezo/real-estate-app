@@ -209,8 +209,7 @@
                                                 <td id="table-data">
                                                     <div class="flex items-center justify-start">
                                                         <p>
-                                                            TO DO
-                                                            {{-- {{ $property->status }} --}}
+                                                            {{ $property->status }}
                                                         </p>
                                                     </div>
                                                 </td>
