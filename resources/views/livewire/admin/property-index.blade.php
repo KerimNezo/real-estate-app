@@ -179,11 +179,19 @@
                             </td>
                             <!-- Status -->
                             <td id="table-data">
-                                <div class="flex items-center justify-start">
-                                    <p>
-                                       {{ $property->status }}
-                                    </p>
-                                </div>
+                                @if ($property->status == 'Sold')
+                                    <div id="type" class="mb-auto mr-auto bg-red-600 rounded-[5px] w-[80px] h-7 text-sm font-bold flex items-center justify-center">
+                                        <div class="align-middle">
+                                            {{ $property->status }}
+                                        </div>
+                                    </div>
+                                @else
+                                    <div id="type" class="mb-auto mr-auto bg-green-600 rounded-[5px] w-[80px] h-7 text-sm font-bold flex items-center justify-center">
+                                        <div class="align-middle">
+                                            {{ $property->status }}
+                                        </div>
+                                    </div>
+                                @endif
                             </td>
                         </tr>
                         @endforeach
