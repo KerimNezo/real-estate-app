@@ -1,7 +1,7 @@
 <div>
     <div class="px-[6%]">
         @if($this->agents->isEmpty())
-    <!-- Propreties Not Found -->
+    <!-- Agents Not Found -->
         <div class="flex-grow flex items-center justify-center px-[6%] py-24 mb-5">
             <div class="text-center">
                 <img src="{{ asset('photos/icons/no-result.svg') }}" alt="No results" class="w-[100px] mx-auto">
@@ -9,7 +9,7 @@
             </div>
         </div>
     @else
-    <!-- Properties Found -->
+    <!-- Agents Found -->
         <div class="py-8 text-xl text-center px-[6%]">
             <div class="overflow-x-auto">
                 <div>
