@@ -182,6 +182,7 @@
                                 <div class="flex items-center justify-start">
                                     <p>
                                         TO DO
+                                        {{-- {{ $property->status }} --}}
                                     </p>
                                 </div>
                             </td>
