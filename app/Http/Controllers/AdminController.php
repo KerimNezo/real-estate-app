@@ -116,7 +116,7 @@ class AdminController extends Controller
 
         $desiredOrder = [
             'name', 'Type', 'price', 'city', 'street', 'country', 'surface',
-            'year_built', 'lat', 'lon', 'rooms', 'bedrooms', 'toilets',
+            'year_built', 'status', 'lat', 'lon', 'rooms', 'bedrooms', 'toilets',
             'garage', 'furnished', 'floors', 'garden', 'lease_duration',
             'video_intercom', 'keycard_entry', 'elevator', 'description',
         ];
