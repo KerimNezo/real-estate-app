@@ -20,7 +20,6 @@ class AdminController extends Controller
 
         unset($agentData['created_at'], $agentData['updated_at'], $agentData['email_verified_at'], $agentData['password'], $agentData['remember_token']);
 
-
         return view('admin.agent.show')
             ->with('agent', $user)
             ->with('agentData', $agentData)
