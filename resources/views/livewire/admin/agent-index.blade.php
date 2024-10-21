@@ -11,12 +11,12 @@
     @else
     <!-- Agents Found -->
         <div class="py-8 text-xl text-center px-[6%]">
+            <div>
+                <p class="pb-2 text-sm text-left">
+                    Agents table
+                </p>
+            </div>
             <div class="overflow-x-auto">
-                <div>
-                    <p class="pb-2 text-sm text-left">
-                        Agents table
-                    </p>
-                </div>
                 <table class="min-w-full overflow-hidden bg-gray-800 rounded-xl">
                     <thead class="bg-gray-800 border-gray-700">
                         <tr id="table-header">
@@ -45,6 +45,7 @@
                                     </p>
                                 </div>
                             </td>
+
                             <!-- Agent id -->
                             <td id="table-data">
                                 <div class="flex items-center justify-start">
@@ -53,6 +54,7 @@
                                     </p>
                                 </div>
                             </td>
+
                             <!-- Agent Name -->
                             <td id="table-data">
                                 <div class="flex items-center justify-start">
@@ -63,6 +65,7 @@
                                     </a>
                                 </div>
                             </td>
+
                             <!-- Agent Email -->
                             <td id="table-data">
                                 <div class="flex items-center justify-start">
@@ -71,6 +74,7 @@
                                     </p>
                                 </div>
                             </td>
+
                             <!-- Agent Phone Number -->
                             <td id="table-data">
                                 <div class="flex items-center justify-start">
@@ -79,6 +83,7 @@
                                     </p>
                                 </div>
                             </td>
+
                             <!-- Agent Property section -->
                             <td id="table-data">
                                 <div class="flex items-center justify-start">
