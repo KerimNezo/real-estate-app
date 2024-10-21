@@ -64,11 +64,6 @@ class PropertySeeder extends Seeder
                     'status' => $status,
                 ]);
 
-                // Adding profile picture for a property agent
-                $property->user->addMedia(''.$path.'/icons/realestateagent.png')
-                    ->preservingOriginal()
-                    ->toMediaCollection('agent-pfps');
-
                 // Adding first property photo
                 $property->addMedia(''.$path.'/'.$propertyPhoto[$type - 1].'s/'.$propertyPhoto[$type - 1].'0.jpg')
                     ->preservingOriginal()
