@@ -9,17 +9,17 @@
 
 
             <!-- Status (Sold - For Sale - Rent) -->
-            {{-- <div class="flex-col items-center justify-center pr-3 ml-auto">
-                <select id="" class="rounded-[5px] h-[35px] pl-[10px] pr-8 text-[#989898]-black bg-gray-800" name="asset-offer-id">
-                    <option value="0" disabled selected>Offer</option>
+            <div class="flex-col items-center justify-center pb-2 lg:pr-3 lg:mr-0 lg:ml-auto sm:ml-0 sm:mr-auto lg:pb-0">
+                <select id="" wire:model="assetOfferId" class="rounded-[5px] h-[40px] pl-[10px] pr-8 text-[#989898]-black bg-gray-800" name="asset-offer-id">
+                    <option value="0" selected>Offer</option>
                     <option value="1">Sale</option>
-                    <option value="2">Remt</option>
+                    <option value="2">Rent</option>
                     <option value="3">Sold</option>
                 </select>
-            </div> --}}
+            </div>
 
             <!-- cities -->
-            <div class="flex-col items-center justify-center pb-2 lg:pr-3 lg:mr-0 lg:ml-auto sm:ml-0 sm:mr-auto lg:pb-0">
+            <div class="flex-col items-center justify-center pb-2 lg:pr-3 lg:pb-0 sm:mr-auto lg:mr-0">
                 <select id="" wire:model="assetLocation" class="rounded-[5px] h-[40px] pl-[10px] pr-8 text-[#989898]-black bg-gray-800 w-full" name="asset-location">
                     <option value="" selected>City</option>
                     @foreach ($cities as $city)
