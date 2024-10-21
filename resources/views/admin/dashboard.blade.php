@@ -14,13 +14,33 @@
             @include('components.sidebar-admin')
 
             <!-- Main content-->
-            <div id="main-content" class="w-full pt-[100px] bg-gray-900">
-                <div class="h-[800px] w-full flex justify-center items-center z-9">
-                    <p class="mb-auto">welcome back to dashboard page, {{ Auth::user()->name }}</p>
+            <div id="main-content" class="flex flex-col flex-grow w-full pt-6 bg-gray-900">
+                <div class="h-[300px] w-full flex flex-col justify-center items-center z-9">
+                    <p class="mb-auto">Welcome back to dashboard page, {{ Auth::user()->name }}</p>
+
+                    <!-- Chart container -->
+                    <div class="ct-chart h-[400px] w-full mb-auto py-7"></div>
                 </div>
             </div>
         </div>
 
         @include('admin.footer')
     </div>
+
+    <script>
+        new Chartist.Line('.ct-chart', {
+            // labels su kolone, x-osa
+            labels: [1, 2, 3, 4, 5, 6, 7, 8],
+            // series su redovi, y-osa
+            series: [
+                [5, 9, 7, 8, 5, 3, 5, 4]
+            ]
+        }, {
+            low: 0,
+            showArea: true
+        });
+
+        // Trebaš skontati kako uraditi: boje, tačknice, datu i onda mijenjanje vremena
+    </script>
+
 </x-admin-layout>
