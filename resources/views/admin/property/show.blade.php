@@ -18,12 +18,12 @@
                 <div class="flex flex-col items-center justify-center w-full z-9">
                     <!-- table to display property media -->
                     <div class="py-8 text-xl text-center px-[6%] w-full">
+                        <div>
+                            <p class="pb-2 text-sm text-left">
+                                Property images
+                            </p>
+                        </div>
                         <div class="w-full overflow-x-auto">
-                            <div>
-                                <p class="pb-2 text-sm text-left">
-                                    Property images
-                                </p>
-                            </div>
                             <table class="min-w-full overflow-hidden bg-gray-800 rounded-xl">
                                 <!-- Header of the table -->
                                 <thead class="w-full bg-gray-800 border-gray-700">
@@ -71,12 +71,12 @@
 
                     <!-- table to display property agent data -->
                     <div class="py-8 text-xl text-center px-[6%] w-full">
+                        <div>
+                            <p class="pb-2 text-sm text-left">
+                                Agent information
+                            </p>
+                        </div>
                         <div class="w-full overflow-x-auto">
-                            <div>
-                                <p class="pb-2 text-sm text-left">
-                                    Agent information
-                                </p>
-                            </div>
                             <table class="min-w-full overflow-hidden bg-gray-800 rounded-xl">
                                 <!-- Header of the table -->
                                 <thead class="w-full bg-gray-800 border-gray-700">
@@ -137,12 +137,12 @@
 
                     <!-- table to display property data -->
                     <div class="py-8 text-xl text-center px-[6%] w-full">
+                        <div>
+                            <p class="pb-2 text-sm text-left">
+                                Property information
+                            </p>
+                        </div>
                         <div class="w-full overflow-x-auto">
-                            <div>
-                                <p class="pb-2 text-sm text-left">
-                                    Property information
-                                </p>
-                            </div>
                             <table class="min-w-full overflow-hidden bg-gray-800 rounded-xl">
                                 <!-- Header of the table -->
                                 <thead class="w-full bg-gray-800 border-gray-700">
@@ -177,7 +177,7 @@
                                         <!-- Value -->
                                         <td class="w-full px-4 py-4 text-base leading-6">
                                             <div class="flex items-center justify-start">
-                                                <p class="text-left">
+                                                <p class="text-left line-clamp-3">
                                                     @if ($key === 'price')
                                                     {{ number_format($value, 0) }} $
                                                     @elseif ($key === 'surface')
