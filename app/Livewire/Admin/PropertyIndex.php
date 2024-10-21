@@ -20,6 +20,8 @@ class PropertyIndex extends Component
 
     public $assetLocation;
 
+    public $assetOfferId;
+
     #[Locked]
     public $cities;
 
@@ -33,6 +35,7 @@ class PropertyIndex extends Component
         $this->assetTypeId = '';
         $this->minPrice = '';
         $this->maxPrice = '';
+        $this->assetOfferId = '';
     }
 
     #[Computed]
@@ -67,7 +70,19 @@ class PropertyIndex extends Component
             $prop = $prop->where('price', '<', $this->maxPrice);
         }
 
-        $this->reset(['minPrice', 'maxPrice', 'assetLocation', 'assetTypeId']);
+        if (! is_null($this->assetOfferId)) {
+            if ($this->assetOfferId == 3) {
+                $prop = $prop->where('status', '=', 'Sold');
+            } else if ($this->assetOfferId == 1) {
+                $prop = $prop->where('lease_duration', '=', null);
+                $prop = $prop->where('status', '=', 'Available');
+            } else if ($this->assetOfferId == 2) {
+                $prop = $prop->where('lease_duration', '!=', null);
+                $prop = $prop->where('status', '=', 'Available');
+            } else {}
+        }
+
+        $this->reset(['minPrice', 'maxPrice', 'assetLocation', 'assetTypeId', 'assetOfferId']);
 
         return $prop->paginate(10);
     }
