@@ -10,7 +10,7 @@
 
             <!-- Status (Sold - For Sale - Rent) -->
             <div class="flex-col items-center justify-center pb-2 lg:pr-3 lg:mr-0 lg:ml-auto sm:ml-0 sm:mr-auto lg:pb-0">
-                <select id="" wire:model="assetOfferId" class="rounded-[5px] h-[40px] pl-[10px] pr-8 text-[#989898]-black bg-gray-800" name="asset-offer-id">
+                <select id="" wire:model="assetOfferId" class="rounded-[5px] h-[40px] pl-[10px] pr-8 text-[#989898]-black bg-gray-800 w-full" name="asset-offer-id">
                     <option value="0" selected>Offer</option>
                     <option value="1">Sale</option>
                     <option value="2">Rent</option>
@@ -67,12 +67,12 @@
     @else
     <!-- Properties Found -->
         <div class="py-8 text-xl text-center px-[6%]">
+            <div>
+                <p class="pb-2 text-sm text-left">
+                    Properties table
+                </p>
+            </div>
             <div class="overflow-x-auto">
-                <div>
-                    <p class="pb-2 text-sm text-left">
-                        Properties table
-                    </p>
-                </div>
                 <table class="min-w-full overflow-hidden bg-gray-800 rounded-xl">
                     <thead class="bg-gray-800 border-gray-700">
                         <tr id="table-header">
