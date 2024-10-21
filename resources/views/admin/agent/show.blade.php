@@ -18,14 +18,14 @@
                 <div class="flex flex-col items-center justify-center w-full z-9">
                     <!-- table to display property agent data -->
                     <div class="py-8 text-xl text-center px-[6%] w-full">
+                        <div>
+                            <p class="pb-2 text-sm text-left">
+                                Agent information
+                            </p>
+                        </div>
                         <div class="w-full overflow-x-auto">
                             <!-- Agent data -->
-                            <div class="pb-6">
-                                <div>
-                                    <p class="pb-2 text-sm text-left">
-                                        Agent information
-                                    </p>
-                                </div>
+                            <div class="">
                                 <table class="min-w-full overflow-hidden bg-gray-800 rounded-xl">
                                     <!-- Header of the table -->
                                     <thead class="w-full bg-gray-800 border-gray-700">
@@ -95,7 +95,11 @@
                                     </tbody>
                                 </table>
                             </div>
+                        </div>
+                    </div>
 
+                    <!-- table to display agents property data -->
+                    <div class="py-8 text-xl text-center px-[6%] w-full">
                             <!-- Property data -->
                             <div id="#agent-properties">
                                 @if($propertyData->isEmpty())
@@ -108,11 +112,12 @@
                                     </div>
                                 @else
                                 <!-- Agent Properties -->
-                                    <div>
-                                        <p class="pb-2 text-sm text-left">
-                                            Agent's properties
-                                        </p>
-                                    </div>
+                                <div>
+                                    <p class="pb-2 text-sm text-left">
+                                        Agent's properties
+                                    </p>
+                                </div>
+                                <div class="w-full overflow-x-auto">
                                     <table class="min-w-full overflow-hidden bg-gray-800 rounded-xl">
                                         <thead class="bg-gray-800 border-gray-700">
                                             <tr id="table-header">
@@ -230,9 +235,9 @@
                                     <div class="static flex items-center justify-between w-full py-2">
                                         {{ $properties->links() }}
                                     </div> --}}
+                                </div>
                                 @endif
                             </div>
-                        </div>
                     </div>
                 </div>
             </div>
