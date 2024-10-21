@@ -22,8 +22,6 @@
                         <tr id="table-header">
                             <!-- Profile photo -->
                             <x-table.table-header title="Avatar" />
-                            <!-- Agents Id -->
-                            <x-table.table-header title="Id" />
                             <!-- Agent name -->
                             <x-table.table-header title="Name" />
                             <!-- Email-->
@@ -42,15 +40,6 @@
                                 <div class="flex items-center justify-start">
                                     <p>
                                         <img src="{{ $agent->getFirstMediaUrl('agent-pfps') }}" alt="Agent Profile Photo" class="w-[65px] h-[65px] object-cover rounded-[5px]">
-                                    </p>
-                                </div>
-                            </td>
-
-                            <!-- Agent id -->
-                            <td id="table-data">
-                                <div class="flex items-center justify-start">
-                                    <p>
-                                        {{ $agent->id }}
                                     </p>
                                 </div>
                             </td>
