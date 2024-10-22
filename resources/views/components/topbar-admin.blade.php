@@ -13,7 +13,7 @@
         </div>
 
         <div class="pr-4 ml-auto font-bold">
-            <p>{{ Auth::user()->name }}</p>
+            <p>{{ ucwords(Auth::user()->name) }}</p>
         </div>
 
         <button id="dugme" class="w-12 pr-8 my-auto" type="button">
