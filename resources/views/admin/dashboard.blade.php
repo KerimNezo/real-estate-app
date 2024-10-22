@@ -10,21 +10,26 @@
             @include('components.topbar-admin')
         </div>
 
-        <div class="flex w-full pt-[100px]">
+        <div class="flex w-full pt-[150px]">
             @include('components.sidebar-admin')
 
             <!-- Main content-->
-            <div id="main-content" class="flex flex-col flex-grow w-full pt-6 bg-gray-900">
-                <div class="h-[300px] w-full flex flex-col justify-center items-center z-9">
+            <div id="main-content" class="flex flex-col flex-grow w-full bg-gray-900">
+                <div class="flex flex-col items-center justify-center w-full z-9">
                     <p class="mb-auto">Welcome back to dashboard page, {{ Auth::user()->name }}</p>
 
                     <!-- Chart container -->
-                    <div class="ct-chart h-[400px] w-full mb-auto py-7"></div>
+                    <div class="w-[650px] bg-gray-800 rounded-[10px]">
+                        <div class="ct-chart h-[400px] w-full mb-auto pt-4"></div>
+                    </div>
                 </div>
             </div>
         </div>
 
-        @include('admin.footer')
+        <div class="mt-auto">
+            @include('admin.footer')
+        </div>
+
     </div>
 
     <script>
