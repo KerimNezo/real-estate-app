@@ -20,7 +20,7 @@
                     <div class="py-8 text-xl text-center px-[6%] w-full">
                         <div>
                             <p class="pb-2 text-sm text-left">
-                                Agent information
+                                {{ ucwords($agent->getRoleNames()[0]) }} information
                             </p>
                         </div>
                         <div class="w-full overflow-x-auto">
@@ -62,9 +62,15 @@
                                             <!-- Name -->
                                             <td class="w-full px-4 py-4 text-base leading-6">
                                                 <div class="flex items-center justify-start">
-                                                    <p class="text-left">
-                                                        <img src="{{ $agent->getFirstMediaUrl('agent-pfps') }}" alt="" class="rounded-[5px] h-[100px] w-[100px]">
-                                                    </p>
+                                                    @if ($agent->id === 1)
+                                                        <p class="text-left">
+                                                            <img src="{{ $agent->getFirstMediaUrl('admin-pfp') }}" alt="" class="rounded-[5px] h-[100px] w-[100px]">
+                                                        </p>
+                                                    @else
+                                                        <p class="text-left">
+                                                            <img src="{{ $agent->getFirstMediaUrl('agent-pfps') }}" alt="" class="rounded-[5px] h-[100px] w-[100px]">
+                                                        </p>
+                                                    @endif
                                                 </div>
                                             </td>
                                         </tr>
@@ -98,14 +104,20 @@
                         </div>
                     </div>
 
-                    <!-- table to display agents property data -->
-                    <div class="py-8 text-xl text-center px-[6%] w-full">
-                        <livewire:admin.agent-property-table :$agent />
-                    </div>
+                    @if ($agent->id === 1)
+
+                    @else
+                        <!-- table to display agents property data -->
+                        <div class="py-8 text-xl text-center px-[6%] w-full">
+                            <livewire:admin.agent-property-table :$agent />
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>
 
-        @include('admin.footer')
+        <div class="mt-auto">
+            @include('admin.footer')
+        </div>
     </div>
 </x-admin-layout>
