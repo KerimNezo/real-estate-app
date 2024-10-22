@@ -20,6 +20,8 @@
             </div>
         </div>
 
-        @include('admin.footer')
+        <div class="mt-auto">
+            @include('admin.footer')
+        </div>
     </div>
 </x-admin-layout>
