@@ -204,7 +204,7 @@
                             <!-- Row options-->
                             <td id="table-data">
                                 <div class="flex items-center justify-start gap-4">
-                                    <a href="{{ route('single-agent', $user = $property->user) }}" class="hover:text-red-400">
+                                    <a href="{{ route('admin-single-property', ['property' => $property, 'user' => $property->user]) }}" class="hover:text-red-400">
                                         <x-carbon-view class="w-[25px]"/>
                                     </a>
                                     <a href="{{ route('dashboard') }}" class="hover:text-red-400">
