@@ -348,7 +348,15 @@
     align-items: center;
 }
 
+#topbar-admin {
+    z-index: 99;
+}
+
 @media (min-width: 640px) { /* Ovdje su stvari koje želimo da se vide kada je širina ekrana +640px */
+
+    #topbar-admin {
+        z-index: 99;
+    }
 
     #header-title {
         display: flex;
