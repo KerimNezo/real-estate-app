@@ -135,65 +135,81 @@
                         </div>
                     </div>
 
-                    <!-- table to display property data -->
-                    <div class="py-8 text-xl text-center px-[6%] w-full">
-                        <div>
-                            <p class="pb-2 text-sm text-left">
-                                Property information
-                            </p>
-                        </div>
-                        <div class="w-full overflow-x-auto">
-                            <table class="min-w-full overflow-hidden bg-gray-800 rounded-xl">
-                                <!-- Header of the table -->
-                                <thead class="w-full bg-gray-800 border-gray-700">
-                                    <tr id="table-header" style="width: 100%">
-                                        <!-- Key -->
-                                        <th class="px-4 py-2 text-lg border-b border-gray-700">
-                                            <div class="flex items-center justify-start">
-                                                <p class="text-lg">Key</p>
-                                            </div>
-                                        </th>
+                    <!-- table to display property data and properity location on map-->
+                    <div class="py-8 text-xl text-center px-[6%] w-full flex justify-center items-center gap-2">
+                        <!-- Property data -->
+                        <div class="w-[50%]">
+                            <div>
+                                <p class="pb-2 text-sm text-left">
+                                    Property information
+                                </p>
+                            </div>
+                            <div class="w-full overflow-x-auto">
+                                <table class="min-w-full overflow-hidden bg-gray-800 rounded-xl">
+                                    <!-- Header of the table -->
+                                    <thead class="w-full bg-gray-800 border-gray-700">
+                                        <tr id="table-header" style="width: 100%">
+                                            <!-- Key -->
+                                            <th class="px-4 py-2 text-lg border-b border-gray-700">
+                                                <div class="flex items-center justify-start">
+                                                    <p class="text-lg">Key</p>
+                                                </div>
+                                            </th>
 
-                                        <!-- Data -->
-                                        <th class="w-full px-4 py-2 text-lg border-b border-gray-700">
-                                            <div class="flex items-center justify-start">
-                                                <p class="text-lg">Data</p>
-                                            </div>
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody class="w-full">
-                                    <!-- property data -->
-                                    @foreach ($propertyData as $key => $value)
-                                    <tr class="w-full border-t border-gray-700">
-                                        <!-- Key -->
-                                        <td class="px-4 py-4 text-base leading-6">
-                                            <div class="flex items-center justify-start">
-                                                <p class="text-left w-36">
-                                                    {{ ucwords(str_replace('_', ' ', $key)) }}
-                                                </p>
-                                            </div>
-                                        </td>
-                                        <!-- Value -->
-                                        <td class="w-full px-4 py-4 text-base leading-6">
-                                            <div class="flex items-center justify-start">
-                                                <p class="text-left line-clamp-3">
-                                                    @if ($key === 'price')
-                                                    {{ number_format($value, 0) }} $
-                                                    @elseif ($key === 'surface')
-                                                    {{ $value }} m<sup>2</sup>
-                                                    @elseif ($key === 'lease_duration' && $value !== 'No')
-                                                    {{ $value }} months
-                                                    @else
-                                                    {{ $value ?? 'No'}}
-                                                    @endif
-                                                </p>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
+                                            <!-- Data -->
+                                            <th class="w-full px-4 py-2 text-lg border-b border-gray-700">
+                                                <div class="flex items-center justify-start">
+                                                    <p class="text-lg">Data</p>
+                                                </div>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="w-full">
+                                        <!-- property data -->
+                                        @foreach ($propertyData as $key => $value)
+                                        <tr class="w-full border-t border-gray-700">
+                                            <!-- Key -->
+                                            <td class="px-4 py-4 text-base leading-6">
+                                                <div class="flex items-center justify-start">
+                                                    <p class="text-left w-36">
+                                                        {{ ucwords(str_replace('_', ' ', $key)) }}
+                                                    </p>
+                                                </div>
+                                            </td>
+                                            <!-- Value -->
+                                            <td class="w-full px-4 py-4 text-base leading-6">
+                                                <div class="flex items-center justify-start">
+                                                    <p class="text-left line-clamp-3">
+                                                        @if ($key === 'price')
+                                                        {{ number_format($value, 0) }} $
+                                                        @elseif ($key === 'surface')
+                                                        {{ $value }} m<sup>2</sup>
+                                                        @elseif ($key === 'lease_duration' && $value !== 'No')
+                                                        {{ $value }} months
+                                                        @else
+                                                        {{ $value ?? 'No'}}
+                                                        @endif
+                                                    </p>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Property location on map -->
+                        <div class="w-[50%]">
+                            <div class="w-full h-full flex flex-col justify-center items-center rounded-[5px] px-5 py-4 bg-gray-800 z-8">
+                                <div class="pb-4 mr-auto text-2xl font-bold">
+                                    <p>Location</p>
+                                </div>
+
+                                <div id="map" class="w-full rounded-[5px] border-[3px]">
+
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -267,6 +283,22 @@
                 previousButton.classList.add('hidden');
             }
         }
+    </script>
+
+    <!-- Map script-->
+    <script>
+        var map = L.map('map');
+
+        map.setView([{{ $lat }}, {{ $lon }}], 16);
+
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        }).addTo(map);
+
+        var marker = L.marker([{{ $lat }}, {{ $lon }}]).addTo(map)
+            .bindPopup('Your property')
+            .openPopup();
     </script>
 
 </x-admin-layout>
