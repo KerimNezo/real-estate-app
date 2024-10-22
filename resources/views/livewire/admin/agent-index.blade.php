@@ -83,6 +83,14 @@
                                     </a>
                                 </div>
                             </td>
+
+                            <td id="table-data">
+                                <div class="flex items-center justify-start gap-4">
+                                    <x-carbon-view class="w-[25px]"/>
+                                    <x-feathericon-edit class="w-[25px] h-[25px]" />
+                                    <x-heroicon-s-trash class="w-[25px]" />
+                                </div>
+                            </td>
                         </tr>
                         @endforeach
                     </tbody>
