@@ -136,9 +136,9 @@
                     </div>
 
                     <!-- table to display property data and properity location on map-->
-                    <div class="py-8 text-xl text-center px-[6%] w-full flex justify-center items-stretch gap-2">
+                    <div class="py-8 text-xl text-center px-[6%] w-full lg:flex sm:flex justify-center items-stretch gap-2">
                         <!-- Property data -->
-                        <div class="w-[50%]">
+                        <div class="lg:w-[50%] sm:w-full pb-2">
                             <div>
                                 <p class="pb-2 text-sm text-left">
                                     Property information
@@ -200,7 +200,7 @@
                         </div>
 
                         <!-- Property location on map -->
-                        <div id="sticky" class="w-[50%] z-2 !top-[80px]">
+                        <div id="sticky" class="lg:w-[50%] sm:w-full z-2 !top-[80px]">
                             <div class="w-full">
                                 <p class="pb-2 text-sm text-left">
                                     Properity location
