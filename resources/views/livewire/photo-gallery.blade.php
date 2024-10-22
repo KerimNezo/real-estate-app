@@ -2,7 +2,7 @@
     <div class="w-full h-full">
         <!-- Primary photo -->
         <div class="w-full">
-            <div>
+            <div class="cursor-pointer">
                 <div id="dugmeLijevo" wire:click="previousPhoto()">
                     <
                 </div>
@@ -12,7 +12,7 @@
                 <img src="{{ $mediaItems[$id]->getUrl() }}" alt="slika" id="mainPhoto">
             </div>
 
-            <div class="">
+            <div class="cursor-pointer">
                 <div id="dugmeDesno" class="ml-auto" wire:click="nextPhoto()">
                     >
                 </div>
