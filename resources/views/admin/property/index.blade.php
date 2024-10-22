@@ -28,6 +28,7 @@
 
         function confirmAction() {
             console.log('KLIKNO SI BUTTON');
+            // ovdje trebaš sad dodati da se pokaže pop up message kao, koji traži confirmation na delete propertya i taj confirm button će triggerat delete
         }
     </script>
 
