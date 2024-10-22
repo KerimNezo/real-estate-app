@@ -91,6 +91,9 @@ class AdminController extends Controller
 
         $propertyData['Type'] = $this->changeTypeData($propertyData['type_id']);
 
+        $lon = $propertyData['lon'];
+        $lat = $propertyData['lat'];
+
         unset($propertyData['type_id'], $propertyData['created_at'], $propertyData['updated_at'], $propertyData['user_id'], $propertyData['id'], $propertyData['lon'], $propertyData['lat']);
 
         unset($userData['created_at'], $userData['updated_at'], $userData['email_verified_at'], $userData['password'], $userData['remember_token']);
@@ -113,7 +116,9 @@ class AdminController extends Controller
             ->with('propertyData', $propertyData)
             ->with('userData', $userData)
             ->with('media', $media)
-            ->with('urlovi', $urlovi);
+            ->with('urlovi', $urlovi)
+            ->with('lon', $lon)
+            ->with('lat', $lat);
     }
 
     public function changeTypeData(int $number)
