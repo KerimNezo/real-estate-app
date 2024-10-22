@@ -22,4 +22,15 @@
 
         @include('admin.footer')
     </div>
+
+    <!-- Delete confirmation button -->
+    <script>
+
+        function confirmAction() {
+            console.log('KLIKNO SI BUTTON');
+        }
+    </script>
+
+{{-- href="{{ route('delete-property', ['user' => $property->user, 'property' => $property]) }}" --}}
+
 </x-admin-layout>

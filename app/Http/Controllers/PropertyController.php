@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Property;
 use Illuminate\Http\Request;
+use App\Models\User;
 
 // OVDJE IMA POSLA ZNAČI MILION, ali kasnije malo. index i show, sad, a ovi ostali su tek kasnije kad agente ubacimo
 
@@ -86,8 +87,18 @@ class PropertyController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Property $property)
-    {
-        //
-    }
+
+     public function destroy(User $user, Property $property)
+     {
+         try {
+             // Delete the property
+             $property->delete();
+
+             // Return a success response
+             return redirect()->back()->with('success', 'Property deleted successfully.');
+         } catch (\Exception $e) {
+             // Handle any errors that might occur
+             return redirect()->back()->with('error', 'There was an issue deleting the property.');
+         }
+     }
 }

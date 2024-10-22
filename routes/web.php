@@ -59,6 +59,9 @@ Route::middleware(['role:admin', 'auth', 'verified'])->group(function () {
     Route::get('admin/property/create', [AdminController::class, 'createProperty'])
         ->name('new-property');
 
+    Route::delete('admin/agent/{user}/property/{property}', [PropertyController::class, 'destroy'])
+        ->name('delete-property');
+
 });
 
 Route::middleware(['role:agent', 'auth', 'verified'])->group(function () {});

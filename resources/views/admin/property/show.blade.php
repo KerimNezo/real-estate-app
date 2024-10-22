@@ -234,6 +234,7 @@
         </div>
     </div>
 
+    <!-- Image modal script -->
     <script>
         let currentIndex = 0;
         let mediaUrls = @json($urlovi);
