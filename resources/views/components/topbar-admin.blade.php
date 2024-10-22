@@ -40,7 +40,7 @@
     </div>
 
 
-    <form id="goto-profile-form" action="{{ route('user.show', ['id' => Auth::user()->id])}}" method="GET" style="display: none;">
+    <form id="goto-profile-form" action="{{ route('single-agent', $user = Auth::user())}}" method="GET" style="display: none;">
     </form>
 
     <!-- Logout form-->
