@@ -55,7 +55,6 @@ class AdminController extends Controller
         // other agents and then he will be allowed to remove the agent
     }
 
-
     // Property Routes
     public function indexProperites(Request $request)
     {

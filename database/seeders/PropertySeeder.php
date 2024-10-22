@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use App\Models\Property;
 use App\Models\Type;
-use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class PropertySeeder extends Seeder
@@ -45,7 +44,7 @@ class PropertySeeder extends Seeder
                 $property = Property::factory()->create([
                     'name' => $propertyName[$type - 1],
                     'lease_duration' => $lease,
-                    'user_id' => $x+2,
+                    'user_id' => $x + 2,
                     'type_id' => Type::firstWhere('id', '=', $type),
                     'country' => 'Bosnia & Herzegovina',
                     'city' => $propertyCity[$x],

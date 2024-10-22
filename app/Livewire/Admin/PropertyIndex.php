@@ -73,13 +73,14 @@ class PropertyIndex extends Component
         if (! is_null($this->assetOfferId)) {
             if ($this->assetOfferId == 3) {
                 $prop = $prop->where('status', '=', 'Sold');
-            } else if ($this->assetOfferId == 1) {
+            } elseif ($this->assetOfferId == 1) {
                 $prop = $prop->where('lease_duration', '=', null);
                 $prop = $prop->where('status', '=', 'Available');
-            } else if ($this->assetOfferId == 2) {
+            } elseif ($this->assetOfferId == 2) {
                 $prop = $prop->where('lease_duration', '!=', null);
                 $prop = $prop->where('status', '=', 'Available');
-            } else {}
+            } else {
+            }
         }
 
         $this->reset(['minPrice', 'maxPrice', 'assetLocation', 'assetTypeId', 'assetOfferId']);

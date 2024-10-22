@@ -2,15 +2,14 @@
 
 namespace App\Livewire\Admin;
 
+use App\Models\Property;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
 use Livewire\WithPagination;
-use App\Models\Property;
-
 
 class AgentPropertyTable extends Component
 {
-    Use WithPagination;
+    use WithPagination;
 
     public $agent;
 
