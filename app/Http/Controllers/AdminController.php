@@ -31,7 +31,27 @@ class AdminController extends Controller
         return view('admin.agent.create');
     }
 
-    // ovi ispod će svi otvarati isti view
+    public function storeAgent()
+    {
+        // stores the new User object with the data passed from the form
+
+        // return view of agent-index
+    }
+
+    public function editAgent()
+    {
+        // return view with edit form
+    }
+
+    public function updateAgent()
+    {
+        // stores the object with updated data and returns to agent-index
+    }
+
+
+
+
+    // Property Routes
     public function indexProperites(Request $request)
     {
         $cities = Property::query()
@@ -54,8 +74,6 @@ class AdminController extends Controller
 
     public function createProperty()
     {
-        // action that opens up a page with a form to create new agent
-
         return view('admin.property.create');
     }
 
