@@ -107,6 +107,7 @@
                                     </p>
                                 </div>
                             </td>
+
                             <!-- Agent name -->
                             <td id="table-data">
                                 <div class="flex items-center justify-start">
@@ -117,6 +118,7 @@
                                     </a>
                                 </div>
                             </td>
+
                             <!-- Property price -->
                             <td id="table-data">
                                 <div class="flex items-center justify-start">
@@ -125,6 +127,7 @@
                                     </p>
                                 </div>
                             </td>
+
                             <!-- City -->
                             <td id="table-data">
                                 <div class="flex items-center justify-start">
@@ -133,6 +136,7 @@
                                     </p>
                                 </div>
                             </td>
+
                             <!-- Property Offer -->
                             <td id="table-data">
                                 @if (is_null($property->lease_duration))
@@ -145,6 +149,7 @@
                                     </div>
                                 @endif
                             </td>
+
                             <!-- Property Type-->
                             <td id="table-data">
                                 @if ($property->type_id == 1)
@@ -169,6 +174,7 @@
                                     Unknown
                                 @endif
                             </td>
+
                             <!-- Year Built -->
                             <td id="table-data">
                                 <div class="flex items-center justify-start">
@@ -177,6 +183,7 @@
                                     </p>
                                 </div>
                             </td>
+
                             <!-- Status -->
                             <td id="table-data">
                                 @if ($property->status == 'Sold')
@@ -192,6 +199,21 @@
                                         </div>
                                     </div>
                                 @endif
+                            </td>
+
+                            <!-- Row options-->
+                            <td id="table-data">
+                                <div class="flex items-center justify-start gap-4">
+                                    <a href="{{ route('single-agent', $user = $property->user) }}" class="hover:text-red-400">
+                                        <x-carbon-view class="w-[25px]"/>
+                                    </a>
+                                    <a href="{{ route('dashboard') }}" class="hover:text-red-400">
+                                        <x-feathericon-edit class="w-[25px] h-[25px]" />
+                                    </a>
+                                    <a href="{{ route('dashboard') }}" class="hover:text-red-400">
+                                        <x-heroicon-s-trash class="w-[25px]" />
+                                    </a>
+                                </div>
                             </td>
                         </tr>
                         @endforeach
