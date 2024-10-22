@@ -203,7 +203,7 @@
                         <div id="sticky" class="w-[50%] z-2 !top-[80px]">
                             <div class="w-full">
                                 <p class="pb-2 text-sm text-left">
-                                    Location
+                                    Properity location
                                 </p>
                             </div>
                             <div class="w-full flex flex-col justify-center items-center rounded-[5px] px-2 py-2 bg-gray-800">
