@@ -201,11 +201,12 @@
 
                         <!-- Property location on map -->
                         <div class="w-[50%]">
-                            <div class="w-full h-full flex flex-col justify-center items-center rounded-[5px] px-5 py-4 bg-gray-800 z-8">
-                                <div class="pb-4 mr-auto text-2xl font-bold">
-                                    <p>Location</p>
-                                </div>
-
+                            <div>
+                                <p class="pb-2 text-sm text-left">
+                                    Location
+                                </p>
+                            </div>
+                            <div class="w-full h-full flex flex-col justify-center items-center rounded-[5px] px-2 py-2 bg-gray-800 z-8">
                                 <div id="map" class="w-full rounded-[5px] border-[3px]">
 
                                 </div>
