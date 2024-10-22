@@ -86,9 +86,15 @@
 
                             <td id="table-data">
                                 <div class="flex items-center justify-start gap-4">
-                                    <x-carbon-view class="w-[25px]"/>
-                                    <x-feathericon-edit class="w-[25px] h-[25px]" />
-                                    <x-heroicon-s-trash class="w-[25px]" />
+                                    <a href="{{ route('single-agent', $user = $agent) }}" class="hover:text-red-400">
+                                        <x-carbon-view class="w-[25px]"/>
+                                    </a>
+                                    <a href="{{ route('dashboard') }}" class="hover:text-red-400">
+                                        <x-feathericon-edit class="w-[25px] h-[25px]" />
+                                    </a>
+                                    <a href="{{ route('dashboard') }}" class="hover:text-red-400">
+                                        <x-heroicon-s-trash class="w-[25px]" />
+                                    </a>
                                 </div>
                             </td>
                         </tr>
