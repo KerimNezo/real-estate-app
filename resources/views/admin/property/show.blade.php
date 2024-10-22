@@ -136,7 +136,7 @@
                     </div>
 
                     <!-- table to display property data and properity location on map-->
-                    <div class="py-8 text-xl text-center px-[6%] w-full flex justify-center items-center gap-2">
+                    <div class="py-8 text-xl text-center px-[6%] w-full flex justify-center items-stretch gap-2">
                         <!-- Property data -->
                         <div class="w-[50%]">
                             <div>
@@ -200,14 +200,14 @@
                         </div>
 
                         <!-- Property location on map -->
-                        <div class="w-[50%]">
-                            <div>
+                        <div id="sticky" class="w-[50%] z-2 !top-[80px]">
+                            <div class="w-full">
                                 <p class="pb-2 text-sm text-left">
                                     Location
                                 </p>
                             </div>
-                            <div class="w-full h-full flex flex-col justify-center items-center rounded-[5px] px-2 py-2 bg-gray-800 z-8">
-                                <div id="map" class="w-full rounded-[5px] border-[3px]">
+                            <div class="w-full flex flex-col justify-center items-center rounded-[5px] px-2 py-2 bg-gray-800">
+                                <div id="admin-map" class="w-full rounded-[5px] border-[3px] h-[480px]">
 
                                 </div>
                             </div>
@@ -288,7 +288,7 @@
 
     <!-- Map script-->
     <script>
-        var map = L.map('map');
+        var map = L.map('admin-map');
 
         map.setView([{{ $lat }}, {{ $lon }}], 16);
 
@@ -298,7 +298,7 @@
         }).addTo(map);
 
         var marker = L.marker([{{ $lat }}, {{ $lon }}]).addTo(map)
-            .bindPopup('Your property')
+            .bindPopup('{{ $propertyData['name']}}')
             .openPopup();
     </script>
 
