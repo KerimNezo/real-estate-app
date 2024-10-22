@@ -1,5 +1,5 @@
 <!-- Sidebar -->
-<div id="sidebar" class="fixed top-[100px] left-0 w-[220px] h-screen px-5 sm:px-10 sm:bg-opacity-0 bg-opacity-95 bg-gray-900 z-10 transform -translate-x-full transition-transform duration-300 sm:translate-x-0 lg:block">    <!-- Logo -->
+<div id="sidebar" class=" !z-50 fixed top-[100px] left-0 w-[220px] h-screen px-5 sm:px-10 sm:bg-opacity-0 bg-opacity-95 bg-gray-900 transform -translate-x-full transition-transform duration-300 sm:translate-x-0 lg:block">    <!-- Logo -->
     <div id="admin-sidebar-logo">
         <div class="mx-auto mt-5">
             <a href="/">
