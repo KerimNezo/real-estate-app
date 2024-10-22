@@ -39,6 +39,16 @@ Route::middleware(['role:admin', 'auth', 'verified'])->group(function () {
     Route::get('admin/agent/{user}', [AdminController::class, 'showAgent'])
         ->name('single-agent');
 
+    Route::get('admin/agent/{user}/edit', [AdminController::class, 'editAgent'])
+        ->name('edit-agent');
+
+    Route::put('admin/agent/{user}', [AdminController::class, 'updateAgent'])
+        ->name('update-agent');
+
+    Route::delete('admin/agent/{user}', [AdminController::class, 'deleteAgent'])
+        ->name('delete-agent');
+
+
     // Property routes
     Route::get('admin/agent/{user}/property/{property}', [AdminController::class, 'showProperty'])
         ->name('admin-single-property')
