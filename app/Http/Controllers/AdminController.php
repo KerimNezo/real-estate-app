@@ -48,7 +48,12 @@ class AdminController extends Controller
         // stores the object with updated data and returns to agent-index
     }
 
-
+    public function deleteAgent(User $user)
+    {
+        // action that will delete the Agent, but we will limit that it will not be possible
+        // to delete the agent if he has any properties assigned to him. Admin will first need to reassign the properties to
+        // other agents and then he will be allowed to remove the agent
+    }
 
 
     // Property Routes
