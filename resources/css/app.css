@@ -349,13 +349,15 @@
 }
 
 #topbar-admin {
-    z-index: 99;
+    position: fixed;
+    z-index: 110;
 }
 
 @media (min-width: 640px) { /* Ovdje su stvari koje želimo da se vide kada je širina ekrana +640px */
 
     #topbar-admin {
-        z-index: 99;
+        position: fixed;
+        z-index: 110;
     }
 
     #header-title {
@@ -435,7 +437,6 @@
     #sticky {
         position: sticky;                /* sticky */
         top: 0;                          /* top-[0] */
-        z-index: 100;                    /* z-[100] */
         display: flex;                   /* flex */
         flex-direction: column;          /* flex-col */
         justify-content: center;         /* justify-center */
