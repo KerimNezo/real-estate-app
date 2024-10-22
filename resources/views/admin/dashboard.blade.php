@@ -19,7 +19,8 @@
                     <p class="mb-auto">Welcome back to dashboard page, {{ Auth::user()->name }}</p>
 
                     <!-- Chart container -->
-                    <div class="w-[650px] bg-gray-800 rounded-[10px]">
+                    {{-- Responsive design will be a pain.... --}}
+                    <div class="w-[850px] bg-gray-800 rounded-[10px]">
                         <div class="ct-chart h-[400px] w-full mb-auto pt-4"></div>
                     </div>
                 </div>
