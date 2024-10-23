@@ -62,15 +62,13 @@
                                             <!-- Name -->
                                             <td class="w-full px-4 py-4 text-base leading-6">
                                                 <div class="flex items-center justify-start">
+                                                    <p class="text-left">
                                                     @if ($agent->id === 1)
-                                                        <p class="text-left">
-                                                            <img src="{{ $agent->getFirstMediaUrl('admin-pfp') }}" alt="" class="rounded-[5px] h-[100px] w-[100px]">
-                                                        </p>
+                                                        <img src="{{ $agent->getFirstMediaUrl('admin-pfp') }}" alt="" class="rounded-[5px] h-[100px] w-[100px]">
                                                     @else
-                                                        <p class="text-left">
-                                                            <img src="{{ $agent->getFirstMediaUrl('agent-pfps') }}" alt="" class="rounded-[5px] h-[100px] w-[100px]">
-                                                        </p>
+                                                        <img src="{{ $agent->getFirstMediaUrl('agent-pfps') }}" alt="" class="rounded-[5px] h-[100px] w-[100px]">
                                                     @endif
+                                                    </p>
                                                 </div>
                                             </td>
                                         </tr>
@@ -96,18 +94,14 @@
                                                 </td>
                                             </tr>
                                         @endforeach
-
-                                        <!-- PROVJERI DA LI TI KAD PASSAS OVDJE USERA KUPI I NJEGOVE PROPERTYE COKI ARAZ RIJEŠTI TO SVE DANAS POŠAMARAJ -->
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                     </div>
 
-                    @if ($agent->id === 1)
-
-                    @else
-                        <!-- table to display agents property data -->
+                    @if ($agent->id !== 1)
+                        {{-- Table that display agents properties --}}
                         <div class="py-8 text-xl text-center px-[6%] w-full">
                             <livewire:admin.agent-property-table :$agent />
                         </div>
@@ -121,7 +115,7 @@
         </div>
     </div>
 
-    <!-- Confirmation form modal -->
+    {{-- Confirmation form modal --}}
     <div id="confirmationButtonModal" class="fixed inset-0 z-50 hidden bg-black bg-opacity-95" onclick="closeConfirmationModal(event)">
         <div class="bg-gray-900 bg-opacity-95 rounded-[20px] w-[450px] h-[350px] relative mx-auto my-auto" onclick="event.stopPropagation()">
             <div class="flex flex-col items-center justify-center h-full p-2">
@@ -153,7 +147,7 @@
                         Cancel
                     </button>
 
-                    <!-- Hidden form for deletion -->
+                    {{-- Hidden form for sending delete request --}}
                     <form id="deletePropertyForm" action="" method="POST" class="ml-auto">
                         @csrf
                         @method('DELETE') <!-- Spoofing the DELETE request -->
