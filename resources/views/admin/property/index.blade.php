@@ -76,8 +76,7 @@
             document.getElementById('propertyPhoto').src = imageUrl;
             document.getElementById('propertyName').textContent = property.name;
 
-            // Set the action URL for the delete form
-            document.getElementById('deletePropertyForm').action = `${property.id}`;
+            document.getElementById('deletePropertyForm').action = `{{ route('delete-property', ':id') }}`.replace(':id', property.id);
         }
 
         function closeConfirmationModal(event) {

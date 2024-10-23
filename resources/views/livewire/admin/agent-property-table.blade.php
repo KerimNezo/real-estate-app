@@ -142,7 +142,7 @@
                                 <a href="{{ route('dashboard') }}" class="hover:text-red-400">
                                     <x-feathericon-edit class="w-[25px] h-[25px]" />
                                 </a>
-                                <a href="{{ route('dashboard') }}" class="hover:text-red-400">
+                                <a class="hover:text-red-400" onclick="openConfirmationModal({{$property}}, '{{$property->getFirstMediaUrl('property-photos')}}')">
                                     <x-heroicon-s-trash class="w-[25px]" />
                                 </a>
                             </div>
