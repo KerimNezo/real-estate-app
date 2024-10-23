@@ -12,7 +12,7 @@
             </button>
         </div>
 
-        <!-- Pop up message displayed to admin after CRUD actions-->
+        <!-- Pop up message displayed to admin after CRUD actions -->
         @if (session('success'))
             <div id="sessionMessage" class="relative p-4 text-white bg-green-500 rounded-md w-[400px] justify-center items-center" >
                 <span class="absolute flex items-center justify-center px-[9px] py-0 text-base text-white bg-green-700 rounded-full cursor-pointer top-1 right-1 text-center" onclick="closeSessionMessage()">&times;</span>
@@ -60,7 +60,6 @@
         </div>
     </div>
 
-
     <form id="goto-profile-form" action="{{ route('single-agent', $user = Auth::user())}}" method="GET" style="display: none;">
     </form>
 
@@ -105,10 +104,13 @@
 
         // function that will automatically close the popup message notifiying the admin about the status of his action
         window.onload = function() {
-            if(){
+
+            sessionMessage = document.getElementById('sessionMessage');
+
+            if(sessionMessage){
                 setTimeout(() => {
-                    document.getElementById('sessionMessage').classList.add('hidden'); // Hide the message
-                }, 5000); // 10000 milliseconds = 10 seconds
+                    sessionMessage.classList.add('hidden'); // Hide the message
+                }, 7000); // 10000 milliseconds = 10 seconds
             }
         };
     </script>
