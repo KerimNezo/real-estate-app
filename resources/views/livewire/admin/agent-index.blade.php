@@ -76,11 +76,17 @@
                             <!-- Agent Property section -->
                             <td id="table-data">
                                 <div class="flex items-center justify-start">
-                                    <a href="/admin/agent/{{ $agent->id }}/#agent-properties">
-                                        <p>
-                                            <img src="{{ $agent->properties[0]->getFirstMediaUrl('property-photos') }}" alt="Agent Property Photo" class="w-[100px] h-[75px] object-cover rounded-[5px]">
-                                        </p>
-                                    </a>
+                                    @if ($agent->properties->isNotEmpty()) <!-- Check if agent has properties -->
+                                        <a href="/admin/agent/{{ $agent->id }}/#agent-properties">
+                                            <p>
+                                                <img src="{{ $agent->properties[0]->getFirstMediaUrl('property-photos') }}" alt="Agent Property Photo" class="w-[100px] h-[75px] object-cover rounded-[5px]">
+                                            </p>
+                                        </a>
+                                    @else
+                                        <div class="flex items-center justify-center w-[100px]">
+                                            <x-ionicon-image-sharp class="h-[75px] mx-auto"/>
+                                        </div>
+                                    @endif
                                 </div>
                             </td>
 
