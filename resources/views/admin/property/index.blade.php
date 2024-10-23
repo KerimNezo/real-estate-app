@@ -73,7 +73,6 @@
         function openConfirmationModal(property, imageUrl) {
             document.getElementById('confirmationButtonModal').classList.remove('hidden');
             document.getElementById('confirmationButtonModal').classList.add('flex');
-            document.getElementById('page-content').classList.add('blur-sm');
             document.getElementById('propertyPhoto').src = imageUrl;
             document.getElementById('propertyName').textContent = property.name;
 
@@ -86,8 +85,6 @@
                 event.stopPropagation(); // Prevents the event from bubbling if the click was on the modal content
             }
             document.getElementById('confirmationButtonModal').classList.add('hidden');
-            document.getElementById('page-content').classList.remove('blur-sm');
         }
     </script>
-
 </x-admin-layout>
