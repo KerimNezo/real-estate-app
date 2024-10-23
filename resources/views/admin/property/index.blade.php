@@ -68,14 +68,12 @@
     <script>
         let property;
 
-        function openConfirmationModal(propertyName, imageUrl) {
+        function openConfirmationModal(property, imageUrl) {
             document.getElementById('confirmationButtonModal').classList.remove('hidden');
             document.getElementById('confirmationButtonModal').classList.add('flex');
             document.getElementById('page-content').classList.add('blur-sm');
-            console.log(propertyName);
-            console.log(imageUrl);
             document.getElementById('propertyPhoto').src = imageUrl;
-            document.getElementById('propertyName').textContent = propertyName;
+            document.getElementById('propertyName').textContent = property.name;
         }
 
         function closeConfirmationModal(event) {
