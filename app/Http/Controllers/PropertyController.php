@@ -88,7 +88,7 @@ class PropertyController extends Controller
      * Remove the specified resource from storage.
      */
 
-     public function destroy(User $user, Property $property)
+     public function destroy(Property $property)
      {
          try {
              // Delete the property
