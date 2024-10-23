@@ -45,8 +45,7 @@
                     {{-- Property image --}}
                     <div class="px-5 bg-gray-800 rounded-[20px] w-full py-3 flex justify-center items-center">
                         <img id="propertyPhoto" src="" alt="Property image" class="w-24 rounded-[10px] mr-auto">
-
-                        <p id="propertyName" class="text-base text-center"> </p>
+                        <p id="propertyName" class="text-base text-center"></p>
                     </div>
                 </div>
 
@@ -56,9 +55,14 @@
                         Cancel
                     </button>
 
-                    <button class="px-4 py-2 ml-auto bg-red-600 rounded-[10px]" onclick="deleteProperty()">
-                        Delete
-                    </button>
+                    <!-- Hidden form for deletion -->
+                    <form id="deletePropertyForm" action="" method="POST" class="ml-auto">
+                        @csrf
+                        @method('DELETE') <!-- Spoofing the DELETE request -->
+                        <button type="submit" class="px-4 py-2 bg-red-600 rounded-[10px]">
+                            Delete
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -66,14 +70,15 @@
 
     <!-- Modal script -->
     <script>
-        let property;
-
         function openConfirmationModal(property, imageUrl) {
             document.getElementById('confirmationButtonModal').classList.remove('hidden');
             document.getElementById('confirmationButtonModal').classList.add('flex');
             document.getElementById('page-content').classList.add('blur-sm');
             document.getElementById('propertyPhoto').src = imageUrl;
             document.getElementById('propertyName').textContent = property.name;
+
+            // Set the action URL for the delete form
+            document.getElementById('deletePropertyForm').action = `${property.id}`;
         }
 
         function closeConfirmationModal(event) {
@@ -84,7 +89,5 @@
             document.getElementById('page-content').classList.remove('blur-sm');
         }
     </script>
-
-    {{-- href="{{ route('delete-property', ['user' => $property->user, 'property' => $property]) }}" --}}
 
 </x-admin-layout>
