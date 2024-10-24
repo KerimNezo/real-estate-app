@@ -15,9 +15,9 @@
 
             <!-- Main content -->
             <div id="main-content" class="flex flex-col flex-grow w-full pt-6 bg-gray-900">
-                <div class="w-[80%] mx-auto">
+                <div class="w-[80%] mx-auto py-8">
                     <!-- Update Property Form -->
-                    <form action="{{ route('update-property', ['property' => $property->id]) }}" method="POST" enctype="multipart/form-data" class="w-full p-6 mx-auto bg-gray-800 rounded-lg shadow-lg">
+                    <form action="{{ route('update-property', ['property' => $property->id]) }}" method="POST" enctype="multipart/form-data" class="w-full p-4 mx-auto bg-gray-800 rounded-lg shadow-lg">
                         @csrf
                         @method('PUT')
 
