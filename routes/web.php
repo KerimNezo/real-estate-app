@@ -48,16 +48,24 @@ Route::middleware(['role:admin', 'auth', 'verified'])->group(function () {
     Route::delete('admin/agent/{user}', [AdminController::class, 'deleteAgent'])
         ->name('delete-agent');
 
-    // Property routes
-    Route::get('admin/agent/{user}/property/{property}', [AdminController::class, 'showProperty'])
-        ->name('admin-single-property')
-        ->scopeBindings();
 
+
+    // Property routes
     Route::get('admin/property/index', [AdminController::class, 'indexProperites'])
         ->name('admin-properties');
 
     Route::get('admin/property/create', [AdminController::class, 'createProperty'])
         ->name('new-property');
+
+    Route::get('admin/agent/{user}/property/{property}', [AdminController::class, 'showProperty'])
+        ->name('admin-single-property')
+        ->scopeBindings();
+
+    Route::get('admin/property/{property}/edit', [PropertyController::class, 'edit'])
+        ->name('edit-property');
+
+    Route::put('admin/property/{property}', [PropertyController::class, 'update'])
+        ->name('update-property');
 
     Route::delete('admin/property/{property}', [PropertyController::class, 'destroy'])
         ->name('delete-property');
