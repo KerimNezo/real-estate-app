@@ -72,7 +72,9 @@ class PropertyController extends Controller
      */
     public function edit(Property $property)
     {
-        //
+
+
+        return view('admin.property.edit');
     }
 
     /**
