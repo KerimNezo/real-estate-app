@@ -72,9 +72,10 @@ class PropertyController extends Controller
      */
     public function edit(Property $property)
     {
+        $agents = 0;
 
-
-        return view('admin.property.edit');
+        return view('admin.property.edit')
+            ->with('property', $property);
     }
 
     /**
@@ -82,7 +83,30 @@ class PropertyController extends Controller
      */
     public function update(Request $request, Property $property)
     {
-        //
+        // Dolazi nam ovdje, sad ga samo treba hendlat
+
+        logger($request);
+
+        // $request->validate([
+        //     'price' => 'required|numeric',
+        //     'city' => 'required|string|max:255',
+        //     'offer_type' => 'required|string',
+        //     'type_id' => 'required|integer',
+        //     'year_built' => 'required|integer',
+        //     'status' => 'required|string',
+        // ]);
+
+        // // Update property data
+        // $property->update([
+        //     'price' => $request->price,
+        //     'city' => $request->city,
+        //     'lease_duration' => $request->offer_type == 'rent' ? 'some value' : null, // Adjust based on your logic
+        //     'type_id' => $request->type_id,
+        //     'year_built' => $request->year_built,
+        //     'status' => $request->status,
+        // ]);
+
+        return redirect()->route('admin-properties')->with('success', 'Property updated successfully');
     }
 
     /**
