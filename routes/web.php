@@ -36,6 +36,9 @@ Route::middleware(['role:admin', 'auth', 'verified'])->group(function () {
     Route::get('admin/agent/create', [AdminController::class, 'createAgent'])
         ->name('new-agent');
 
+    Route::post('admin/agent/create', [AdminController::class, 'storeAgent'])
+        ->name('store-agent');
+
     Route::get('admin/agent/{user}', [AdminController::class, 'showAgent'])
         ->name('single-agent');
 
