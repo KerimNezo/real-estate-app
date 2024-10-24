@@ -207,7 +207,7 @@
                                     <a href="{{ route('admin-single-property', ['property' => $property, 'user' => $property->user]) }}" class="hover:text-red-400">
                                         <x-carbon-view class="w-[25px]"/>
                                     </a>
-                                    <a href="{{ route('dashboard') }}" class="hover:text-red-400">
+                                    <a href="{{ route('edit-property', $property) }}" class="hover:text-red-400">
                                         <x-feathericon-edit class="w-[25px] h-[25px]" />
                                     </a>
                                     <a class="hover:text-red-400" onclick="openConfirmationModal({{$property}}, '{{$property->getFirstMediaUrl('property-photos')}}')">
