@@ -87,24 +87,24 @@ class PropertyController extends Controller
 
         logger($request);
 
-        // $request->validate([
-        //     'price' => 'required|numeric',
-        //     'city' => 'required|string|max:255',
-        //     'offer_type' => 'required|string',
-        //     'type_id' => 'required|integer',
-        //     'year_built' => 'required|integer',
-        //     'status' => 'required|string',
+        // $property = Property::findOrFail($property);
+
+        // // Update text data
+        // $property->update([
+        //     'title' => $request->data['title'],
+        //     'description' => $request->data['description'],
         // ]);
 
-        // // Update property data
-        // $property->update([
-        //     'price' => $request->price,
-        //     'city' => $request->city,
-        //     'lease_duration' => $request->offer_type == 'rent' ? 'some value' : null, // Adjust based on your logic
-        //     'type_id' => $request->type_id,
-        //     'year_built' => $request->year_built,
-        //     'status' => $request->status,
-        // ]);
+        // // Handle photo additions
+        // foreach ($request->data['addedPhotos'] as $photo) {
+        //     $property->addMedia($photo->getPath())->toMediaCollection('property-photos');
+        // }
+
+        // // Handle photo deletions
+        // Media::destroy($request->data['removedPhotoIds']);
+
+        // return redirect()->back()->with('status', 'Property updated successfully!');
+
 
         return redirect()->route('admin-properties')->with('success', 'Property updated successfully');
     }
