@@ -97,8 +97,12 @@ class AdminController extends Controller
 
         unset($userData['created_at'], $userData['updated_at'], $userData['email_verified_at'], $userData['password'], $userData['remember_token']);
 
-        foreach ($media as $slike) {
-            $urlovi[$slike->order_column] = $slike->getUrl();
+        if($media->isNotEmpty()){
+            foreach ($media as $slike) {
+                $urlovi[$slike->order_column] = $slike->getUrl();
+            }
+        } else {
+            $urlovi = 0;
         }
 
         $propertyData['garden'] = $this->numberToBool($propertyData['garden']);
