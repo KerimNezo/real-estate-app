@@ -33,7 +33,7 @@
                         @foreach ($properties as $property )
                             <div wire:key="{{ $property['id'] }}">
                                 <a href="{{ route('single-property', ['id' => $property['id']]) }}">
-                                    <x-property-card :imageUrl='$property->getFirstMediaUrl("property-photos")' :$property/>
+                                    <x-property-card :h='300' :imageUrl='$property->getFirstMediaUrl("property-photos")' :$property/>
                                 </a>
                             </div>
                         @endforeach
