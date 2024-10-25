@@ -10,51 +10,66 @@
         <div class="w-full h-full px-20">
             <!-- Table to display property images -->
             <div class="w-full py-8 text-xl text-center">
-                <div class="flex items-center justify-center pb-2">
-                    <p class="pb-2 mr-auto text-lg font-bold text-left">
-                        Property images:
-                    </p>
-                    <button type="button" wire:click="resetPhotos" class="px-3 py-2 ml-auto text-base text-white bg-blue-600 rounded-lg">
-                        Reset photos
-                    </button>
-                </div>
-                <div class="w-full overflow-x-auto">
-                    <div class="flex items-center justify-start w-full space-x-2 overflow-x-auto whitespace-nowrap">
-                        @foreach($this->propertyPhotos as $index => $media)
-                            <div class="relative">
-                                <img src="{{ $media->getUrl() }}"
-                                     alt="Property Photo"
-                                     class="w-[150px] h-[90px] object-cover rounded-lg cursor-pointer"
-                                     onclick="openModal('{{ $media->getUrl() }}', {{ $index }})">
-                                <button type="button" class="absolute flex items-center justify-center w-5 h-5 text-xs text-black bg-white rounded-full top-1 right-1"
-                                        wire:click="removePhoto({{ $index }})">
-                                    <div class="flex items-center justify-center pb-[2px] font-bold">
-                                        <p>x</p>
-                                    </div>
-                                </button>
-                            </div>
-                        @endforeach
-
-                        @if (count($this->propertyPhotos) <= 5)
-                            <div class="relative" onclick="document.getElementById('file-upload').click()">
-                                <a>
-                                    <div class="bg-gray-900 w-[150px] h-[90px] rounded-lg flex justify-center items-center cursor-pointer">
-                                        <x-fas-plus-circle class="w-[70px] h-[50px]"/>
-                                    </div>
-                                </a>
-                            </div>
-
-                            <!-- Hidden file input -->
-                            <input type="file" id="file-upload" class="hidden" wire:model="uploadedFile">
-                        @endif
+                <form wire:submit.prevent="uploadPhotos">
+                    <div class="flex items-center justify-center pb-2">
+                        <p class="pb-2 mr-auto text-lg font-bold text-left">
+                            Property images:
+                        </p>
+                        <button type="button" wire:click="resetPhotos" class="px-3 py-2 ml-auto text-base text-white bg-blue-600 rounded-lg">
+                            Reset photos
+                        </button>
                     </div>
-                </div>
+                    <div class="w-full overflow-x-auto">
+                        <div class="flex items-center justify-start w-full space-x-2 overflow-x-auto whitespace-nowrap">
+                            @foreach($this->tempPhotos as $index => $media)
+                                <div class="relative">
+                                    <img src="{{ $media->getUrl() }}"
+                                        alt="Property Photo"
+                                        class="w-[150px] h-[90px] object-cover rounded-lg cursor-pointer"
+                                        onclick="openModal('{{ $media->getUrl() }}', {{ $index }})">
+                                    <button type="button" class="absolute flex items-center justify-center w-5 h-5 text-xs text-black bg-white rounded-full top-1 right-1"
+                                            wire:click="removePhoto({{ $index }}, {{ $media->id }})"  wire:loading.attr="disabled">
+                                        <div class="flex items-center justify-center pb-[2px] font-bold">
+                                            <p>x</p>
+                                        </div>
+                                    </button>
+                                </div>
+                            @endforeach
+
+                            @if (count($this->tempPhotos) <= 5)
+                                <div class="relative" onclick="document.getElementById('file-upload').click()">
+                                    <a>
+                                        <div class="bg-gray-900 w-[150px] h-[90px] rounded-lg flex justify-center items-center cursor-pointer">
+                                            <x-fas-plus-circle class="w-[70px] h-[50px]"/>
+                                        </div>
+                                    </a>
+                                </div>
+                                @error('newPhotos')
+                                    <div class="text-red-500">{{ $message }}</div>
+                                @enderror
+
+                                <!-- Hidden file input -->
+                                <input type="file" multiple id="file-upload" class="hidden" wire:model="newPhotos">
+                            @endif
+                        </div>
+                    </div>
+                </form>
             </div>
 
             <!-- Property data -->
             <div class="flex w-full h-full gap-4">
                 <!-- General property data -->
                 <div class="w-full">
+                    <!-- Property agent -->
+                    <div class="mb-4 mr-auto">
+                        <label for="name" class="block mb-2 font-bold">Agent:</label>
+                        <select wire:model="tempAgent" class="w-full px-3 py-2 bg-gray-800 rounded-lg" >
+                            @foreach ($this->agents as $agent)
+                                <option value="{{$agent->id}}">{{$agent->name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
                     <!-- Property Name -->
                     <div class="mb-4 mr-auto">
                         <label for="name" class="block mb-2 font-bold">Name:</label>
@@ -125,7 +140,7 @@
         </div>
 
         <!-- Update Button -->
-        <div class="text-center">
+        <div class="pt-6 text-center">
             <button type="submit" class="px-6 py-2 text-white bg-blue-600 rounded-lg">
                 Update Property
             </button>
