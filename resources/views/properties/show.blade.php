@@ -30,15 +30,17 @@
     <main class="w-full h-full pt-32 text-black bg-white">
         <div class="flex flex-col items-center justify-center w-full h-full">
             <!-- Property photos -->
-            <div class="w-[80%] flex">
-                @if ($photoCount === 0)
+            @if ($photoCount === 0)
+                <div class="w-[80%] flex">
                     <div class="flex items-center justify-center w-[50%] h-[300px] mx-auto">
                         <x-ionicon-image-sharp class="h-[300px] mx-auto "/>
                     </div>
-                @else
-                    <livewire:photo-gallery :mediaItems='$mediaItems' :photoCount='$photoCount'/>
-                @endif
-            </div>
+                </div>
+            @else
+                <div class="w-[80%]">
+                    <livewire:photo-gallery :mediaItems='$mediaItems' :photoCount='$photoCount' class="w-full mx-auto"/>
+                </div>
+            @endif
 
             <!-- Property/agent information -->
             <div id="show-information-section" class="h-full rounded-[10px] flex justify-center items-stretch py-4 gap-4">
@@ -227,7 +229,7 @@
                 <div id="similar-properties-list" class="flex items-center justify-center w-full gap-[35px]">
                     @foreach ($similarProperties as $property )
                         <a href="{{ route('single-property', ['id' => $property->id]) }}" class="w-full">
-                            <x-similar-property-card :imageUrl='$property->getFirstMediaUrl("property-photos")' :$property/>
+                            <x-property-card :h='260' :imageUrl='$property->getFirstMediaUrl("property-photos")' :$property/>
                         </a>
                     @endforeach
                 </div>
