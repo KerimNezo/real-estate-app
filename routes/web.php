@@ -7,7 +7,12 @@ use App\Http\Controllers\SearchController;
 use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
 
-// nisi fixao recomended property imageUrl na propertyCard iz razloga što a) nemaš algoritam za to. tkd nema potrebe džaba praviti sad
+// nisi fixao recomended property imageUrl na propertyCard iz razloga što a) nemaš algoritam za to.
+//tkd nema potrebe džaba praviti sad
+
+// Nisi napravio delete agenta, imaš iole kod, samo nisi to još implementirao iz razloga što ti ne radi
+// mijenjanje agenata na propertijima, a brisanje agenta koji ima propertije je suludo, tako da kad uradiš
+// property edit uzmi raditi brisanje agenta i logiku koja dolazi sa time.
 
 Route::get('/', WelcomeController::class)
     ->name('home');
