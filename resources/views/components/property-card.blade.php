@@ -1,6 +1,6 @@
-@props(['property', 'imageUrl', 'h'])
+@props(['property', 'imageUrl' => './photos/house-placeholder.jpg', 'h'])
 
-<div id="pozadina" class="group w-full h-[{{$h}}px] text-white rounded-[15px] flex flex-col justify-end bg-cover" style="background-image:linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.73)), url('{{ $imageUrl }}')">
+<div id="pozadina" class="group w-full h-[{{$h}}px] text-white rounded-[15px] flex flex-col justify-end bg-cover" style="background-image:linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.73)), url({{ $imageUrl }})">
     <!-- section about properties offer -->
     <x-property-offer :lease="$property->lease_duration" />
 
