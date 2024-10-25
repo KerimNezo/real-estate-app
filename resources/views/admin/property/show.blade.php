@@ -55,12 +55,16 @@
                                         <!-- Value -->
                                         <td class="w-full" id="table-data">
                                             <div class="flex items-center justify-start w-full space-x-2 overflow-x-auto whitespace-nowrap">
-                                                @foreach($property->getMedia('property-photos') as $index => $media)
-                                                    <img src="{{ $media->getUrl() }}"
-                                                         alt="Property Photo"
-                                                         class="w-[150px] h-[90px] object-cover rounded-lg cursor-pointer"
-                                                         onclick="openModal('{{ $media->getUrl() }}', {{ $media->order_column }})">
-                                                @endforeach
+                                                @if ($media->isEmpty())
+                                                    <x-ionicon-image-sharp class="h-[75px] mr-auto"/>
+                                                @else
+                                                    @foreach($media as $index => $slika)
+                                                        <img src="{{ $slika->getUrl() }}"
+                                                            alt="Property Photo"
+                                                            class="w-[150px] h-[90px] object-cover rounded-lg cursor-pointer"
+                                                            onclick="openModal('{{ $slika->getUrl() }}', {{ $slika->order_column }})">
+                                                    @endforeach
+                                                @endif
                                             </div>
                                         </td>
                                     </tr>
