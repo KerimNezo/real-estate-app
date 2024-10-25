@@ -30,8 +30,14 @@
     <main class="w-full h-full pt-32 text-black bg-white">
         <div class="flex flex-col items-center justify-center w-full h-full">
             <!-- Property photos -->
-            <div class="w-[80%]">
-                <livewire:photo-gallery :mediaItems='$mediaItems' :photoCount='$photoCount'/>
+            <div class="w-[80%] flex">
+                @if ($photoCount === 0)
+                    <div class="flex items-center justify-center w-[50%] h-[300px] mx-auto">
+                        <x-ionicon-image-sharp class="h-[300px] mx-auto "/>
+                    </div>
+                @else
+                    <livewire:photo-gallery :mediaItems='$mediaItems' :photoCount='$photoCount'/>
+                @endif
             </div>
 
             <!-- Property/agent information -->
