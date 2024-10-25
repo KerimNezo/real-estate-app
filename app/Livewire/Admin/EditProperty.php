@@ -3,46 +3,62 @@
 namespace App\Livewire\Admin;
 
 use Livewire\Component;
+use Livewire\WithFileUploads;
+use Livewire\Attributes\Validate;
+use Livewire\Attributes\Computed;
+
+use App\Models\User;
 
 class EditProperty extends Component
 {
+    use WithFileUploads;
 
     public $property;
 
-    public $propertyPhotos;
-
-    public $oldPhotos;
-
-    public function mount()
+    #[Computed]
+    public function agents()
     {
-        $this->propertyPhotos = $this->property->getMedia('property-photos');
-        $this->oldPhotos = clone $this->propertyPhotos;
+        $agent = User::query()
+        ->select('id', 'name')
+        ->where('id','>', 1)
+        ->latest();
+
+        return $agent->get();
     }
 
-    public function removePhoto($index)
-    {
-        // Get the media item to be removed
-        $mediaToRemove = $this->propertyPhotos[$index];
+    public $tempPhotos = [];
+    public $removedPhotoIds = [];
+    public $tempTitle;
+    public $tempDescription;
+    public $tempAgent;
 
-        // Delete the media item from the database
-        $mediaToRemove->delete();
+    public function mount($property)
+    {
+        $this->property = $property;
+        $this->tempTitle = $property->title;
+        $this->tempDescription = $property->description;
+        $this->tempPhotos = $property->getMedia('property-photos');
+        $this->tempAgent = $property->user->id;
+    }
+
+    public function removePhoto($index, $id)
+    {
+        $this->removedPhotoIds[] = $id;
+        logger($this->removedPhotoIds);
 
         // Remove the media item from the collection
-        $this->propertyPhotos = $this->propertyPhotos->filter(function ($photo, $i) use ($index) {
+        $this->tempPhotos = $this->tempPhotos->filter(function ($photo, $i) use ($index) {
             return $i !== $index;
-        })->values(); // Reset the array keys
+        })->values();
 
-        // Reset order_column for the remaining photos
-        foreach ($this->propertyPhotos as $i => $photo) {
+        foreach ($this->tempPhotos as $i => $photo) {
             $photo->order_column = $i + 1;
-            $photo->save(); // Persist the new order
         }
     }
 
     public function resetPhotos()
     {
-        $this->propertyPhotos = clone $this->oldPhotos;
+        $this->tempPhotos = $this->property->getMedia('property-photos');
+        $this->removedPhotoIds = [];
     }
-
-
 }
