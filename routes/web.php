@@ -7,6 +7,8 @@ use App\Http\Controllers\SearchController;
 use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
 
+// nisi fixao recomended property imageUrl na propertyCard iz razloga što a) nemaš algoritam za to. tkd nema potrebe džaba praviti sad
+
 Route::get('/', WelcomeController::class)
     ->name('home');
 
