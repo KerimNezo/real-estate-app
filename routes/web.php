@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Route;
 // mijenjanje agenata na propertijima, a brisanje agenta koji ima propertije je suludo, tako da kad uradiš
 // property edit uzmi raditi brisanje agenta i logiku koja dolazi sa time.
 
+// ne radi ti edit propertya nisi počeo edit agenta. tkd delete agenta će sačekat.
+
 Route::get('/', WelcomeController::class)
     ->name('home');
 
