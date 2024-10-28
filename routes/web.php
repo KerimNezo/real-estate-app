@@ -13,6 +13,10 @@ use Illuminate\Support\Facades\Route;
 
 // ne radi ti edit propertya nisi počeo edit agenta. tkd delete agenta će sačekat.
 
+// trebaš uraditi responsive form view na loginu
+
+// A nisi ni počeo raditi AGENT VIEWS cmon man. Zadaj se pravo na ovo.
+
 Route::get('/', WelcomeController::class)
     ->name('home');
 
