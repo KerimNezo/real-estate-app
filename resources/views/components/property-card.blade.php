@@ -1,4 +1,4 @@
-@props(['property', 'imageUrl' => './photos/house-placeholder.jpg', 'h'])
+@props(['property', 'imageUrl' => asset('./photos/house-placeholder.jpg'), 'h'])
 
 <div id="pozadina" class="group w-full h-[{{$h}}px] text-white rounded-[15px] flex flex-col justify-end bg-cover" style="background-image:linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.73)), url({{ $imageUrl }})">
     <!-- section about properties offer -->
