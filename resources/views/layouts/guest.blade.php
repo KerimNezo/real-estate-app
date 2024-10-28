@@ -18,7 +18,7 @@
         <div class="flex flex-col items-center min-h-screen pt-6 bg-gray-100 sm:justify-center sm:pt-0 dark:bg-gray-900">
             <div>
                 <a href="/" >
-                    <img src={{ ('photos/icons/logo1.svg')}} alt="alt" class="rounded-[5px] h-[80px]">
+                    <img src={{ ('photos/icons/logo1.svg')}} alt="alt" class="rounded-[5px] sm:h-[80px] h-[60px] sm:pt-0 mt-10">
                 </a>
             </div>
 
