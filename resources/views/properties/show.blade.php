@@ -225,11 +225,15 @@
                     <p>Similar Properties You May Like</p>
                 </div>
 
-                <!-- Ovdje ćemo dobiti samo listu propertya koji su bliski sa otvorenim propertyem koje ćemo izlistati -->
+                <!-- Ovdje ćemo dobiti samo listu propertya ($similatProprties) koji su bliski sa otvorenim propertyem koje ćemo izlistati -->
                 <div id="similar-properties-list" class="flex items-center justify-center w-full gap-[35px]">
                     @foreach ($similarProperties as $property )
                         <a href="{{ route('single-property', ['id' => $property->id]) }}" class="w-full">
-                            <x-property-card :h='260' :imageUrl='$property->getFirstMediaUrl("property-photos")' :$property/>
+                            @if (count($property->getMedia('property-photos')) === 0)
+                                <x-property-card :h='260' :$property/>
+                            @else
+                                <x-property-card :h='260' :imageUrl='$property->getFirstMediaUrl("property-photos")' :$property />
+                            @endif
                         </a>
                     @endforeach
                 </div>
