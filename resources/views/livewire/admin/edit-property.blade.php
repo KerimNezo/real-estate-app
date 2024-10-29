@@ -1,8 +1,7 @@
 <div>
     <!-- Update Property Form -->
-    <form action="{{ route('update-property', ['property' => $this->property->id]) }}" method="POST" enctype="multipart/form-data" class="w-full p-4 mx-auto bg-gray-800 rounded-lg shadow-lg">
+    <form wire:submit.prevent="saveProperty" enctype="multipart/form-data" class="w-full p-4 mx-auto bg-gray-800 rounded-lg shadow-lg">
         @csrf
-        @method('PUT')
 
         <!-- Title -->
         <h1 class="text-xl font-bold text-center">Update Property Information</h1>
@@ -80,7 +79,11 @@
                         <label for="name" class="block mb-2 font-bold">Agent:</label>
                         <select wire:model="tempAgent" class="w-full px-3 py-2 bg-gray-800 rounded-lg" >
                             @foreach ($this->agents as $agent)
-                                <option value="{{$agent->id}}">{{$agent->name}}</option>
+                                @if ($agent->id === $tempAgent)
+                                    <option value="{{$agent->id}}" selected>{{$agent->name}}</option>
+                                @else
+                                    <option value="{{$agent->id}}">{{$agent->name}}</option>
+                                @endif
                             @endforeach
                         </select>
                     </div>
@@ -88,7 +91,7 @@
                     <!-- Property Name -->
                     <div class="mb-4 mr-auto">
                         <label for="name" class="block mb-2 font-bold">Name:</label>
-                        <input type="text" name="name" id="name" value="{{ old('name', $this->property->name) }}" class="w-full px-3 py-2 border rounded-lg bg-gray-800 @error('name') border-red-500 @enderror">
+                        <input wire:model="tempTitle" type="text" name="name" id="name" class="w-full px-3 py-2 border rounded-lg bg-gray-800 @error('name') border-red-500 @enderror">
                         @error('name')
                             <p class="text-sm text-red-500">{{ $message }}</p>
                         @enderror
@@ -97,7 +100,7 @@
                     <!-- Property Price -->
                     <div class="mb-4 mr-auto">
                         <label for="price" class="block mb-2 font-bold">Price:</label>
-                        <input type="text" name="price" id="price" value="{{ old('price', $this->property->price) }}" class="w-full px-3 py-2 border rounded-lg bg-gray-800 @error('price') border-red-500 @enderror">
+                        <input wire:model="tempPrice" type="text" name="price" id="price" class="w-full px-3 py-2 border rounded-lg bg-gray-800 @error('price') border-red-500 @enderror">
                         @error('price')
                             <p class="text-sm text-red-500">{{ $message }}</p>
                         @enderror
