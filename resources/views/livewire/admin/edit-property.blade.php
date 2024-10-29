@@ -11,7 +11,7 @@
             <!-- Table to display property images -->
             <div class="w-full py-8 text-xl text-center">
                 <form wire:submit.prevent="uploadPhotos">
-                    <div class="flex items-center justify-center pb-2">
+                    <div class="flex items-center justify-center pb-4">
                         <p class="mr-auto text-lg font-bold text-left">
                             Property images:
                         </p>
