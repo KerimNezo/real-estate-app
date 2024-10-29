@@ -39,7 +39,9 @@ class PropertySeeder extends Seeder
                     default => 1,
                 };
 
-                $status = ($x === 0) ? 'Sold' : 'Available';
+                $status = ($x === 0 || $x === 3)
+                    ? ($lease === null ? 'Sold' : 'Rented')
+                    : 'Available';
 
                 $property = Property::factory()->create([
                     'name' => $propertyName[$type - 1],
