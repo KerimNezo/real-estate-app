@@ -5,7 +5,7 @@
         @method('PUT')
 
         <!-- Title -->
-        <h1 class="mb-6 text-xl font-bold text-center">Update Property Information</h1>
+        <h1 class="text-xl font-bold text-center">Update Property Information</h1>
 
         <div class="w-full h-full px-20">
             <!-- Table to display property images -->
