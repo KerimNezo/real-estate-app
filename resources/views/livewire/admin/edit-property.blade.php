@@ -130,11 +130,19 @@
                                     onclick="updateStatus('Available')">
                                 Available
                             </button>
-                            <button type="button" id="Sold"
-                                    class="flex-1 px-4 py-2 text-center rounded-lg bg-gray-800 border {{ old('status', $this->property->status) == 'Sold' ? 'bg-blue-600 text-white' : '' }}"
-                                    onclick="updateStatus('Sold')">
-                                Sold
-                            </button>
+                            @if ($this->property->lease_duration === null)
+                                <button type="button" id="Sold"
+                                        class="flex-1 px-4 py-2 text-center rounded-lg bg-gray-800 border {{ old('status', $this->property->status) == 'Sold' ? 'bg-blue-600 text-white' : '' }}"
+                                        onclick="updateStatus('Sold')">
+                                    Sold
+                                </button>
+                            @else
+                                <button type="button" id="Sold"
+                                        class="flex-1 px-4 py-2 text-center rounded-lg bg-gray-800 border {{ old('status', $this->property->status) == 'Rented' ? 'bg-blue-600 text-white' : '' }}"
+                                        onclick="updateStatus('Rented')">
+                                    Rented
+                                </button>
+                            @endif
                         </div>
                         <input type="hidden" name="status" id="status_input" value="{{ old('status', $this->property->status) }}">
                     </div>
