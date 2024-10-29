@@ -1,8 +1,6 @@
 <div>
     <!-- Update Property Form -->
-    <form wire:submit.prevent="saveProperty" enctype="multipart/form-data" class="w-full p-4 mx-auto bg-gray-800 rounded-lg shadow-lg">
-        @csrf
-
+    <div class="w-full p-4 mx-auto bg-gray-800 rounded-lg shadow-lg">
         <!-- Title -->
         <h1 class="text-xl font-bold text-center">Update Property Information</h1>
 
@@ -38,7 +36,7 @@
                             @foreach($newPhotoPreviews as $index => $preview)
                                 <div class="relative">
                                     <img src="{{ $preview }}"
-                                        alt="New Photo Preview"
+                                        alt="Loading Photo"
                                         class="w-[150px] h-[90px] object-cover rounded-lg cursor-pointer">
                                     <button type="button" class="absolute flex items-center justify-center w-5 h-5 text-xs text-black bg-white rounded-full top-1 right-1"
                                             wire:click="removePhoto({{ $index }}, {{ $preview }})"  wire:loading.attr="disabled">
@@ -70,116 +68,124 @@
                 </form>
             </div>
 
-            <!-- Property data -->
-            <div class="flex w-full h-full gap-4">
-                <!-- General property data -->
-                <div class="w-full">
-                    <!-- Property agent -->
-                    <div class="mb-4 mr-auto">
-                        <label for="name" class="block mb-2 font-bold">Agent:</label>
-                        <select wire:model="tempAgent" class="w-full px-3 py-2 bg-gray-800 rounded-lg" >
-                            @foreach ($this->agents as $agent)
-                                @if ($agent->id === $tempAgent)
-                                    <option value="{{$agent->id}}" selected>{{$agent->name}}</option>
+            <form wire:submit.prevent="saveProperty()" enctype="multipart/form-data" >
+                @csrf
+
+                <!-- Property data -->
+                <div class="flex w-full h-full gap-4">
+                    <!-- General property data -->
+                    <div class="w-full">
+                        <!-- Property agent -->
+                        <div class="mb-4 mr-auto">
+                            <label for="name" class="block mb-2 font-bold">Agent:</label>
+                            <select wire:model="tempAgent" class="w-full px-3 py-2 bg-gray-800 rounded-lg" >
+                                @foreach ($this->agents as $agent)
+                                    @if ($agent->id === $tempAgent)
+                                        <option value="{{$agent->id}}" selected>{{$agent->name}}</option>
+                                    @else
+                                        <option value="{{$agent->id}}">{{$agent->name}}</option>
+                                    @endif
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <!-- Property Name -->
+                        <div class="mb-4 mr-auto">
+                            <label for="name" class="block mb-2 font-bold">Name:</label>
+                            <input wire:model="tempTitle" type="text" name="name" id="name" class="w-full px-3 py-2 border rounded-lg bg-gray-800 @error('name') border-red-500 @enderror">
+                            @error('name')
+                                <p class="text-sm text-red-500">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        <!-- Property Price -->
+                        <div class="mb-4 mr-auto">
+                            <label for="price" class="block mb-2 font-bold">Price:</label>
+                            <input wire:model="tempPrice" type="text" name="price" id="price" class="w-full px-3 py-2 border rounded-lg bg-gray-800 @error('price') border-red-500 @enderror">
+                            @error('price')
+                                <p class="text-sm text-red-500">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        <!-- Offer Type -->
+                        <div class="mb-4 mr-auto">
+                            <label class="block mb-2 font-bold">Offer Type:</label>
+                            <div class="flex gap-4">
+                                <button type="button" id="offerType" wire:click="$set('tempOffer', 'Sale')"
+                                        class="flex-1 px-4 py-2 text-center rounded-lg bg-gray-800 border {{ old('offer_type', $this->property->lease_duration === null) == 'sale' ? 'bg-blue-600 text-white' : '' }}"
+                                        onclick="updateOfferType('Sale')">
+                                    For Sale
+                                </button>
+                                <button type="button" id="offerType" wire:click="$set('tempOffer', 'Rent')"
+                                        class="flex-1 px-4 py-2 text-center rounded-lg bg-gray-800 border {{ old('offer_type', $this->property->lease_duration !== null) == 'rent' ? 'bg-blue-600 text-white' : '' }}"
+                                        onclick="updateOfferType('Rent')">
+                                    For Rent
+                                </button>
+                            </div>
+                            <input type="hidden" name="offer_type" id="offer_type_input" value="{{ old('offer_type', $this->property->lease_duration === null ? 'sale' : 'rent') }}">
+                        </div>
+
+                        <!-- Status -->
+                        <div class="mb-4 mr-auto">
+                            <label class="block mb-2 font-bold">Status:</label>
+                            <div class="flex gap-4">
+                                <button type="button" id="Available" wire:click="$set('tempStatus', 'Available')"
+                                        class="flex-1 px-4 py-2 text-center rounded-lg bg-gray-800 border {{ old('status', $this->property->status) == 'Available' ? 'bg-blue-600 text-white' : '' }}"
+                                        onclick="updateStatus('Available')">
+                                    Available
+                                </button>
+                                @if ($this->property->lease_duration === null)
+                                    <button type="button" id="Sold" wire:click="$set('tempStatus', 'Sold')"
+                                            class="flex-1 px-4 py-2 text-center rounded-lg bg-gray-800 border {{ old('status', $this->property->status) != 'Available' ? 'bg-blue-600 text-white' : '' }}"
+                                            onclick="updateStatus('Sold')">
+                                        Sold
+                                    </button>
+                                    <button type="button" id="Rented" wire:click="$set('tempStatus', 'Rented')"
+                                            class="hidden flex-1 px-4 py-2 text-center rounded-lg bg-gray-800 border {{ old('status', $this->property->status) != 'Available' ? 'bg-blue-600 text-white' : '' }}"
+                                            onclick="updateStatus('Rented')">
+                                        Rented
+                                    </button>
                                 @else
-                                    <option value="{{$agent->id}}">{{$agent->name}}</option>
+                                    <button type="button" id="Sold" wire:click="$set('tempStatus', 'Sold')"
+                                            class="hidden flex-1 px-4 py-2 text-center rounded-lg bg-gray-800 border {{ old('status', $this->property->status) != 'Available' ? 'bg-blue-600 text-white' : '' }}"
+                                            onclick="updateStatus('Sold')">
+                                        Sold
+                                    </button>
+                                    <button type="button" id="Rented" wire:click="$set('tempStatus', 'Rented')"
+                                            class="flex-1 px-4 py-2 text-center rounded-lg bg-gray-800 border {{ old('status', $this->property->status) != 'Available' ? 'bg-blue-600 text-white' : '' }}"
+                                            onclick="updateStatus('Rented')">
+                                        Rented
+                                    </button>
                                 @endif
-                            @endforeach
-                        </select>
-                    </div>
-
-                    <!-- Property Name -->
-                    <div class="mb-4 mr-auto">
-                        <label for="name" class="block mb-2 font-bold">Name:</label>
-                        <input wire:model="tempTitle" type="text" name="name" id="name" class="w-full px-3 py-2 border rounded-lg bg-gray-800 @error('name') border-red-500 @enderror">
-                        @error('name')
-                            <p class="text-sm text-red-500">{{ $message }}</p>
-                        @enderror
-                    </div>
-
-                    <!-- Property Price -->
-                    <div class="mb-4 mr-auto">
-                        <label for="price" class="block mb-2 font-bold">Price:</label>
-                        <input wire:model="tempPrice" type="text" name="price" id="price" class="w-full px-3 py-2 border rounded-lg bg-gray-800 @error('price') border-red-500 @enderror">
-                        @error('price')
-                            <p class="text-sm text-red-500">{{ $message }}</p>
-                        @enderror
-                    </div>
-
-                    <!-- Offer Type -->
-                    <div class="mb-4 mr-auto">
-                        <label class="block mb-2 font-bold">Offer Type:</label>
-                        <div class="flex gap-4">
-                            <button type="button" id="offerType"
-                                    class="flex-1 px-4 py-2 text-center rounded-lg bg-gray-800 border {{ old('offer_type', $this->property->lease_duration === null) == 'sale' ? 'bg-blue-600 text-white' : '' }}"
-                                    onclick="updateOfferType('Sale')">
-                                For Sale
-                            </button>
-                            <button type="button" id="offerType"
-                                    class="flex-1 px-4 py-2 text-center rounded-lg bg-gray-800 border {{ old('offer_type', $this->property->lease_duration !== null) == 'rent' ? 'bg-blue-600 text-white' : '' }}"
-                                    onclick="updateOfferType('Rent')">
-                                For Rent
-                            </button>
+                            </div>
+                            <input type="hidden" name="status" id="status_input" value="{{ old('status', $this->property->status) }}">
                         </div>
-                        <input type="hidden" name="offer_type" id="offer_type_input" value="{{ old('offer_type', $this->property->lease_duration === null ? 'sale' : 'rent') }}">
                     </div>
 
-                    <!-- Status -->
-                    <div class="mb-4 mr-auto">
-                        <label class="block mb-2 font-bold">Status:</label>
-                        <div class="flex gap-4">
-                            <button type="button" id="Available"
-                                    class="flex-1 px-4 py-2 text-center rounded-lg bg-gray-800 border {{ old('status', $this->property->status) == 'Available' ? 'bg-blue-600 text-white' : '' }}"
-                                    onclick="updateStatus('Available')">
-                                Available
-                            </button>
-                            @if ($this->property->lease_duration === null)
-                                <button type="button" id="Sold"
-                                        class="flex-1 px-4 py-2 text-center rounded-lg bg-gray-800 border {{ old('status', $this->property->status) == 'Sold' ? 'bg-blue-600 text-white' : '' }}"
-                                        onclick="updateStatus('Sold')">
-                                    Sold
-                                </button>
-                                <button type="button" id="Rented"
-                                        class="hidden flex-1 px-4 py-2 text-center rounded-lg bg-gray-800 border {{ old('status', $this->property->status) == 'Rented' ? 'bg-blue-600 text-white' : '' }}"
-                                        onclick="updateStatus('Rented')">
-                                    Rented
-                                </button>
-                            @else
-                                <button type="button" id="Sold"
-                                        class="hidden flex-1 px-4 py-2 text-center rounded-lg bg-gray-800 border {{ old('status', $this->property->status) == 'Sold' ? 'bg-blue-600 text-white' : '' }}"
-                                        onclick="updateStatus('Sold')">
-                                    Sold
-                                </button>
-                                <button type="button" id="Rented"
-                                        class="flex-1 px-4 py-2 text-center rounded-lg bg-gray-800 border {{ old('status', $this->property->status) == 'Rented' ? 'bg-blue-600 text-white' : '' }}"
-                                        onclick="updateStatus('Rented')">
-                                    Rented
-                                </button>
-                            @endif
+                    <!-- Property description -->
+                    <div class="w-full h-full">
+                        <!-- Property Price -->
+                        <div class="w-full mb-4 mr-auto">
+                            <label for="description" class="block mb-2 font-bold">Description:</label>
+                            <textarea wire:model="tempDescription" name="description" rows="12" id="description" class="w-full px-3 py-2 border rounded-lg text-balance bg-gray-800 @error('description') border-red-500 @enderror">{{ old('description', $this->property->description) }}</textarea>
+                            @error('description')
+                                <p class="text-sm text-red-500">{{ $message }}</p>
+                            @enderror
                         </div>
-                        <input type="hidden" name="status" id="status_input" value="{{ old('status', $this->property->status) }}">
                     </div>
                 </div>
 
-                <!-- Property description -->
-                <div class="w-full h-full">
-                    <!-- Property Price -->
-                    <div class="w-full mb-4 mr-auto">
-                        <label for="description" class="block mb-2 font-bold">Description:</label>
-                        <textarea name="description" rows="12" id="description" class="w-full px-3 py-2 border rounded-lg text-balance bg-gray-800 @error('description') border-red-500 @enderror">{{ old('description', $this->property->description) }}</textarea>
-                        @error('description')
-                            <p class="text-sm text-red-500">{{ $message }}</p>
-                        @enderror
-                    </div>
-                </div>
-            </div>
-        </div>
+                <!-- Update Button -->
+                <div class="pt-6 text-center">
+                    <button type="submit" class="px-6 py-2 text-white bg-blue-600 rounded-lg">
+                        Update Property
 
-        <!-- Update Button -->
-        <div class="pt-6 text-center">
-            <button type="submit" class="px-6 py-2 text-white bg-blue-600 rounded-lg">
-                Update Property
-            </button>
+                        <div wire:loading>
+                            <svg class="w-4 text-blue-500 bg-white">Saving your updates</svg> <!-- SVG loading spinner -->
+                        </div>
+                    </button>
+                </div>
+            </form>
         </div>
-    </form>
+    </div>
 </div>
