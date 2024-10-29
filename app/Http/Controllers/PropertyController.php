@@ -72,8 +72,6 @@ class PropertyController extends Controller
      */
     public function edit(Property $property)
     {
-        $agents = 0;
-
         return view('admin.property.edit')
             ->with('property', $property);
     }
