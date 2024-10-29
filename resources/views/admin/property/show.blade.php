@@ -204,13 +204,13 @@
                         </div>
 
                         <!-- Property location on map -->
-                        <div id="sticky" class="lg:w-[50%] sm:w-full z-10 !top-[80px]">
+                        <div class="lg:w-[50%] sm:w-full">
                             <div class="w-full">
                                 <p class="pb-2 text-sm text-left">
                                     Properity location
                                 </p>
                             </div>
-                            <div class="w-full flex flex-col justify-center items-center rounded-[5px] px-2 py-2 bg-gray-800">
+                            <div id="sticky" class="w-full flex flex-col justify-center items-center rounded-[5px] px-2 py-2 bg-gray-800 z-10 !top-[108px]">
                                 <div id="admin-map" class="z-10 w-full rounded-[5px] border-[3px] h-[480px]">
 
                                 </div>
