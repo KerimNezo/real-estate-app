@@ -12,7 +12,7 @@
             <div class="w-full py-8 text-xl text-center">
                 <form wire:submit.prevent="uploadPhotos">
                     <div class="flex items-center justify-center pb-2">
-                        <p class="pb-2 mr-auto text-lg font-bold text-left">
+                        <p class="mr-auto text-lg font-bold text-left">
                             Property images:
                         </p>
                         <button type="button" wire:click="resetPhotos" class="px-3 py-2 ml-auto text-base text-white bg-blue-600 rounded-lg">
@@ -25,8 +25,7 @@
                                 <div class="relative">
                                     <img src="{{ $media->getUrl() }}"
                                         alt="Property Photo"
-                                        class="w-[150px] h-[90px] object-cover rounded-lg cursor-pointer"
-                                        onclick="openModal('{{ $media->getUrl() }}', {{ $index }})">
+                                        class="w-[150px] h-[90px] object-cover rounded-lg cursor-pointer">
                                     <button type="button" class="absolute flex items-center justify-center w-5 h-5 text-xs text-black bg-white rounded-full top-1 right-1"
                                             wire:click="removePhoto({{ $index }}, {{ $media->id }})"  wire:loading.attr="disabled">
                                         <div class="flex items-center justify-center pb-[2px] font-bold">
@@ -36,7 +35,23 @@
                                 </div>
                             @endforeach
 
-                            @if (count($this->tempPhotos) <= 5)
+                            <!-- Display new photo previews -->
+                            @foreach($newPhotoPreviews as $index => $preview)
+                                <div class="relative">
+                                    <img src="{{ $preview }}"
+                                        alt="New Photo Preview"
+                                        class="w-[150px] h-[90px] object-cover rounded-lg cursor-pointer">
+                                    <button type="button" class="absolute flex items-center justify-center w-5 h-5 text-xs text-black bg-white rounded-full top-1 right-1"
+                                            wire:click="removePhoto({{ $index }}, {{ $preview }})"  wire:loading.attr="disabled">
+                                        <div class="flex items-center justify-center pb-[2px] font-bold">
+                                            <p>x</p>
+                                        </div>
+                                    </button>
+                                </div>
+                            @endforeach
+
+                            <!-- Add Photo Button -->
+                            @if (count($this->tempPhotos) + count($newPhotoPreviews) <= 5)
                                 <div class="relative" onclick="document.getElementById('file-upload').click()">
                                     <a>
                                         <div class="bg-gray-900 w-[150px] h-[90px] rounded-lg flex justify-center items-center cursor-pointer">
