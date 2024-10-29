@@ -109,12 +109,12 @@
                         <div class="flex gap-4">
                             <button type="button" id="offerType"
                                     class="flex-1 px-4 py-2 text-center rounded-lg bg-gray-800 border {{ old('offer_type', $this->property->lease_duration === null) == 'sale' ? 'bg-blue-600 text-white' : '' }}"
-                                    onclick="updateOfferType('sale')">
+                                    onclick="updateOfferType('Sale')">
                                 For Sale
                             </button>
                             <button type="button" id="offerType"
                                     class="flex-1 px-4 py-2 text-center rounded-lg bg-gray-800 border {{ old('offer_type', $this->property->lease_duration !== null) == 'rent' ? 'bg-blue-600 text-white' : '' }}"
-                                    onclick="updateOfferType('rent')">
+                                    onclick="updateOfferType('Rent')">
                                 For Rent
                             </button>
                         </div>
@@ -136,8 +136,18 @@
                                         onclick="updateStatus('Sold')">
                                     Sold
                                 </button>
+                                <button type="button" id="Rented"
+                                        class="hidden flex-1 px-4 py-2 text-center rounded-lg bg-gray-800 border {{ old('status', $this->property->status) == 'Rented' ? 'bg-blue-600 text-white' : '' }}"
+                                        onclick="updateStatus('Rented')">
+                                    Rented
+                                </button>
                             @else
                                 <button type="button" id="Sold"
+                                        class="hidden flex-1 px-4 py-2 text-center rounded-lg bg-gray-800 border {{ old('status', $this->property->status) == 'Sold' ? 'bg-blue-600 text-white' : '' }}"
+                                        onclick="updateStatus('Sold')">
+                                    Sold
+                                </button>
+                                <button type="button" id="Rented"
                                         class="flex-1 px-4 py-2 text-center rounded-lg bg-gray-800 border {{ old('status', $this->property->status) == 'Rented' ? 'bg-blue-600 text-white' : '' }}"
                                         onclick="updateStatus('Rented')">
                                     Rented

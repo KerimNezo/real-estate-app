@@ -36,17 +36,30 @@
             });
 
             event.target.classList.add('bg-blue-600', 'text-white');
+
+            if (type == 'Sale') {
+                document.getElementById('Rented').classList.add('hidden');
+                document.getElementById('Sold').classList.remove('hidden');
+            } else {
+                document.getElementById('Sold').classList.add('hidden');
+                document.getElementById('Rented').classList.remove('hidden');
+            }
         }
 
         function updateStatus(status) {
             document.getElementById('status_input').value = status;
             console.log(status);
 
-            document.querySelectorAll('button[id="Available"], button[id="Sold"]').forEach(button => {
-                button.classList.remove('bg-blue-600', 'text-white');
-            });
-
-            event.target.classList.add('bg-blue-600', 'text-white');
+            if (status == 'Available') {
+                document.querySelectorAll('button[id="Sold"], button[id="Rented"]').forEach(button => {
+                    button.classList.remove('bg-blue-600', 'text-white');
+                });
+                event.target.classList.add('bg-blue-600', 'text-white');
+            } else {
+                document.getElementById('Available').classList.remove('bg-blue-600', 'text-white');
+                document.getElementById('Sold').classList.add('bg-blue-600', 'text-white');
+                document.getElementById('Rented').classList.add('bg-blue-600', 'text-white');
+            }
         }
     </script>
 </x-admin-layout>
