@@ -14,7 +14,8 @@
                     <option value="0" selected>Offer</option>
                     <option value="1">Sale</option>
                     <option value="2">Rent</option>
-                    <option value="3">Sold</option>
+                    <option value="3">Available</option>
+                    <option value="4">Unavailable</option>
                 </select>
             </div>
 
