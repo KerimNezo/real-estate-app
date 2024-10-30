@@ -27,7 +27,19 @@
 
 
     <script>
+        // ovu koristimo da maknemo boju sa offer typa gore
+        function updateOfferType(type) {
+            document.getElementById('offer_type_input').value = type;
+            console.log(type);
 
+            document.querySelectorAll('label[id="offerType"]').forEach(button => {
+                button.classList.remove('bg-blue-600', 'text-white');
+            });
+
+            event.target.classList.add('bg-blue-600', 'text-white');
+        }
+
+        // ovu koristimo da maknemo boju sa ovih dole budućih available/unavailable
         function updateStatus(status) {
             document.getElementById('status_input').value = status;
             console.log(status);
