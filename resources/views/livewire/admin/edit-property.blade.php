@@ -46,9 +46,6 @@
                                     </button>
                                 </div>
                             @endforeach
-                            @error('newPhotos')
-                                <p class="text-sm text-red-500">{{ $message }}</p>
-                            @enderror
 
                             <!-- Add Photo Button -->
                             @if (count($this->tempPhotos) + count($newPhotoPreviews) <= 5)
@@ -59,15 +56,19 @@
                                         </div>
                                     </a>
                                 </div>
-                                @error('newPhotos')
-                                    <div class="text-red-500">{{ $message }}</div>
-                                @enderror
 
                                 <!-- Hidden file input -->
                                 <input type="file" multiple id="file-upload" class="hidden" wire:model="newPhotos">
                             @endif
                         </div>
                     </div>
+                    @error('newPhotos')
+                        <p class="text-sm text-red-500">{{ $message }}</p>
+                    @enderror
+
+                    @error('newPhotoPreviews')
+                        <div class="text-red-500">{{ $message }}</div>
+                    @enderror
                 </form>
             </div>
 
