@@ -17,30 +17,30 @@ class EditProperty extends Component
     public $tempPhotos = [];
     public $removedPhotoIds = [];
 
-    #[Validate('required|string|max:255')]
+    #[Validate('required|string|max:50', message: 'Maximum name size is 50 characters')]
     public $tempTitle;
 
-    #[Validate('nullable|string')]
+    #[Validate('nullable|string|max:550', message: 'Maximum description size is 550 characters')]
     public $tempDescription;
 
-    #[Validate('required|exists:users,id')]
+    #[Validate('required|exists:users,id', message: 'Ne radi agent')]
     public $tempAgent;
 
-    #[Validate('required')]
+    #[Validate('required|numeric', message: 'Please enter a number')]
     public $tempPrice;
 
     // Status: Active, Rented, Sold (status)
-    #[Validate('required|string')]
+    #[Validate('required|string|in:Available,Rented,Sold', message: 'Status value is not accepted')]
     public $tempStatus;
 
     // Offer For Sale/Rent (lease_duration)
-    #[Validate('nullable|string')]
+    #[Validate('required|string|in:Sale,Rent', message: 'Offer value is not accepted')]
     public $tempOffer;
 
-    #[Validate('image|max:1024')]
+    #[Validate('nullable|max:1024')]
     public $newPhotos = []; // Array to handle new uploads
 
-    #[Validate('image|max:1024')]
+    #[Validate('nullable|max:1024')]
     public $newPhotoPreviews = []; // Array for previewing newly uploaded photos
 
     public function mount($property)
@@ -105,6 +105,13 @@ class EditProperty extends Component
 
     public function saveProperty()
     {
+
+        logger('Before validation');
+
+        $this->validate();
+
+        logger('Validation passed');
+
         logger('-------------------------------------------------');
 
         // Update name, description, agent, price
