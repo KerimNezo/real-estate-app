@@ -46,6 +46,9 @@
                                     </button>
                                 </div>
                             @endforeach
+                            @error('newPhotos')
+                                <p class="text-sm text-red-500">{{ $message }}</p>
+                            @enderror
 
                             <!-- Add Photo Button -->
                             @if (count($this->tempPhotos) + count($newPhotoPreviews) <= 5)
@@ -86,13 +89,16 @@
                                     @endif
                                 @endforeach
                             </select>
+                            @error('tempAgent')
+                                <p class="text-sm text-red-500">{{ $message }}</p>
+                            @enderror
                         </div>
 
                         <!-- Property Name -->
                         <div class="mb-4 mr-auto">
                             <label for="name" class="block mb-2 font-bold">Name:</label>
                             <input wire:model="tempTitle" type="text" name="name" id="name" class="w-full px-3 py-2 border rounded-lg bg-gray-800 @error('name') border-red-500 @enderror">
-                            @error('name')
+                            @error('tempTitle')
                                 <p class="text-sm text-red-500">{{ $message }}</p>
                             @enderror
                         </div>
@@ -101,7 +107,7 @@
                         <div class="mb-4 mr-auto">
                             <label for="price" class="block mb-2 font-bold">Price:</label>
                             <input wire:model="tempPrice" type="text" name="price" id="price" class="w-full px-3 py-2 border rounded-lg bg-gray-800 @error('price') border-red-500 @enderror">
-                            @error('price')
+                            @error('tempPrice')
                                 <p class="text-sm text-red-500">{{ $message }}</p>
                             @enderror
                         </div>
@@ -121,6 +127,9 @@
                                 </label>
                             </div>
                             <input type="hidden" name="offer_type" id="offer_type_input" value="{{ old('offer_type', $this->property->lease_duration === null ? 'sale' : 'rent') }}">
+                            @error('tempOffer')
+                                <p class="text-sm text-red-500">{{ $message }}</p>
+                            @enderror
                         </div>
 
                         <!-- Status -->
@@ -154,7 +163,11 @@
                                     </label>
                                 @endif
                             </div>
+                            @error('tempStatus')
+                                <p class="text-sm text-red-500">{{ $message }}</p>
+                            @enderror
                             <input type="hidden" name="status" id="status_input" value="{{ old('status', $this->property->status) }}">
+
                         </div>
                     </div>
 
@@ -164,7 +177,7 @@
                         <div class="w-full mb-4 mr-auto">
                             <label for="description" class="block mb-2 font-bold">Description:</label>
                             <textarea wire:model="tempDescription" name="description" rows="12" id="description" class="w-full px-3 py-2 border rounded-lg text-balance bg-gray-800 @error('description') border-red-500 @enderror">{{ old('description', $this->property->description) }}</textarea>
-                            @error('description')
+                            @error('tempDescription')
                                 <p class="text-sm text-red-500">{{ $message }}</p>
                             @enderror
                         </div>
@@ -179,8 +192,8 @@
                             Update Property
 
                             {{-- wire:target="saveProperty --}}
-                            <div wire:loading ">
-                                <svg class="w-4 text-blue-500 bg-white">Saving your updates</svg> <!-- SVG loading spinner -->
+                            <div wire:loading wire:target="saveProperty">
+                                <svg class="w-4 h-4 text-white bg-blue-600 ">Saving your updates</svg> <!-- SVG loading spinner -->
                             </div>
                         </button>
                     </div>
