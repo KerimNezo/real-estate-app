@@ -118,12 +118,12 @@
                             <label class="block mb-2 font-bold">Offer Type:</label>
                             <div class="flex gap-4">
                                 <input type="radio" id="for-sale" wire:model="tempOffer" value="Sale" class="hidden" />
-                                <label id="offerType" wire:click="updateStatus" for="for-sale" class="cursor-pointer flex-1 radio-button px-4 py-2 text-center rounded-lg bg-gray-800 border {{ $tempOffer === 'Sale' ? 'bg-blue-600 text-white' : '' }}">
+                                <label id="offerType" onclick="updateOfferType('Sale')" for="for-sale" class="cursor-pointer flex-1 radio-button px-4 py-2 text-center rounded-lg bg-gray-800 border {{ $tempOffer === 'Sale' ? 'bg-blue-600 text-white' : '' }}">
                                     For Sale
                                 </label>
 
                                 <input type="radio" id="for-rent" wire:model="tempOffer" value="Rent" class="hidden" />
-                                <label id="offerType" wire:click="updateStatus" for="for-rent" class="cursor-pointer flex-1 radio-button px-4 py-2 text-center rounded-lg bg-gray-800 border {{ $tempOffer === 'Rent' ? 'bg-blue-600 text-white' : '' }}">
+                                <label id="offerType" onclick="updateOfferType('Rent')" for="for-rent" class="cursor-pointer flex-1 radio-button px-4 py-2 text-center rounded-lg bg-gray-800 border {{ $tempOffer === 'Rent' ? 'bg-blue-600 text-white' : '' }}">
                                     For Rent
                                 </label>
                             </div>
@@ -142,9 +142,9 @@
                                     Available
                                 </label>
 
-                                <input type="radio" id="inputSold" wire:model="tempStatus" value="Sold" class="hidden" />
-                                <label id="Other" onclick="updateStatus('NotAvailable')" for="inputSold" class="cursor-pointer flex-1 radio-button px-4 py-2 text-center rounded-lg bg-gray-800 border {{ $tempStatus !== 'Available' ? 'bg-blue-600 text-white' : '' }}">
-                                    {{ $tempStatus }}
+                                <input type="radio" id="inputSold" wire:model="tempStatus" value="Unavailable" class="hidden" />
+                                <label id="Unavailable" onclick="updateStatus('Unavailable')" for="inputUnavailable" class="cursor-pointer flex-1 radio-button px-4 py-2 text-center rounded-lg bg-gray-800 border {{ $tempStatus === 'Unavailable' ? 'bg-blue-600 text-white' : '' }}">
+                                    Unavailable
                                 </label>
                             </div>
                             @error('tempStatus')

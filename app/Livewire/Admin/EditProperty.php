@@ -34,7 +34,7 @@ class EditProperty extends Component
     public $tempPrice;
 
     // Status: Active, Rented, Sold (status)
-    #[Validate('required|string|in:Available,Rented,Sold', message: 'Status value is not accepted')]
+    #[Validate('required|string|in:Available,Unavailable', message: 'Status value is not accepted')]
     public $tempStatus;
 
     // Offer For Sale/Rent (lease_duration)
@@ -78,18 +78,6 @@ class EditProperty extends Component
         foreach ($this->newPhotos as $photo) {
             $this->newPhotoPreviews[] = $photo->temporaryUrl();
         }
-    }
-
-    public function updateStatus()
-    {
-        logger("Before Update: tempStatus: {$this->tempStatus}, tempOffer: {$this->tempOffer}");
-
-        if ($this->tempStatus != 'Available' ) {
-            $this->tempStatus = $this->tempOffer === 'Sale' ? 'Sold' : 'Rented';
-        } else {
-        }
-
-        logger("After Update: tempStatus: {$this->tempStatus}, tempOffer: {$this->tempOffer}");
     }
 
     public function removePhoto($index, $id)
