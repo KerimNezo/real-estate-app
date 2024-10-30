@@ -2,6 +2,8 @@
 
 namespace App\Livewire\Admin;
 
+use App\Models\Property;
+use Livewire\Attributes\Locked;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use App\Models\User;
@@ -13,6 +15,8 @@ class EditProperty extends Component
     use WithFileUploads;
 
     public $property;
+
+    #[Locked]
     public $oldPhotos = [];
     public $tempPhotos = [];
     public $removedPhotoIds = [];
@@ -50,10 +54,12 @@ class EditProperty extends Component
         $this->tempPrice = $property->price;
         $this->tempDescription = $property->description;
         $this->tempPhotos = $property->getMedia('property-photos');
-        $this->oldPhotos = clone $this->tempPhotos;
+        $this->oldPhotos = $this->tempPhotos;
         $this->tempAgent = $property->user_id;
-        $this->tempOffer = $this->property->lease_duration === 'null' ? 'Sale' : 'Rent';
+        $this->tempOffer = $this->property->lease_duration === null ? 'Sale' : 'Rent';
         $this->tempStatus = $this->property->status;
+
+        logger("On Mount: tempStatus: {$this->tempStatus}, tempOffer: {$this->tempOffer}");
     }
 
     #[Computed]
@@ -72,6 +78,18 @@ class EditProperty extends Component
         foreach ($this->newPhotos as $photo) {
             $this->newPhotoPreviews[] = $photo->temporaryUrl();
         }
+    }
+
+    public function updateStatus()
+    {
+        logger("Before Update: tempStatus: {$this->tempStatus}, tempOffer: {$this->tempOffer}");
+
+        if ($this->tempStatus != 'Available' ) {
+            $this->tempStatus = $this->tempOffer === 'Sale' ? 'Sold' : 'Rented';
+        } else {
+        }
+
+        logger("After Update: tempStatus: {$this->tempStatus}, tempOffer: {$this->tempOffer}");
     }
 
     public function removePhoto($index, $id)
