@@ -31,7 +31,7 @@
             document.getElementById('offer_type_input').value = type;
             console.log(type);
 
-            document.querySelectorAll('button[id="offerType"]').forEach(button => {
+            document.querySelectorAll('label[id="offerType"]').forEach(button => {
                 button.classList.remove('bg-blue-600', 'text-white');
             });
 
@@ -51,7 +51,7 @@
             console.log(status);
 
             if (status == 'Available') {
-                document.querySelectorAll('button[id="Sold"], button[id="Rented"]').forEach(button => {
+                document.querySelectorAll('label[id="Sold"], label[id="Rented"]').forEach(button => {
                     button.classList.remove('bg-blue-600', 'text-white');
                 });
                 event.target.classList.add('bg-blue-600', 'text-white');
