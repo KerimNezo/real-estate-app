@@ -27,38 +27,19 @@
 
 
     <script>
-        function updateOfferType(type) {
-            document.getElementById('offer_type_input').value = type;
-            console.log(type);
-
-            document.querySelectorAll('label[id="offerType"]').forEach(button => {
-                button.classList.remove('bg-blue-600', 'text-white');
-            });
-
-            event.target.classList.add('bg-blue-600', 'text-white');
-
-            if (type == 'Sale') {
-                document.getElementById('Rented').classList.add('hidden');
-                document.getElementById('Sold').classList.remove('hidden');
-            } else {
-                document.getElementById('Sold').classList.add('hidden');
-                document.getElementById('Rented').classList.remove('hidden');
-            }
-        }
 
         function updateStatus(status) {
             document.getElementById('status_input').value = status;
             console.log(status);
 
             if (status == 'Available') {
-                document.querySelectorAll('label[id="Sold"], label[id="Rented"]').forEach(button => {
+                document.querySelectorAll('label[id="Other"]').forEach(button => {
                     button.classList.remove('bg-blue-600', 'text-white');
                 });
                 event.target.classList.add('bg-blue-600', 'text-white');
             } else {
                 document.getElementById('Available').classList.remove('bg-blue-600', 'text-white');
-                document.getElementById('Sold').classList.add('bg-blue-600', 'text-white');
-                document.getElementById('Rented').classList.add('bg-blue-600', 'text-white');
+                document.getElementById('Other').classList.add('bg-blue-600', 'text-white');
             }
         }
     </script>
