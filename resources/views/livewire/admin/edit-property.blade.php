@@ -118,16 +118,16 @@
                             <label class="block mb-2 font-bold">Offer Type:</label>
                             <div class="flex gap-4">
                                 <input type="radio" id="for-sale" wire:model="tempOffer" value="Sale" class="hidden" />
-                                <label id="offerType" onclick="updateOfferType('Sale')" for="for-sale" class="cursor-pointer flex-1 radio-button px-4 py-2 text-center rounded-lg bg-gray-800 border {{ old('offer_type', $this->property->lease_duration === null) == 'sale' ? 'bg-blue-600 text-white' : '' }}">
+                                <label id="offerType" wire:click="updateStatus" for="for-sale" class="cursor-pointer flex-1 radio-button px-4 py-2 text-center rounded-lg bg-gray-800 border {{ $tempOffer === 'Sale' ? 'bg-blue-600 text-white' : '' }}">
                                     For Sale
                                 </label>
 
                                 <input type="radio" id="for-rent" wire:model="tempOffer" value="Rent" class="hidden" />
-                                <label id="offerType" onclick="updateOfferType('Rent')" for="for-rent" class="cursor-pointer flex-1 radio-button px-4 py-2 text-center rounded-lg bg-gray-800 border {{ old('offer_type', $this->property->lease_duration !== null) == 'rent' ? 'bg-blue-600 text-white' : '' }}">
+                                <label id="offerType" wire:click="updateStatus" for="for-rent" class="cursor-pointer flex-1 radio-button px-4 py-2 text-center rounded-lg bg-gray-800 border {{ $tempOffer === 'Rent' ? 'bg-blue-600 text-white' : '' }}">
                                     For Rent
                                 </label>
                             </div>
-                            <input type="hidden" name="offer_type" id="offer_type_input" value="{{ old('offer_type', $this->property->lease_duration === null ? 'sale' : 'rent') }}">
+                            <input type="hidden" name="offer_type" id="offer_type_input" value="{{ $tempOffer }}">
                             @error('tempOffer')
                                 <p class="text-sm text-red-500">{{ $message }}</p>
                             @enderror
@@ -138,37 +138,19 @@
                             <label class="block mb-2 font-bold">Status:</label>
                             <div class="flex gap-4">
                                 <input type="radio"  id="inputAvailable" wire:model="tempStatus" value="Available" class="hidden" />
-                                <label id="Available" onclick="updateStatus('Available')" for="inputAvailable" class="cursor-pointer flex-1 radio-button px-4 py-2 text-center rounded-lg bg-gray-800 border {{ old('status', $this->property->status) == 'Available' ? 'bg-blue-600 text-white' : '' }}">
+                                <label id="Available" onclick="updateStatus('Available')" for="inputAvailable" class="cursor-pointer flex-1 radio-button px-4 py-2 text-center rounded-lg bg-gray-800 border {{ $tempStatus === 'Available' ? 'bg-blue-600 text-white' : '' }}">
                                     Available
                                 </label>
 
-                                @if ($this->property->lease_duration === null)
-                                    <input type="radio" id="inputSold" wire:model="tempStatus" value="Sold" class="hidden" />
-                                    <label id="Sold" onclick="updateStatus('Sold')" for="inputSold" class="cursor-pointer flex-1 radio-button px-4 py-2 text-center rounded-lg bg-gray-800 border {{ old('status', $this->property->status) != 'Available' ? 'bg-blue-600 text-white' : '' }}">
-                                        Sold
-                                    </label>
-
-                                    <input type="radio" id="inputRented" wire:model="tempStatus" value="Rented" class="hidden" />
-                                    <label id="Rented" onclick="updateStatus('Rented')" for="inputRented" class="hidden cursor-pointer flex-1 radio-button px-4 py-2 text-center rounded-lg bg-gray-800 border {{ old('status', $this->property->status) != 'Available' ? 'bg-blue-600 text-white' : '' }}">
-                                        Rented
-                                    </label>
-                                @else
-                                    <input type="radio" id="inputSold" wire:model="tempStatus" value="Sold" class="hidden" />
-                                    <label id="Sold" onclick="updateStatus('Sold')" for="inputSold" class="hidden cursor-pointer flex-1 radio-button px-4 py-2 text-center rounded-lg bg-gray-800 border {{ old('status', $this->property->status) != 'Available' ? 'bg-blue-600 text-white' : '' }}">
-                                        Sold
-                                    </label>
-
-                                    <input type="radio" id="inputRented" wire:model="tempStatus" value="Rented" class="hidden" />
-                                    <label id="Rented" onclick="updateStatus('Rented')" for="inputRented" class="cursor-pointer flex-1 radio-button px-4 py-2 text-center rounded-lg bg-gray-800 border {{ old('status', $this->property->status) != 'Available' ? 'bg-blue-600 text-white' : '' }}">
-                                        Rented
-                                    </label>
-                                @endif
+                                <input type="radio" id="inputSold" wire:model="tempStatus" value="Sold" class="hidden" />
+                                <label id="Other" onclick="updateStatus('NotAvailable')" for="inputSold" class="cursor-pointer flex-1 radio-button px-4 py-2 text-center rounded-lg bg-gray-800 border {{ $tempStatus !== 'Available' ? 'bg-blue-600 text-white' : '' }}">
+                                    {{ $tempStatus }}
+                                </label>
                             </div>
                             @error('tempStatus')
                                 <p class="text-sm text-red-500">{{ $message }}</p>
                             @enderror
-                            <input type="hidden" name="status" id="status_input" value="{{ old('status', $this->property->status) }}">
-
+                            <input type="hidden" name="status" id="status_input" value="{{ $tempStatus }}">
                         </div>
                     </div>
 
@@ -202,5 +184,4 @@
             </div>
         </div>
     </div>
-
 </div>
