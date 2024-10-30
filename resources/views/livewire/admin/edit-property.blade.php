@@ -68,9 +68,8 @@
                 </form>
             </div>
 
-            <form wire:submit.prevent="saveProperty()" enctype="multipart/form-data" >
-                @csrf
-
+            <!-- Table to display other property data-->
+            <div>
                 <!-- Property data -->
                 <div class="flex w-full h-full gap-4">
                     <!-- General property data -->
@@ -111,16 +110,15 @@
                         <div class="mb-4 mr-auto">
                             <label class="block mb-2 font-bold">Offer Type:</label>
                             <div class="flex gap-4">
-                                <button type="button" id="offerType" wire:click="$set('tempOffer', 'Sale')"
-                                        class="flex-1 px-4 py-2 text-center rounded-lg bg-gray-800 border {{ old('offer_type', $this->property->lease_duration === null) == 'sale' ? 'bg-blue-600 text-white' : '' }}"
-                                        onclick="updateOfferType('Sale')">
+                                <input type="radio" id="for-sale" wire:model="tempOffer" value="Sale" class="hidden" />
+                                <label id="offerType" onclick="updateOfferType('Sale')" for="for-sale" class="cursor-pointer flex-1 radio-button px-4 py-2 text-center rounded-lg bg-gray-800 border {{ old('offer_type', $this->property->lease_duration === null) == 'sale' ? 'bg-blue-600 text-white' : '' }}">
                                     For Sale
-                                </button>
-                                <button type="button" id="offerType" wire:click="$set('tempOffer', 'Rent')"
-                                        class="flex-1 px-4 py-2 text-center rounded-lg bg-gray-800 border {{ old('offer_type', $this->property->lease_duration !== null) == 'rent' ? 'bg-blue-600 text-white' : '' }}"
-                                        onclick="updateOfferType('Rent')">
+                                </label>
+
+                                <input type="radio" id="for-rent" wire:model="tempOffer" value="Rent" class="hidden" />
+                                <label id="offerType" onclick="updateOfferType('Rent')" for="for-rent" class="cursor-pointer flex-1 radio-button px-4 py-2 text-center rounded-lg bg-gray-800 border {{ old('offer_type', $this->property->lease_duration !== null) == 'rent' ? 'bg-blue-600 text-white' : '' }}">
                                     For Rent
-                                </button>
+                                </label>
                             </div>
                             <input type="hidden" name="offer_type" id="offer_type_input" value="{{ old('offer_type', $this->property->lease_duration === null ? 'sale' : 'rent') }}">
                         </div>
@@ -129,33 +127,31 @@
                         <div class="mb-4 mr-auto">
                             <label class="block mb-2 font-bold">Status:</label>
                             <div class="flex gap-4">
-                                <button type="button" id="Available" wire:click="$set('tempStatus', 'Available')"
-                                        class="flex-1 px-4 py-2 text-center rounded-lg bg-gray-800 border {{ old('status', $this->property->status) == 'Available' ? 'bg-blue-600 text-white' : '' }}"
-                                        onclick="updateStatus('Available')">
+                                <input type="radio"  id="inputAvailable" wire:model="tempStatus" value="Available" class="hidden" />
+                                <label id="Available" onclick="updateStatus('Available')" for="inputAvailable" class="cursor-pointer flex-1 radio-button px-4 py-2 text-center rounded-lg bg-gray-800 border {{ old('status', $this->property->status) == 'Available' ? 'bg-blue-600 text-white' : '' }}">
                                     Available
-                                </button>
+                                </label>
+
                                 @if ($this->property->lease_duration === null)
-                                    <button type="button" id="Sold" wire:click="$set('tempStatus', 'Sold')"
-                                            class="flex-1 px-4 py-2 text-center rounded-lg bg-gray-800 border {{ old('status', $this->property->status) != 'Available' ? 'bg-blue-600 text-white' : '' }}"
-                                            onclick="updateStatus('Sold')">
+                                    <input type="radio" id="inputSold" wire:model="tempStatus" value="Sold" class="hidden" />
+                                    <label id="Sold" onclick="updateStatus('Sold')" for="inputSold" class="cursor-pointer flex-1 radio-button px-4 py-2 text-center rounded-lg bg-gray-800 border {{ old('status', $this->property->status) != 'Available' ? 'bg-blue-600 text-white' : '' }}">
                                         Sold
-                                    </button>
-                                    <button type="button" id="Rented" wire:click="$set('tempStatus', 'Rented')"
-                                            class="hidden flex-1 px-4 py-2 text-center rounded-lg bg-gray-800 border {{ old('status', $this->property->status) != 'Available' ? 'bg-blue-600 text-white' : '' }}"
-                                            onclick="updateStatus('Rented')">
+                                    </label>
+
+                                    <input type="radio" id="inputRented" wire:model="tempStatus" value="Rented" class="hidden" />
+                                    <label id="Rented" onclick="updateStatus('Rented')" for="inputRented" class="hidden cursor-pointer flex-1 radio-button px-4 py-2 text-center rounded-lg bg-gray-800 border {{ old('status', $this->property->status) != 'Available' ? 'bg-blue-600 text-white' : '' }}">
                                         Rented
-                                    </button>
+                                    </label>
                                 @else
-                                    <button type="button" id="Sold" wire:click="$set('tempStatus', 'Sold')"
-                                            class="hidden flex-1 px-4 py-2 text-center rounded-lg bg-gray-800 border {{ old('status', $this->property->status) != 'Available' ? 'bg-blue-600 text-white' : '' }}"
-                                            onclick="updateStatus('Sold')">
+                                    <input type="radio" id="inputSold" wire:model="tempStatus" value="Sold" class="hidden" />
+                                    <label id="Sold" onclick="updateStatus('Sold')" for="inputSold" class="hidden cursor-pointer flex-1 radio-button px-4 py-2 text-center rounded-lg bg-gray-800 border {{ old('status', $this->property->status) != 'Available' ? 'bg-blue-600 text-white' : '' }}">
                                         Sold
-                                    </button>
-                                    <button type="button" id="Rented" wire:click="$set('tempStatus', 'Rented')"
-                                            class="flex-1 px-4 py-2 text-center rounded-lg bg-gray-800 border {{ old('status', $this->property->status) != 'Available' ? 'bg-blue-600 text-white' : '' }}"
-                                            onclick="updateStatus('Rented')">
+                                    </label>
+
+                                    <input type="radio" id="inputRented" wire:model="tempStatus" value="Rented" class="hidden" />
+                                    <label id="Rented" onclick="updateStatus('Rented')" for="inputRented" class="cursor-pointer flex-1 radio-button px-4 py-2 text-center rounded-lg bg-gray-800 border {{ old('status', $this->property->status) != 'Available' ? 'bg-blue-600 text-white' : '' }}">
                                         Rented
-                                    </button>
+                                    </label>
                                 @endif
                             </div>
                             <input type="hidden" name="status" id="status_input" value="{{ old('status', $this->property->status) }}">
@@ -176,16 +172,21 @@
                 </div>
 
                 <!-- Update Button -->
-                <div class="pt-6 text-center">
-                    <button type="submit" class="px-6 py-2 text-white bg-blue-600 rounded-lg">
-                        Update Property
+                <form class="" wire:submit.prevent="saveProperty" enctype="multipart/form-data">
+                    @csrf
+                    <div class="pt-6 text-center">
+                        <button type="submit" class="px-6 py-2 text-white bg-blue-600 rounded-lg">
+                            Update Property
 
-                        <div wire:loading>
-                            <svg class="w-4 text-blue-500 bg-white">Saving your updates</svg> <!-- SVG loading spinner -->
-                        </div>
-                    </button>
-                </div>
-            </form>
+                            {{-- wire:target="saveProperty --}}
+                            <div wire:loading ">
+                                <svg class="w-4 text-blue-500 bg-white">Saving your updates</svg> <!-- SVG loading spinner -->
+                            </div>
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
+
 </div>
