@@ -147,11 +147,11 @@
                             <!-- Property Offer -->
                             <td id="table-data">
                                 @if (is_null($property->lease_duration))
-                                    <div id="type" class="mb-auto mr-auto bg-red-600 rounded-[5px] w-[80px] h-7 text-sm font-bold flex items-center justify-center">
+                                    <div id="type" class="mb-auto mr-auto bg-red-600 rounded-[5px] w-[90px] h-8 text-sm font-bold flex items-center justify-center">
                                         <div class="align-middle">FOR SALE</div>
                                     </div>
                                 @else
-                                    <div id="type" class="mb-auto mr-auto bg-sky-600 rounded-[5px] w-[80px] h-7 text-sm font-bold flex items-center justify-center">
+                                    <div id="type" class="mb-auto mr-auto bg-sky-600 rounded-[5px] w-[90px] h-8 text-sm font-bold flex items-center justify-center">
                                         <div class="align-middle">FOR RENT</div>
                                     </div>
                                 @endif
@@ -194,13 +194,13 @@
                             <!-- Status -->
                             <td id="table-data">
                                 @if ($property->status == 'Available')
-                                    <div id="type" class="mb-auto mr-auto bg-green-600 rounded-[5px] w-[80px] h-7 text-sm font-bold flex items-center justify-center">
+                                    <div id="type" class="mb-auto mr-auto bg-green-600 py-1 px-2 rounded-[5px] w-[90px] h-8 text-sm font-bold flex items-center justify-center">
                                         <div class="align-middle">
                                             {{ $property->status }}
                                         </div>
                                     </div>
                                 @else
-                                    <div id="type" class="mb-auto mr-auto bg-red-600 rounded-[5px] w-[80px] h-7 text-sm font-bold flex items-center justify-center">
+                                    <div id="type" class="mb-auto mr-auto bg-red-600 rounded-[5px] w-[90px] h-8 text-sm font-bold flex items-center justify-center">
                                         <div class="align-middle">
                                             {{ $property->status }}
                                         </div>
