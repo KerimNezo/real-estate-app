@@ -105,22 +105,14 @@ class EditProperty extends Component
 
     public function saveProperty()
     {
-        logger('usao');
-
-        logger($this->tempOffer);
-        logger($this->tempStatus);
+        logger('-------------------------------------------------');
 
         // Update name, description, agent, price
         $this->property->name = $this->tempTitle;
-        logger('5');
         $this->property->description = $this->tempDescription;
-        logger('4');
         $this->property->user_id = $this->tempAgent;
-        logger('3');
         $this->property->price = $this->tempPrice;
-        logger('2');
         $this->property->status = $this->tempStatus;
-        logger('1');
 
         if ($this->tempOffer === 'Sale') {
             $this->property->lease_duration = null;
