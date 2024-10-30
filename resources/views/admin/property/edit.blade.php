@@ -45,13 +45,13 @@
             console.log(status);
 
             if (status == 'Available') {
-                document.querySelectorAll('label[id="Other"]').forEach(button => {
+                document.querySelectorAll('label[id="Unavailable"]').forEach(button => {
                     button.classList.remove('bg-blue-600', 'text-white');
                 });
                 event.target.classList.add('bg-blue-600', 'text-white');
             } else {
                 document.getElementById('Available').classList.remove('bg-blue-600', 'text-white');
-                document.getElementById('Other').classList.add('bg-blue-600', 'text-white');
+                document.getElementById('Unavailable').classList.add('bg-blue-600', 'text-white');
             }
         }
     </script>
