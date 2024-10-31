@@ -91,7 +91,7 @@ class EditProperty extends Component
 
     public function resetPhotos()
     {
-        $this->tempPhotos = clone $this->oldPhotos;
+        $this->tempPhotos = $this->oldPhotos;
         $this->removedPhotoIds = [];
         $this->newPhotos = [];
         $this->newPhotoPreviews = [];
