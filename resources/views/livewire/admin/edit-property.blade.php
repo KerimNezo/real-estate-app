@@ -142,7 +142,7 @@
                                     Available
                                 </label>
 
-                                <input type="radio" id="inputSold" wire:model="tempStatus" value="Unavailable" class="hidden" />
+                                <input type="radio" id="inputUnavailable" wire:model="tempStatus" value="Unavailable" class="hidden" />
                                 <label id="Unavailable" onclick="updateStatus('Unavailable')" for="inputUnavailable" class="cursor-pointer flex-1 radio-button px-4 py-2 text-center rounded-lg bg-gray-800 border {{ $tempStatus === 'Unavailable' ? 'bg-blue-600 text-white' : '' }}">
                                     Unavailable
                                 </label>
@@ -171,12 +171,12 @@
                 <form class="" wire:submit.prevent="saveProperty" enctype="multipart/form-data">
                     @csrf
                     <div class="pt-6 text-center">
-                        <button type="submit" class="px-6 py-2 text-white bg-blue-600 rounded-lg">
+                        <button type="submit" wire:loading.class="opacity-75" class="px-6 py-2 text-white bg-blue-600 rounded-lg">
                             Update Property
 
                             {{-- wire:target="saveProperty --}}
-                            <div wire:loading wire:target="saveProperty">
-                                <svg class="w-4 h-4 text-white bg-blue-600 ">Saving your updates</svg> <!-- SVG loading spinner -->
+                            <div wire:loading>
+                                <img src="{{ asset('photos/spinner.svg') }}" wire:loading class="w-5 h-5"></img> <!-- SVG loading spinner -->
                             </div>
                         </button>
                     </div>
