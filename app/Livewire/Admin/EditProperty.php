@@ -56,8 +56,6 @@ class EditProperty extends Component
         $this->tempAgent = $property->user_id;
         $this->tempOffer = $this->property->lease_duration === null ? 'Sale' : 'Rent';
         $this->tempStatus = $this->property->status;
-
-        logger("On Mount: tempStatus: {$this->tempStatus}, tempOffer: {$this->tempOffer}");
     }
 
     #[Computed]
