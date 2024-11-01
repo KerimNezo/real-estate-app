@@ -2,7 +2,6 @@
 
 namespace App\Livewire\Admin;
 
-use App\Models\Property;
 use Livewire\Attributes\Locked;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -17,7 +16,7 @@ class EditProperty extends Component
     public $property;
 
     #[Locked]
-    public $oldPhotos = [];
+    public $propertyMedia = [];
     public $tempPhotos = [];
     public $removedPhotoIds = [];
 
@@ -53,8 +52,7 @@ class EditProperty extends Component
         $this->tempTitle = $property->name;
         $this->tempPrice = $property->price;
         $this->tempDescription = $property->description;
-        $this->tempPhotos = $property->getMedia('property-photos');
-        $this->oldPhotos = $this->tempPhotos;
+        $this->tempPhotos = $this->propertyMedia;
         $this->tempAgent = $property->user_id;
         $this->tempOffer = $this->property->lease_duration === null ? 'Sale' : 'Rent';
         $this->tempStatus = $this->property->status;
@@ -76,6 +74,7 @@ class EditProperty extends Component
     {
         // Generate temporary URLs for previewing new photos
         foreach ($this->newPhotos as $photo) {
+            logger('ALOOO');
             $this->newPhotoPreviews[] = $photo->temporaryUrl();
         }
     }
@@ -91,10 +90,8 @@ class EditProperty extends Component
 
     public function resetPhotos()
     {
-        $this->tempPhotos = $this->oldPhotos;
-        $this->removedPhotoIds = [];
-        $this->newPhotos = [];
-        $this->newPhotoPreviews = [];
+        $this->tempPhotos = $this->propertyMedia;
+        $this->reset('newPhotoPreviews', 'newPhotos', 'removedPhotoIds');
     }
 
     public function reorderPhotos()
