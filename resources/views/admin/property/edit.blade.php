@@ -17,7 +17,7 @@
             <div id="main-content" class="flex flex-col flex-grow w-full pt-6 bg-gray-900">
                 <div class="w-[80%] mx-auto py-8">
                     <!-- Livewire form -->
-                    <livewire:admin.edit-property :$property />
+                    <livewire:admin.edit-property :$property :$propertyMedia/>
                 </div>
             </div>
         </div>
