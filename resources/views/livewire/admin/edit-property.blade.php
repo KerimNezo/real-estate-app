@@ -8,58 +8,68 @@
             <!-- Table to display property images -->
             <div class="w-full py-8 text-xl text-center">
                 <form wire:submit.prevent="uploadPhotos">
-                    <div class="flex items-center justify-center pb-4">
+                    <div class="flex items-center justify-center gap-4 pb-4">
                         <p class="mr-auto text-lg font-bold text-left">
                             Property images:
                         </p>
-                        <button type="button" wire:click="resetPhotos" class="px-3 py-2 ml-auto text-base text-white bg-blue-600 rounded-lg">
-                            Reset photos
+
+                        <button type="button" onclick="document.getElementById('file-upload').click()" class="px-3 py-2 ml-auto text-base text-white bg-green-600 rounded-lg">
+                            New photo
+                        </button>
+
+                        <input type="file" multiple id="file-upload" class="hidden" wire:model="newPhotos">
+
+                        <button type="button" wire:click="resetPhotos" class="flex items-center justify-center gap-2 px-3 py-2 text-base text-white bg-blue-600 rounded-lg">
+                            <div wire:loading>
+                                <img src="{{ asset('photos/spinner.svg') }}" wire:loading class="w-6 h-6"></img> <!-- SVG loading spinner -->
+                            </div>
+
+                            <p>Reset photos</p>
                         </button>
                     </div>
-                    <div class="w-full overflow-x-auto">
-                        <div class="flex items-center justify-start w-full space-x-2 overflow-x-auto whitespace-nowrap">
-                            @foreach($this->tempPhotos as $index => $media)
-                                <div class="relative">
+                    <div class="max-w-full overflow-x-scroll">
+                        <div class="flex items-center justify-start w-full max-w-full space-x-2 overflow-x-scroll whitespace-nowrap">
+                            <!-- Display photos from database -->
+                            @foreach($tempPhotos as $index => $media)
+                                <div class="relative" wire:key="{{ $media->id }}">
                                     <img src="{{ $media->getUrl() }}"
                                         alt="Property Photo"
                                         class="w-[150px] h-[90px] object-cover rounded-lg cursor-pointer">
+
                                     <button type="button" class="absolute flex items-center justify-center w-5 h-5 text-xs text-black bg-white rounded-full top-1 right-1"
                                             wire:click="removePhoto({{ $index }}, {{ $media->id }})"  wire:loading.attr="disabled">
                                         <div class="flex items-center justify-center pb-[2px] font-bold">
                                             <p>x</p>
                                         </div>
                                     </button>
+
+                                    <div wire:loading wire:target="removePhoto({{ $index }}, {{ $media->id }})"
+                                        class="absolute inset-0 z-10 flex items-center justify-center bg-gray-700 bg-opacity-75 rounded-lg">
+                                        <img src="{{ asset('photos/spinner.svg') }}" alt="Loading" class="w-[150px] h-[90px] opacity-75">
+                                    </div>
                                 </div>
                             @endforeach
 
                             <!-- Display new photo previews -->
                             @foreach($newPhotoPreviews as $index => $preview)
-                                <div class="relative">
+                                <div class="relative" wire:key="{{ $index }}">
                                     <img src="{{ $preview }}"
                                         alt="Loading Photo"
                                         class="w-[150px] h-[90px] object-cover rounded-lg cursor-pointer">
+
                                     <button type="button" class="absolute flex items-center justify-center w-5 h-5 text-xs text-black bg-white rounded-full top-1 right-1"
                                             wire:click="removePhoto({{ $index }}, {{ $preview }})"  wire:loading.attr="disabled">
                                         <div class="flex items-center justify-center pb-[2px] font-bold">
                                             <p>x</p>
                                         </div>
                                     </button>
+
+                                    <div wire:loading wire:target="removePhoto({{ $index }}, {{ $preview }})"
+                                        class="absolute inset-0 z-10 flex items-center justify-center bg-gray-700 bg-opacity-75 rounded-lg">
+                                        <img src="{{ asset('photos/spinner.svg') }}" alt="Loading" class="w-[150px] h-[90px] opacity-75">
+                                    </div>
                                 </div>
                             @endforeach
-
-                            <!-- Add Photo Button -->
-                            @if (count($this->tempPhotos) + count($newPhotoPreviews) <= 5)
-                                <div class="relative" onclick="document.getElementById('file-upload').click()">
-                                    <a>
-                                        <div class="bg-gray-900 w-[150px] h-[90px] rounded-lg flex justify-center items-center cursor-pointer">
-                                            <x-fas-plus-circle class="w-[70px] h-[50px]"/>
-                                        </div>
-                                    </a>
-                                </div>
-
-                                <!-- Hidden file input -->
-                                <input type="file" multiple id="file-upload" class="hidden" wire:model="newPhotos">
-                            @endif
                         </div>
                     </div>
                     @error('newPhotos')
@@ -176,7 +186,7 @@
 
                             {{-- wire:target="saveProperty --}}
                             <div wire:loading>
-                                <img src="{{ asset('photos/spinner.svg') }}" wire:loading class="w-5 h-5"></img> <!-- SVG loading spinner -->
+                                <img src="{{ asset('photos/spinner.svg') }}" wire:loading class="w-6 h-6"></img> <!-- SVG loading spinner -->
                             </div>
                         </button>
                     </div>
