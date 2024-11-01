@@ -73,8 +73,11 @@ class PropertyController extends Controller
      */
     public function edit(Property $property)
     {
+        $propertyMedia = $property->getMedia('property-photos');
+
         return view('admin.property.edit')
-            ->with('property', $property);
+            ->with('property', $property)
+            ->with('propertyMedia', $propertyMedia);
     }
 
     /**
