@@ -185,7 +185,7 @@
                                                 <div class="flex items-center justify-start">
                                                     <p class="text-left line-clamp-3">
                                                         @if ($key === 'price')
-                                                        {{ number_format($value, 0) }} $
+                                                        $ {{ number_format($value, 0) }}
                                                         @elseif ($key === 'surface')
                                                         {{ $value }} m<sup>2</sup>
                                                         @elseif ($key === 'lease_duration' && $value !== 'No')

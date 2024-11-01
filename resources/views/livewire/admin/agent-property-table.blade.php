@@ -60,7 +60,7 @@
                         <td id="table-data">
                             <div class="flex items-center justify-start">
                                 <p>
-                                    {{ number_format($property->price, 0) }} $
+                                    $ {{ number_format($property->price, 0) }}
                                 </p>
                             </div>
                         </td>

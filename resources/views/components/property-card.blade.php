@@ -7,7 +7,7 @@
     <!-- section about price and property name -->
     <div id="price" class="flex flex-col justify-start w-full p-0 m-0 ">
         <div class="px-6 mr-auto">
-            <p class="font-bold backdrop-blur-sm bg-white/10 rounded-[5px] px-1">$ {{ $property->price }}</p>
+            <p class="font-bold backdrop-blur-sm bg-white/10 rounded-[5px] px-1">$ {{ number_format($property->price, 0, '.',',') }}</p>
         </div>
         <div class="px-6 mt-1 mr-auto">
             <p class="font-bold backdrop-blur-sm bg-white/10 rounded-[5px] px-1">{{ $property->name }} - {{ $property->city }}</p>

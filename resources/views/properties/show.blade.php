@@ -184,7 +184,7 @@
                             <!-- Property price -->
                             <div class="rounded-[5px] flex justify-start items-center pb-4 w-full">
                                 <h6 class="mr-auto text-2xl">
-                                    Price: ${{$price}}
+                                    Price: ${{ number_format($property->price, 0, '.',',') }}
                                 </h6>
                             </div>
 
