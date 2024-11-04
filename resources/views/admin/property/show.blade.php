@@ -14,17 +14,18 @@
             @include('components.sidebar-admin')
 
             <!-- Main content-->
-            <div id="main-content" class="w-full bg-gray-900 !max-w-[100vw] overflow-scroll">
+            <div id="main-content" class="w-full bg-gray-900 !max-w-[100vw] ">
                 <div class="flex flex-col items-center justify-center w-[80%] mx-auto">
                     <!-- table to display property media -->
-                    <div class="w-full py-8 text-xl text-center">
+                    <div class="w-full py-8 text-xl text-center !max-w-[100%] ">
+                        {{-- Section Title --}}
                         <div>
                             <p class="pb-2 text-sm text-left">
                                 Property images
                             </p>
                         </div>
                         <div class="w-full">
-                            <table class="min-w-full overflow-hidden bg-gray-800 rounded-xl">
+                            <table class="min-w-full bg-gray-800 rounded-xl">
                                 <!-- Header of the table -->
                                 <thead class="w-full bg-gray-800 border-gray-700">
                                     <tr id="table-header" style="width: 100%">
@@ -43,7 +44,7 @@
                                         </th>
                                     </tr>
                                 </thead>
-                                <tbody class="w-full">
+                                <tbody class="w-full max-w-full">
                                     <!-- media section -->
                                     <tr class="w-full border-t border-gray-700">
                                         <!-- Key -->
@@ -52,16 +53,17 @@
                                                 <p class="text-left w-36">Media</p>
                                             </div>
                                         </td>
+
                                         <!-- Value -->
                                         <td class="w-full" id="table-data">
-                                            <div class="flex items-center justify-start w-full space-x-2 overflow-scroll whitespace-nowrap">
+                                            <div class="flex items-center space-x-2 overflow-scroll">
                                                 @if ($media->isEmpty())
                                                     <x-ionicon-image-sharp class="h-[75px] mr-auto"/>
                                                 @else
                                                     @foreach($media as $index => $slika)
                                                         <img src="{{ $slika->getUrl() }}"
                                                             alt="Property Photo"
-                                                            class="w-[150px] h-[90px] object-cover rounded-lg cursor-pointer"
+                                                            class="w-[150px] h-[90px] object-cover rounded-lg cursor-pointer flex-shrink-0"
                                                             onclick="openModal('{{ $slika->getUrl() }}', {{ $slika->order_column }})">
                                                     @endforeach
                                                 @endif
