@@ -14,16 +14,16 @@
             @include('components.sidebar-admin')
 
             <!-- Main content-->
-            <div id="main-content" class="w-full bg-gray-900">
-                <div class="flex flex-col items-center justify-center w-full z-9">
+            <div id="main-content" class="w-full bg-gray-900 !max-w-[100vw] overflow-scroll">
+                <div class="flex flex-col items-center justify-center w-[80%] mx-auto">
                     <!-- table to display property media -->
-                    <div class="py-8 text-xl text-center px-[6%] w-full">
+                    <div class="w-full py-8 text-xl text-center">
                         <div>
                             <p class="pb-2 text-sm text-left">
                                 Property images
                             </p>
                         </div>
-                        <div class="w-full overflow-x-auto">
+                        <div class="w-full">
                             <table class="min-w-full overflow-hidden bg-gray-800 rounded-xl">
                                 <!-- Header of the table -->
                                 <thead class="w-full bg-gray-800 border-gray-700">
@@ -54,7 +54,7 @@
                                         </td>
                                         <!-- Value -->
                                         <td class="w-full" id="table-data">
-                                            <div class="flex items-center justify-start w-full space-x-2 overflow-x-auto whitespace-nowrap">
+                                            <div class="flex items-center justify-start w-full space-x-2 overflow-scroll whitespace-nowrap">
                                                 @if ($media->isEmpty())
                                                     <x-ionicon-image-sharp class="h-[75px] mr-auto"/>
                                                 @else
@@ -74,7 +74,7 @@
                     </div>
 
                     <!-- table to display property agent data -->
-                    <div class="py-8 text-xl text-center px-[6%] w-full">
+                    <div class="w-full py-8 text-xl text-center">
                         <div>
                             <p class="pb-2 text-sm text-left">
                                 Agent information
@@ -140,7 +140,7 @@
                     </div>
 
                     <!-- table to display property data and properity location on map-->
-                    <div class="py-8 text-xl text-center px-[6%] w-full lg:flex sm:flex justify-center items-stretch gap-2">
+                    <div class="items-stretch justify-center w-full gap-2 py-8 text-xl text-center lg:flex sm:flex">
                         <!-- Property data -->
                         <div class="lg:w-[50%] sm:w-full pb-2">
                             <div>
@@ -210,8 +210,8 @@
                                     Properity location
                                 </p>
                             </div>
-                            <div id="sticky" class="w-full flex flex-col justify-center items-center rounded-[5px] px-2 py-2 bg-gray-800 z-10 !top-[108px]">
-                                <div id="admin-map" class="z-10 w-full rounded-[5px] border-[3px] h-[480px]">
+                            <div id="sticky" class="w-full flex flex-col justify-center items-center rounded-[5px] px-2 py-2 bg-gray-800">
+                                <div id="admin-map" class="w-full rounded-[5px] border-[3px] h-[480px]">
 
                                 </div>
                             </div>
