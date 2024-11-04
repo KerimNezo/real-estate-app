@@ -8,7 +8,7 @@
             <!-- Table to display property images -->
             <div class="w-full py-8 text-xl text-center">
                 <form wire:submit.prevent="uploadPhotos">
-                    <div class="flex flex-col items-center justify-center gap-4 pb-4 sm:flex-row">
+                    <div id="photos" class="flex flex-col items-center justify-center gap-4 pb-4 sm:flex-row">
                         <p class="mr-auto text-lg font-bold text-left">
                             Property images:
                         </p>
