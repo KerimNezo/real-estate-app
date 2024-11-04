@@ -94,6 +94,10 @@
     align-items: center;
 }
 
+#dugme-show-page {
+    display: none;
+}
+
 #about-us-text {
     width: 100%;
     display: flex;
@@ -200,8 +204,7 @@
 }
 
 #photoList {
-    width: 20%;
-    height: 60px;
+    height: 120px;
     border-radius: 5px;
     background-color: inherit;
     display: none;
@@ -584,11 +587,13 @@
     }
 
     #photoList {
-        width: 20%;
-        height: 130px;
         border-radius: 5px;
         background-color: inherit;
         display: block;
+    }
+
+    #dugme-show-page {
+        display: flex;
     }
 
     .property-type-image {
