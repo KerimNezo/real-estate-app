@@ -14,64 +14,32 @@
             @include('components.sidebar-admin')
 
             <!-- Main content-->
-            <div id="main-content" class="w-full bg-gray-900 !max-w-[100vw] ">
+            <div id="main-content" class="w-full bg-gray-900 !max-w-[100vw] overflow-scroll flex">
                 <div class="flex flex-col items-center justify-center w-[80%] mx-auto">
                     <!-- table to display property media -->
-                    <div class="w-full py-8 text-xl text-center !max-w-[100%] ">
+                    <div class="w-full py-8 text-xl text-center">
                         {{-- Section Title --}}
                         <div>
                             <p class="pb-2 text-sm text-left">
                                 Property images
                             </p>
                         </div>
-                        <div class="w-full">
-                            <table class="min-w-full bg-gray-800 rounded-xl">
-                                <!-- Header of the table -->
-                                <thead class="w-full bg-gray-800 border-gray-700">
-                                    <tr id="table-header" style="width: 100%">
-                                        <!-- Key -->
-                                        <th class="px-4 py-2 text-lg border-b border-gray-700">
-                                            <div class="flex items-center justify-start">
-                                                <p class="text-lg">Key</p>
-                                            </div>
-                                        </th>
 
-                                        <!-- Data -->
-                                        <th class="w-full px-4 py-2 text-lg border-b border-gray-700">
-                                            <div class="flex items-center justify-start">
-                                                <p class="text-lg">Data</p>
-                                            </div>
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody class="w-full max-w-full">
-                                    <!-- media section -->
-                                    <tr class="w-full border-t border-gray-700">
-                                        <!-- Key -->
-                                        <td class="" id="table-data">
-                                            <div class="flex items-center justify-start">
-                                                <p class="text-left w-36">Media</p>
-                                            </div>
-                                        </td>
-
-                                        <!-- Value -->
-                                        <td class="w-full" id="table-data">
-                                            <div class="flex items-center space-x-2 overflow-scroll">
-                                                @if ($media->isEmpty())
-                                                    <x-ionicon-image-sharp class="h-[75px] mr-auto"/>
-                                                @else
-                                                    @foreach($media as $index => $slika)
-                                                        <img src="{{ $slika->getUrl() }}"
-                                                            alt="Property Photo"
-                                                            class="w-[150px] h-[90px] object-cover rounded-lg cursor-pointer flex-shrink-0"
-                                                            onclick="openModal('{{ $slika->getUrl() }}', {{ $slika->order_column }})">
-                                                    @endforeach
-                                                @endif
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                        {{-- Section Content --}}
+                        <div class="px-2 py-2 bg-gray-800 rounded-xl">
+                            <div class="flex items-center justify-start w-full max-w-full space-x-2 overflow-scroll rounded-xl">
+                                <!-- Display photos from database -->
+                                @if ($media->isEmpty())
+                                    <x-ionicon-image-sharp class="h-[75px] mr-auto" />
+                                @else
+                                    @foreach($media as $index => $slika)
+                                        <img src="{{ $slika->getUrl() }}"
+                                                alt="Property Photo"
+                                                class="w-[150px] h-[90px] rounded-lg cursor-pointer flex-shrink-0"
+                                                onclick="openModal('{{ $slika->getUrl() }}', {{ $slika->order_column }})">
+                                    @endforeach
+                                @endif
+                            </div>
                         </div>
                     </div>
 
@@ -228,9 +196,9 @@
 
     <!-- Full-size image modal -->
     <div id="imageModal" class="fixed inset-0 z-50 items-center justify-center hidden bg-black bg-opacity-75 cursor-pointer" onclick="closeModal()">
-        <div class="relative max-w-4xl mx-auto cursor-auto" onclick="event.stopPropagation()">
+        <div class="relative max-w-4xl mx-auto my-auto cursor-auto" onclick="event.stopPropagation()">
             <span class="absolute flex items-center justify-center px-[9px] py-0 text-2xl text-white bg-gray-700 rounded-full cursor-pointer top-2 right-2" onclick="closeModal()">&times;</span>
-            <img id="modalImage" src="" alt="Full View Image" class="mx-auto w-[800px] rounded-[20px]" onclick="closeModal()">
+            <img id="modalImage" src="" alt="Full View Image" class="mx-auto w-[700px] rounded-[20px]" onclick="closeModal()">
 
             <!-- Previous and Next buttons -->
             <button id="prevButton" class="absolute h-[52px] w-[52px] px-2 pb-1 text-3xl text-white bg-gray-700 rounded-full cursor-pointer left-2 top-1/2"
@@ -279,6 +247,16 @@
                 nextButton.classList.add('hidden');
             }
         }
+
+        document.addEventListener('keydown', function(event) {
+            // Check if the right arrow key is pressed
+            if (event.key === "ArrowRight") {
+                nextImage(); // Trigger the function
+            }
+            else if (event.key === "ArrowLeft") {
+                prevImage();
+            }
+        });
 
         function prevImage() {
             if (currentIndex === photoCount) {
