@@ -1,10 +1,10 @@
 <div>
     <!-- Update Property Form -->
-    <div class="w-full p-4 mx-auto bg-gray-800 rounded-lg shadow-lg">
+    <div class="flex flex-col items-center justify-center w-full p-4 mx-auto bg-gray-800 rounded-lg shadow-lg">
         <!-- Title -->
         <h1 class="text-xl font-bold text-center">Update Property Information</h1>
 
-        <div class="w-full h-full sm:px-20">
+        <div class="w-full h-full">
             <!-- Table to display property images -->
             <div class="w-full py-8 text-xl text-center">
                 <form wire:submit.prevent="uploadPhotos">
