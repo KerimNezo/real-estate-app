@@ -261,7 +261,6 @@
         function prevImage() {
             if (currentIndex === photoCount) {
                 nextButton.classList.remove('hidden');
-                console.log('makelo je hidden');
             }
             currentIndex = currentIndex - 1
             document.getElementById('modalImage').src = mediaUrls[currentIndex];
