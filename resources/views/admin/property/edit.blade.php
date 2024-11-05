@@ -10,12 +10,12 @@
             @include('components.topbar-admin')
         </div>
 
-        <div class="flex w-full pt-[100px] flex-grow">
+        <div class="flex w-full pt-[100px] flex-grow overflow-hidden">
             @include('components.sidebar-admin')
 
             <!-- Main content -->
-            <div id="main-content" class="flex flex-col flex-grow w-full pt-6 bg-gray-900 !max-w-[100vw]">
-                <div class="w-[80%] mx-auto py-8">
+            <div id="main-content" class="flex flex-col w-full bg-gray-900">
+                <div class="w-[80%] mx-auto py-8 ">
                     <!-- Livewire form -->
                     <livewire:admin.edit-property :$property :$propertyMedia/>
                 </div>
