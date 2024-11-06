@@ -8,13 +8,14 @@
             <!-- Table to display property images -->
             <div class="w-full py-8 text-xl text-center">
                 <form wire:submit.prevent="uploadPhotos">
+                    {{-- Photo gallery header with buttons --}}
                     <div class="flex flex-col items-center justify-center gap-4 pb-4 sm:flex-row">
-                        <p class="mr-auto text-lg font-bold text-left">
+                        <p class="w-full mr-auto text-lg font-bold text-left whitespace-normal">
                             Property images:
                         </p>
 
-                        <div class="flex items-center justify-center gap-4 mr-auto sm:mr-0">
-                            <button type="button" onclick="document.getElementById('file-upload').click()" class="px-3 py-2 ml-auto text-base text-white bg-green-600 rounded-lg">
+                        <div class="flex items-center justify-center w-full gap-4 mr-0">
+                            <button type="button" onclick="document.getElementById('file-upload').click()" class="px-3 py-2 ml-0 mr-auto text-base text-white bg-green-600 rounded-lg sm:ml-auto sm:mr-0">
                                 <p>New photo</p>
                             </button>
 
@@ -29,23 +30,25 @@
                             </button>
                         </div>
                     </div>
+
+                    <!-- Property photos -->
                     <div class="max-w-full overflow-x-scroll">
                         <div class="flex items-center justify-start w-full max-w-full space-x-2 overflow-x-scroll whitespace-nowrap">
                             <!-- Display photos from database -->
-                            @foreach($tempPhotos as $index => $media)
+                            @foreach($tempPhotos as $media)
                                 <div class="relative" wire:key="{{ $media->id }}">
                                     <img src="{{ $media->getUrl() }}"
                                         alt="Property Photo"
                                         class="w-[150px] h-[90px] object-cover rounded-lg cursor-pointer">
 
                                     <button type="button" class="absolute flex items-center justify-center w-5 h-5 text-xs text-black bg-white rounded-full top-1 right-1"
-                                            wire:click="removePhoto({{ $index }}, {{ $media->id }})"  wire:loading.attr="disabled">
+                                            wire:click="removePhoto({{ $media->order_column }}, {{ $media->id }})"  wire:loading.attr="disabled">
                                         <div class="flex items-center justify-center pb-[2px] font-bold">
                                             <p>x</p>
                                         </div>
                                     </button>
 
-                                    <div wire:loading wire:target="removePhoto({{ $index }}, {{ $media->id }})"
+                                    <div wire:loading wire:target="removePhoto({{ $media->order_column }}, {{ $media->id }})"
                                         class="absolute inset-0 z-10 flex items-center justify-center bg-gray-700 bg-opacity-75 rounded-lg">
                                         <img src="{{ asset('photos/spinner.svg') }}" alt="Loading" class="w-[150px] h-[90px] opacity-75">
                                     </div>
