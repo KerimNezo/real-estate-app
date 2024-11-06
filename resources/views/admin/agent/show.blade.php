@@ -18,11 +18,14 @@
                 <div class="flex flex-col items-center justify-center w-full z-9">
                     <!-- table to display property agent data -->
                     <div class="py-8 text-xl text-center px-[6%] w-full">
+                        {{-- Table header --}}
                         <div>
                             <p class="pb-2 text-sm text-left">
                                 {{ ucwords($agent->getRoleNames()[0]) }} information
                             </p>
                         </div>
+
+                        {{-- Table content --}}
                         <div class="w-full overflow-x-auto">
                             <!-- Agent data -->
                             <div class="">
@@ -48,9 +51,9 @@
 
                                     <!-- Table data -->
                                     <tbody class="w-full">
-                                        <!-- user data -->
+                                        <!-- Agent data -->
                                         <tr class="w-full border-t border-gray-700">
-                                            <!-- Id -->
+                                            <!-- Agent profile image title -->
                                             <td class="px-4 py-4 text-base leading-6">
                                                 <div class="flex items-center justify-start">
                                                     <p class="text-left w-36">
@@ -59,7 +62,7 @@
                                                 </div>
                                             </td>
 
-                                            <!-- Name -->
+                                            <!-- Agent profile image content -->
                                             <td class="w-full px-4 py-4 text-base leading-6">
                                                 <div class="flex items-center justify-start">
                                                     <p class="text-left">
@@ -75,7 +78,7 @@
 
                                         @foreach ($agentData as $key=>$value)
                                             <tr class="w-full border-t border-gray-700">
-                                                <!-- Id -->
+                                                <!-- key -->
                                                 <td class="px-4 py-4 text-base leading-6">
                                                     <div class="flex items-center justify-start">
                                                         <p class="text-left w-36">
@@ -84,7 +87,7 @@
                                                     </div>
                                                 </td>
 
-                                                <!-- Name -->
+                                                <!-- value -->
                                                 <td class="w-full px-4 py-4 text-base leading-6">
                                                     <div class="flex items-center justify-start">
                                                         <p class="text-left">
@@ -100,8 +103,8 @@
                         </div>
                     </div>
 
+                    {{-- Table that display agents properties --}}
                     @if ($agent->id !== 1)
-                        {{-- Table that display agents properties --}}
                         <div class="py-8 text-xl text-center px-[6%] w-full">
                             <livewire:admin.agent-property-table :$agent />
                         </div>
