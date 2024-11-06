@@ -14,7 +14,7 @@
             @include('components.sidebar-admin')
 
             <!-- Main content -->
-            <div id="main-content" class="flex flex-col w-full bg-gray-900">
+            <div id="main-content" class="flex flex-col w-full overflow-hidden bg-gray-900">
                 <div class="w-[80%] mx-auto py-8 ">
                     <!-- Livewire form -->
                     <livewire:admin.edit-property :$property :$propertyMedia/>
