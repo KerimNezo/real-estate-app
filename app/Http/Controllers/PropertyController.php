@@ -121,10 +121,10 @@ class PropertyController extends Controller
             $property->delete();
 
             // Return a success response
-            return redirect()->back()->with('success', 'Property deleted successfully.');
+            return redirect()->route('admin-properties')->with('success', 'Property deleted successfully.');
         } catch (\Exception $e) {
             // Handle any errors that might occur
-            return redirect()->back()->with('error', 'There was an issue deleting the property.');
+            return redirect()->route('admin-properties')->with('error', 'There was an issue deleting the property.');
         }
     }
 }
