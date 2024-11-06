@@ -79,11 +79,14 @@ class EditProperty extends Component
 
     public function removePhoto($index, $id)
     {
+        // Add the ID to the removed list
         $this->removedPhotoIds[] = $id;
-        $this->tempPhotos = $this->tempPhotos->filter(fn ($photo, $i) => $i !== $index)->values();
-        foreach ($this->tempPhotos as $i => $photo) {
-            $photo->order_column = $i + 1;
-        }
+
+        // Filter out the photo based on its unique id instead of the index
+        $this->tempPhotos = $this->tempPhotos->filter(fn($photo) => $photo->id !== $id)->values();
+
+        logger("index: $index");
+        logger("Id: $id");
     }
 
     public function resetPhotos()
