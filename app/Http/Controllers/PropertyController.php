@@ -73,7 +73,7 @@ class PropertyController extends Controller
      */
     public function edit(Property $property)
     {
-        $propertyMedia = $property->getMedia('property-photos');
+        $propertyMedia = $property->getMedia('property-photos')->sortBy('order_column');
 
         return view('admin.property.edit')
             ->with('property', $property)
