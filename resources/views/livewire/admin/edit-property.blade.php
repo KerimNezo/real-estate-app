@@ -56,20 +56,20 @@
                             @endforeach
 
                             <!-- Display new photo previews -->
-                            @foreach($newPhotoPreviews as $index => $preview)
-                                <div class="relative" wire:key="{{ $index }}">
-                                    <img src="{{ $preview }}"
+                            @foreach($newPhotos as $photo)
+                                <div class="relative" wire:key="{{ pathinfo($photo->extractOriginalNameFromFilePath($photo->getFilename()), PATHINFO_FILENAME) }}" >
+                                    <img src="{{ $photo->temporaryUrl() }}"
                                         alt="Loading Photo"
                                         class="w-[150px] h-[90px] object-cover rounded-lg cursor-pointer">
 
                                     <button type="button" class="absolute flex items-center justify-center w-5 h-5 text-xs text-black bg-white rounded-full top-1 right-1"
-                                            wire:click="removePhoto({{ $index }}, {{ $preview }})"  wire:loading.attr="disabled">
+                                            wire:click="removeNewPhoto({{ pathinfo($photo->extractOriginalNameFromFilePath($photo->getFilename()), PATHINFO_FILENAME) }})" wire:loading.attr="disabled">
                                         <div class="flex items-center justify-center pb-[2px] font-bold">
                                             <p>x</p>
                                         </div>
                                     </button>
 
-                                    <div wire:loading wire:target="removePhoto({{ $index }}, {{ $preview }})"
+                                    <div wire:loading wire:target="removeNewPhoto({{ pathinfo($photo->extractOriginalNameFromFilePath($photo->getFilename()), PATHINFO_FILENAME) }})"
                                         class="absolute inset-0 z-10 flex items-center justify-center bg-gray-700 bg-opacity-75 rounded-lg">
                                         <img src="{{ asset('photos/spinner.svg') }}" alt="Loading" class="w-[150px] h-[90px] opacity-75">
                                     </div>
