@@ -43,9 +43,6 @@ class EditProperty extends Component
     #[Validate('nullable|max:1024')]
     public $newPhotos = []; // Array to handle new uploads
 
-    #[Validate('nullable|max:1024')]
-    public $newPhotoPreviews = []; // Array for previewing newly uploaded photos
-
     public function mount($property)
     {
         $this->property = $property;
@@ -72,16 +69,17 @@ class EditProperty extends Component
     {
         // Generate temporary URLs for previewing new photos
         foreach ($this->newPhotos as $photo) {
-            logger($photo);
+            logger('ALOOO');
+            logger($photo->getcreateFromLivewire());
         }
     }
 
-    public function removeNewPhoto($id)
+    public function removeNewPhoto($filename)
     {
-        logger($id);
+        logger($filename);
 
         // Filter out the photo based on its unique id instead of the index
-        $this->newPhotos = $this->newPhotos->filter(fn($photo) => $photo->id !== $id)->values();
+        $this->newPhotos = $this->newPhotos->filter(fn($photo) => $photo->temporaryUrl() !== $filename)->values();
     }
 
     public function removePhoto($index, $id)
@@ -101,7 +99,7 @@ class EditProperty extends Component
     public function resetPhotos()
     {
         $this->tempPhotos = $this->propertyMedia;
-        $this->reset('newPhotoPreviews', 'newPhotos', 'removedPhotoIds');
+        $this->reset('newPhotos', 'removedPhotoIds');
     }
 
     public function reorderPhotos()
@@ -159,7 +157,6 @@ class EditProperty extends Component
 
         // Clear new photos and previews after saving
         $this->newPhotos = [];
-        $this->newPhotoPreviews = [];
         $this->property->save();
 
         return $this->redirect(route('admin-properties'));
