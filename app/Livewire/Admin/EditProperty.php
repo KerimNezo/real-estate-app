@@ -72,15 +72,24 @@ class EditProperty extends Component
     {
         // Generate temporary URLs for previewing new photos
         foreach ($this->newPhotos as $photo) {
-            logger('ALOOO');
-            $this->newPhotoPreviews[] = $photo->temporaryUrl();
+            logger($photo);
         }
+    }
+
+    public function removeNewPhoto($id)
+    {
+        logger($id);
+
+        // Filter out the photo based on its unique id instead of the index
+        $this->newPhotos = $this->newPhotos->filter(fn($photo) => $photo->id !== $id)->values();
     }
 
     public function removePhoto($index, $id)
     {
         // Add the ID to the removed list
         $this->removedPhotoIds[] = $id;
+
+        logger($id);
 
         // Filter out the photo based on its unique id instead of the index
         $this->tempPhotos = $this->tempPhotos->filter(fn($photo) => $photo->id !== $id)->values();
