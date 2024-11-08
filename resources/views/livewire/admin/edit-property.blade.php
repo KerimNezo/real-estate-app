@@ -31,6 +31,17 @@
                         </div>
                     </div>
 
+                    {{-- X animacija koju ću pokazati kada Admin pokuša obrisati Agenta koji ima propertije --}}
+                    <div>
+                        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" class="rounded-xl"
+                            width="50px" height="50px" viewBox="0 0 50 50" style="background-color: #ffffff;"  enable-background="new 0 0 50 50" xml:space="preserve">
+                        <g id="Layer_3" >
+                            <line id="path2" fill="none" stroke="#dc2626" stroke-width="3" stroke-miterlimit="10" x1="8.5" y1="41.5" x2="41.5" y2="8.5"/>
+                            <line id="path3" fill="none" stroke="#dc2626" stroke-width="3" stroke-miterlimit="10" x1="41.5" y1="41.5" x2="8.5" y2="8.5"/>
+                        </g>
+                        </svg>
+                    </div>
+
                     <!-- Property photos -->
                     <div class="max-w-full overflow-x-scroll">
                         <div class="flex items-center justify-start w-full max-w-full space-x-2 overflow-x-scroll whitespace-nowrap">
