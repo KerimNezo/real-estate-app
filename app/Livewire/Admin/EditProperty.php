@@ -40,9 +40,11 @@ class EditProperty extends Component
     #[Validate('required|string|in:Sale,Rent', message: 'Offer value is not accepted')]
     public $tempOffer;
 
+    // Array to handle new uploads
     #[Validate('nullable|max:1024')]
-    public $newPhotos = []; // Array to handle new uploads
+    public $newPhotos = [];
 
+    // Array to handle key=>value pair of newly added photos and their id's
     public $newPhotoArray = [];
 
     public function mount($property)
@@ -71,7 +73,7 @@ class EditProperty extends Component
     {
         foreach($this->newPhotos as $photo)
         {
-            if ($photo) { // Ensure $slika is not null
+            if ($photo) {
                 $this->newPhotoArray[$this->sanitizePhotoName($photo)] = $photo;
             }
         }
@@ -79,10 +81,9 @@ class EditProperty extends Component
 
     function sanitizePhotoName($photo)
     {
-        // Remove the file extension
         $nameWithoutExtension = pathinfo($photo->getClientOriginalName(), PATHINFO_FILENAME);
 
-        // Remove spaces
+        // This str_replace, right now, just removes spaces. So if some bs comes up in image names, I just need to edit this code here.
         $sanitized = str_replace(' ', '', $nameWithoutExtension);
 
         return $sanitized;
@@ -99,18 +100,13 @@ class EditProperty extends Component
             }
         }
 
-        // Reindex array after deletion to avoid potential gaps in the indices
         $this->newPhotos = array_values($this->newPhotos);
     }
 
     public function removePhoto($index, $id)
     {
-        // Add the ID to the removed list
         $this->removedPhotoIds[] = $id;
 
-        logger($id);
-
-        // Filter out the photo based on its unique id instead of the index
         $this->tempPhotos = $this->tempPhotos->filter(fn($photo) => $photo->id !== $id)->values();
 
         logger("index: $index");
@@ -120,24 +116,22 @@ class EditProperty extends Component
     public function resetPhotos()
     {
         $this->tempPhotos = $this->propertyMedia;
-        $this->reset('newPhotos', 'removedPhotoIds');
+        $this->reset('newPhotos', 'removedPhotoIds', 'newPhotoArray');
     }
 
+    // Main usage of the function is to reorder property photos so that their order_column values are in sync
     public function reorderPhotos()
     {
-        // Fetch the updated media items for the property
         $mediaItems = $this->property->getMedia('property-photos');
 
-        // Update order_column from 1 to N based on the current count
         foreach ($mediaItems as $index => $mediaItem) {
-            $mediaItem->order_column = $index + 1; // Set order_column starting from 1
-            $mediaItem->save(); // Save the changes
+            $mediaItem->order_column = $index + 1;
+            $mediaItem->save();
         }
     }
 
     public function saveProperty()
     {
-
         logger('Before validation');
 
         $this->validate();
@@ -146,7 +140,6 @@ class EditProperty extends Component
 
         logger('-------------------------------------------------');
 
-        // Update name, description, agent, price
         $this->property->name = $this->tempTitle;
         $this->property->description = $this->tempDescription;
         $this->property->user_id = $this->tempAgent;
@@ -158,15 +151,13 @@ class EditProperty extends Component
         } elseif ($this->tempOffer === 'Rent') {
             $this->property->lease_duration = 1;
         } else {
-            logger('Nešto nije u redu sa statusom');
+            logger("Something's wrong with the status");
         }
 
-        // Save new photos to the database
         foreach ($this->newPhotos as $photo) {
             $this->property->addMedia($photo)->toMediaCollection('property-photos');
         }
 
-        // Remove photos marked for deletion
         foreach ($this->removedPhotoIds as $photoId) {
             $mediaItem = $this->property->media()->find($photoId);
             if ($mediaItem) {
@@ -175,10 +166,6 @@ class EditProperty extends Component
         }
 
         $this->reorderPhotos();
-
-        // Clear new photos and previews after saving
-        $this->newPhotos = [];
-        $this->property->save();
 
         return $this->redirect(route('admin-properties'));
     }
