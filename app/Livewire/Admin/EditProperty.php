@@ -43,6 +43,8 @@ class EditProperty extends Component
     #[Validate('nullable|max:1024')]
     public $newPhotos = []; // Array to handle new uploads
 
+    public $newPhotoArray = [];
+
     public function mount($property)
     {
         $this->property = $property;
@@ -67,19 +69,38 @@ class EditProperty extends Component
 
     public function updatedNewPhotos()
     {
-        // Generate temporary URLs for previewing new photos
-        foreach ($this->newPhotos as $photo) {
-            logger('ALOOO');
-            logger($photo->getcreateFromLivewire());
+        foreach($this->newPhotos as $photo)
+        {
+            if ($photo) { // Ensure $slika is not null
+                $this->newPhotoArray[$this->sanitizePhotoName($photo)] = $photo;
+            }
         }
+    }
+
+    function sanitizePhotoName($photo)
+    {
+        // Remove the file extension
+        $nameWithoutExtension = pathinfo($photo->getClientOriginalName(), PATHINFO_FILENAME);
+
+        // Remove spaces
+        $sanitized = str_replace(' ', '', $nameWithoutExtension);
+
+        return $sanitized;
     }
 
     public function removeNewPhoto($filename)
     {
-        logger($filename);
+        foreach ($this->newPhotos as $index => $photo)
+        {
+            if ($this->sanitizePhotoName($photo) === $filename) {
+                unset($this->newPhotos[$index]);
+                unset($this->newPhotoArray[$filename]);
+                break;
+            }
+        }
 
-        // Filter out the photo based on its unique id instead of the index
-        $this->newPhotos = $this->newPhotos->filter(fn($photo) => $photo->temporaryUrl() !== $filename)->values();
+        // Reindex array after deletion to avoid potential gaps in the indices
+        $this->newPhotos = array_values($this->newPhotos);
     }
 
     public function removePhoto($index, $id)
