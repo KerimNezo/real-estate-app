@@ -59,9 +59,9 @@ class AdminController extends Controller
     public function indexProperites(Request $request)
     {
         $cities = Property::query()
-            ->select('city') // Select only the city column
-            ->distinct()     // Ensure cities are unique
-            ->pluck('city'); // Get the cities as a collection
+            ->select('city')
+            ->distinct()
+            ->pluck('city');
 
         $assetLocation = $request->query('asset-location');
         $assetId = $request->query('type-of-asset-id');
