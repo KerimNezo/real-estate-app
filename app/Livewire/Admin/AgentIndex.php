@@ -18,7 +18,14 @@ class AgentIndex extends Component
             ->select('id', 'name', 'email', 'phone_number')
             ->where('name', '!=', 'admin')
             ->latest()
-            ->with(['media']);
+            ->with(['media', 'properties' => function ($query) {
+                $query->orderBy('created_at', 'asc')
+                    ->with(['media' => function ($query) {
+                        $query->orderBy('order_column', 'asc')
+                            ->limit(1);
+                    }])
+                    ->limit(1);
+            }]);
 
         return $agents->paginate(10);
     }

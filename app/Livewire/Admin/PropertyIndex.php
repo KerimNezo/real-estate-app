@@ -46,7 +46,7 @@ class PropertyIndex extends Component
             ->latest()
             ->with(['media' => function ($query) {
                 $query->orderBy('order_column', 'asc')
-                    ->limit(6);
+                    ->limit(1);
             }, 'user' => function ($userQuery) {
                 $userQuery->select('id', 'name');
             }]);
