@@ -64,7 +64,7 @@ class EditProperty extends Component
     {
         return User::query()
             ->select('id', 'name')
-            ->where('id', '>', 1)
+            ->where('id', '!=', 1)
             ->latest()
             ->get();
     }
@@ -166,6 +166,8 @@ class EditProperty extends Component
         }
 
         $this->reorderPhotos();
+
+        $this->property->save();
 
         return $this->redirect(route('admin-properties'));
     }
