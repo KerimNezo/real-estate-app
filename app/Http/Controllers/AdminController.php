@@ -50,9 +50,16 @@ class AdminController extends Controller
 
     public function deleteAgent(User $user)
     {
-        // action that will delete the Agent, but we will limit that it will not be possible
-        // to delete the agent if he has any properties assigned to him. Admin will first need to reassign the properties to
-        // other agents and then he will be allowed to remove the agent
+        try {
+            // Delete the property
+            $$user->delete();
+
+            // Return a success response
+            return redirect()->route('all-agents')->with('success', 'Property deleted successfully.');
+        } catch (\Exception $e) {
+            // Handle any errors that might occur
+            return redirect()->route('all-agents')->with('error', 'There was an issue deleting the property.');
+        }
     }
 
     // Property Routes
