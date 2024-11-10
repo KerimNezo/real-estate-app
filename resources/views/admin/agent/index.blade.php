@@ -24,4 +24,68 @@
             @include('admin.footer')
         </div>
     </div>
+
+    <!-- Confirmation form modal -->
+    <div id="confirmationButtonModal" class="fixed inset-0 z-50 hidden bg-black bg-opacity-95" onclick="closeConfirmationModal(event)">
+        <div class="bg-gray-900 bg-opacity-95 rounded-[20px] w-[450px] h-[350px] relative mx-auto my-auto" onclick="event.stopPropagation()">
+            <div class="flex flex-col items-center justify-center h-full p-2">
+                {{-- x button --}}
+                <span class="absolute flex items-center justify-center px-[10px] py-0 text-2xl text-white bg-gray-700 rounded-full cursor-pointer top-3 right-3 text-center" onclick="closeConfirmationModal()">&times;</span>
+
+                {{-- Header text --}}
+                <div class="flex items-center justify-center w-full px-5 mx-auto mt-10">
+                    <p class="text-xl text-center">Are you sure you want to delete this agent?</p>
+                </div>
+
+                {{-- Action explanation text --}}
+                <div class="mb-auto">
+                    <p class="text-xs">(Confirming this will permanently delete the selected agent)</p>
+                </div>
+
+                {{-- Property details --}}
+                <div class="flex w-full px-5 py-3">
+                    {{-- Property image --}}
+                    <div class="px-5 bg-gray-800 rounded-[20px] w-full py-3 flex justify-center items-center">
+                        <img id="agentPhoto" src="" alt="Agent image" class="w-24 rounded-[10px] mr-auto">
+                        <p id="agentName" class="text-base text-center"></p>
+                    </div>
+                </div>
+
+                {{-- Form footer containing two buttons --}}
+                <div class="flex w-full px-5 py-5">
+                    <button class="px-4 py-2 mr-auto bg-green-600 rounded-[10px]" onclick="closeConfirmationModal()">
+                        Cancel
+                    </button>
+
+                    <!-- Hidden form for deletion -->
+                    <form id="deleteAgentForm" action="" method="POST" class="ml-auto">
+                        @csrf
+                        @method('DELETE') <!-- Spoofing the DELETE request -->
+                        <button type="submit" class="px-4 py-2 bg-red-600 rounded-[10px]">
+                            Delete
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal script -->
+    <script>
+        function openConfirmationModal(agent, imageUrl) {
+            document.getElementById('confirmationButtonModal').classList.remove('hidden');
+            document.getElementById('confirmationButtonModal').classList.add('flex');
+            document.getElementById('agentPhoto').src = imageUrl;
+            document.getElementById('agentName').textContent = agent.name;
+
+            document.getElementById('deleteAgentForm').action = `{{ route('delete-agent', ':id') }}`.replace(':id', agent.id);
+        }
+
+        function closeConfirmationModal(event) {
+            if (event) {
+                event.stopPropagation(); // Prevents the event from bubbling if the click was on the modal content
+            }
+            document.getElementById('confirmationButtonModal').classList.add('hidden');
+        }
+    </script>
 </x-admin-layout>
