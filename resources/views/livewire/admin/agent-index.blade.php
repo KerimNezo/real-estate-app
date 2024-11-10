@@ -98,7 +98,7 @@
                                     <a href="{{ route('edit-agent', $user = $agent) }}" class="hover:text-red-400">
                                         <x-feathericon-edit class="w-[25px] h-[25px]" />
                                     </a>
-                                    <a onclick="openConfirmationModal({{$agent}}, '{{$agent->getFirstMediaUrl('agent-pfps')}}')" class="hover:text-red-400">
+                                    <a onclick="openConfirmationModal({{$agent}}, '{{$agent->getFirstMediaUrl('agent-pfps')}}', {{ count($agent->properties) }})" class="hover:text-red-400">
                                         <x-heroicon-s-trash class="w-[25px]" />
                                     </a>
                                 </div>
