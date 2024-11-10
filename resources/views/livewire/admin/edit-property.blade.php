@@ -80,8 +80,6 @@
                                         </div>
                                     </button>
 
-                                    {{-- OVDJE IMAMO ERRORE na removeNewPhoto() kad passamo key --}}
-
                                     <div wire:loading wire:target="removeNewPhoto('{{ $key }}')"
                                         class="absolute inset-0 z-10 flex items-center justify-center bg-gray-700 bg-opacity-75 rounded-lg">
                                         <img src="{{ asset('photos/spinner.svg') }}" alt="Loading" class="w-[150px] h-[90px] opacity-75">
