@@ -28,7 +28,7 @@
                 <span class="absolute flex items-center justify-center px-[10px] py-0 text-base text-white bg-red-700 rounded-full cursor-pointer top-1 right-1 text-center" onclick="closeSessionMessage()">&times;</span>
 
                 <p class="text-center">
-                    {{ session('success') }}
+                    {{ session('error') }}
                 </p>
             </div>
         @endif
