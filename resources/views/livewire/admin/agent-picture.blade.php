@@ -24,7 +24,11 @@
         </div>
 
         <div class="flex items-center justify-center w-full">
-            <img src="{{ $tempPhoto->getUrl() }}" alt="Agents profile picture" class="h-80">
+            @if ($newPhoto === '')
+                <img src="{{ $tempPhoto->getUrl() }}" alt="Agents profile picture" class="h-80">
+            @else
+                <img src="{{ $newPhoto->temporaryUrl() }}" alt="Agents profile picture" class="h-80">
+            @endif
         </div>
     </div>
 </div>
