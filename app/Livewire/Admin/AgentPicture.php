@@ -12,6 +12,8 @@ class AgentPicture extends Component
 
     public $agentPicture;
 
+    public $newPhoto = '';
+
     public $tempPhoto;
 
     public function mount()
@@ -21,7 +23,7 @@ class AgentPicture extends Component
 
     public function resetPhoto()
     {
-        $this->tempPhoto = $this->agentPicture;
+        $this->newPhoto = '';
     }
 
 }
