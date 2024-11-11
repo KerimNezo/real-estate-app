@@ -42,7 +42,7 @@ class AdminController extends Controller
     {
         $userPicture = $user->getMedia('agent-pfps');
 
-        return view('admin.property.edit')
+        return view('admin.agent.edit')
             ->with('agent', $user)
             ->with('agentPicture', $userPicture);
     }
