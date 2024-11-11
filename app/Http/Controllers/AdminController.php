@@ -44,7 +44,7 @@ class AdminController extends Controller
 
         return view('admin.agent.edit')
             ->with('agent', $user)
-            ->with('agentPicture', $userPicture);
+            ->with('agentPicture', $userPicture[0]);
     }
 
     public function updateAgent()
