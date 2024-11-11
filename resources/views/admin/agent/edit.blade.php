@@ -106,9 +106,9 @@
                             </div> --}}
 
                             <!-- Table to display agent data-->
-                            <div class="flex w-full gap-4 sm:flex-row">
+                            <div class="flex flex-col w-full gap-4 lg:flex-row">
                                 <!-- General property data -->
-                                <div class="w-[40%]">
+                                <div class="w-full sm:w-[40%] pt-[10px]">
                                     <!-- Agent Name -->
                                     <x-formInput type="text" title="name" label="Name" :value='$agent->name'/>
 
@@ -126,7 +126,7 @@
                                 </div>
 
                                 <!-- Agent profile picture section (will be a livewire component) -->
-                                <div class="w-[60%]">
+                                <div class="w-full sm:w-[60%]">
                                     <livewire:admin.agent-picture :$agentPicture />
                                 </div>
                             </div>
