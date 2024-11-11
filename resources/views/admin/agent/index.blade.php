@@ -25,7 +25,7 @@
         </div>
     </div>
 
-    <!-- Confirmation form modal -->
+    <!-- Form modal -->
     <div id="confirmationButtonModal" class="fixed inset-0 z-50 hidden bg-black bg-opacity-95" onclick="closeConfirmationModal(event)">
         <div class="bg-gray-900 bg-opacity-95 rounded-[20px] w-[450px] h-[350px] relative mx-auto my-auto" onclick="event.stopPropagation()">
             {{-- Modal that displays if agent has no properties assigned to him. --}}
