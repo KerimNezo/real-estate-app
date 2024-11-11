@@ -38,9 +38,13 @@ class AdminController extends Controller
         // return view of agent-index
     }
 
-    public function editAgent()
+    public function editAgent(User $user)
     {
-        // return view with edit form
+        $userPicture = $user->getMedia('agent-pfps');
+
+        return view('admin.property.edit')
+            ->with('agent', $user)
+            ->with('agentPicture', $userPicture);
     }
 
     public function updateAgent()
@@ -52,13 +56,13 @@ class AdminController extends Controller
     {
         try {
             // Delete the property
-            $$user->delete();
+            $user->delete();
 
             // Return a success response
-            return redirect()->route('all-agents')->with('success', 'Property deleted successfully.');
+            return redirect()->route('all-agents')->with('success', 'Agent deleted successfully.');
         } catch (\Exception $e) {
             // Handle any errors that might occur
-            return redirect()->route('all-agents')->with('error', 'There was an issue deleting the property.');
+            return redirect()->route('all-agents')->with('error', 'There was an issue deleting the agent.');
         }
     }
 
