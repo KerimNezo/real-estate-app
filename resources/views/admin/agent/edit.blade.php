@@ -18,11 +18,11 @@
                 <!-- Update Property Form -->
                 <div>
                     <!-- Update Property Form -->
-                    <div class="flex flex-col items-center justify-center w-full p-4 mx-auto bg-gray-800 rounded-lg shadow-lg">
+                    <div class="flex flex-col items-center justify-center p-4 mx-auto bg-gray-800 rounded-lg shadow-lg w-[80%]">
                         <!-- Title -->
-                        <h1 class="text-xl font-bold text-center">Update Property Information</h1>
+                        <h1 class="py-4 text-xl font-bold text-center">Update Agent Information</h1>
 
-                        <div class="w-full h-full">
+                        <div class="w-full h-full px-4">
                             <!-- Table to display property images -->
                             {{-- <div class="w-full py-8 text-xl text-center">
                                 <form wire:submit.prevent="uploadPhotos">
@@ -105,51 +105,41 @@
                                 </form>
                             </div> --}}
 
-                            <!-- Table to display other property data-->
-                            <div>
-                                <!-- Property data -->
-                                <div class="flex flex-col w-full h-full gap-4 sm:flex-row">
-                                    <!-- General property data -->
-                                    <div class="w-full">
-                                        <!-- Agent Name -->
-                                        <x-formInput type="text" title="name" label="Name" :value='$agent->name'/>
+                            <!-- Table to display agent data-->
+                            <div class="flex w-full gap-4 sm:flex-row">
+                                <!-- General property data -->
+                                <div class="w-[40%]">
+                                    <!-- Agent Name -->
+                                    <x-formInput type="text" title="name" label="Name" :value='$agent->name'/>
 
-                                        <!-- Agent email -->
-                                        <x-formInput type="text" title="agentEmail" label="Email" :value='$agent->email'/>
+                                    <!-- Agent email -->
+                                    <x-formInput type="text" title="agentEmail" label="Email" :value='$agent->email'/>
 
-                                        <!-- Agent phone number -->
-                                        <x-formInput type="text" title="phoneNumber" label="Phone number" :value='$agent->phone_number'/>
+                                    <!-- Agent phone number -->
+                                    <x-formInput type="text" title="phoneNumber" label="Phone number" :value='$agent->phone_number'/>
 
-                                        <!-- Agent password -->
-                                        <x-formInput type="password" title="agentPassword" label="New password" />
+                                    <!-- Agent password -->
+                                    <x-formInput type="password" title="agentPassword" label="New password" />
 
-                                        <!-- Confirm agent password -->
-                                        <x-formInput type="password" title="confirmAgentPassword" label="Confirm new password" />
-                                    </div>
-
-                                    <!-- Agent profile picture section (will be a livewire component) -->
-                                    {{-- <div class="w-full h-full">
-                                        <!-- Property Price -->
-                                        <div class="w-full mb-4 mr-auto">
-                                            <label for="description" class="block mb-2 font-bold">Description:</label>
-                                            <textarea wire:model="tempPicture" name="description" rows="12" id="description" class="w-full px-3 py-2 bg-gray-800 border rounded-lg text-balance"></textarea>
-                                            @error('tempPicture')
-                                                <p class="text-sm text-red-500">{{ $message }}</p>
-                                            @enderror
-                                        </div>
-                                    </div> --}}
+                                    <!-- Confirm agent password -->
+                                    <x-formInput type="password" title="confirmAgentPassword" label="Confirm new password" />
                                 </div>
 
-                                <!-- Update Button -->
-                                <form class="" enctype="multipart/form-data">
-                                    @csrf
-                                    <div class="pt-6 text-center">
-                                        <button type="submit"  class="px-6 py-2 text-white bg-blue-600 rounded-lg">
-                                            Update Agent
-                                        </button>
-                                    </div>
-                                </form>
+                                <!-- Agent profile picture section (will be a livewire component) -->
+                                <div class="w-[60%]">
+                                    <livewire:admin.agent-picture :$agentPicture />
+                                </div>
                             </div>
+
+                            <!-- Update Button -->
+                            <form class="" enctype="multipart/form-data">
+                                @csrf
+                                <div class="pt-6 text-center">
+                                    <button type="submit"  class="px-6 py-2 text-white bg-blue-600 rounded-lg">
+                                        Update Agent
+                                    </button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
