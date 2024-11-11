@@ -169,6 +169,6 @@ class EditProperty extends Component
 
         $this->property->save();
 
-        return $this->redirect(route('admin-properties'));
+        return $this->redirect(route('admin-properties'))->with('success', 'Property edited successfully.');
     }
 }
