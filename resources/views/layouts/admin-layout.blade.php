@@ -18,9 +18,6 @@
               href="https://cdn.jsdelivr.net/npm/chartist/dist/chartist.min.css">
         <script src="https://cdn.jsdelivr.net/npm/chartist/dist/chartist.min.js"></script>
 
-        <!-- AlpineJS -->
-        <script src="//unpkg.com/alpinejs" defer></script>
-
         <!-- Leafletjs map -->
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
         integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
