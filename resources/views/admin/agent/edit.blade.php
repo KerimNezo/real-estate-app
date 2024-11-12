@@ -52,7 +52,7 @@
                             </div>
 
                             <!-- Update Button -->
-                            <form class="" enctype="multipart/form-data">
+                            <form class="" enctype="multipart/form-data" action="{{ route('update-agent', ['user' => $agent]) }}" method="POST" >
                                 @csrf
 
                                 <div class="py-6 text-center">
