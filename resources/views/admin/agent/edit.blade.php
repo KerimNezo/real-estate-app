@@ -20,7 +20,9 @@
                     <!-- Update Property Form -->
                     <div class="flex flex-col items-center justify-center p-4 mx-auto bg-gray-800 rounded-lg shadow-lg w-[80%]">
                         <!-- Title -->
-                        <h1 class="py-4 text-xl font-bold text-center">Update Agent Information</h1>
+                        <h1 class="py-4 text-xl font-bold text-center">
+                            Update Agent Information
+                        </h1>
 
                         <div class="w-full h-full px-4">
                             <!-- Table to display agent data-->
@@ -52,6 +54,7 @@
                             <!-- Update Button -->
                             <form class="" enctype="multipart/form-data">
                                 @csrf
+
                                 <div class="py-6 text-center">
                                     <button type="submit"  class="px-6 py-2 text-white bg-blue-600 rounded-lg">
                                         Update Agent
@@ -61,16 +64,9 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
 
         @include('admin.footer')
     </div>
-
-
-    <!-- Modal script -->
-    <script>
-
-    </script>
 </x-admin-layout>
