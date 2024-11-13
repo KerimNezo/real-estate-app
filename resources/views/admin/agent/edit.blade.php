@@ -31,22 +31,29 @@
                                 <div class="w-full sm:w-[40%] pt-[10px]">
                                     <!-- Agent Name -->
                                     <x-formInput type="text" title="name" label="Name" :value='$agent->name'/>
-                                    <p id="nameError" class="hidden pb-2 text-red-600 text-bold">You didn't enter any name.</p>
+                                    @error('newName')
+                                        <p id="error-message" class="pt-4 text-sm text-red-500">{{ $message }}</p>
+                                    @enderror
 
                                     <!-- Agent email -->
                                     <x-formInput type="text" title="agentEmail" label="Email" :value='$agent->email'/>
-                                    <p id="emailError" class="hidden pb-2 text-red-600 text-bold">Your email isn't valid.</p>
+                                    @error('newEmail')
+                                        <p id="error-message" class="pt-4 text-sm text-red-500">{{ $message }}</p>
+                                    @enderror
 
                                     <!-- Agent phone number -->
                                     <x-formInput type="text" title="phoneNumber" label="Phone number" :value='$agent->phone_number'/>
-                                    <p id="phoneError" class="hidden pb-2 text-red-600 text-bold">You didn't enter a phone number</p>
-
+                                    @error('newPhoneNumber')
+                                        <p id="error-message" class="pt-4 text-sm text-red-500">{{ $message }}</p>
+                                    @enderror
                                     <!-- Agent password -->
                                     <x-formInput type="password" title="agentPassword" label="New password" />
 
                                     <!-- Confirm agent password -->
                                     <x-formInput type="password" title="confirmAgentPassword" label="Confirm new password" />
-                                    <p id="passwordError" class="hidden pb-2 text-red-600 text-bold">Your passwords don't match.</p>
+                                    @error('newPassword')
+                                        <p id="error-message" class="pt-4 text-sm text-red-500">{{ $message }}</p>
+                                    @enderror
                                 </div>
 
                                 <!-- Agent profile picture section (will be a livewire component) -->
@@ -73,42 +80,6 @@
                 {{-- <livewire:admin.edit-agent /> --}}
             </div>
         </div>
-
-        <script>
-            function submitForm() {
-
-                console.log('verify input');
-                verify();
-
-                //document.getElementById('updateForm').submit();
-            }
-
-            function verify() {
-                // function that verifies input
-                const name = document.getElementById('name').value;
-                const agentEmail = document.getElementById('agentEmail').value;
-                const phoneNumber = document.getElementById('phoneNumber').value;
-                const agentPassword = document.getElementById('agentPassword').value;
-                const confirmAgentPassword = document.getElementById('confirmAgentPassword').value;
-
-                if (agentPassword !== confirmAgentPassword) {
-                    document.getElementById('passwordError').classList.remove('hidden');
-                    setTimeout(() => {
-                        document.getElementById('passwordError').classList.add('hidden');
-                    }, 5000);
-                }
-
-                if (name === '') {
-                    document.getElementById('nameError').classList.remove('hidden');
-                    setTimeout(() => {
-                        document.getElementById('nameError').classList.add('hidden');
-                    }, 5000);
-                }
-
-                console.log('proslo je');
-            }
-        </script>
-
         @include('admin.footer')
     </div>
 </x-admin-layout>
