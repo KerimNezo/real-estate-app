@@ -29,31 +29,7 @@
                             <div class="flex flex-col w-full gap-4 lg:flex-row">
                                 <!-- General property data -->
                                 <div class="w-full sm:w-[40%] pt-[10px]">
-                                    <!-- Agent Name -->
-                                    <x-formInput type="text" title="name" label="Name" :value='$agent->name'/>
-                                    @error('newName')
-                                        <p id="error-message" class="pt-4 text-sm text-red-500">{{ $message }}</p>
-                                    @enderror
-
-                                    <!-- Agent email -->
-                                    <x-formInput type="text" title="agentEmail" label="Email" :value='$agent->email'/>
-                                    @error('newEmail')
-                                        <p id="error-message" class="pt-4 text-sm text-red-500">{{ $message }}</p>
-                                    @enderror
-
-                                    <!-- Agent phone number -->
-                                    <x-formInput type="text" title="phoneNumber" label="Phone number" :value='$agent->phone_number'/>
-                                    @error('newPhoneNumber')
-                                        <p id="error-message" class="pt-4 text-sm text-red-500">{{ $message }}</p>
-                                    @enderror
-                                    <!-- Agent password -->
-                                    <x-formInput type="password" title="agentPassword" label="New password" />
-
-                                    <!-- Confirm agent password -->
-                                    <x-formInput type="password" title="confirmAgentPassword" label="Confirm new password" />
-                                    @error('newPassword')
-                                        <p id="error-message" class="pt-4 text-sm text-red-500">{{ $message }}</p>
-                                    @enderror
+                                    <livewire:admin.agent-form :$agent />
                                 </div>
 
                                 <!-- Agent profile picture section (will be a livewire component) -->
