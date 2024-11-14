@@ -1,6 +1,5 @@
 <div>
-    <form id="updateForm" enctype="multipart/form-data"  wire:submit="saveAgent">
-        @method('PUT')
+    <form id="updateForm" enctype="multipart/form-data"  wire:submit.prevent="saveAgent">
         @csrf
         <!-- Table to display agent data-->
         <div class="flex flex-col w-full gap-4 lg:flex-row">
@@ -39,7 +38,7 @@
 
             <!-- Agent profile picture section (will be a livewire component) -->
             <div class="w-full sm:w-[60%]">
-                <livewire:admin.agent-picture :$agentPicture />
+                <livewire:admin.agent-picture :$agentPicture wire:model="novaSlika"/>
             </div>
         </div>
 
