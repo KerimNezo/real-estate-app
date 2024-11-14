@@ -2,19 +2,23 @@
 
 namespace App\Livewire\Admin;
 
+use Livewire\Attributes\Modelable;
 use Livewire\Component;
 use Livewire\Attributes\Validate;
 use Livewire\WithFileUploads;
+use Livewire\Attributes\On;
 
 class AgentPicture extends Component
 {
-
     use WithFileUploads;
 
     public $agentPicture;
 
     #[Validate]
     public $newPhoto;
+
+    #[Modelable]
+    public $pullPhoto;
 
     public $tempPhoto;
 
@@ -28,6 +32,11 @@ class AgentPicture extends Component
     public function isImage($file)
     {
         return $file && in_array($file->getMimeType(), ['image/jpeg', 'image/png', 'image/webp', 'image/jpeg']);
+    }
+
+    public function updatedNewPhoto()
+    {
+        $this->pullPhoto = $this->newPhoto->getRealPath();
     }
 
     public function rules()
