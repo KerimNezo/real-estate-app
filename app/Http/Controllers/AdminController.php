@@ -47,9 +47,9 @@ class AdminController extends Controller
             ->with('agentPicture', $userPicture[0]);
     }
 
-    public function updateAgent()
+    public function updateAgent(Request $request)
     {
-        // stores the object with updated data and returns to agent-index
+        // I'll see if I need this
     }
 
     public function deleteAgent(User $user)
