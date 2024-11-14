@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Admin;
 
+use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\Attributes\Validate;
 
@@ -9,6 +10,8 @@ class EditAgent extends Component
 {
     #[Validate]
     public $name, $email, $phoneNumber, $password, $confirmPass;
+
+    public $novaSlika;
 
     public $agent;
 
@@ -21,18 +24,16 @@ class EditAgent extends Component
 
     public $agentPicture;
 
+    public $photoData;
 
-    public $photoData, $formData;
-
-    protected $listeners = [
-        'photoDataUpdated' => 'updatePhotoData',
-    ];
-
+    #[On('photoDataUpdated')]
     public function updatePhotoData($picture)
     {
+        logger('slika nova ', [$picture]);
         $this->photoData = $picture;
     }
 
+    // validation error rules
     public function rules()
     {
         return [
@@ -48,6 +49,7 @@ class EditAgent extends Component
         ];
     }
 
+    // validation error messages
     public function messages()
     {
         return [
@@ -71,8 +73,6 @@ class EditAgent extends Component
     {
         logger('>---------------------------------------------<');
 
-        // You can now access $this->agentData and $this->agentPicture here
-        logger('Agent Picture:', [$this->photoData]);
         logger('name '. $this->name);
         logger('email '. $this->email);
         logger('phoneNumber '. $this->phoneNumber);
@@ -82,10 +82,36 @@ class EditAgent extends Component
         logger('Before validation');
 
         $this->validate();
+        // validacija
 
         logger('Validation passed');
 
-        return redirect()->route('all-agents')->with('success', 'Agent updated successfully');
+        $slika = $this->pull('novaSlika');
+        // ovo sad ovdje nam daje path slike gdje je ona temporary storana, što nam treba za njen upload
+        // pullamo value Modelable propertya iz child componenta nazad u property parent komponente
+        // more info: https://livewire.laravel.com/docs/nesting#binding-to-child-data-using-wiremodel
+
+        if ($slika !== null)
+        {
+            $deletePhoto = $this->agent->media()->findOrFail($this->agentPicture->id);
+            logger($deletePhoto);
+            if ($deletePhoto)
+            {
+                $deletePhoto->delete();
+            }
+            // ovo brise sve slike iz kolekcije profilne slike agenta
+
+            $this->agent->addMedia($slika)->toMediaCollection('agent-pfps');
+            // dodajemo novu sliku u media-library, ime će biti
+        }
+
+        // trebaš još dodati logiku za storeanje ostalih ovih podataka
+        // 1. provjeriti koji su promijenjeni i pass je li korektan
+        // 2. one koji su promijenjeni, storeaj, koji nisu skipaj ih.
+        // 3. to je to
+        // to sutra uradi.
+
+        return redirect()->route('all-agents')->with('success', 'Agent updated successfully.');
     }
 
 }
