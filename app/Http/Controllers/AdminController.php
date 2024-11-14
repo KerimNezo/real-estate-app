@@ -43,8 +43,6 @@ class AdminController extends Controller
     {
         $userPicture = $user->getMedia('agent-pfps');
 
-        logger($userPicture);
-
         $userPicture->isEmpty() ? $slika = Auth::user()->getFirstMedia('admin-pfp') : $slika = $userPicture[0];
 
         return view('admin.agent.edit')
