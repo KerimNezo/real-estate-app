@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Property;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -42,9 +43,13 @@ class AdminController extends Controller
     {
         $userPicture = $user->getMedia('agent-pfps');
 
+        logger($userPicture);
+
+        $userPicture->isEmpty() ? $slika = Auth::user()->getFirstMedia('admin-pfp') : $slika = $userPicture[0];
+
         return view('admin.agent.edit')
             ->with('agent', $user)
-            ->with('agentPicture', $userPicture[0]);
+            ->with('agentPicture', $slika);
     }
 
     public function updateAgent(Request $request)
