@@ -30,8 +30,8 @@
                 </p>
 
                 <!-- Confirm agent password -->
-                <x-formInput type="password" title="confirmPassword" label="Confirm new password" model='confirmPass' />
-                @error('confirmPass')
+                <x-formInput type="password" title="password_confirmation" label="Confirm new password" model='password_confirmation' />
+                @error('password')
                     <p id="error-message" class="py-2 text-sm text-red-500">{{ $message }}</p>
                 @enderror
             </div>
