@@ -38,7 +38,7 @@
 
             <!-- Agent profile picture section (will be a livewire component) -->
             <div class="w-full sm:w-[60%]">
-                <livewire:admin.agent-picture :$agentPicture wire:model="novaSlika"/>
+                <livewire:admin.agent-picture wire:model="novaSlika" :$agent />
             </div>
         </div>
 
