@@ -9,7 +9,7 @@ use Livewire\Attributes\Validate;
 class EditAgent extends Component
 {
     #[Validate]
-    public $name, $email, $phoneNumber, $password, $confirmPass;
+    public $name, $email, $phoneNumber, $password, $password_confirmation;
 
     public $novaSlika;
 
@@ -40,8 +40,8 @@ class EditAgent extends Component
             'name' => 'required|min:3',
             'email' => 'required|email|unique:users,email,' . $this->agent->id,
             'phoneNumber' => 'required|regex:/^\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{3,4}$/',
-            'confirmPass' => [
-                'same:password',
+            'password' => [
+                'confirmed',
                 'nullable',
                 'min:8',
                 'regex:/^(?=.*[0-9])[a-zA-Z0-9]+$/',
@@ -63,9 +63,9 @@ class EditAgent extends Component
             'phoneNumber.required' => 'Please enter agents phone number',
             'phoneNumber.regex' => 'Make sure agents phone number is of valid length',
 
-            'confirmPass.min' => 'Your password is too short',
-            'confirmPass.regex' => 'Your password can only contain letters and numbers',
-            'confirmPass.same' => 'Passwords do not match',
+            'password.min' => 'Your password is too short',
+            'password.regex' => 'Your password can only contain letters and numbers',
+            'password.confirmed' => 'Passwords do not match',
         ];
     }
 
@@ -77,7 +77,7 @@ class EditAgent extends Component
         logger('email '. $this->email);
         logger('phoneNumber '. $this->phoneNumber);
         logger('password '. $this->password);
-        logger('confirmPass '. $this->confirmPass);
+        logger('password_confirmation '. $this->password_confirmation);
 
         logger('Before validation');
 
