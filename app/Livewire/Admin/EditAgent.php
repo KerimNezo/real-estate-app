@@ -82,7 +82,6 @@ class EditAgent extends Component
         logger('Before validation');
 
         $this->validate();
-        // validacija
 
         logger('Validation passed');
 
@@ -111,7 +110,19 @@ class EditAgent extends Component
         // 3. to je to
         // to sutra uradi.
 
+        $this->agent->name = $this->name;
+        $this->agent->email = $this->email;
+        $this->agent->phone_number = $this->phoneNumber;
+
+        // Update password if provided
+        if (!empty($this->password)) {
+            $this->agent->password = bcrypt($this->password);
+            logger('Password updated.');
+        }
+
+        // Save the agent's data
+        $this->agent->save();
+
         return redirect()->route('all-agents')->with('success', 'Agent updated successfully.');
     }
-
 }
