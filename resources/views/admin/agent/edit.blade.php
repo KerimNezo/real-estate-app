@@ -25,7 +25,7 @@
                         </h1>
 
                         <div class="w-full h-full px-4">
-                            <livewire:admin.edit-agent :$agent :$agentPicture/>
+                            <livewire:admin.edit-agent :$agent />
                         </div>
                     </div>
                 </div>

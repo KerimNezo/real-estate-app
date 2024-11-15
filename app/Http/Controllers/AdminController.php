@@ -41,13 +41,8 @@ class AdminController extends Controller
 
     public function editAgent(User $user)
     {
-        $userPicture = $user->getMedia('agent-pfps');
-
-        $userPicture->isEmpty() ? $slika = Auth::user()->getFirstMedia('admin-pfp') : $slika = $userPicture[0];
-
         return view('admin.agent.edit')
-            ->with('agent', $user)
-            ->with('agentPicture', $slika);
+            ->with('agent', $user);
     }
 
     public function updateAgent(Request $request)
