@@ -16,20 +16,16 @@
             <!-- Main content -->
             <div id="main-content" class="w-full py-6 bg-gray-900">
                 <!-- Update Property Form -->
-                <div>
-                    <!-- Update Property Form -->
-                    <div class="flex flex-col items-center justify-center p-4 mx-auto bg-gray-800 rounded-lg shadow-lg w-[80%]">
-                        <!-- Title -->
-                        <h1 class="py-4 text-xl font-bold text-center">
-                            Update Agent Information
-                        </h1>
+                <div class="flex flex-col items-center justify-center p-4 mx-auto bg-gray-800 rounded-lg shadow-lg w-[80%]">
+                    <!-- Title -->
+                    <h1 class="py-4 text-xl font-bold text-center">
+                        Update Agent Information
+                    </h1>
 
-                        <div class="w-full h-full px-4">
-                            <livewire:admin.edit-agent :$agent />
-                        </div>
+                    <div class="w-full h-full px-4">
+                        <livewire:admin.edit-agent :$agent />
                     </div>
                 </div>
-                {{-- <livewire:admin.edit-agent /> --}}
             </div>
         </div>
         @include('admin.footer')
