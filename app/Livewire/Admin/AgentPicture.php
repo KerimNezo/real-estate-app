@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Admin;
 
+use Livewire\Attributes\Computed;
 use Livewire\Attributes\Modelable;
 use Livewire\Component;
 use Livewire\Attributes\Validate;
@@ -12,21 +13,18 @@ class AgentPicture extends Component
 {
     use WithFileUploads;
 
-    public $agentPicture;
+    public $agent;
 
     #[Validate]
-    public $newPhoto;
+    public $newPhoto = '';
 
     #[Modelable]
     public $pullPhoto;
 
-    public $tempPhoto;
-
-    public $tempNewPhoto;
-
-    public function mount()
+    #[Computed]
+    public function tempPhoto()
     {
-        $this->tempPhoto = $this->agentPicture;
+        return $this->agent->getFirstMedia('agent-pfps');
     }
 
     public function isImage($file)
