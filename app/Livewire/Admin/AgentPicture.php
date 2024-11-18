@@ -16,7 +16,7 @@ class AgentPicture extends Component
     public $agent;
 
     #[Validate]
-    public $newPhoto = '';
+    public $newPhoto = null;
 
     #[Modelable]
     public $pullPhoto;
@@ -34,7 +34,7 @@ class AgentPicture extends Component
 
     public function updatedNewPhoto()
     {
-        $this->pullPhoto = $this->newPhoto->getRealPath();
+        $this->pullPhoto = $this->newPhoto ? $this->newPhoto->getRealPath() : null;
     }
 
     public function rules()
@@ -56,5 +56,6 @@ class AgentPicture extends Component
     public function resetPhoto()
     {
         $this->newPhoto = null;
+        $this->updatedNewPhoto();
     }
 }
