@@ -15,6 +15,8 @@
 
             <!-- Main content -->
             <div id="main-content" class="flex flex-col flex-grow w-full pt-6 bg-gray-900">
+                @include('components.admin-session-messages')
+
                 <!-- SearchForm/Table -->
                 <livewire:admin.property-index :$minPrice :$maxPrice :$assetLocation :$assetTypeId :$cities/>
             </div>
