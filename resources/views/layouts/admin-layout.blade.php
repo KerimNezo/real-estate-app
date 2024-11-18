@@ -37,6 +37,24 @@
             </div>
         </div>
     </body>
+
+    <script>
+        function closeSessionMessage() {
+            document.getElementById('sessionMessage').classList.add('hidden');
+        }
+
+        // function that will automatically close the popup message notifiying the admin about the status of his action
+        window.onload = function() {
+
+            sessionMessage = document.getElementById('sessionMessage');
+
+            if(sessionMessage){
+                setTimeout(() => {
+                    sessionMessage.classList.add('hidden'); // Hide the message
+                }, 7000); // 10000 milliseconds = 10 seconds
+            }
+        };
+    </script>
 </html>
 
 <!-- Layout za obicnog korisnika page -->
