@@ -1,6 +1,6 @@
 <x-admin-layout>
     <x-slot:title>
-        {{ $property->name }}
+        Create property
     </x-slot:title>
 
     <!-- Page content -->
@@ -17,7 +17,7 @@
             <div id="main-content" class="flex flex-col flex-grow w-full pt-6 bg-gray-900">
                 <div class="w-[80%] mx-auto py-8">
                     <!-- Update Property Form -->
-                    <form action="{{ route('update-property', ['property' => $property->id]) }}" method="POST" enctype="multipart/form-data" class="w-full p-4 mx-auto bg-gray-800 rounded-lg shadow-lg">
+                    <form action="{{ route('store-property') }}" method="POST" enctype="multipart/form-data" class="w-full p-4 mx-auto bg-gray-800 rounded-lg shadow-lg">
                         @csrf
                         @method('PUT')
 
