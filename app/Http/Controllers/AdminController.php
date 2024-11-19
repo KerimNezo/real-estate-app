@@ -11,11 +11,15 @@ class AdminController extends Controller
 {
     public function indexAgent()
     {
+        // action that returns the blade that displays all agents from the db
+
         return view('admin.agent.index');
     }
 
     public function showAgent(User $user)
     {
+        // action that displays single agents data
+
         $agentData = $user->getAttributes();
 
         unset($agentData['id'], $agentData['created_at'], $agentData['updated_at'], $agentData['email_verified_at'], $agentData['password'], $agentData['remember_token']);
@@ -41,19 +45,18 @@ class AdminController extends Controller
 
     public function editAgent(User $user)
     {
+        // action that opens up blade that displays form for editing a agent.
+
         return view('admin.agent.edit')
             ->with('agent', $user);
     }
 
-    public function updateAgent(Request $request)
-    {
-        // I'll see if I need this
-    }
-
     public function deleteAgent(User $user)
     {
+        // action that handles the delete of agent
+
         try {
-            // Delete the property
+            // Delete the agent
             $user->delete();
 
             // Return a success response
@@ -64,9 +67,12 @@ class AdminController extends Controller
         }
     }
 
+
     // Property Routes
     public function indexProperites(Request $request)
     {
+        // action that returns index blade that displays all properties
+
         $cities = Property::query()
             ->select('city')
             ->distinct()
@@ -87,11 +93,15 @@ class AdminController extends Controller
 
     public function createProperty()
     {
+        // action that returns blade which contains form with which we will create the property
+
         return view('admin.property.create');
     }
 
     public function showProperty(User $user, Property $property)
     {
+        // action that return blade that displays single property data
+
         $propertyData = $property->getAttributes();
         $userData = $user->getAttributes();
 
