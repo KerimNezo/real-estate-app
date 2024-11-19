@@ -70,6 +70,9 @@ Route::middleware(['role:admin', 'auth', 'verified'])->group(function () {
     Route::get('admin/property/create', [AdminController::class, 'createProperty'])
         ->name('new-property');
 
+    Route::post('admin/property/create', [AdminController::class, 'storeProperty'])
+        ->name('store-property');
+
     Route::get('admin/agent/{user}/property/{property}', [AdminController::class, 'showProperty'])
         ->name('admin-single-property')
         ->scopeBindings();
