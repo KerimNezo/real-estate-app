@@ -44,12 +44,14 @@
 
         <!-- Update Button -->
         <div class="py-6 text-center">
-            <button type="submit" class="px-6 py-2 text-white bg-blue-600 rounded-lg">
-                <div id="loader" wire:loading wire:target="saveAgent" class="mr-auto">
-                    <img src="{{ asset('photos/spinner.svg') }}" wire:loading class="w-6 h-6"></img> <!-- SVG loading spinner -->
-                </div>
+            <button type="submit" class="px-3 py-2 text-white bg-blue-600 rounded-lg">
+                <div class="flex items-center justify-center gap-2">
+                    <div id="loader" wire:loading wire:target="saveAgent" class="mr-auto">
+                        <img src="{{ asset('photos/spinner.svg') }}" wire:loading class="w-5 h-5"></img> <!-- SVG loading spinner -->
+                    </div>
 
-                Update Agent
+                    Update Agent
+                </div>
             </button>
         </div>
     </form>

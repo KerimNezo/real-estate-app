@@ -16,7 +16,7 @@
 
                 <button type="button" wire:click="resetPhoto" class="flex items-center justify-center gap-2 px-3 py-2 text-base text-white bg-blue-600 rounded-lg">
                     <div wire:loading wire:target="resetPhoto">
-                        <img src="{{ asset('photos/spinner.svg') }}" wire:loading class="w-6 h-6"></img> <!-- SVG loading spinner -->
+                        <img src="{{ asset('photos/spinner.svg') }}" wire:loading class="w-5 h-5"></img> <!-- SVG loading spinner -->
                     </div>
 
                     <p>Reset photo</p>
