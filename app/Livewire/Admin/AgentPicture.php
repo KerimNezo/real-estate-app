@@ -37,14 +37,13 @@ class AgentPicture extends Component
     public function rules()
     {
         return [
-            'newPhoto' => 'required|mimetypes:image/jpg,image/jpeg,image/png,image/webp|max:1024',
+            'newPhoto' => 'nullable|mimetypes:image/jpg,image/jpeg,image/png,image/webp|max:1024',
         ];
     }
 
     public function messages()
     {
         return [
-            'newPhoto.required' => 'Please upload an image file.',
             'newPhoto.mimetypes' => 'Only JPG, JPEG, PNG, and WEBP files are allowed.',
             'newPhoto.max' => 'The image size must be less than 1MB.',
         ];
