@@ -26,7 +26,7 @@
 
         <div class="flex flex-col items-center justify-center w-full py-8">
             <div class="relative">
-                @if ($this->newPhoto !== null)
+                @if ($this->newPhoto !== null && $this->newPhoto->getMimeType() !== '')
                     <img src="{{ $newPhoto->temporaryUrl() }}" name="newPhoto" alt="Agent's new profile picture" class="bg-gray-800 border-4 border-gray-900 sm:h-72 h-52">
                 @else
                     <img src="{{ $this->tempPhoto->getUrl() }}" alt="Agent's profile picture" class="bg-gray-800 border-4 border-gray-900 sm:h-72 h-52">
