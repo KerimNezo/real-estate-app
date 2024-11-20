@@ -92,7 +92,7 @@ class EditAgent extends Component
 
         if ($slika !== null)
         {
-            $deletePhoto = $this->agent->media()->findOrFail($this->agentPicture->id);
+            $deletePhoto = $this->agent->getFirstMedia('agent-pfps');
             logger($deletePhoto);
             if ($deletePhoto)
             {
