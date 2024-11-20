@@ -27,13 +27,10 @@ class AgentPicture extends Component
         return $this->agent->getFirstMedia('agent-pfps');
     }
 
-    public function isImage($file)
-    {
-        return $file && in_array($file->getMimeType(), ['image/jpeg', 'image/png', 'image/webp', 'image/jpeg']);
-    }
-
     public function updatedNewPhoto()
     {
+        $this->validate();
+
         $this->pullPhoto = $this->newPhoto ? $this->newPhoto->getRealPath() : null;
     }
 
