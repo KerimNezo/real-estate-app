@@ -2,42 +2,43 @@
 
 namespace App\Livewire\Admin;
 
-use Livewire\Attributes\On;
-use Livewire\Component;
-use Livewire\Attributes\Validate;
 use App\Models\User;
+use Livewire\Attributes\Validate;
+use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class StoreAgent extends Component
 {
+    use WithFileUploads;
+
     #[Validate]
-    public $name, $email, $phoneNumber, $password;
+    public $name;
 
-    public $novaSlika;
+    #[Validate]
+    public $email;
 
-    public $agentPicture;
+    #[Validate]
+    public $phoneNumber;
 
-    // nova slika koju kupimo iz child componenta
-    public $photoData;
+    #[Validate]
+    public $password;
 
-    #[On('photoDataUpdated')]
-    public function updatePhotoData($picture)
-    {
-        logger('slika nova ', [$picture]);
-        $this->photoData = $picture;
-    }
+    #[Validate]
+    public $newPhoto;
 
     // validation error rules
     public function rules()
     {
         return [
             'name' => 'required|min:3',
-            'email' => 'required|email|unique:users,email,' . $this->agent->id,
+            'email' => 'required|email|unique:users,email',
             'phoneNumber' => 'required|regex:/^\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{3,4}$/',
             'password' => [
-                'nullable',
+                'required',
                 'min:8',
                 'regex:/^(?=.*[0-9])[a-zA-Z0-9]+$/',
             ],
+            'newPhoto' => 'required|mimetypes:image/jpg,image/jpeg,image/png,image/webp|max:1024',
         ];
     }
 
@@ -57,6 +58,10 @@ class StoreAgent extends Component
 
             'password.min' => 'Your password is too short',
             'password.regex' => 'Your password can only contain letters and numbers',
+
+            'newPhoto.required' => 'Please upload agents profile picture',
+            'newPhoto.mimetypes' => 'Please upload a photo',
+            'newPhoto.max' => 'Please upload smaller photo',
         ];
     }
 
@@ -64,10 +69,10 @@ class StoreAgent extends Component
     {
         logger('>---------------------------------------------<');
 
-        logger('name '. $this->name);
-        logger('email '. $this->email);
-        logger('phoneNumber '. $this->phoneNumber);
-        logger('password '. $this->password);
+        logger('name '.$this->name);
+        logger('email '.$this->email);
+        logger('phoneNumber '.$this->phoneNumber);
+        logger('password '.$this->password);
 
         logger('Before validation');
 
@@ -75,22 +80,18 @@ class StoreAgent extends Component
 
         logger('Validation passed');
 
-        // ovdje ćemo kreirati agenta i storeat ga u db
-        User::create([$this->name, $this->pa]);
+        $agent = new User();
 
-        $slika = $this->pull('novaSlika');
-        // ovo sad ovdje nam daje path slike gdje je ona temporary storana, što nam treba za njen upload
-        // pullamo value Modelable propertya iz child componenta nazad u property parent komponente
-        // more info: https://livewire.laravel.com/docs/nesting#binding-to-child-data-using-wiremodel
+        $agent->name = $this->name;
+        $agent->email = $this->email;
+        $agent->phone_number = $this->phoneNumber;
+        $agent->password = bcrypt($this->password);
 
-        if ($slika !== null)
-        {
-            // ovdje ćemo storeati default sliku ako nije unesena slika
-            $this->agent->addMedia(asset('photos/icons/realestateagent.png'))->toMediaCollection('agent-pfps');
-        } else {
-            // ovdje ćemo storeati unesenu sliku
-            $this->agent->addMedia($slika)->toMediaCollection('agent-pfps');
-        }
+        // ovdje ćemo storeati unesenu sliku
+        $agent->addMedia($this->newPhoto->getRealPath())->toMediaCollection('agent-pfps');
+        $agent->assignRole('agent');
+
+        $agent->save();
 
         return redirect()->route('all-agents')->with('success', 'Agent updated successfully.');
     }

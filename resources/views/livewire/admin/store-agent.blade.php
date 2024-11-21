@@ -4,30 +4,29 @@
         <!-- Table to display agent data-->
         <div class="flex flex-col w-full gap-4 lg:flex-row">
             <!-- General property data -->
-            <div class="w-full sm:w-[40%] pt-[10px]">
-                <!-- Agent Name -->
-                <x-formInput type="text" title="name" label="Name & Surname" model='name'/>
-                @error('name')
-                    <p id="error-message" class="py-2 text-sm text-red-500">{{ $message }}</p>
-                @enderror
+            <div class="w-full sm:w-[40%] pt-[10px] flex flex-col items-center justify-center">
+                <div class="mb-auto mr-auto">
+                    <p class="text-lg font-bold">
+                        Agents data
+                    </p>
+                </div>
 
-                <!-- Agent email -->
-                <x-formInput type="text" title="email" label="Email" model='email'/>
-                @error('email')
-                    <p id="error-message" class="py-2 text-sm text-red-500">{{ $message }}</p>
-                @enderror
+                <div class="w-full">
+                    <!-- Agent Name -->
+                    <x-formInput type="text" title="name" label="Name & Surname" model='name' placeholder="John Doe" />
 
-                <!-- Agent phone number -->
-                <x-formInput type="text" title="phoneNumber" label="Phone number" model='phoneNumber'/>
-                @error('phoneNumber')
-                    <p id="error-message" class="py-2 text-sm text-red-500">{{ $message }}</p>
-                @enderror
+                    <!-- Agent email -->
+                    <x-formInput type="text" title="email" label="Email" model='email' placeholder="johndoe@mail.com" />
 
-                <!-- Agent password -->
-                <x-formInput type="password" title="password" label="New password" model='password' />
-                <p class="pb-2 text-xs">
-                    Make sure your password is a combination of letters and numbers
-                </p>
+                    <!-- Agent phone number -->
+                    <x-formInput type="text" title="phoneNumber" label="Phone number" model='phoneNumber' placeholder="(xxx) xxx xxxx" />
+
+                    <!-- Agent password -->
+                    <x-formInput type="password" title="password" label="New password" model='password' placeholder="" />
+                    <p class="pb-2 text-xs">
+                        Make sure your password is a combination of letters and numbers
+                    </p>
+                </div>
             </div>
 
             <!-- Agent profile picture section (will be a livewire component) -->
@@ -44,16 +43,16 @@
                                 <p>New photo</p>
                             </button>
 
-                            <input type="file" id="file-upload" class="hidden" wire:model="newPhoto" />
+                            <input type="file" id="file-upload" class="hidden" wire:model.blur="newPhoto" />
                         </div>
                     </div>
 
                     <div class="flex flex-col items-center justify-center w-full py-8">
                         <div class="relative">
-                            @if ($this->novaSlika !== null && $this->novaSlika->getMimeType() !== '')
-                                <img src="{{ $novaSlika->temporaryUrl() }}" name="newPhoto" alt="Agent's new profile picture" class="bg-gray-800 border-4 border-gray-900 sm:h-72 h-52">
+                            @if ($this->newPhoto !== null && $this->newPhoto->getMimeType() !== '')
+                                <img src="{{ $newPhoto->temporaryUrl() }}" name="newPhoto" alt="Agent's new profile picture" class="bg-gray-800 border-4 border-gray-900 sm:h-72 h-52">
                             @else
-                                <img src="{{ asset('photos/icons/realestateagent.png') }}" alt="Agent's profile picture" class="bg-gray-800 border-4 border-gray-900 sm:h-72 h-52">
+                                <img src="{{ asset('photos/icons/realestateagent.png') }}" alt="Agent's profile picture" class="bg-gray-800 border-4 border-gray-900 sm:h-72 h-52 opacity-30">
                             @endif
 
                             <!-- Loader Overlay, shown while newPhoto is being updated or loading -->
