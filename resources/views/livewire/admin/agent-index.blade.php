@@ -39,7 +39,7 @@
                                 <td id="table-data">
                                     <div class="flex items-center justify-start">
                                         <p>
-                                            <img src="{{ $agent->getFirstMediaUrl('agent-pfps') }}" alt="Agent Profile Photo" class="w-[65px] h-[65px] object-cover rounded-[5px]">
+                                            <img src="{{ $agent->getFirstMediaUrl('agent-pfps') }}" id="agentPhoto" alt="Agent Profile Photo" class="w-[65px] h-[65px] object-cover rounded-[5px]">
                                         </p>
                                     </div>
                                 </td>
@@ -98,11 +98,90 @@
                                         <a href="{{ route('edit-agent', $user = $agent) }}" class="hover:text-red-400">
                                             <x-feathericon-edit class="w-[25px] h-[25px]" />
                                         </a>
-                                        <a onclick="openConfirmationModal({{$agent}}, '{{$agent->getFirstMediaUrl('agent-pfps')}}', {{ count($agent->properties) }})" class="hover:text-red-400">
+                                        <a onclick="openConfirmationModal({{$agent}}, '{{$agent->getFirstMediaUrl('agent-pfps')}}')" class="hover:text-red-400">
                                             <x-heroicon-s-trash class="w-[25px]" />
                                         </a>
                                     </div>
                                 </td>
+
+                                <!-- Form modal -->
+                                @if($agent->properties->count() === 0)
+                                    <div id="confirmation{{$agent->id}}" class="fixed inset-0 z-50 hidden bg-black bg-opacity-95" onclick="closeConfirmationModal(event)">
+                                        <div class="bg-gray-900 bg-opacity-95 rounded-[20px] w-[450px] h-[350px] relative mx-auto my-auto" onclick="event.stopPropagation()">
+                                            {{-- Modal that will display if agent has no properties and is okay if he is deleted --}}
+                                            <div id="{{ $agent->id }}" class="flex flex-col items-center justify-center h-full p-2">
+                                                {{-- x button --}}
+                                                <span class="absolute flex items-center justify-center px-[10px] py-0 text-2xl text-white bg-gray-700 rounded-full cursor-pointer top-3 right-3 text-center" onclick="closeModal('confirmation{{$agent->id}}')">
+                                                    <div class="flex items-center justify-center">&times</div>
+                                                </span>
+
+                                                {{-- Header text --}}
+                                                <div class="flex items-center justify-center w-full px-5 mx-auto mt-10">
+                                                    <p class="text-xl text-center">Are you sure you want to delete this agent?</p>
+                                                </div>
+
+                                                {{-- Action explanation text --}}
+                                                <div class="mb-auto">
+                                                    <p class="text-xs">(Confirming this will permanently delete the selected agent)</p>
+                                                </div>
+
+                                                {{-- Property details --}}
+                                                <div class="flex w-full px-5 py-3">
+                                                    {{-- Property image --}}
+                                                    <div class="px-5 bg-gray-800 rounded-[20px] w-full py-3 flex justify-center items-center">
+                                                        <img id="agentPhoto" src="" alt="Agent image" class="w-24 rounded-[10px] mr-auto">
+                                                        <p id="agentName" class="text-base text-center"></p>
+                                                    </div>
+                                                </div>
+
+                                                {{-- Form footer containing two buttons --}}
+                                                <div class="flex w-full px-5 py-5">
+                                                    <button class="px-4 py-2 mr-auto bg-green-600 rounded-[10px]" onclick="closeConfirmationModal()">
+                                                        Cancel
+                                                    </button>
+
+                                                    <button type="button" class="px-4 py-2 bg-yellow-600 rounded-[10px]" wire:click="deleteAgent({{$agent->id}})">
+                                                        Delete
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @else
+                                    <div id="confirmation{{$agent->id}}" class="fixed inset-0 z-50 hidden bg-black bg-opacity-95" onclick="closeConfirmationModal(event)">
+                                        <div class="bg-gray-900 bg-opacity-95 rounded-[20px] w-[450px] h-[350px] relative mx-auto my-auto" onclick="event.stopPropagation()">
+                                            {{-- Modal that will display if agent still has properties and can't be deleted --}}
+                                            <div id="{{ $agent->id }}" class="flex flex-col items-center justify-center h-full p-2">
+                                                {{-- x button --}}
+                                                <span class="absolute flex items-center justify-center px-[10px] py-0 text-2xl text-white bg-gray-700 rounded-full cursor-pointer top-3 right-3 text-center" onclick="closeModal('confirmation{{$agent->id}}')">
+                                                    <div class="flex items-center justify-center">&times</div>
+                                                </span>
+
+                                                {{-- Header text --}}
+                                                <div class="flex flex-col items-center justify-center w-full px-5 mx-auto mt-auto">
+                                                    <p class="text-xl text-center">Sorry, you can't delete this agent:</p>
+                                                    <p id="agentName" class="my-3 text-2xl text-center"></p>
+                                                </div>
+
+                                                {{-- X animacija koju ću pokazati kada Admin pokuša obrisati Agenta koji ima propertije --}}
+                                                <div>
+                                                    <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" class="rounded-xl"
+                                                        width="120px" height="120px" viewBox="0 0 50 50" style="background-color: transparent"  enable-background="new 0 0 50 50" xml:space="preserve">
+                                                    <g id="Layer_3" >
+                                                        <line id="path2" fill="none" stroke="#dc2626" stroke-width="3" stroke-miterlimit="10" x1="8.5" y1="41.5" x2="41.5" y2="8.5"/>
+                                                        <line id="path3" fill="none" stroke="#dc2626" stroke-width="3" stroke-miterlimit="10" x1="41.5" y1="41.5" x2="8.5" y2="8.5"/>
+                                                    </g>
+                                                    </svg>
+                                                </div>
+
+                                                {{-- Action explanation text --}}
+                                                <div class="mt-3 mb-auto">
+                                                    <p class="text-xs">Note: Make sure this agent has no properties assigned to him</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endif
                             </tr>
                             @endforeach
                         </tbody>
