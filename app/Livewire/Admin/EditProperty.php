@@ -2,12 +2,12 @@
 
 namespace App\Livewire\Admin;
 
+use App\Models\User;
+use Livewire\Attributes\Computed;
 use Livewire\Attributes\Locked;
+use Livewire\Attributes\Validate;
 use Livewire\Component;
 use Livewire\WithFileUploads;
-use App\Models\User;
-use Livewire\Attributes\Validate;
-use Livewire\Attributes\Computed;
 
 class EditProperty extends Component
 {
@@ -17,7 +17,9 @@ class EditProperty extends Component
 
     #[Locked]
     public $propertyMedia = [];
+
     public $tempPhotos = [];
+
     public $removedPhotoIds = [];
 
     #[Validate('required|string|max:50', message: 'Maximum name size is 50 characters')]
@@ -71,15 +73,14 @@ class EditProperty extends Component
 
     public function updatedNewPhotos()
     {
-        foreach($this->newPhotos as $photo)
-        {
+        foreach ($this->newPhotos as $photo) {
             if ($photo) {
                 $this->newPhotoArray[$this->sanitizePhotoName($photo)] = $photo;
             }
         }
     }
 
-    function sanitizePhotoName($photo)
+    public function sanitizePhotoName($photo)
     {
         $nameWithoutExtension = pathinfo($photo->getClientOriginalName(), PATHINFO_FILENAME);
 
@@ -91,8 +92,7 @@ class EditProperty extends Component
 
     public function removeNewPhoto($filename)
     {
-        foreach ($this->newPhotos as $index => $photo)
-        {
+        foreach ($this->newPhotos as $index => $photo) {
             if ($this->sanitizePhotoName($photo) === $filename) {
                 unset($this->newPhotos[$index]);
                 unset($this->newPhotoArray[$filename]);
@@ -107,7 +107,7 @@ class EditProperty extends Component
     {
         $this->removedPhotoIds[] = $id;
 
-        $this->tempPhotos = $this->tempPhotos->filter(fn($photo) => $photo->id !== $id)->values();
+        $this->tempPhotos = $this->tempPhotos->filter(fn ($photo) => $photo->id !== $id)->values();
 
         logger("index: $index");
         logger("Id: $id");

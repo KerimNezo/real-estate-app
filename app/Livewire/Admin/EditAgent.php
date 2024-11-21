@@ -3,13 +3,21 @@
 namespace App\Livewire\Admin;
 
 use Livewire\Attributes\On;
-use Livewire\Component;
 use Livewire\Attributes\Validate;
+use Livewire\Component;
 
 class EditAgent extends Component
 {
     #[Validate]
-    public $name, $email, $phoneNumber, $password, $password_confirmation;
+    public $name;
+
+    public $email;
+
+    public $phoneNumber;
+
+    public $password;
+
+    public $password_confirmation;
 
     public $novaSlika;
 
@@ -38,7 +46,7 @@ class EditAgent extends Component
     {
         return [
             'name' => 'required|min:3',
-            'email' => 'required|email|unique:users,email,' . $this->agent->id,
+            'email' => 'required|email|unique:users,email,'.$this->agent->id,
             'phoneNumber' => 'required|regex:/^\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{3,4}$/',
             'password' => [
                 'confirmed',
@@ -73,11 +81,11 @@ class EditAgent extends Component
     {
         logger('>---------------------------------------------<');
 
-        logger('name '. $this->name);
-        logger('email '. $this->email);
-        logger('phoneNumber '. $this->phoneNumber);
-        logger('password '. $this->password);
-        logger('password_confirmation '. $this->password_confirmation);
+        logger('name '.$this->name);
+        logger('email '.$this->email);
+        logger('phoneNumber '.$this->phoneNumber);
+        logger('password '.$this->password);
+        logger('password_confirmation '.$this->password_confirmation);
 
         logger('Before validation');
 
@@ -90,12 +98,10 @@ class EditAgent extends Component
         // pullamo value Modelable propertya iz child componenta nazad u property parent komponente
         // more info: https://livewire.laravel.com/docs/nesting#binding-to-child-data-using-wiremodel
 
-        if ($slika !== null)
-        {
+        if ($slika !== null) {
             $deletePhoto = $this->agent->getFirstMedia('agent-pfps');
             logger($deletePhoto);
-            if ($deletePhoto)
-            {
+            if ($deletePhoto) {
                 $deletePhoto->delete();
             }
             // ovo brise sve slike iz kolekcije profilne slike agenta
@@ -115,7 +121,7 @@ class EditAgent extends Component
         $this->agent->phone_number = $this->phoneNumber;
 
         // Update password if provided
-        if (!empty($this->password)) {
+        if (! empty($this->password)) {
             $this->agent->password = bcrypt($this->password);
             logger('Password updated.');
         }

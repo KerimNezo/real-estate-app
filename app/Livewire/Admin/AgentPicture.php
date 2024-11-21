@@ -4,10 +4,9 @@ namespace App\Livewire\Admin;
 
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Modelable;
-use Livewire\Component;
 use Livewire\Attributes\Validate;
+use Livewire\Component;
 use Livewire\WithFileUploads;
-use Livewire\Attributes\On;
 
 class AgentPicture extends Component
 {
