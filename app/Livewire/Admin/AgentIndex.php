@@ -6,6 +6,7 @@ use App\Models\User;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Illuminate\Support\Facades\Auth;
 
 class AgentIndex extends Component
 {
@@ -28,5 +29,34 @@ class AgentIndex extends Component
             }]);
 
         return $agents->paginate(10);
+    }
+
+    public function deleteAgent($id)
+    {
+        logger('ID of agent I need to delete'. $id);
+
+        if ($id === Auth::user()->id) {
+            return redirect()->route('all-agents')->with('error', 'This agent cannot be deleted.');
+        }
+
+        $agent = User::where('id', $id)->first();
+
+        // provjeri da li je ovo ispravan način da se radi validacija na bekendu i ako ima neka bolja riješenja.
+        if($agent->properties->count() === 0) {
+            try {
+                // Delete the agent
+                $agent->delete();
+
+                // Return a success response
+                return redirect()->route('all-agents')->with('success', 'Agent deleted successfully.');
+            } catch (\Exception $e) {
+                // Handle any errors that might occur
+                return redirect()->route('all-agents')->with('error', 'There was an issue deleting the agent.');
+            }
+        } else {
+            return redirect()->route('all-agents')->with('error', 'This agent cannot be deleted.');
+        }
+
+
     }
 }
