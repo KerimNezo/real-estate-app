@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Property;
 use App\Models\User;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -67,7 +66,6 @@ class AdminController extends Controller
         }
     }
 
-
     // Property Routes
     public function indexProperites(Request $request)
     {
@@ -116,7 +114,7 @@ class AdminController extends Controller
 
         unset($userData['created_at'], $userData['updated_at'], $userData['email_verified_at'], $userData['password'], $userData['remember_token']);
 
-        if($media->isNotEmpty()){
+        if ($media->isNotEmpty()) {
             foreach ($media as $slike) {
                 $urlovi[$slike->order_column] = $slike->getUrl();
             }

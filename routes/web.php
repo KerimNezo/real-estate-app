@@ -61,8 +61,6 @@ Route::middleware(['role:admin', 'auth', 'verified'])->group(function () {
     Route::delete('admin/agent/{user}', [AdminController::class, 'deleteAgent'])
         ->name('delete-agent');
 
-
-
     // Property routes
     Route::get('admin/property/index', [AdminController::class, 'indexProperites'])
         ->name('admin-properties');
