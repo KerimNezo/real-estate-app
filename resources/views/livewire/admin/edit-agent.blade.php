@@ -7,21 +7,12 @@
             <div class="w-full sm:w-[40%] pt-[10px]">
                 <!-- Agent Name -->
                 <x-formInput type="text" title="name" label="Name & Surname" model='name'/>
-                @error('name')
-                    <p id="error-message" class="py-2 text-sm text-red-500">{{ $message }}</p>
-                @enderror
 
                 <!-- Agent email -->
                 <x-formInput type="text" title="email" label="Email" model='email'/>
-                @error('email')
-                    <p id="error-message" class="py-2 text-sm text-red-500">{{ $message }}</p>
-                @enderror
 
                 <!-- Agent phone number -->
                 <x-formInput type="text" title="phoneNumber" label="Phone number" model='phoneNumber'/>
-                @error('phoneNumber')
-                    <p id="error-message" class="py-2 text-sm text-red-500">{{ $message }}</p>
-                @enderror
 
                 <!-- Agent password -->
                 <x-formInput type="password" title="password" label="New password" model='password' />
@@ -31,9 +22,6 @@
 
                 <!-- Confirm agent password -->
                 <x-formInput type="password" title="password_confirmation" label="Confirm new password" model='password_confirmation' />
-                @error('password')
-                    <p id="error-message" class="py-2 text-sm text-red-500">{{ $message }}</p>
-                @enderror
             </div>
 
             <!-- Agent profile picture section (will be a livewire component) -->
