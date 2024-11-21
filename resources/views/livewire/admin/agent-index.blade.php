@@ -10,7 +10,7 @@
             </div>
         @else
         <!-- Agents Found -->
-            <div class="py-8 text-xl text-center px-[6%]">
+            <div class="text-xl text-center">
                 <div>
                     <p class="pb-2 text-sm text-left">
                         Agents table
