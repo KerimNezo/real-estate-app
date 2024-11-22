@@ -51,7 +51,11 @@
             </div>
 
             <!-- submit button -->
-            <button class="bg-[#ef5d60] py-2 px-4 rounded-[5px] hover:bg-red-400">
+            <button class="bg-[#ef5d60] py-2 px-4 rounded-[5px] hover:bg-red-400 flex items-center justify-center gap-2">
+                <div wire:loading wire:target="submitForm" class="flex items-center justify-center">
+                    <img src="{{ asset('photos/redSpinner.svg') }}" class="w-5 h-5"></img> <!-- SVG loading spinner -->
+                </div>
+
                 <p class="text-base">Submit</p>
             </button>
         </div>
