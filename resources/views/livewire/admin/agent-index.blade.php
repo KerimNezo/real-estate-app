@@ -140,7 +140,7 @@
                                                         Cancel
                                                     </button>
 
-                                                    <button type="button" class="px-4 py-2 bg-yellow-600 rounded-[10px]" wire:click="deleteAgent({{$agent->id}})">
+                                                    <button type="button" class="px-4 py-2 bg-red-600 rounded-[10px]" wire:click="deleteAgent({{$agent->id}})">
                                                         Delete
                                                     </button>
                                                 </div>
