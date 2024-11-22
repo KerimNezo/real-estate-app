@@ -54,6 +54,8 @@ class PropertyIndex extends Component
         // Ovdje loadam sve slike, samo 6 ako mu slučajno spasi više, jer šaljemo cijeli property objekat na rutu
         // da ne bih morao queryat ponovo na show-property ruti
 
+        logger('Max price je '. $this->maxPrice);
+
         if (! is_null($this->assetLocation) && $this->assetLocation != '') {
             $prop = $prop->where('city', '=', $this->assetLocation);
         }
@@ -62,11 +64,11 @@ class PropertyIndex extends Component
             $prop = $prop->where('type_id', '=', $this->assetTypeId);
         }
 
-        if (! is_null($this->minPrice)) {
+        if ($this->minPrice !== null  && $this->minPrice !== '') {
             $prop = $prop->where('price', '>', $this->minPrice);
         }
 
-        if (! is_null($this->maxPrice)) {
+        if ($this->maxPrice !== null && $this->maxPrice !== '') {
             $prop = $prop->where('price', '<', $this->maxPrice);
         }
 
