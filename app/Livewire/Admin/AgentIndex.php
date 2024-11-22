@@ -33,30 +33,29 @@ class AgentIndex extends Component
 
     public function deleteAgent($id)
     {
-        logger('ID of agent I need to delete'. $id);
+        logger('ID of agent I need to delete '. $id);
 
-        if ($id === Auth::user()->id) {
-            return redirect()->route('all-agents')->with('error', 'This agent cannot be deleted.');
+        $agent = User::find($id);
+
+        if ($agent === null) {
+            return redirect()->route('all-agents')->with('error', 'This agent does not exist');
         }
 
-        $agent = User::where('id', $id)->first();
+        if ($agent->hasRole('admin')) {
+            return redirect()->route('all-agents')->with('error', 'This agent cannot be deleted');
+        }
 
         // provjeri da li je ovo ispravan način da se radi validacija na bekendu i ako ima neka bolja riješenja.
         if($agent->properties->count() === 0) {
             try {
-                // Delete the agent
                 $agent->delete();
 
-                // Return a success response
                 return redirect()->route('all-agents')->with('success', 'Agent deleted successfully.');
             } catch (\Exception $e) {
-                // Handle any errors that might occur
                 return redirect()->route('all-agents')->with('error', 'There was an issue deleting the agent.');
             }
         } else {
             return redirect()->route('all-agents')->with('error', 'This agent cannot be deleted.');
         }
-
-
     }
 }
