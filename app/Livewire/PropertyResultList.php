@@ -37,11 +37,11 @@ class PropertyResultList extends Component
             $query->where('type_id', '=', $filters['property_type']);
         }
 
-        if ($filters['min_price']) {
+        if ($filters['min_price'] && $filters['min_price'] !== '') {
             $query->where('price', '>=', $filters['min_price']);
         }
 
-        if ($filters['max_price']) {
+        if ($filters['max_price'] && $filters['max_price'] !== '') {
             $query->where('price', '<=', $filters['max_price']);
         }
 
