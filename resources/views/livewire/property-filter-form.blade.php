@@ -7,7 +7,13 @@
 
             <!-- Filter button-->
             <div class="ml-auto w-fit">
-                <button wire:click="clearForm()" id="filter-button" class="!bg-[#ef5d60] h-[48px] rounded-[5px] text-base px-4" type="button">Clear filters</button>
+                <button wire:click="clearForm" id="filter-button" class="!bg-[#ef5d60] h-[48px] rounded-[5px] text-base px-4 flex justify-center items-center gap-2" type="button">
+                    <div wire:loading wire:target="clearForm" class="flex items-center justify-center">
+                        <img src="{{ asset('photos/redSpinner.svg') }}" class="w-5 h-5"></img> <!-- SVG loading spinner -->
+                    </div>
+
+                    <p class="text-base">Clear filters</p>
+                </button>
             </div>
         </div>
 
@@ -65,7 +71,13 @@
                     <tr>
                         <td class="px-[10%] py-[20px] pb-5 mb-auto w-auto">
                             <div class="flex flex-col justify-end h-full">
-                                <button class="w-full rounded-[5px] h-16 bg-[#ef5d60] align-bottom">Submit</button>
+                                <button class="w-full rounded-[5px] h-16 bg-[#ef5d60] align-bottom flex items-center justify-center gap-3">
+                                    <div wire:loading wire:target="submitForm" class="flex items-center justify-center">
+                                        <img src="{{ asset('photos/redSpinner.svg') }}" class="w-5 h-5"></img> <!-- SVG loading spinner -->
+                                    </div>
+
+                                    <p class="text-base">Submit</p>
+                                </button>
                             </div>
                         </td>
                     </tr>
