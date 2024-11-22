@@ -7,14 +7,6 @@ use App\Http\Controllers\SearchController;
 use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
 
-// Nisi napravio delete agenta, imaš iole kod, samo nisi to još implementirao iz razloga što ti ne radi
-// mijenjanje agenata na propertijima, a brisanje agenta koji ima propertije je suludo, tako da kad uradiš
-// property edit uzmi raditi brisanje agenta i logiku koja dolazi sa time.
-
-// ne radi ti edit propertya nisi počeo edit agenta. tkd delete agenta će sačekat.
-
-// trebaš uraditi responsive form view na loginu
-
 // A nisi ni počeo raditi AGENT VIEWS cmon man. Zadaj se pravo na ovo.
 
 Route::get('/', WelcomeController::class)
