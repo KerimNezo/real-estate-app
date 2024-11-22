@@ -50,22 +50,6 @@ class AdminController extends Controller
             ->with('agent', $user);
     }
 
-    public function deleteAgent(User $user)
-    {
-        // action that handles the delete of agent
-
-        try {
-            // Delete the agent
-            $user->delete();
-
-            // Return a success response
-            return redirect()->route('all-agents')->with('success', 'Agent deleted successfully.');
-        } catch (\Exception $e) {
-            // Handle any errors that might occur
-            return redirect()->route('all-agents')->with('error', 'There was an issue deleting the agent.');
-        }
-    }
-
     // Property Routes
     public function indexProperites(Request $request)
     {
