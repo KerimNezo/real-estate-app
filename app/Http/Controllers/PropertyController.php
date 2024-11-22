@@ -113,8 +113,16 @@ class PropertyController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Property $property)
+    public function destroy($id)
     {
+        logger($id);
+
+        $property = Property::find($id);
+
+        if ($property === null) {
+            return redirect()->route('all-properties')->with('error', 'This property does not exist');
+        }
+
         try {
             // Delete the property
             $property->delete();
