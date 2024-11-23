@@ -7,9 +7,6 @@
             @csrf
             @method('PUT')
 
-            <!-- Title -->
-            <h1 class="mb-6 text-xl font-bold text-center">Update Property Information</h1>
-
             <div class="w-full px-20">
                 <!-- Data special for property type and for every property -->
                 <div class="flex w-full">
