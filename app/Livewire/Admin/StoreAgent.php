@@ -93,6 +93,6 @@ class StoreAgent extends Component
 
         $agent->save();
 
-        return redirect()->route('all-agents')->with('success', 'Agent updated successfully.');
+        return redirect()->route('all-agents')->with('success', 'Agent created successfully.');
     }
 }
