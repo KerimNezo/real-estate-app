@@ -14,14 +14,9 @@
             @include('components.sidebar-admin')
 
             <!-- Main content -->
-            <div id="main-content" class="w-full py-6 bg-gray-900">
+            <div id="main-content" class="flex flex-col w-full overflow-hidden bg-gray-900">
                 <!-- Update Property Form -->
-                <div class="flex flex-col items-center justify-center p-4 mx-auto bg-gray-800 rounded-lg shadow-lg w-[80%]">
-                    <!-- Title -->
-                    <h1 class="py-4 text-xl font-bold text-center">
-                        Create New Property
-                    </h1>
-
+                <div class="py-8 mx-auto w-[80%]">
                     <div class="w-full h-full px-4">
                         <livewire:admin.store-property />
                     </div>
@@ -29,21 +24,18 @@
             </div>
         </div>
 
-        {{-- <script>
-            var map = L.map('map');
+        <script>
+            var map = L.map('admin-map');
 
-            map.setView([{{ $property->lat }}, {{ $property->lon }}], 16);
+            map.setView([44.20169, 17.90397], 7);
 
             L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 maxZoom: 19,
                 attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
             }).addTo(map);
 
-            var marker = L.marker([{{ $property->lat }}, {{ $property->lon }}]).addTo(map);
-
             map.on('click', function(e) {
                 var latlng = e.latlng;
-                marker.setLatLng(latlng);
                 reverseGeocode(latlng.lat, latlng.lng);
                 document.getElementById('latitude').value = latlng.lat.toFixed(3);
                 document.getElementById('longitude').value = latlng.lng.toFixed(3);
@@ -109,7 +101,7 @@
 
                 event.target.classList.add('bg-blue-600', 'text-white');
             }
-        </script> --}}
+        </script>
 
         @include('admin.footer')
     </div>
