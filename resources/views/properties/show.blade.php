@@ -125,7 +125,7 @@
 
                                     <div class="w-[33%] justify-center items-center">
                                         @if (!is_null($property->lease_duration))
-                                            <x-property-detail icon='ionicon-calendar' title="Lease" :text="$property->lease_duration" unit="months" css='w-[46px] h-[48px] fill-[#EF5D60]' />
+                                            <x-property-detail icon='ionicon-calendar' title="Lease" text="Yes" unit="" css='w-[46px] h-[48px] fill-[#EF5D60]' />
                                         @else
                                             <div class="bg-[#ededed] w-[33%]">
 
@@ -179,7 +179,7 @@
                 <!-- Agents information -->
                 <div id="agent-info" class="w-[35%]">
                     <div id="sticky" class="flex flex-col items-center justify-center mb-auto">
-                        <!-- Property price -->
+                        <!-- Other property data -->
                         <div class="mb-[10px] h-[100px] w-full bg-[#ededed] rounded-[5px] flex flex-col py-5 px-5 justify-center items-center">
                             <!-- Property price -->
                             <div class="rounded-[5px] flex justify-start items-center pb-4 w-full">
