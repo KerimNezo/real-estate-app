@@ -8,6 +8,9 @@
 
         <title>{{ $title ?? 'Laravel'}}</title>
 
+        {{-- favicon --}}
+        <link rel="icon" href="{{ asset('photos/icons/Favicon.png') }}">
+
         <!-- Fonts -->
         <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
         <link rel="preconnect" href="https://fonts.bunny.net">
