@@ -48,7 +48,6 @@ class StoreProperty extends Component
         'status' => null,
     ];
 
-
     public function resetData() {
         $this->propertyData = array_fill_keys(array_keys($this->propertyData), null);
         $this->reset('media');
@@ -170,6 +169,7 @@ class StoreProperty extends Component
 
         $property = new Property();
 
+        $property->status = "Available";
         $property->save();
 
         return redirect()->route('all-properties')->with('success', 'Property created successfully.');
