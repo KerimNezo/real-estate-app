@@ -120,7 +120,7 @@
                                     </div>
 
                                     <div class="w-[33%] justify-start items-center">
-                                        <x-property-detail icon='phosphor-security-camera-duotone' title="Surveillance" :text="$video" unit="" css='w-[46px] h-[48px] fill-[#EF5D60]' />
+                                        <x-property-detail icon='phosphor-security-camera-duotone' title="Intercom" :text="$video" unit="" css='w-[46px] h-[48px] fill-[#EF5D60]' />
                                     </div>
 
                                     <div class="w-[33%] justify-center items-center">
@@ -256,6 +256,6 @@
     }).addTo(map);
 
     var marker = L.marker([{{ $property->lat }}, {{ $property->lon }}]).addTo(map)
-        .bindPopup('Your property')
+        .bindPopup('{{$property->name}}')
         .openPopup();
 </script>
