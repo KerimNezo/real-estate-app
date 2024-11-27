@@ -85,57 +85,65 @@
                         </div>
 
                         <!-- Other property input data -->
-                        <div class="!w-[500px] ml-auto">
-                            <!-- Number of Bedrooms -->
-                            <div class="w-full mb-4 mr-auto">
-                                <label for="bedrooms" class="block mb-2 font-bold">Number of Bedrooms:</label>
-                                <input type="number" name="bedrooms" id="bedrooms" min="0" class="w-full px-3 py-2 border rounded-lg bg-gray-800 @error('bedrooms') border-red-500 @enderror">
-                                @error('bedrooms')
-                                    <p class="text-sm text-red-500">{{ $message }}</p>
-                                @enderror
-                            </div>
-
-                            <!-- Number of Toilets -->
-                            <div class="w-full mb-4 mr-auto">
-                                <label for="toilets" class="block mb-2 font-bold">Number of Toilets:</label>
-                                <input type="number" name="toilets" id="toilets" min="0" class="w-full px-3 py-2 border rounded-lg bg-gray-800 @error('toilets') border-red-500 @enderror">
-                                @error('toilets')
-                                    <p class="text-sm text-red-500">{{ $message }}</p>
-                                @enderror
-                            </div>
-
-                            <!-- Number of Floors -->
-                            <div class="w-full mb-4 mr-auto">
-                                <label for="floors" class="block mb-2 font-bold">Number of Floors:</label>
-                                <input type="number" name="floors" id="floors" min="0" class="w-full px-3 py-2 border rounded-lg bg-gray-800 @error('floors') border-red-500 @enderror">
-                                @error('floors')
-                                    <p class="text-sm text-red-500">{{ $message }}</p>
-                                @enderror
-                            </div>
-
-                            <!-- Number of Rooms -->
-                            <div class="w-full mb-6 mr-auto">
-                                <label for="rooms" class="block mb-2 font-bold">Number of Rooms:</label>
-                                <input type="number" name="rooms" id="rooms" min="0" class="w-full px-3 py-2 border rounded-lg bg-gray-800 @error('rooms') border-red-500 @enderror">
-                                @error('rooms')
-                                    <p class="text-sm text-red-500">{{ $message }}</p>
-                                @enderror
-                            </div>
-
-                            <!-- Garden -->
-                            <div class="flex flex-col items-center w-full mb-4 mr-auto">
-                                <label class="block mb-2 mr-auto font-bold">Garden:</label>
-                                <div class="flex items-center justify-center mb-2 mr-auto">
-                                    <label class="flex items-center justify-center mr-4">
-                                        <input type="radio" name="garden" value="yes" class="mr-2"> Yes
-                                    </label>
-                                    <label class="flex items-center justify-center mr-4">
-                                        <input type="radio" name="garden" value="no" class="mr-2"> No
-                                    </label>
+                        <div class="!w-[500px] ml-auto flex justify-center items-center gap-5 mb-auto">
+                            <!-- Number inputs -->
+                            <div class="w-1/2 mb-auto">
+                                <!-- Number of Bedrooms -->
+                                <div class="w-full mb-4 mr-auto">
+                                    <label for="bedrooms" class="block mb-2 font-bold">Number of Bedrooms:</label>
+                                    <input type="number" name="bedrooms" id="bedrooms" min="0" class="w-full px-3 py-2 border rounded-lg bg-gray-800 @error('bedrooms') border-red-500 @enderror">
+                                    @error('bedrooms')
+                                        <p class="text-sm text-red-500">{{ $message }}</p>
+                                    @enderror
                                 </div>
-                                @error('garden')
-                                    <p class="text-sm text-red-500">{{ $message }}</p>
-                                @enderror
+
+                                <!-- Number of Toilets -->
+                                <div class="w-full mb-4 mr-auto">
+                                    <label for="toilets" class="block mb-2 font-bold">Number of Toilets:</label>
+                                    <input type="number" name="toilets" id="toilets" min="0" class="w-full px-3 py-2 border rounded-lg bg-gray-800 @error('toilets') border-red-500 @enderror">
+                                    @error('toilets')
+                                        <p class="text-sm text-red-500">{{ $message }}</p>
+                                    @enderror
+                                </div>
+
+                                <!-- Number of Floors -->
+                                <div class="w-full mb-4 mr-auto">
+                                    <label for="floors" class="block mb-2 font-bold">Number of Floors:</label>
+                                    <input type="number" name="floors" id="floors" min="0" class="w-full px-3 py-2 border rounded-lg bg-gray-800 @error('floors') border-red-500 @enderror">
+                                    @error('floors')
+                                        <p class="text-sm text-red-500">{{ $message }}</p>
+                                    @enderror
+                                </div>
+
+                                <!-- Number of Rooms -->
+                                <div class="w-full mb-6 mr-auto">
+                                    <label for="rooms" class="block mb-2 font-bold">Number of Rooms:</label>
+                                    <input type="number" name="rooms" id="rooms" min="0" class="w-full px-3 py-2 border rounded-lg bg-gray-800 @error('rooms') border-red-500 @enderror">
+                                    @error('rooms')
+                                        <p class="text-sm text-red-500">{{ $message }}</p>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <!-- Radio buttons input -->
+                            <div class="w-1/2 mb-auto">
+                                <!-- Garden -->
+                                <x-checkbox-input name="garden" label="Garden" />
+
+                                <!-- Furnished -->
+                                <x-checkbox-input name="furnished" label="Furnished" />
+
+                                <!-- Video -->
+                                <x-checkbox-input name="video_intercom" label="Intercom" />
+
+                                <!-- Garage -->
+                                <x-checkbox-input name="garage" label="Garage" />
+
+                                <!-- Keycard -->
+                                <x-checkbox-input name="keycard_entry" label="Keycard entry" />
+
+                                <!-- Elevator -->
+                                <x-checkbox-input name="elevator" label="Elevator" />
                             </div>
                         </div>
                     </div>
