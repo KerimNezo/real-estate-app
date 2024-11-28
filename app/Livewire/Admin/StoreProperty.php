@@ -2,10 +2,12 @@
 
 namespace App\Livewire\Admin;
 
+use Livewire\Attributes\Computed;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Livewire\Attributes\On;
+use App\Models\User;
 use App\Models\Property;
 
 class StoreProperty extends Component
@@ -21,8 +23,18 @@ class StoreProperty extends Component
     // .live validira kako korisnik unosi podatke
 
     // Ako ćeš koristiti ovo, moraš ovo da koristiš wire:model.blur="", tj real-time validation
-    #[Validate] public $user_id, $type_id, $name, $price, $surface, $lat, $lon, $rooms, $toilets, $bedrooms, $garage, $furnished, $floors, $lease_duration, $video_intercom, $keycard_entry, $elevator, $city, $street, $country, $description, $year_built, $garden, $status = null;
+    #[Validate]
+    public $user_id, $type_id, $name, $price, $surface, $lat, $lon, $rooms, $toilets, $bedrooms, $garage, $furnished, $floors, $lease_duration, $video_intercom, $keycard_entry, $elevator, $city, $street, $country, $description, $year_built, $garden, $status = null;
 
+    #[Computed]
+    public function agents()
+    {
+        return User::query()
+            ->select('id', 'name')
+            ->where('id', '!=', 1)
+            ->latest()
+            ->get();
+    }
 
     public function resetData() {
         // dodje ovdje ispod ostale podatke
@@ -32,8 +44,6 @@ class StoreProperty extends Component
     public function removePhoto() {
         // This funciton will remove tempPhoto from the $this->media property
     }
-
-    // Don't know if I will need a function to handle map behaviour
 
     // Provjeri i ovo
     public function rules()
@@ -67,7 +77,7 @@ class StoreProperty extends Component
         ];
     }
 
-    // Provjeri i ovo
+    // Validation rule messages for each property
     public function messages()
     {
         return [
@@ -94,7 +104,7 @@ class StoreProperty extends Component
             'street.string' => 'The street name must be a string.',
             'street.max' => 'The street name cannot exceed 255 characters.',
 
-            'country.string' => 'The country name must be a string.',
+            'country.required' => 'Please pick property location on map',
             'country.max' => 'The country name cannot exceed 255 characters.',
 
             'surface.numeric' => 'The surface area must be a valid number.',
@@ -134,8 +144,12 @@ class StoreProperty extends Component
     }
 
     #[On('update-location-data')]
-    public function updateLocationData() {
-        logger('ulica je ulica, a grad je grad');
+    public function updateLocationData($city, $street, $lat, $lon, $country) {
+        $this->street = $street;
+        $this->city = $city;
+        $this->country = $country;
+        $this->lat = $lat;
+        $this->lon = $lon;
     }
 
     public function storeProperty() {
@@ -146,6 +160,31 @@ class StoreProperty extends Component
         $this->validate();
 
         logger('Validation passed');
+
+        logger('user_id: ' . $this->user_id);
+        logger('type_id: ' . $this->type_id);
+        logger('name: ' . $this->name);
+        logger('price: ' . $this->price);
+        logger('surface: ' . $this->surface);
+        logger('lat: ' . $this->lat);
+        logger('lon: ' . $this->lon);
+        logger('rooms: ' . $this->rooms);
+        logger('toilets: ' . $this->toilets);
+        logger('bedrooms: ' . $this->bedrooms);
+        logger('garage: ' . $this->garage);
+        logger('furnished: ' . $this->furnished);
+        logger('floors: ' . $this->floors);
+        logger('lease_duration: ' . $this->lease_duration);
+        logger('video_intercom: ' . $this->video_intercom);
+        logger('keycard_entry: ' . $this->keycard_entry);
+        logger('elevator: ' . $this->elevator);
+        logger('city: ' . $this->city);
+        logger('street: ' . $this->street);
+        logger('country: ' . $this->country);
+        logger('description: ' . $this->description);
+        logger('year_built: ' . $this->year_built);
+        logger('garden: ' . $this->garden);
+        logger('status: ' . $this->status);
 
         // $property = new Property();
 
