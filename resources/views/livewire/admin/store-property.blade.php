@@ -15,36 +15,16 @@
                     <div class="flex w-full gap-5 mb-6">
                         <!-- General property data -->
                         <div class="flex-grow mr-auto">
-                            <!-- Property Name -->
-                            <div class="w-full mb-4 mr-auto">
-                                <label for="name" class="block mb-2 font-bold">Name:</label>
-                                <input wire:model="propertyData.name" type="text" name="name" id="name" placeholder="E.g. Two bedroom house" class="w-full px-3 py-2 border rounded-lg bg-gray-800 @error('propertyData.name') border-red-500 @enderror">
-                                @error('propertyData.name')
-                                    <p class="text-sm text-red-500">{{ $message }}</p>
-                                @enderror
-                            </div>
+                            <x-formInput type="text" title="name" label="Name" model='name' placeholder='E.g. Two bedroom house'/>
 
-                            <!-- Property Price -->
-                            <div class="w-full mb-4 mr-auto">
-                                <label for="price" class="block mb-2 font-bold">Price:</label>
-                                <input wire:model="propertyData.price" type="text" name="price" id="price" placeholder="E.g. 100000" class="w-full px-3 py-2 border rounded-lg bg-gray-800 @error('propertyData.price') border-red-500 @enderror">
-                                @error('propertyData.price')
-                                    <p class="text-sm text-red-500">{{ $message }}</p>
-                                @enderror
-                            </div>
+                            <x-formInput type="text" title="price" label="Price" model='price' placeholder='E.g. 100000'/>
 
-                            <!-- Year Built -->
-                            <div class="w-full mb-4 mr-auto">
-                                <label for="year_built" class="block mb-2 font-bold">Year Built:</label>
-                                <input type="text" name="year_built" id="year_built" placeholder="E.g. 1990" class="w-full px-3 py-2 border rounded-lg bg-gray-800 @error('propertyData.year_built') border-red-500 @enderror">
-                                @error('propertyData.year_built')
-                                    <p class="text-sm text-red-500">{{ $message }}</p>
-                                @enderror
-                            </div>
+                            <x-formInput type="text" title="year_built" label="Year Built" model='year_built' placeholder='E.g. 1990'/>
 
                             <!-- Offer Type -->
                             <div class="w-full mb-4 mr-auto">
-                                <label class="block mb-2 font-bold">Offer Type:</label>
+                                <label class="block mb-1 font-bold">Offer Type:</label>
+
                                 <div class="flex gap-4">
                                     <button type="button" id="offerType"
                                             class="flex-1 px-4 py-2 text-center bg-gray-800 border rounded-lg"
@@ -57,12 +37,13 @@
                                         For Rent
                                     </button>
                                 </div>
-                                <input type="hidden" wire:model="propertyData.offer_type" name="offer_type" id="offer_type_input" value="">
+                                <input type="hidden" wire:model="offer_type" name="offer_type" id="offer_type_input" value="">
                             </div>
 
                             <!-- Property Type -->
-                            <div class="w-full mb-4 mr-auto">
-                                <label class="block mb-2 font-bold">Property Type:</label>
+                            <div class="w-full mb-3 mr-auto">
+                                <label class="block mb-1 font-bold">Property Type:</label>
+
                                 <div class="flex gap-4">
                                     <button type="button" id="propertyType"
                                             class="flex-1 px-4 py-2 text-center bg-gray-800 border rounded-lg"
@@ -80,70 +61,52 @@
                                         Apartment
                                     </button>
                                 </div>
-                                <input wire:model="propertyData.type_id" type="hidden" name="type_id" id="type_id_input">
+                                <input wire:model="type_id" type="hidden" name="type_id" id="type_id_input">
                             </div>
                         </div>
 
                         <!-- Other property input data -->
-                        <div class="!w-[500px] ml-auto flex justify-center items-center gap-5 mb-auto">
+                        <div class="!w-[500px] ml-auto flex flex-col justify-center items-center mb-auto">
                             <!-- Number inputs -->
-                            <div class="w-1/2 mb-auto">
+                            <div class="w-full mb-auto">
                                 <!-- Number of Bedrooms -->
-                                <div class="w-full mb-4 mr-auto">
-                                    <label for="bedrooms" class="block mb-2 font-bold">Number of Bedrooms:</label>
-                                    <input type="number" name="bedrooms" id="bedrooms" min="0" class="w-full px-3 py-2 border rounded-lg bg-gray-800 @error('bedrooms') border-red-500 @enderror">
-                                    @error('bedrooms')
-                                        <p class="text-sm text-red-500">{{ $message }}</p>
-                                    @enderror
-                                </div>
+                                <x-formInput type="number" title="bedrooms" label="Number of Bedrooms" model='bedrooms' />
 
                                 <!-- Number of Toilets -->
-                                <div class="w-full mb-4 mr-auto">
-                                    <label for="toilets" class="block mb-2 font-bold">Number of Toilets:</label>
-                                    <input type="number" name="toilets" id="toilets" min="0" class="w-full px-3 py-2 border rounded-lg bg-gray-800 @error('toilets') border-red-500 @enderror">
-                                    @error('toilets')
-                                        <p class="text-sm text-red-500">{{ $message }}</p>
-                                    @enderror
-                                </div>
+                                <x-formInput type="number" title="toilets" label="Number of Toilets" model='toilets' />
 
                                 <!-- Number of Floors -->
-                                <div class="w-full mb-4 mr-auto">
-                                    <label for="floors" class="block mb-2 font-bold">Number of Floors:</label>
-                                    <input type="number" name="floors" id="floors" min="0" class="w-full px-3 py-2 border rounded-lg bg-gray-800 @error('floors') border-red-500 @enderror">
-                                    @error('floors')
-                                        <p class="text-sm text-red-500">{{ $message }}</p>
-                                    @enderror
-                                </div>
+                                <x-formInput type="number" title="floors" label="Number of Floors" model='floors' />
 
                                 <!-- Number of Rooms -->
-                                <div class="w-full mb-6 mr-auto">
-                                    <label for="rooms" class="block mb-2 font-bold">Number of Rooms:</label>
-                                    <input type="number" name="rooms" id="rooms" min="0" class="w-full px-3 py-2 border rounded-lg bg-gray-800 @error('rooms') border-red-500 @enderror">
-                                    @error('rooms')
-                                        <p class="text-sm text-red-500">{{ $message }}</p>
-                                    @enderror
-                                </div>
+                                <x-formInput type="number" title="rooms" label="Number of Rooms" model='rooms' />
                             </div>
 
                             <!-- Radio buttons input -->
-                            <div class="w-1/2 mb-auto">
-                                <!-- Garden -->
-                                <x-checkbox-input name="garden" label="Garden" />
+                            <div class="flex items-center justify-center w-full mt-2 mb-auto">
+                                <div class="flex flex-col items-center justify-center w-1/3">
+                                    <!-- Garden -->
+                                    <x-checkbox-input name="garden" label="Garden" />
 
-                                <!-- Furnished -->
-                                <x-checkbox-input name="furnished" label="Furnished" />
+                                    <!-- Furnished -->
+                                    <x-checkbox-input name="furnished" label="Furnished" />
+                                </div>
 
-                                <!-- Video -->
-                                <x-checkbox-input name="video_intercom" label="Intercom" />
+                                <div class="flex flex-col items-center justify-center w-1/3">
+                                    <!-- Video -->
+                                    <x-checkbox-input name="video_intercom" label="Intercom" />
 
-                                <!-- Garage -->
-                                <x-checkbox-input name="garage" label="Garage" />
+                                    <!-- Garage -->
+                                    <x-checkbox-input name="garage" label="Garage" />
+                                </div>
 
-                                <!-- Keycard -->
-                                <x-checkbox-input name="keycard_entry" label="Keycard entry" />
+                                <div class="flex flex-col items-center justify-center w-1/3">
+                                    <!-- Keycard -->
+                                    <x-checkbox-input name="keycard_entry" label="Keycard entry" />
 
-                                <!-- Elevator -->
-                                <x-checkbox-input name="elevator" label="Elevator" />
+                                    <!-- Elevator -->
+                                    <x-checkbox-input name="elevator" label="Elevator" />
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -154,8 +117,23 @@
                         <div class="flex-grow mr-auto">
                             <!-- Property Description -->
                             <div class="w-full">
-                                <label for="description" class="block mb-2 font-bold">Description:</label>
-                                <textarea wire:model="propertyData.description" placeholder="Property description.." wire:model="tempDescription" name="description" rows="18" id="description" class="w-full px-3 py-2 border rounded-lg text-balance bg-gray-800 @error('description') border-red-500 @enderror">
+                                <div class="relative w-full">
+                                    <label for="description" class="block mb-2 font-bold">Description:</label>
+
+                                    @error('description')
+                                        <div class="absolute text-red-500 -translate-y-1/2 top-1/2 right-4 group">
+                                            <div class="flex items-center justify-center w-6 h-6 border-2 border-red-500 rounded-full cursor-pointer">
+                                                i
+                                            </div>
+                                            <!-- Tooltip on Hover -->
+                                            <div class="absolute right-0 hidden w-40 px-2 py-1 mb-2 text-sm text-white bg-gray-800 border-gray-900 rounded-lg opacity-75 border-3 bottom-full group-hover:block">
+                                                {{ $message }}
+                                            </div>
+                                        </div>
+                                    @enderror
+                                </div>
+
+                                <textarea wire:model.blur="description" placeholder="Property description.." name="description" rows="18" id="description" class="w-full px-3 py-2 border rounded-lg text-balance bg-gray-800 @error('description') border-red-500 @enderror">
                                 </textarea>
                                 @error('tempDescription')
                                     <p class="text-sm text-red-500">{{ $message }}</p>
@@ -165,30 +143,36 @@
 
                         <!-- Location Section -->
                         <div class="ml-5">
-                            <label for="location" class="block mb-2 font-bold">Location:</label>
+                            <div class="relative w-full">
+                                <label for="location" class="block mb-2 font-bold">Location:</label>
 
-                            <div id="sticky">
-                                <!-- Leaflet Map -->
-                                <div id="admin-map" style="height: 400px; width: 500px;" class="rounded-[10px] mb-2"></div>
+                                @error('country')
+                                    <div class="absolute text-red-500 -translate-y-1/2 top-1/2 right-4 group">
+                                        <div class="flex items-center justify-center w-6 h-6 border-2 border-red-500 rounded-full cursor-pointer">
+                                            i
+                                        </div>
+                                        <!-- Tooltip on Hover -->
+                                        <div class="absolute right-0 hidden w-40 px-2 py-1 mb-2 text-sm text-white bg-gray-800 border-gray-900 rounded-lg opacity-75 border-3 bottom-full group-hover:block">
+                                            {{ $message }}
+                                        </div>
+                                    </div>
+                                @enderror
                             </div>
+
+                            <div id="sticky" class="rounded-[10px] @error('lat') border-2 border-red-500 @enderror">
+                                <!-- Leaflet Map -->
+                                <div id="admin-map" wire:ignore style="height: 400px; width: 500px;" class="rounded-[10px]"></div>
+                                {{-- this wire:ignore is needed that when validation happens, and livewire re-renders the form
+                                    there is extra code inside admin-map div so it removes it --}}
+                            </div>
+
+                            <br>
 
                             <!-- City -->
-                            <div class="mb-4">
-                                <label for="city" class="block mb-2 font-bold">City:</label>
-                                <input type="text" name="city" id="city" class="w-full px-3 py-2 border rounded-lg bg-gray-800 @error('city') border-red-500 @enderror">
-                                @error('city')
-                                    <p class="text-sm text-red-500">{{ $message }}</p>
-                                @enderror
-                            </div>
+                            <x-formInput type="text" title="city" label="City" model='city' />
 
                             <!-- Street -->
-                            <div class="">
-                                <label for="street" class="block mb-2 font-bold">Street:</label>
-                                <input type="text" name="street" id="street" class="w-full px-3 py-2 border rounded-lg bg-gray-800 @error('street') border-red-500 @enderror">
-                                @error('street')
-                                    <p class="text-sm text-red-500">{{ $message }}</p>
-                                @enderror
-                            </div>
+                            <x-formInput type="text" title="street" label="Street" model='street' />
 
                             <!-- Location little warning text -->
                             <div class="">
@@ -211,5 +195,35 @@
             </form>
         </div>
 
+        <script>
+            function reverseGeocode(lat, lng) {
+                var url = `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lng}`;
+
+                fetch(url)
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log(data);
+
+                        if (data.address) {
+                            var houseNumber = data.address.house_number || '';
+                            var street = data.address.road || '';
+                            var city = data.address.city || data.address.town || data.address.village || '';
+                            var country = data.address.country
+
+                            var fullStreet = houseNumber ? `${houseNumber} ${street}` : street;
+
+                            document.getElementById('street').value = fullStreet;
+                            document.getElementById('city').value = city;
+
+                            Livewire.dispatch('update-location-data', [city, fullStreet, lat, lng, country]);
+                        } else {
+
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error fetching address:', error);
+                    });
+            }
+        </script>
     </div>
 </div>
