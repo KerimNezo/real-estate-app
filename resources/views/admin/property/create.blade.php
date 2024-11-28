@@ -42,33 +42,6 @@
                 document.getElementById('')
             });
 
-            // funkcija pomoću koje dobijamo adresu  korisnik klikne na mapu
-            function reverseGeocode(lat, lng) {
-                var url = `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lng}`;
-
-                fetch(url)
-                    .then(response => response.json())
-                    .then(data => {
-                        console.log(data);
-
-                        if (data.address) {
-                            var houseNumber = data.address.house_number || '';
-                            var street = data.address.road || '';
-                            var city = data.address.city || data.address.town || data.address.village || '';
-
-                            var fullStreet = houseNumber ? `${houseNumber} ${street}` : street;
-
-                            document.getElementById('street').value = fullStreet;
-                            document.getElementById('city').value = city;
-                        } else {
-                            alert('No address found for these coordinates.');
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Error fetching address:', error);
-                    });
-            }
-
             function updateOfferType(type) {
                 document.getElementById('offer_type_input').value = type;
                 console.log(type);
