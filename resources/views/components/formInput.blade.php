@@ -14,7 +14,7 @@
 
         @error($title)
             <div class="absolute text-red-500 -translate-y-1/2 top-1/2 right-4 group">
-                <div class="flex items-center justify-center w-6 h-6 border border-red-500 rounded-full cursor-pointer">
+                <div class="flex items-center justify-center w-6 h-6 border-2 border-red-500 rounded-full cursor-pointer">
                     i
                 </div>
                 <!-- Tooltip on Hover -->
