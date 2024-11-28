@@ -5,6 +5,7 @@ namespace App\Livewire\Admin;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use Livewire\Attributes\On;
 use App\Models\Property;
 
 class StoreProperty extends Component
@@ -20,36 +21,11 @@ class StoreProperty extends Component
     // .live validira kako korisnik unosi podatke
 
     // Ako ćeš koristiti ovo, moraš ovo da koristiš wire:model.blur="", tj real-time validation
-    #[Validate]
-    public $propertyData = [
-        'user_id' => null,
-        'type_id' => null,
-        'name' => null,
-        'price' => null,
-        'surface' => null,
-        'lat' => null,
-        'lon' => null,
-        'room' => null,
-        'toilets' => null,
-        'bedrooms' => null,
-        'garage' => null,
-        'furnished' => null,
-        'floors' => null,
-        'lease_duration' => null,
-        'video_intercom' => null,
-        'keycard_entry' => null,
-        'elevator' => null,
-        'city' => null,
-        'street' => null,
-        'country' => null,
-        'description' => null,
-        'year_built' => null,
-        'garden' => null,
-        'status' => null,
-    ];
+    #[Validate] public $user_id, $type_id, $name, $price, $surface, $lat, $lon, $rooms, $toilets, $bedrooms, $garage, $furnished, $floors, $lease_duration, $video_intercom, $keycard_entry, $elevator, $city, $street, $country, $description, $year_built, $garden, $status = null;
+
 
     public function resetData() {
-        $this->propertyData = array_fill_keys(array_keys($this->propertyData), null);
+        // dodje ovdje ispod ostale podatke
         $this->reset('media');
     }
 
@@ -63,30 +39,30 @@ class StoreProperty extends Component
     public function rules()
     {
         return [
-            'propertyData.user_id' => 'required|integer',
-            'propertyData.type_id' => 'required|integer',
-            'propertyData.name' => 'required|string|max:255',
-            'propertyData.price' => 'required|numeric|min:0',
-            'propertyData.surface' => 'nullable|numeric',
-            'propertyData.lat' => 'nullable|numeric',
-            'propertyData.lon' => 'nullable|numeric',
-            'propertyData.room' => 'nullable|integer',
-            'propertyData.toilets' => 'nullable|integer',
-            'propertyData.bedrooms' => 'nullable|integer',
-            'propertyData.garage' => 'nullable|integer',
-            'propertyData.furnished' => 'nullable|boolean',
-            'propertyData.floors' => 'nullable|integer',
-            'propertyData.lease_duration' => 'nullable|string',
-            'propertyData.video_intercom' => 'nullable|boolean',
-            'propertyData.keycard_entry' => 'nullable|boolean',
-            'propertyData.elevator' => 'nullable|boolean',
-            'propertyData.city' => 'nullable|string|max:255',
-            'propertyData.street' => 'nullable|string|max:255',
-            'propertyData.country' => 'nullable|string|max:255',
-            'propertyData.description' => 'nullable|string',
-            'propertyData.year_built' => 'nullable|integer',
-            'propertyData.garden' => 'nullable|boolean',
-            'propertyData.status' => 'nullable|string',
+            'user_id' => 'required|integer',
+            'type_id' => 'required|integer',
+            'name' => 'required|string|max:255',
+            'price' => 'required|numeric|min:0',
+            'surface' => 'required|numeric',
+            'lat' => 'required|numeric',
+            'lon' => 'required|numeric',
+            'rooms' => 'nullable|integer|min:0',
+            'toilets' => 'nullable|integer',
+            'bedrooms' => 'nullable|integer',
+            'garage' => 'nullable|integer',
+            'furnished' => 'nullable|boolean',
+            'floors' => 'nullable|integer',
+            'lease_duration' => 'required|string',
+            'video_intercom' => 'nullable|boolean',
+            'keycard_entry' => 'nullable|boolean',
+            'elevator' => 'nullable|boolean',
+            'city' => 'required|string|max:255',
+            'street' => 'required|string|max:255',
+            'country' => 'required|string|max:255',
+            'description' => 'required|string',
+            'year_built' => 'required|integer',
+            'garden' => 'nullable|boolean',
+            'status' => 'required|string',
             'media' => 'nullable|image|max:1024',
         ];
     }
@@ -95,68 +71,72 @@ class StoreProperty extends Component
     public function messages()
     {
         return [
-            'propertyData.name.required' => 'The property name is required.',
-            'propertyData.name.string' => 'The property name must be a string.',
-            'propertyData.name.max' => 'The property name cannot exceed 255 characters.',
+            'name.required' => 'The property name is required.',
+            'name.string' => 'The property name must be a string.',
+            'name.max' => 'The property name cannot exceed 255 characters.',
 
-            'propertyData.price.required' => 'The price is required.',
-            'propertyData.price.numeric' => 'The price must be a valid number.',
-            'propertyData.price.min' => 'The price must be at least 0.',
+            'price.required' => 'The price is required.',
+            'price.numeric' => 'The price must be a valid number.',
+            'price.min' => 'The price must be at least 0.',
 
-            'propertyData.user_id.required' => 'The user ID is required.',
-            'propertyData.user_id.integer' => 'The user ID must be an integer.',
+            'user_id.required' => 'The user ID is required.',
+            'user_id.integer' => 'The user ID must be an integer.',
 
-            'propertyData.type_id.required' => 'The type ID is required.',
-            'propertyData.type_id.integer' => 'The type ID must be an integer.',
+            'type_id.required' => 'The type ID is required.',
+            'type_id.integer' => 'The type ID must be an integer.',
 
             'media.image' => 'The uploaded file must be an image.',
             'media.max' => 'The image size cannot exceed 1MB.',
 
-            'propertyData.city.string' => 'The city name must be a string.',
-            'propertyData.city.max' => 'The city name cannot exceed 255 characters.',
+            'city.string' => 'The city name must be a string.',
+            'city.max' => 'The city name cannot exceed 255 characters.',
 
-            'propertyData.street.string' => 'The street name must be a string.',
-            'propertyData.street.max' => 'The street name cannot exceed 255 characters.',
+            'street.string' => 'The street name must be a string.',
+            'street.max' => 'The street name cannot exceed 255 characters.',
 
-            'propertyData.country.string' => 'The country name must be a string.',
-            'propertyData.country.max' => 'The country name cannot exceed 255 characters.',
+            'country.string' => 'The country name must be a string.',
+            'country.max' => 'The country name cannot exceed 255 characters.',
 
-            'propertyData.surface.numeric' => 'The surface area must be a valid number.',
+            'surface.numeric' => 'The surface area must be a valid number.',
 
-            'propertyData.lat.numeric' => 'The latitude must be a valid number.',
+            'lat.numeric' => 'The latitude must be a valid number.',
 
-            'propertyData.lon.numeric' => 'The longitude must be a valid number.',
+            'lon.numeric' => 'The longitude must be a valid number.',
 
-            'propertyData.room.integer' => 'The number of rooms must be an integer.',
+            'rooms.integer' => 'The number of rooms must be an whole number.',
 
-            'propertyData.toilets.integer' => 'The number of toilets must be an integer.',
+            'toilets.integer' => 'The number of toilets must be an integer.',
 
-            'propertyData.bedrooms.integer' => 'The number of bedrooms must be an integer.',
+            'bedrooms.integer' => 'The number of bedrooms must be an integer.',
 
-            'propertyData.garage.integer' => 'The number of garages must be an integer.',
+            'garage.integer' => 'The number of garages must be an integer.',
 
-            'propertyData.furnished.boolean' => 'The furnished field must be true or false.',
+            'furnished.boolean' => 'The furnished field must be true or false.',
 
-            'propertyData.floors.integer' => 'The number of floors must be an integer.',
+            'floors.integer' => 'The number of floors must be an integer.',
 
-            'propertyData.lease_duration.string' => 'The lease duration must be a string.',
+            'lease_duration.string' => 'The lease duration must be a string.',
 
-            'propertyData.video_intercom.boolean' => 'The video intercom field must be true or false.',
+            'video_intercom.boolean' => 'The video intercom field must be true or false.',
 
-            'propertyData.keycard_entry.boolean' => 'The keycard entry field must be true or false.',
+            'keycard_entry.boolean' => 'The keycard entry field must be true or false.',
 
-            'propertyData.elevator.boolean' => 'The elevator field must be true or false.',
+            'elevator.boolean' => 'The elevator field must be true or false.',
 
-            'propertyData.description.string' => 'The description must be a string.',
+            'description.string' => 'The description must be a string.',
 
-            'propertyData.year_built.integer' => 'The year built must be an integer.',
+            'year_built.integer' => 'The year built must be an integer.',
 
-            'propertyData.garden.boolean' => 'The garden field must be true or false.',
+            'garden.boolean' => 'The garden field must be true or false.',
 
-            'propertyData.status.string' => 'The status must be a string.',
+            'status.string' => 'The status must be a string.',
         ];
     }
 
+    #[On('update-location-data')]
+    public function updateLocationData() {
+        logger('ulica je ulica, a grad je grad');
+    }
 
     public function storeProperty() {
         logger('>---------------------------------------------<');
@@ -167,11 +147,11 @@ class StoreProperty extends Component
 
         logger('Validation passed');
 
-        $property = new Property();
+        // $property = new Property();
 
-        $property->status = "Available";
-        $property->save();
+        // $property->status = "Available";
+        // $property->save();
 
-        return redirect()->route('all-properties')->with('success', 'Property created successfully.');
+        // return redirect()->route('all-properties')->with('success', 'Property created successfully.');
     }
 }
