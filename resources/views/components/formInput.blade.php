@@ -5,10 +5,10 @@
 
     <div class="relative">
         @if ($title === 'password_confirmation')
-            <input placeholder="{{ $placeholder }}" type="{{ $type }}" name="{{ $title }}" id="{{ $title }}" wire:model.blur="{{ $model }}" class="w-full px-3 py-2 bg-gray-800 border rounded-lg
+            <input id="{{ $title }}" wire:key="{{ $title }}" placeholder="{{ $placeholder }}" type="{{ $type }}" name="{{ $title }}" id="{{ $title }}" wire:model.blur="{{ $model }}" class="w-full px-3 py-2 bg-gray-800 border rounded-lg
             @error('password')  border-red-500 @enderror">
         @else
-            <input placeholder="{{ $placeholder }}" type="{{ $type }}" name="{{ $title }}" id="{{ $title }}" wire:model.blur="{{ $model }}" class="w-full px-3 py-2 bg-gray-800 border rounded-lg
+            <input id="{{ $title }}" wire:key="{{ $title }}" placeholder="{{ $placeholder }}" type="{{ $type }}" name="{{ $title }}" id="{{ $title }}" wire:model.blur="{{ $model }}" class="w-full px-3 py-2 bg-gray-800 border rounded-lg
             @error($title)  border-red-500 @enderror">
         @endif
 
