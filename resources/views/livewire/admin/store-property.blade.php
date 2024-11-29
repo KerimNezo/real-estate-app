@@ -25,9 +25,9 @@
                             <x-formInput type="text" title="year_built" label="Year Built" model='year_built' placeholder='E.g. 1990'/>
 
                             <!-- Offer Type -->
-                            <div class="w-full mb-4 mr-auto">
+                            <div class="w-full mb-3 mr-auto">
                                 <div class="relative w-full">
-                                    <label class="block mb-1 font-bold">Offer Type:</label>
+                                    <label class="block mb-2 font-bold">Offer Type:</label>
 
                                     <x-error-message-info title="lease_duration" />
                                 </div>
@@ -44,7 +44,7 @@
                             <!-- Property Type -->
                             <div class="w-full mb-3 mr-auto">
                                 <div class="relative w-full">
-                                    <label class="block mb-1 font-bold">Property Type:</label>
+                                    <label class="block mb-2 font-bold">Property Type:</label>
 
                                     <x-error-message-info title="type_id" />
                                 </div>
@@ -55,6 +55,24 @@
                                         <option value="1">Office</option>
                                         <option value="2">House</option>
                                         <option value="3">Appartement</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Property Agent -->
+                            <div class="w-full mb-3 mr-auto">
+                                <div class="relative w-full">
+                                    <label class="block mb-2 font-bold">Choose agent:</label>
+
+                                    <x-error-message-info title="user_id" />
+                                </div>
+
+                                <div class="flex gap-4">
+                                    <select id="agent_input" wire:model.blur="user_id" class="w-full rounded-[5px] h-[40px] pl-[10px] pr-8 text-[#989898]-black bg-gray-800 @error('user_id') border-red-500 @enderror" name="offer_type">
+                                        <option value="null" disabled selected>Choose an agent</option>
+                                        @foreach ($this->agents as $agent)
+                                            <option value="{{ $agent->id }}">{{ $agent->name }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
@@ -78,26 +96,24 @@
                             </div>
 
                             <!-- Radio buttons input -->
-                            <div class="flex items-center justify-center w-full mt-2 mb-auto">
-                                <div class="flex flex-col items-center justify-center w-1/3">
+                            <div class="flex items-center justify-center w-full mb-auto mt-9">
+                                <div class="flex flex-col items-center justify-center w-1/2">
                                     <!-- Garden -->
                                     <x-checkbox-input name="garden" label="Garden" />
 
                                     <!-- Furnished -->
                                     <x-checkbox-input name="furnished" label="Furnished" />
+
+                                    <!-- Keycard -->
+                                    <x-checkbox-input name="keycard_entry" label="Keycard entry" />
                                 </div>
 
-                                <div class="flex flex-col items-center justify-center w-1/3">
+                                <div class="flex flex-col items-center justify-center w-1/2">
                                     <!-- Video -->
                                     <x-checkbox-input name="video_intercom" label="Intercom" />
 
                                     <!-- Garage -->
                                     <x-checkbox-input name="garage" label="Garage" />
-                                </div>
-
-                                <div class="flex flex-col items-center justify-center w-1/3">
-                                    <!-- Keycard -->
-                                    <x-checkbox-input name="keycard_entry" label="Keycard entry" />
 
                                     <!-- Elevator -->
                                     <x-checkbox-input name="elevator" label="Elevator" />
