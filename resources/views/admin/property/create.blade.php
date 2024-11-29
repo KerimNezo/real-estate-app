@@ -41,39 +41,6 @@
                 document.getElementById('longitude').value = latlng.lng.toFixed(3);
                 document.getElementById('')
             });
-
-            function updateOfferType(type) {
-                document.getElementById('offer_type_input').value = type;
-                console.log(type);
-
-                document.querySelectorAll('button[id="offerType"]').forEach(button => {
-                    button.classList.remove('bg-blue-600', 'text-white');
-                });
-
-                event.target.classList.add('bg-blue-600', 'text-white');
-            }
-
-            function updatePropertyType(type) {
-                document.getElementById('type_id_input').value = type;
-                console.log(type);
-
-                document.querySelectorAll('button[id="propertyType"]').forEach(button => {
-                    button.classList.remove('bg-blue-600', 'text-white');
-                });
-
-                event.target.classList.add('bg-blue-600', 'text-white');
-            }
-
-            function updateStatus(status) {
-                document.getElementById('status_input').value = status;
-                console.log(status);
-
-                document.querySelectorAll('button[id="Available"], button[id="Sold"]').forEach(button => {
-                    button.classList.remove('bg-blue-600', 'text-white');
-                });
-
-                event.target.classList.add('bg-blue-600', 'text-white');
-            }
         </script>
 
         @include('admin.footer')
