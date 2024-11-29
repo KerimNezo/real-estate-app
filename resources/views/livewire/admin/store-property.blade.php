@@ -23,45 +23,59 @@
 
                             <!-- Offer Type -->
                             <div class="w-full mb-4 mr-auto">
-                                <label class="block mb-1 font-bold">Offer Type:</label>
+                                <div class="relative w-full">
+                                    <label class="block mb-1 font-bold">Offer Type:</label>
+
+                                    @error('lease_duration')
+                                        <div class="absolute text-red-500 -translate-y-1/2 top-1/2 right-4 group">
+                                            <div class="flex items-center justify-center w-6 h-6 border-2 border-red-500 rounded-full cursor-pointer">
+                                                i
+                                            </div>
+
+                                            <!-- Tooltip on Hover -->
+                                            <div class="absolute right-0 hidden w-40 px-2 py-1 mb-2 text-sm text-white bg-gray-800 border-gray-900 rounded-lg opacity-75 border-3 bottom-full group-hover:block">
+                                                {{ $message }}
+                                            </div>
+                                        </div>
+                                    @enderror
+                                </div>
 
                                 <div class="flex gap-4">
-                                    <button type="button" id="offerType"
-                                            class="flex-1 px-4 py-2 text-center bg-gray-800 border rounded-lg"
-                                            onclick="updateOfferType('sale')">
-                                        For Sale
-                                    </button>
-                                    <button type="button" id="offerType"
-                                            class="flex-1 px-4 py-2 text-center bg-gray-800 border rounded-lg"
-                                            onclick="updateOfferType('rent')">
-                                        For Rent
-                                    </button>
+                                    <select id="offer_input" wire:model.blur="lease_duration" class="w-full rounded-[5px] h-[40px] pl-[10px] pr-8 text-[#989898]-black bg-gray-800 @error('lease_duration') border-red-500 @enderror" name="offer_type">
+                                        <option value="null" disabled selected>Choose offer type</option>
+                                        <option value="0">For Sale</option>
+                                        <option value="1">For Rent</option>
+                                    </select>
                                 </div>
-                                <input type="hidden" wire:model="offer_type" name="offer_type" id="offer_type_input" value="">
                             </div>
 
                             <!-- Property Type -->
                             <div class="w-full mb-3 mr-auto">
-                                <label class="block mb-1 font-bold">Property Type:</label>
+                                <div class="relative w-full">
+                                    <label class="block mb-1 font-bold">Property Type:</label>
+
+                                    @error('type_id')
+                                        <div class="absolute text-red-500 -translate-y-1/2 top-1/2 right-4 group">
+                                            <div class="flex items-center justify-center w-6 h-6 border-2 border-red-500 rounded-full cursor-pointer">
+                                                i
+                                            </div>
+
+                                            <!-- Tooltip on Hover -->
+                                            <div class="absolute right-0 hidden w-40 px-2 py-1 mb-2 text-sm text-white bg-gray-800 border-gray-900 rounded-lg opacity-75 border-3 bottom-full group-hover:block">
+                                                {{ $message }}
+                                            </div>
+                                        </div>
+                                    @enderror
+                                </div>
 
                                 <div class="flex gap-4">
-                                    <button type="button" id="propertyType"
-                                            class="flex-1 px-4 py-2 text-center bg-gray-800 border rounded-lg"
-                                            onclick="updatePropertyType(1)">
-                                        Office
-                                    </button>
-                                    <button type="button" id="propertyType"
-                                            class="flex-1 px-4 py-2 text-center bg-gray-800 border rounded-lg"
-                                            onclick="updatePropertyType(2)">
-                                        House
-                                    </button>
-                                    <button type="button" id="propertyType"
-                                            class="flex-1 px-4 py-2 text-center bg-gray-800 border rounded-lg"
-                                            onclick="updatePropertyType(3)">
-                                        Apartment
-                                    </button>
+                                    <select id="type_input" wire:model.blur="type_id" class="w-full rounded-[5px] h-[40px] pl-[10px] pr-8 text-[#989898]-black bg-gray-800 @error('type_id') border-red-500 @enderror" name="offer_type">
+                                        <option value="null" disabled selected>Choose property type</option>
+                                        <option value="1">Office</option>
+                                        <option value="2">House</option>
+                                        <option value="3">Appartement</option>
+                                    </select>
                                 </div>
-                                <input wire:model="type_id" type="hidden" name="type_id" id="type_id_input">
                             </div>
                         </div>
 
