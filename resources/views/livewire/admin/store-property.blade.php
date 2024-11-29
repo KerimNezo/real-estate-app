@@ -26,18 +26,7 @@
                                 <div class="relative w-full">
                                     <label class="block mb-1 font-bold">Offer Type:</label>
 
-                                    @error('lease_duration')
-                                        <div class="absolute text-red-500 -translate-y-1/2 top-1/2 right-4 group">
-                                            <div class="flex items-center justify-center w-6 h-6 border-2 border-red-500 rounded-full cursor-pointer">
-                                                i
-                                            </div>
-
-                                            <!-- Tooltip on Hover -->
-                                            <div class="absolute right-0 hidden w-40 px-2 py-1 mb-2 text-sm text-white bg-gray-800 border-gray-900 rounded-lg opacity-75 border-3 bottom-full group-hover:block">
-                                                {{ $message }}
-                                            </div>
-                                        </div>
-                                    @enderror
+                                    <x-error-message-info title="lease_duration" />
                                 </div>
 
                                 <div class="flex gap-4">
@@ -54,18 +43,7 @@
                                 <div class="relative w-full">
                                     <label class="block mb-1 font-bold">Property Type:</label>
 
-                                    @error('type_id')
-                                        <div class="absolute text-red-500 -translate-y-1/2 top-1/2 right-4 group">
-                                            <div class="flex items-center justify-center w-6 h-6 border-2 border-red-500 rounded-full cursor-pointer">
-                                                i
-                                            </div>
-
-                                            <!-- Tooltip on Hover -->
-                                            <div class="absolute right-0 hidden w-40 px-2 py-1 mb-2 text-sm text-white bg-gray-800 border-gray-900 rounded-lg opacity-75 border-3 bottom-full group-hover:block">
-                                                {{ $message }}
-                                            </div>
-                                        </div>
-                                    @enderror
+                                    <x-error-message-info title="type_id" />
                                 </div>
 
                                 <div class="flex gap-4">
@@ -134,17 +112,7 @@
                                 <div class="relative w-full">
                                     <label for="description" class="block mb-2 font-bold">Description:</label>
 
-                                    @error('description')
-                                        <div class="absolute text-red-500 -translate-y-1/2 top-1/2 right-4 group">
-                                            <div class="flex items-center justify-center w-6 h-6 border-2 border-red-500 rounded-full cursor-pointer">
-                                                i
-                                            </div>
-                                            <!-- Tooltip on Hover -->
-                                            <div class="absolute right-0 hidden w-40 px-2 py-1 mb-2 text-sm text-white bg-gray-800 border-gray-900 rounded-lg opacity-75 border-3 bottom-full group-hover:block">
-                                                {{ $message }}
-                                            </div>
-                                        </div>
-                                    @enderror
+                                    <x-error-message-info title="description" />
                                 </div>
 
                                 <textarea wire:model.blur="description" placeholder="Property description.." name="description" rows="18" id="description" class="w-full px-3 py-2 border rounded-lg text-balance bg-gray-800 @error('description') border-red-500 @enderror">
@@ -160,17 +128,7 @@
                             <div class="relative w-full">
                                 <label for="location" class="block mb-2 font-bold">Location:</label>
 
-                                @error('country')
-                                    <div class="absolute text-red-500 -translate-y-1/2 top-1/2 right-4 group">
-                                        <div class="flex items-center justify-center w-6 h-6 border-2 border-red-500 rounded-full cursor-pointer">
-                                            i
-                                        </div>
-                                        <!-- Tooltip on Hover -->
-                                        <div class="absolute right-0 hidden w-40 px-2 py-1 mb-2 text-sm text-white bg-gray-800 border-gray-900 rounded-lg opacity-75 border-3 bottom-full group-hover:block">
-                                            {{ $message }}
-                                        </div>
-                                    </div>
-                                @enderror
+                                <x-error-message-info title="country" />
                             </div>
 
                             <div id="sticky" class="rounded-[10px] @error('lat') border-2 border-red-500 @enderror">
