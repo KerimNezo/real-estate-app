@@ -1,11 +1,11 @@
 <div>
-    <form id="storeForm" enctype="multipart/form-data"  wire:submit.prevent="storeAgent">
+    <form id="storeForm" enctype="multipart/form-data" wire:submit.prevent="storeAgent">
         @csrf
         <!-- Table to display agent data-->
         <div class="flex flex-col w-full gap-4 lg:flex-row">
             <!-- General property data -->
             <div class="w-full sm:w-[40%] pt-[10px] flex flex-col items-center justify-center">
-                <div class="mb-auto mr-auto">
+                <div class="mb-5 mr-auto">
                     <p class="text-lg font-bold">
                         Agents data
                     </p>
