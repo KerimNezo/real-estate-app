@@ -10,7 +10,7 @@
                     i
                 </div>
                 <!-- Tooltip on Hover -->
-                <div class="absolute right-0 hidden w-40 px-2 py-1 mb-2 text-sm text-white bg-gray-800 border-gray-900 rounded-lg opacity-75 border-3 bottom-full group-hover:block">
+                <div class="absolute right-0 hidden px-2 py-1 mb-2 text-sm text-white bg-gray-900 border-gray-900 rounded-lg opacity-75 w-60 border-3 bottom-full group-hover:block">
                     {{ $message }}
                 </div>
             </div>
