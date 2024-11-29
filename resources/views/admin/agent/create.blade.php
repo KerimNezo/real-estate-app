@@ -22,7 +22,7 @@
                         Create New Agent
                     </h1>
 
-                    <div class="w-full h-full px-4">
+                    <div class="w-full px-4">
                         <livewire:admin.store-agent />
                     </div>
                 </div>
