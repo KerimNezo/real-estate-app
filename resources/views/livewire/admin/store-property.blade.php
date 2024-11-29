@@ -15,10 +15,13 @@
                     <div class="flex w-full gap-5 mb-6">
                         <!-- General property data -->
                         <div class="flex-grow mr-auto">
+                            <!-- Property Name -->
                             <x-formInput type="text" title="name" label="Name" model='name' placeholder='E.g. Two bedroom house'/>
 
+                            <!-- Property Price -->
                             <x-formInput type="text" title="price" label="Price" model='price' placeholder='E.g. 100000'/>
 
+                            <!-- Property Year -->
                             <x-formInput type="text" title="year_built" label="Year Built" model='year_built' placeholder='E.g. 1990'/>
 
                             <!-- Offer Type -->
@@ -115,35 +118,36 @@
                                     <x-error-message-info title="description" />
                                 </div>
 
+                                <!-- Property Description-->
                                 <textarea wire:model.blur="description" placeholder="Property description.." name="description" rows="18" id="description" class="w-full px-3 py-2 border rounded-lg text-balance bg-gray-800 @error('description') border-red-500 @enderror">
                                 </textarea>
-                                @error('tempDescription')
-                                    <p class="text-sm text-red-500">{{ $message }}</p>
-                                @enderror
                             </div>
                         </div>
 
                         <!-- Location Section -->
                         <div class="ml-5">
-                            <div class="relative w-full">
-                                <label for="location" class="block mb-2 font-bold">Location:</label>
+                            <!-- Property Map-->
+                            <div>
+                                <div class="relative w-full">
+                                    <label for="location" class="block mb-2 font-bold">Location:</label>
 
-                                <x-error-message-info title="country" />
-                            </div>
+                                    <x-error-message-info title="country" />
+                                </div>
 
-                            <div id="sticky" class="rounded-[10px] @error('lat') border-2 border-red-500 @enderror">
-                                <!-- Leaflet Map -->
-                                <div id="admin-map" wire:ignore style="height: 400px; width: 500px;" class="rounded-[10px]"></div>
-                                {{-- this wire:ignore is needed that when validation happens, and livewire re-renders the form
-                                    there is extra code inside admin-map div so it removes it --}}
+                                <div id="sticky" class="rounded-[10px] @error('lat') border-2 border-red-500 @enderror">
+                                    <!-- Leaflet Map -->
+                                    <div id="admin-map" wire:ignore style="height: 400px; width: 500px;" class="rounded-[10px]"></div>
+                                    {{-- this wire:ignore is needed that when validation happens, and livewire re-renders the form
+                                        there is extra code inside admin-map div so it removes it --}}
+                                </div>
                             </div>
 
                             <br>
 
-                            <!-- City -->
+                            <!-- Property City -->
                             <x-formInput type="text" title="city" label="City" model='city' />
 
-                            <!-- Street -->
+                            <!-- Property Street -->
                             <x-formInput type="text" title="street" label="Street" model='street' />
 
                             <!-- Location little warning text -->
