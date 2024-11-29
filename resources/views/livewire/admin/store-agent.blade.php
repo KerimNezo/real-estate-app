@@ -4,9 +4,9 @@
         <!-- Table to display agent data-->
         <div class="flex flex-col w-full gap-4 lg:flex-row">
             <!-- General property data -->
-            <div class="w-full sm:w-[40%] pt-[10px] flex flex-col items-center justify-center">
-                <div class="mb-5 mr-auto">
-                    <p class="text-lg font-bold">
+            <div class="w-full sm:w-[40%] flex flex-col items-center justify-center">
+                <div class="mb-auto mr-auto">
+                    <p class="pt-2 text-lg font-bold">
                         Agents data
                     </p>
                 </div>
@@ -61,9 +61,11 @@
                             </div>
                         </div>
 
-                        @error('newPhoto')
-                            <p id="error-message" class="pt-4 text-sm text-red-500">{{ $message }}</p>
-                        @enderror
+                        <div id="error-message" class="h-5 pt-4">
+                            @error('newPhoto')
+                                <p id="error-message" class="text-sm text-red-500">{{ $message }}</p>
+                            @enderror
+                        </div>
                     </div>
                 </div>
             </div>
