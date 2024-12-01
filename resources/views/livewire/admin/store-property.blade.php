@@ -93,30 +93,35 @@
 
                                 <!-- Number of Rooms -->
                                 <x-formInput type="number" title="rooms" label="Number of Rooms" model='rooms' />
+
+                                <!-- Property surface -->
+                                <x-formInput type="number" title="surface" label="Property surface" model='surface' />
                             </div>
 
                             <!-- Radio buttons input -->
-                            <div class="flex items-center justify-center w-full mb-auto mt-9">
-                                <div class="flex flex-col items-center justify-center w-1/2">
+                            <div class="flex items-center justify-center w-full mt-2 mb-auto">
+                                <div class="flex flex-col items-center justify-center w-1/3">
                                     <!-- Garden -->
                                     <x-checkbox-input name="garden" label="Garden" />
 
                                     <!-- Furnished -->
                                     <x-checkbox-input name="furnished" label="Furnished" />
-
-                                    <!-- Keycard -->
-                                    <x-checkbox-input name="keycard_entry" label="Keycard entry" />
                                 </div>
 
-                                <div class="flex flex-col items-center justify-center w-1/2">
-                                    <!-- Video -->
-                                    <x-checkbox-input name="video_intercom" label="Intercom" />
-
+                                <div class="flex flex-col items-center justify-center w-1/3">
                                     <!-- Garage -->
                                     <x-checkbox-input name="garage" label="Garage" />
 
                                     <!-- Elevator -->
                                     <x-checkbox-input name="elevator" label="Elevator" />
+                                </div>
+
+                                <div class="flex flex-col items-center justify-center w-1/3">
+                                    <!-- Video -->
+                                    <x-checkbox-input name="video_intercom" label="Intercom" />
+
+                                    <!-- Keycard -->
+                                    <x-checkbox-input name="keycard_entry" label="Keycard entry" />
                                 </div>
                             </div>
                         </div>
