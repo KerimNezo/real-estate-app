@@ -56,12 +56,12 @@ class StoreProperty extends Component
             'surface' => 'required|numeric',
             'lat' => 'required|numeric',
             'lon' => 'required|numeric',
-            'rooms' => 'nullable|integer|min:0',
-            'toilets' => 'nullable|integer',
-            'bedrooms' => 'nullable|integer',
+            'rooms' => 'required|integer|min:0',
+            'toilets' => 'required|integer',
+            'bedrooms' => 'required|integer',
             'garage' => 'nullable|integer',
             'furnished' => 'nullable|boolean',
-            'floors' => 'nullable|integer',
+            'floors' => 'required|integer',
             'lease_duration' => 'required|string',
             'video_intercom' => 'nullable|boolean',
             'keycard_entry' => 'nullable|boolean',
@@ -69,7 +69,7 @@ class StoreProperty extends Component
             'city' => 'required|string|max:255',
             'street' => 'required|string|max:255',
             'country' => 'required|string|max:255',
-            'description' => 'required|string',
+            'description' => 'required|string|max:500',
             'year_built' => 'required|integer',
             'garden' => 'nullable|boolean',
             'status' => 'required|string',
@@ -81,51 +81,82 @@ class StoreProperty extends Component
     public function messages()
     {
         return [
-            'name.required' => 'The property name is required.',
+            // Main inputs messages
+
+            'name.required' => 'Property name is required.',
             'name.string' => 'The property name must be a string.',
             'name.max' => 'The property name cannot exceed 255 characters.',
 
-            'price.required' => 'The price is required.',
+            'price.required' => 'Property price is required.',
             'price.numeric' => 'The price must be a valid number.',
             'price.min' => 'The price must be at least 0.',
 
-            'user_id.required' => 'The user ID is required.',
+            'user_id.required' => 'Choosing an agent is required.',
             'user_id.integer' => 'The user ID must be an integer.',
 
-            'type_id.required' => 'The type ID is required.',
+            'type_id.required' => 'Choosing a property type is required.',
             'type_id.integer' => 'The type ID must be an integer.',
 
             'media.image' => 'The uploaded file must be an image.',
             'media.max' => 'The image size cannot exceed 1MB.',
 
+            'year_built.string' => 'Property year of building is required.',
+            'year_built.integer' => 'The year built must be an integer.',
+
+            'status.required' => 'Property status is required.',
+            'status.string' => 'Status must be a string.',
+
+            'lease_duration.required' => 'Property offer type is required.',
+            'lease_duration.string' => 'The lease duration must be a string.',
+
+
+            // Location and desc messages
+
+            'description.required' => 'Property description is required',
+            'description.max' => 'Description can not be longer than 500 characters.',
+            'description.string' => 'The description must be a string.',
+
+            'city.required' => 'Property city name is required.',
             'city.string' => 'The city name must be a string.',
             'city.max' => 'The city name cannot exceed 255 characters.',
 
+            'street.required' => 'Property street name is required',
             'street.string' => 'The street name must be a string.',
             'street.max' => 'The street name cannot exceed 255 characters.',
 
             'country.required' => 'Please pick property location on map',
             'country.max' => 'The country name cannot exceed 255 characters.',
 
-            'surface.numeric' => 'The surface area must be a valid number.',
-
+            'lat.required' => 'Property latitude is required.',
             'lat.numeric' => 'The latitude must be a valid number.',
 
+            'lon.required' => 'Property longitude is required.',
             'lon.numeric' => 'The longitude must be a valid number.',
 
+
+            // Number input messages
+
+            'rooms.required' => 'Number of rooms is required',
             'rooms.integer' => 'The number of rooms must be an whole number.',
 
+            'toilets.required' => 'Number of toilets is required',
             'toilets.integer' => 'The number of toilets must be an integer.',
 
+            'bedrooms.required' => 'Number of bedrooms is required',
             'bedrooms.integer' => 'The number of bedrooms must be an integer.',
+
+            'floors.required' => 'Number of floors is required',
+            'floors.integer' => 'The number of floors must be an integer.',
+
+            'surface.required' => 'Property surface area is required.',
+            'surface.numeric' => 'The surface area must be a valid number.',
+
+
+            // Checkbox input messages
 
             'garage.integer' => 'The number of garages must be an integer.',
 
             'furnished.boolean' => 'The furnished field must be true or false.',
-
-            'floors.integer' => 'The number of floors must be an integer.',
-
-            'lease_duration.string' => 'The lease duration must be a string.',
 
             'video_intercom.boolean' => 'The video intercom field must be true or false.',
 
@@ -133,13 +164,7 @@ class StoreProperty extends Component
 
             'elevator.boolean' => 'The elevator field must be true or false.',
 
-            'description.string' => 'The description must be a string.',
-
-            'year_built.integer' => 'The year built must be an integer.',
-
             'garden.boolean' => 'The garden field must be true or false.',
-
-            'status.string' => 'The status must be a string.',
         ];
     }
 
@@ -150,6 +175,11 @@ class StoreProperty extends Component
         $this->country = $country;
         $this->lat = $lat;
         $this->lon = $lon;
+        logger('lat: ' . $this->lat);
+        logger('lon: ' . $this->lon);
+        logger('city: ' . $this->city);
+        logger('street: ' . $this->street);
+        logger('country: ' . $this->country);
     }
 
     public function storeProperty() {
