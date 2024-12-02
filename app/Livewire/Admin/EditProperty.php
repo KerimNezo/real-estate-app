@@ -98,8 +98,6 @@ class EditProperty extends Component
                 break;
             }
         }
-
-        $this->newPhotos = array_values($this->newPhotos);
     }
 
     public function removePhoto($index, $id)
