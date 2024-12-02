@@ -16,11 +16,54 @@ class StoreProperty extends Component
 
     #[Validate]
     public $media = [];
+
+
+    public $mediaArray = [];
     // ovo (#[Validate]) generalno ne moramo koristiti ako koristimo rules() validation() funkcije.
     // onda možemo tu sva pravila i poruke napisati, i vršiti validaciju preko $this->validate()
     // ali ako nemamo #[Validate] onda ne možemo koristiti live validaciju. tako da stoji ovdje da imamo live validaciju koju postavljamo na inpute preko wire:model.blur
     // .blur čeka da user tab outa od inputa i onda radi validaciju
     // .live validira kako korisnik unosi podatke
+
+    public function removeNewPhoto($filename)
+    {
+        foreach ($this->media as $index => $photo) {
+            if ($this->sanitizePhotoName($photo) === $filename) {
+                unset($this->media[$index]);
+                unset($this->mediaArray[$filename]);
+                break;
+            }
+        }
+
+        $this->media = array_values($this->newPhotos);
+    }
+
+    public function updatedMedia()
+    {
+        foreach ($this->media as $photo) {
+            if ($photo) {
+                $this->mediaArray[$this->sanitizePhotoName($photo)] = $photo;
+            }
+        }
+    }
+
+    public function sanitizePhotoName($photo)
+    {
+        $nameWithoutExtension = pathinfo($photo->getClientOriginalName(), PATHINFO_FILENAME);
+
+        // This str_replace, right now, just removes spaces. So if some bs comes up in image names, I just need to edit this code here.
+        $sanitized = str_replace(' ', '', $nameWithoutExtension);
+
+        return $sanitized;
+    }
+
+    public function reorderPhotos($mediaItems)
+    {
+        foreach ($mediaItems as $index => $mediaItem) {
+            $mediaItem->order_column = $index + 1;
+            $mediaItem->save();
+        }
+    }
 
     // Ako ćeš koristiti ovo, moraš ovo da koristiš wire:model.blur="", tj real-time validation
     #[Validate]
@@ -34,11 +77,6 @@ class StoreProperty extends Component
             ->where('id', '!=', 1)
             ->latest()
             ->get();
-    }
-
-    public function resetData() {
-        // dodje ovdje ispod ostale podatke
-        $this->reset('media');
     }
 
     public function removePhoto() {
@@ -217,6 +255,12 @@ class StoreProperty extends Component
         logger('status: ' . $this->status);
 
         // $property = new Property();
+
+        // foreach ($this->media as $photo) {
+        //     $property->addMedia($photo)->toMediaCollection('property-photos');
+        // }
+
+        // $this->reorderPhotos($property->getMedia('property-photos'));
 
         // $property->status = "Available";
         // $property->save();
