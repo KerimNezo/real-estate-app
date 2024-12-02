@@ -128,7 +128,7 @@
                     </div>
 
                     <!-- Description and Location data input -->
-                    <div class="flex items-start justify-center w-full mb-4">
+                    <div class="flex items-start justify-center w-full mb-10">
                         <!-- Description Section -->
                         <div class="flex-grow mr-auto">
                             <!-- Property Description -->
@@ -176,6 +176,52 @@
                                 <p class="text-xs">Please make sure to double check the data entered by the map (City, Street)</p>
                             </div>
                         </div>
+                    </div>
+
+                    <div class="flex flex-col items-start justify-center w-full mb-4">
+                        {{-- Photo gallery header with buttons --}}
+                        <div class="flex flex-col items-center justify-center w-full gap-4 pb-4 sm:flex-row">
+                            <p class="w-full mr-auto text-lg font-bold text-left whitespace-normal">
+                                Property images:
+                            </p>
+
+                            <div class="flex items-center justify-center w-full gap-4 mr-0">
+                                <button type="button" onclick="document.getElementById('file-upload').click()" class="px-3 py-2 ml-0 mr-auto text-base text-white bg-green-600 rounded-lg sm:ml-auto sm:mr-0">
+                                    <p>New photo</p>
+                                </button>
+
+                                <input type="file" multiple id="file-upload" class="hidden" wire:model="media">
+                            </div>
+                        </div>
+
+                        <!-- Property photos -->
+                        <div class="max-w-full overflow-x-scroll">
+                            <div class="flex items-center justify-start w-full max-w-full space-x-2 overflow-x-scroll whitespace-nowrap">
+                                <!-- Display new photo previews -->
+                                @foreach($media as $key => $photo)
+                                    <div class="relative" wire:key="{{ $key }}">
+                                        <img src="{{ $photo->temporaryUrl() }}"
+                                            alt="Loading Photo"
+                                            class="w-[150px] h-[90px] object-cover rounded-lg cursor-pointer">
+
+                                        <button type="button" class="absolute flex items-center justify-center w-5 h-5 text-xs text-black bg-white rounded-full top-1 right-1"
+                                                wire:click="removeNewPhoto('{{ $key }}')" wire:loading.attr="disabled">
+                                            <div class="flex items-center justify-center pb-[2px] font-bold">
+                                                <p>x</p>
+                                            </div>
+                                        </button>
+
+                                        <div wire:loading wire:target="removeNewPhoto('{{ $key }}')"
+                                            class="absolute inset-0 z-10 flex items-center justify-center bg-gray-700 bg-opacity-75 rounded-lg">
+                                            <img src="{{ asset('photos/spinner.svg') }}" alt="Loading" class="w-[150px] h-[90px] opacity-75">
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                        @error('media')
+                            <p class="text-sm text-red-500">{{ $message }}</p>
+                        @enderror
                     </div>
                 </div>
 
