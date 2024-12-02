@@ -154,7 +154,7 @@ class EditProperty extends Component
             logger("Something's wrong with the status");
         }
 
-        foreach ($this->newPhotos as $photo) {
+        foreach ($this->newPhotoArray as $key => $photo) {
             $this->property->addMedia($photo)->toMediaCollection('property-photos');
         }
 
