@@ -92,9 +92,8 @@ class EditProperty extends Component
 
     public function removeNewPhoto($filename)
     {
-        foreach ($this->newPhotos as $index => $photo) {
+        foreach ($this->newPhotoArray as $index => $photo) {
             if ($this->sanitizePhotoName($photo) === $filename) {
-                unset($this->newPhotos[$index]);
                 unset($this->newPhotoArray[$filename]);
                 break;
             }
