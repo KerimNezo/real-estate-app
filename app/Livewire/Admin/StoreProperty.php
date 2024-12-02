@@ -14,9 +14,20 @@ class StoreProperty extends Component
 {
     use WithFileUploads;
 
+    public $allowedMimeTypes = [
+        'image/jpeg',
+        'image/png',
+        'image/gif',
+        'image/webp',
+        'image/svg+xml',
+        'image/bmp',
+        'image/tiff',
+        'image/heic',
+        'image/heif',
+    ];
+
     #[Validate]
     public $media = [];
-
 
     public $mediaArray = [];
     // ovo (#[Validate]) generalno ne moramo koristiti ako koristimo rules() validation() funkcije.
@@ -27,22 +38,30 @@ class StoreProperty extends Component
 
     public function removeNewPhoto($filename)
     {
-        foreach ($this->media as $index => $photo) {
+        foreach ($this->mediaArray as $index => $photo) {
             if ($this->sanitizePhotoName($photo) === $filename) {
-                unset($this->media[$index]);
                 unset($this->mediaArray[$filename]);
                 break;
             }
         }
-
-        $this->media = array_values($this->newPhotos);
     }
 
     public function updatedMedia()
     {
-        foreach ($this->media as $photo) {
-            if ($photo) {
-                $this->mediaArray[$this->sanitizePhotoName($photo)] = $photo;
+        foreach($this->media as $key => $photo){
+            logger('key. ' . $key . ', photo: ' . $photo);
+
+            // Extract the MIME type from the image info
+            $mimeType = $photo->getMimeType();
+
+            if(in_array($mimeType, $this->allowedMimeTypes, true)) {
+                if ($photo) {
+                    // Mislim da ti je ovdje error, po načinu na koji storeas slike ovdje u mediaArray
+                    $this->mediaArray[$this->sanitizePhotoName($photo)] = $photo;
+                    logger('photo name: ' . $this->sanitizePhotoName($photo));
+                }
+            } else {
+                unset($this->media[$key]);
             }
         }
     }
@@ -111,7 +130,7 @@ class StoreProperty extends Component
             'year_built' => 'required|integer',
             'garden' => 'nullable|boolean',
             'status' => 'required|string',
-            'media' => 'nullable|image|max:1024',
+            'media' => 'nullable|max:1024',
         ];
     }
 
@@ -134,9 +153,6 @@ class StoreProperty extends Component
 
             'type_id.required' => 'Choosing a property type is required.',
             'type_id.integer' => 'The type ID must be an integer.',
-
-            'media.image' => 'The uploaded file must be an image.',
-            'media.max' => 'The image size cannot exceed 1MB.',
 
             'year_built.string' => 'Property year of building is required.',
             'year_built.integer' => 'The year built must be an integer.',
@@ -256,7 +272,7 @@ class StoreProperty extends Component
 
         // $property = new Property();
 
-        // foreach ($this->media as $photo) {
+        // foreach ($this->mediaArray as $key => $photo) {
         //     $property->addMedia($photo)->toMediaCollection('property-photos');
         // }
 
