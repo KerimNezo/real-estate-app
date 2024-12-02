@@ -198,7 +198,7 @@
                         <div class="max-w-full overflow-x-scroll">
                             <div class="flex items-center justify-start w-full max-w-full space-x-2 overflow-x-scroll whitespace-nowrap">
                                 <!-- Display new photo previews -->
-                                @foreach($media as $key => $photo)
+                                @foreach($mediaArray as $key => $photo)
                                     <div class="relative" wire:key="{{ $key }}">
                                         <img src="{{ $photo->temporaryUrl() }}"
                                             alt="Loading Photo"
