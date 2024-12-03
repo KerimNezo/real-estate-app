@@ -25,7 +25,7 @@
                             <x-formInput type="text" title="year_built" label="Year Built" model='year_built' placeholder='E.g. 1990'/>
 
                             <!-- Offer Type -->
-                            <div class="w-full mb-3 mr-auto">
+                            <div class="w-full mb-2 mr-auto">
                                 <div class="relative w-full">
                                     <label class="block mb-2 font-bold">Offer Type:</label>
 
@@ -33,7 +33,7 @@
                                 </div>
 
                                 <div class="flex gap-4">
-                                    <select id="offer_input" wire:model.blur="lease_duration" class="w-full rounded-[5px] h-[40px] pl-[10px] pr-8 text-[#989898]-black bg-gray-800 @error('lease_duration') border-red-500 @enderror" name="offer_type">
+                                    <select id="offer_input" wire:model.blur="lease_duration" class="w-full rounded-lg py-2 pl-[10px] pr-8 text-[#989898]-black bg-gray-800 @error('lease_duration') border-red-500 @enderror" name="offer_type">
                                         <option value="null" disabled selected>Choose offer type</option>
                                         <option value="0">For Sale</option>
                                         <option value="1">For Rent</option>
@@ -50,7 +50,7 @@
                                 </div>
 
                                 <div class="flex gap-4">
-                                    <select id="type_input" wire:model.blur="type_id" class="w-full rounded-[5px] h-[40px] pl-[10px] pr-8 text-[#989898]-black bg-gray-800 @error('type_id') border-red-500 @enderror" name="offer_type">
+                                    <select id="type_input" wire:model.blur="type_id" class="w-full rounded-lg py-2 pl-[10px] pr-8 text-[#989898]-black bg-gray-800 @error('type_id') border-red-500 @enderror" name="offer_type">
                                         <option value="null" disabled selected>Choose property type</option>
                                         <option value="1">Office</option>
                                         <option value="2">House</option>
@@ -60,7 +60,7 @@
                             </div>
 
                             <!-- Property Agent -->
-                            <div class="w-full mb-3 mr-auto">
+                            <div class="w-full mb-2 mr-auto">
                                 <div class="relative w-full">
                                     <label class="block mb-2 font-bold">Choose agent:</label>
 
@@ -68,7 +68,7 @@
                                 </div>
 
                                 <div class="flex gap-4">
-                                    <select id="agent_input" wire:model.blur="user_id" class="w-full rounded-[5px] h-[40px] pl-[10px] pr-8 text-[#989898]-black bg-gray-800 @error('user_id') border-red-500 @enderror" name="offer_type">
+                                    <select id="agent_input" wire:model.blur="user_id" class="w-full rounded-lg py-2 pl-[10px] pr-8 text-[#989898]-black bg-gray-800 @error('user_id') border-red-500 @enderror" name="offer_type">
                                         <option value="null" disabled selected>Choose an agent</option>
                                         @foreach ($this->agents as $agent)
                                             <option value="{{ $agent->id }}">{{ $agent->name }}</option>
@@ -184,6 +184,14 @@
                             <p class="w-full mr-auto text-lg font-bold text-left whitespace-normal">
                                 Property images:
                             </p>
+
+                            <div class="w-full">
+                                @if (session()->has('notImage'))
+                                    <div wire:poll.3s="clearFlashMessage" id="flash-message" class="flex items-center justify-center w-full py-2 mx-auto bg-red-700 rounded-lg">
+                                        <span class="font-bold">{{ session('notImage') }}</span>&nbsp;is not an image.
+                                    </div>
+                                @endif
+                            </div>
 
                             <div class="flex items-center justify-center w-full gap-4 mr-0">
                                 <button type="button" onclick="document.getElementById('file-upload').click()" class="px-3 py-2 ml-0 mr-auto text-base text-white bg-green-600 rounded-lg sm:ml-auto sm:mr-0">
