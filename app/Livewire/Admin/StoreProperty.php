@@ -53,6 +53,7 @@ class StoreProperty extends Component
 
             // Extract the MIME type from the image info
             $mimeType = $photo->getMimeType();
+            logger($mimeType);
 
             if(in_array($mimeType, $this->allowedMimeTypes, true)) {
                 if ($photo) {
@@ -61,10 +62,18 @@ class StoreProperty extends Component
                     logger('photo name: ' . $this->sanitizePhotoName($photo));
                 }
             } else {
+                $naziv = $this->sanitizePhotoName($photo); // i dodaj file extenziju ovdje
                 unset($this->media[$key]);
+                session()->flash('notImage', $naziv);
             }
         }
     }
+
+    public function clearFlashMessage()
+    {
+        session()->forget('notImage');
+    }
+
 
     public function sanitizePhotoName($photo)
     {
@@ -96,10 +105,6 @@ class StoreProperty extends Component
             ->where('id', '!=', 1)
             ->latest()
             ->get();
-    }
-
-    public function removePhoto() {
-        // This funciton will remove tempPhoto from the $this->media property
     }
 
     // Provjeri i ovo
