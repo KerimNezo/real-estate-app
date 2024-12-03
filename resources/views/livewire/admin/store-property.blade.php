@@ -178,7 +178,7 @@
                         </div>
                     </div>
 
-                    <div class="flex flex-col items-start justify-center w-full mb-4">
+                    <div class="flex flex-col items-start justify-center w-full max-w-full mb-4">
                         {{-- Photo gallery header with buttons --}}
                         <div class="flex flex-col items-center justify-center w-full gap-4 pb-4 sm:flex-row">
                             <p class="w-full mr-auto text-lg font-bold text-left whitespace-normal">
@@ -203,8 +203,8 @@
                         </div>
 
                         <!-- Property photos -->
-                        <div class="max-w-full overflow-x-scroll">
-                            <div class="flex items-center justify-start w-full max-w-full space-x-2 overflow-x-scroll whitespace-nowrap">
+                        <div class="flex w-full">
+                            <div class="flex items-center justify-start w-full max-w-full space-x-2 overflow-hidden overflow-x-scroll whitespace-nowrap">
                                 <!-- Display new photo previews -->
                                 @foreach($mediaArray as $key => $photo)
                                     <div class="relative" wire:key="{{ $key }}">
