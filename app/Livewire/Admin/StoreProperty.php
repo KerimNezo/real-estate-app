@@ -276,6 +276,8 @@ class StoreProperty extends Component
 
         logger('Validation passed');
 
+        logger('>---------------------------------------------<');
+
         $property = new Property();
 
         foreach ($this->mediaArray as $key => $photo) {
