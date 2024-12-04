@@ -93,6 +93,11 @@ class StoreProperty extends Component
         }
     }
 
+    public function resetPhotos()
+    {
+        $this->reset('mediaArray', 'media');
+    }
+
     // Ako ćeš koristiti ovo, moraš ovo da koristiš wire:model.blur="", tj real-time validation
     #[Validate]
     public $user_id, $type_id, $name, $price, $surface, $lat, $lon, $rooms, $toilets, $bedrooms, $garage, $furnished, $floors, $lease_duration, $video_intercom, $keycard_entry, $elevator, $city, $street, $country, $description, $year_built, $garden, $status = null;
