@@ -178,7 +178,7 @@
                         </div>
                     </div>
 
-                    <div class="flex flex-col items-start justify-center w-full max-w-full mb-4">
+                    <div class="flex flex-col items-start justify-center w-full max-w-full">
                         {{-- Photo gallery header with buttons --}}
                         <div class="flex flex-col items-center justify-center w-full gap-4 pb-4 sm:flex-row">
                             <p class="w-full mr-auto text-lg font-bold text-left whitespace-normal">
@@ -199,6 +199,14 @@
                                 </button>
 
                                 <input type="file" multiple id="file-upload" class="hidden" wire:model="media">
+
+                                <button type="button" wire:click="resetPhotos" class="flex items-center justify-center gap-2 px-3 py-2 text-base text-white bg-blue-600 rounded-lg">
+                                    <div wire:loading wire:target="resetPhotos">
+                                        <img src="{{ asset('photos/spinner.svg') }}" wire:loading class="w-6 h-6"></img> <!-- SVG loading spinner -->
+                                    </div>
+
+                                    <p>Reset photos</p>
+                                </button>
                             </div>
                         </div>
 
