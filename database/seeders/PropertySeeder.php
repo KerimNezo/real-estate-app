@@ -24,7 +24,7 @@ class PropertySeeder extends Seeder
         foreach ($propertyType as $type) {
             for ($x = 0; $x < 4; $x++) {
                 $street = ($x % 2 == 0) ? 'Mejdandžik 11' : 'Adolfa Goldberga 5';
-                $lease = ($x % 2 == 0) ? 5 : null; // ili ce lease duraiton biti 5 ili null
+                $lease = ($x % 2 == 0) ? 5 : 0; // ili ce lease duraiton biti 5 ili null
                 $elevator = ($type != 2 && $x % 2 == 0) ? 1 : null;
                 $keycard = ($type != 2 && $x % 2 == 0) ? 1 : null;
                 $floors = ($type == 2 || $type % 2 == 0) ? 2 : null;
