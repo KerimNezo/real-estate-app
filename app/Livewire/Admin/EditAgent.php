@@ -9,15 +9,7 @@ use Livewire\Component;
 class EditAgent extends Component
 {
     #[Validate]
-    public $name;
-
-    public $email;
-
-    public $phoneNumber;
-
-    public $password;
-
-    public $password_confirmation;
+    public $name, $email, $phoneNumber, $password, $password_confirmation;
 
     public $novaSlika;
 
