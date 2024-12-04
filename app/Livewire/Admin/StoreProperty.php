@@ -280,15 +280,24 @@ class StoreProperty extends Component
 
         $property = new Property();
 
+        foreach ([
+            'user_id', 'type_id', 'name', 'price', 'surface', 'lat', 'lon',
+            'rooms', 'toilets', 'bedrooms', 'garage', 'furnished', 'floors',
+            'lease_duration', 'video_intercom', 'keycard_entry', 'elevator',
+            'city', 'street', 'country', 'description', 'year_built', 'garden'
+            ] as $field) {
+                $property->$field = $this->$field;
+        }
+
         foreach ($this->mediaArray as $key => $photo) {
             $property->addMedia($photo)->toMediaCollection('property-photos');
         }
 
-        $this->reorderPhotos($property->getMedia('property-photos'));
+        //$this->reorderPhotos($property->getMedia('property-photos'));
 
         $property->status = "Available";
         $property->save();
 
-        return redirect()->route('all-properties')->with('success', 'Property created successfully.');
+        return redirect()->route('admin-properties')->with('success', 'Property created successfully.');
     }
 }
