@@ -241,14 +241,14 @@
                     </div>
                 </div>
 
-                <!-- Update Button -->
+                <!-- Create Button -->
                 <div class="pt-10 text-center">
                     <button type="submit" class="px-6 py-2 text-white bg-blue-600 rounded-lg">
                         <div id="loader" wire:loading wire:target="storeProperty" class="mr-auto">
                             <img src="{{ asset('photos/spinner.svg') }}" wire:loading class="w-6 h-6"></img> <!-- SVG loading spinner -->
                         </div>
 
-                        Update Property
+                        Create Property
                     </button>
                 </div>
             </form>
