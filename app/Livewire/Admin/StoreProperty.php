@@ -133,7 +133,6 @@ class StoreProperty extends Component
             'country' => 'required|string|max:255',
             'description' => 'required|string|max:500',
             'year_built' => 'required|integer',
-            'status' => 'required|string',
             'garage' => 'nullable|integer',
             'furnished' => 'nullable|boolean',
             'video_intercom' => 'nullable|boolean',
@@ -166,9 +165,6 @@ class StoreProperty extends Component
 
             'year_built.string' => 'Property year of building is required.',
             'year_built.integer' => 'The year built must be an integer.',
-
-            'status.required' => 'Property status is required.',
-            'status.string' => 'Status must be a string.',
 
             'lease_duration.required' => 'Property offer type is required.',
             'lease_duration.string' => 'The lease duration must be a string.',
@@ -251,10 +247,6 @@ class StoreProperty extends Component
 
         logger('Before validation');
 
-        $this->validate();
-
-        logger('Validation passed');
-
         logger('user_id: ' . $this->user_id);
         logger('type_id: ' . $this->type_id);
         logger('name: ' . $this->name);
@@ -280,17 +272,21 @@ class StoreProperty extends Component
         logger('garden: ' . $this->garden);
         logger('status: ' . $this->status);
 
-        // $property = new Property();
+        $this->validate();
 
-        // foreach ($this->mediaArray as $key => $photo) {
-        //     $property->addMedia($photo)->toMediaCollection('property-photos');
-        // }
+        logger('Validation passed');
 
-        // $this->reorderPhotos($property->getMedia('property-photos'));
+        $property = new Property();
 
-        // $property->status = "Available";
-        // $property->save();
+        foreach ($this->mediaArray as $key => $photo) {
+            $property->addMedia($photo)->toMediaCollection('property-photos');
+        }
 
-        // return redirect()->route('all-properties')->with('success', 'Property created successfully.');
+        $this->reorderPhotos($property->getMedia('property-photos'));
+
+        $property->status = "Available";
+        $property->save();
+
+        return redirect()->route('all-properties')->with('success', 'Property created successfully.');
     }
 }
