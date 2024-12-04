@@ -123,7 +123,7 @@
                             <td id="table-data">
                                 <div class="flex items-center justify-start">
                                     <a href="{{ route('single-agent', $user = $property->user) }}">
-                                        <p class="hover:text-white">
+                                        <p class="text-left hover:text-white">
                                             {{ $property->user->name }}
                                         </p>
                                     </a>
@@ -133,7 +133,7 @@
                             <!-- Property price -->
                             <td id="table-data">
                                 <div class="flex items-center justify-start">
-                                    <p>
+                                    <p class="text-left">
                                         $ {{ number_format($property->price, 0) }}
                                     </p>
                                 </div>
@@ -142,7 +142,7 @@
                             <!-- City -->
                             <td id="table-data">
                                 <div class="flex items-center justify-start">
-                                    <p>
+                                    <p class="text-left">
                                         {{ $property->city }}
                                     </p>
                                 </div>
@@ -150,7 +150,7 @@
 
                             <!-- Property Offer -->
                             <td id="table-data">
-                                @if (is_null($property->lease_duration))
+                                @if (is_null($property->lease_duration) || $property->lease_duration === 0)
                                     <div id="type" class="mb-auto mr-auto bg-red-600 rounded-[5px] w-[90px] h-8 text-sm font-bold flex items-center justify-center">
                                         <div class="align-middle">FOR SALE</div>
                                     </div>

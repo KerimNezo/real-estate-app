@@ -124,12 +124,10 @@
                                     </div>
 
                                     <div class="w-[33%] justify-center items-center">
-                                        @if (!is_null($property->lease_duration))
+                                        @if (!is_null($property->lease_duration) && $property->lease_duration !== 0 )
                                             <x-property-detail icon='ionicon-calendar' title="Lease" text="Yes" unit="" css='w-[46px] h-[48px] fill-[#EF5D60]' />
                                         @else
-                                            <div class="bg-[#ededed] w-[33%]">
-
-                                            </div>
+                                            <x-property-detail icon='ionicon-calendar' title="Lease" text="No" unit="" css='w-[46px] h-[48px] fill-[#EF5D60]' />
                                         @endif
                                     </div>
                                 </div>
