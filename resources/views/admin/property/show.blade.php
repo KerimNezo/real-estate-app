@@ -146,7 +146,11 @@
                                             <td class="px-4 py-4 text-base leading-6">
                                                 <div class="flex items-center justify-start">
                                                     <p class="text-left w-36">
-                                                        {{ ucwords(str_replace('_', ' ', $key)) }}
+                                                        @if ($key === 'lease_duration')
+                                                            For Lease
+                                                        @else
+                                                            {{ ucwords(str_replace('_', ' ', $key)) }}
+                                                        @endif
                                                     </p>
                                                 </div>
                                             </td>
@@ -155,13 +159,17 @@
                                                 <div class="flex items-center justify-start">
                                                     <p class="text-left line-clamp-3">
                                                         @if ($key === 'price')
-                                                        $ {{ number_format($value, 0) }}
+                                                            $ {{ number_format($value, 0) }}
                                                         @elseif ($key === 'surface')
-                                                        {{ $value }} m<sup>2</sup>
-                                                        @elseif ($key === 'lease_duration' && $value !== 'No')
-                                                        {{ $value }} months
+                                                            {{ $value }} m<sup>2</sup>
+                                                        @elseif ($key === 'lease_duration')
+                                                            @if ($value === null || $value === 0)
+                                                                No
+                                                            @else
+                                                                Yes
+                                                            @endif
                                                         @else
-                                                        {{ $value ?? 'No'}}
+                                                            {{ $value ?? 'No'}}
                                                         @endif
                                                     </p>
                                                 </div>
