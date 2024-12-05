@@ -356,7 +356,25 @@
     z-index: 110;
 }
 
+#create-prop-inputs {
+    flex-direction: column;
+}
+
+#admin-map {
+    height: 300px;
+    width: 100%;
+}
+
 @media (min-width: 640px) { /* Ovdje su stvari koje želimo da se vide kada je širina ekrana +640px */
+
+    #admin-map {
+        height: 400px;
+        width: 500px;
+    }
+
+    #create-prop-inputs {
+        flex-direction: row;
+    }
 
     #topbar-admin {
         position: fixed;
