@@ -37,9 +37,6 @@
             map.on('click', function(e) {
                 var latlng = e.latlng;
                 reverseGeocode(latlng.lat, latlng.lng);
-                document.getElementById('latitude').value = latlng.lat.toFixed(3);
-                document.getElementById('longitude').value = latlng.lng.toFixed(3);
-                document.getElementById('')
             });
         </script>
 
