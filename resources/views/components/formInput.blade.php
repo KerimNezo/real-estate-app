@@ -1,6 +1,6 @@
 @props(['title', 'label', 'model' => '', 'type', 'placeholder' => ''])
 
-<div class="mb-2 mr-auto">
+<div>
     <div class="relative w-full mb-2">
         <label for="{{ $title }}" class="block font-bold">{{ $label }}:</label>
 
