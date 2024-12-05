@@ -16,8 +16,8 @@
             <!-- Main content -->
             <div id="main-content" class="flex flex-col w-full overflow-hidden bg-gray-900">
                 <!-- Update Property Form -->
-                <div class="py-8 mx-auto w-[80%]">
-                    <div class="w-full h-full px-4">
+                <div class="py-6 mx-auto w-[80%]">
+                    <div class="w-full h-full lg:px-4 sm:px-0">
                         <livewire:admin.store-property />
                     </div>
                 </div>
