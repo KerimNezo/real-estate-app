@@ -130,7 +130,7 @@
                     <!-- Description and Location data input -->
                     <div id="create-prop-inputs" class="flex items-start justify-center w-full gap-5 mb-10">
                         <!-- Description Section -->
-                        <div class="flex-grow lg:w-full sm:w-1/2">
+                        <div class="lg:w-full sm:w-1/2">
                             <!-- Property Description -->
                             <div class="w-full">
                                 <div class="relative w-full">
@@ -140,7 +140,7 @@
                                 </div>
 
                                 <!-- Property Description-->
-                                <textarea wire:model.blur="description" placeholder="Property description.." name="description" rows="18" id="description" class="w-full px-3 py-2 border rounded-lg text-balance bg-gray-800 @error('description') border-red-500 @enderror">
+                                <textarea wire:model.blur="description" placeholder="Property description.." name="description" rows="18" cols="40" id="description" class="w-full px-3 py-2 border rounded-lg text-balance bg-gray-800 @error('description') border-red-500 @enderror">
                                 </textarea>
                             </div>
                         </div>
