@@ -369,7 +369,7 @@
 
     #admin-map {
         height: 400px;
-        width: 500px;
+        width: 100%;
     }
 
     #create-prop-inputs {
