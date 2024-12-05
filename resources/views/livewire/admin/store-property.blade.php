@@ -12,9 +12,9 @@
                 @csrf
                 <div class="w-full">
                     <!-- Data special for property type and for every property -->
-                    <div class="flex w-full gap-5 mb-6">
+                    <div id="create-prop-inputs" class="flex w-full gap-5 mb-6">
                         <!-- General property data -->
-                        <div class="flex-grow mr-auto">
+                        <div class="flex flex-col lg:w-full sm:w-1/2">
                             <!-- Property Name -->
                             <x-formInput type="text" title="name" label="Name" model='name' placeholder='E.g. Two bedroom house'/>
 
@@ -79,7 +79,7 @@
                         </div>
 
                         <!-- Other property input data -->
-                        <div class="!w-[500px] ml-auto flex flex-col justify-center items-center mb-auto">
+                        <div class="flex flex-col items-center justify-center mb-auto lg:w-full sm:w-1/2">
                             <!-- Number inputs -->
                             <div class="w-full mb-auto">
                                 <!-- Number of Bedrooms -->
@@ -128,9 +128,9 @@
                     </div>
 
                     <!-- Description and Location data input -->
-                    <div class="flex items-start justify-center w-full mb-10">
+                    <div id="create-prop-inputs" class="flex items-start justify-center w-full gap-5 mb-10">
                         <!-- Description Section -->
-                        <div class="flex-grow mr-auto">
+                        <div class="flex-grow lg:w-full sm:w-1/2">
                             <!-- Property Description -->
                             <div class="w-full">
                                 <div class="relative w-full">
@@ -146,7 +146,7 @@
                         </div>
 
                         <!-- Location Section -->
-                        <div class="ml-5">
+                        <div class="lg:w-full sm:w-1/2">
                             <!-- Property Map-->
                             <div>
                                 <div class="relative w-full">
@@ -157,7 +157,7 @@
 
                                 <div id="sticky" class="rounded-[10px] @error('lat') border-2 border-red-500 @enderror">
                                     <!-- Leaflet Map -->
-                                    <div id="admin-map" wire:ignore style="height: 400px; width: 500px;" class="rounded-[10px]"></div>
+                                    <div id="admin-map" wire:ignore class="z-[2] rounded-[10px]"></div>
                                     {{-- this wire:ignore is needed that when validation happens, and livewire re-renders the form
                                         there is extra code inside admin-map div so it removes it --}}
                                 </div>
