@@ -17,8 +17,7 @@
         <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
 
         <!-- ChartistJS -->
-        <link rel="stylesheet"
-              href="https://cdn.jsdelivr.net/npm/chartist/dist/chartist.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/chartist/dist/chartist.min.css">
         <script src="https://cdn.jsdelivr.net/npm/chartist/dist/chartist.min.js"></script>
 
         <!-- Leafletjs map -->
