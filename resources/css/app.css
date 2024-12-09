@@ -741,6 +741,60 @@ section {
     position: relative; /* to make absolute child elements stay within it */
 }
 
+.ct-chart1 .ct-series-a .ct-line{
+    stroke: rgb(37, 99, 235);
+}
+
+.ct-chart1 .ct-series-a .ct-point{
+    stroke: rgb(37, 99, 235);
+}
+
+.ct-chart1 .ct-series-a .ct-area{
+    fill: rgb(37, 99, 235, 0.7);
+}
+
+.ct-chart1 .ct-series-b .ct-line {
+    stroke: rgb(239, 68, 68);
+}
+
+.ct-chart1 .ct-series-b .ct-line {
+    stroke: rgb(239, 68, 68);
+}
+
+.ct-chart1 .ct-series-b .ct-area {
+    fill: rgb(239, 68, 68, 0.7);
+}
+
+.ct-chart1 .ct-series-c .ct-line {
+    stroke: rgb(22, 163, 74);
+}
+
+.ct-chart1 .ct-series-c .ct-point {
+    stroke: rgb(22, 163, 74);
+}
+
+.ct-chart1 .ct-series-c .ct-area {
+    fill: rgb(22, 163, 74, 0.7);
+}
+
+.ct-chart1 .ct-label {
+    color: #888C93;
+    font-size: small ;
+}
+
+.ct-chart .ct-label {
+    color: #888C93;
+    font-size: small ;
+}
+
+.ct-chart1 .ct-axis-title {
+fill: #2ecc71; /* Text color for axis titles */
+}
+
+.ct-chart1 .ct-axis {
+fill: #9b59b6; /* Change the axis text color */
+}
+
 body, html{
     margin:0;
     padding:0;
