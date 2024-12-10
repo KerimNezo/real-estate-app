@@ -20,7 +20,15 @@
                     <!-- Title -->
                     <div class="flex w-full gap-4">
                         <div class="flex flex-col w-1/2">
-                            <p class="p-1 text-sm">Total profit</p>
+                            <div class="flex p-1">
+                                <p class="mr-auto text-sm">Properties <i>make this a pie chart</i></p>
+
+                                <x-chart-color-text text="Houses" color="bg-[#2563eb]" />
+
+                                <x-chart-color-text text="Appartements" color="bg-[#ef4444]" />
+
+                                <x-chart-color-text text="Offices" color="bg-[#16a34a]" />
+                            </div>
 
                             <div class="w-full bg-gray-800 rounded-[10px]">
                                 <div class="ct-chart h-[300px] w-full mb-auto pt-4"></div>
@@ -31,11 +39,11 @@
                             <div class="flex p-1">
                                 <p class="mr-auto text-sm">Profit</p>
 
-                                <x-chart-color-text text="Total" color="#ef4444" />
+                                <x-chart-color-text text="Total" color="bg-[#2563eb]" />
 
-                                <x-chart-color-text text="Sell" color="#ef4444" />
+                                <x-chart-color-text text="Sell" color="bg-[#ef4444]" />
 
-                                <x-chart-color-text text="Rent" color="#16a34a" />
+                                <x-chart-color-text text="Rent" color="bg-[#16a34a]" />
                             </div>
 
                             <div class="w-full bg-gray-800 rounded-[10px]">
