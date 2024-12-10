@@ -31,20 +31,12 @@
                             <div class="flex p-1">
                                 <p class="mr-auto text-sm">Profit</p>
 
-                                <div class="flex items-center justify-center gap-2">
+                                <x-chart-color-text text="Total" color="#ef4444" />
 
-                                    {{-- napravi komponentu od ovog dole i tjt
-                                        sredi lijepo ovaj graf
-                                        i uradi dole actions tabelu --}}
-                                    <p class="text-sm">
-                                        Total
-                                    </p>
+                                <x-chart-color-text text="Sell" color="#ef4444" />
 
-                                    <div class="bg-[#ef4444] w-4 h-4 rounded-[5px]">
-                                    </div>
-                                </div>
+                                <x-chart-color-text text="Rent" color="#16a34a" />
                             </div>
-
 
                             <div class="w-full bg-gray-800 rounded-[10px]">
                                 <div class="ct-chart1 h-[300px] w-full mb-auto pt-4"></div>
