@@ -5,6 +5,6 @@
         {{ $text }}
     </p>
 
-    <div class="bg-[{!! $color !!}] w-4 h-4 rounded-[5px]">
+    <div class="{{ $color }} w-4 h-4 rounded-[5px]">
     </div>
 </div>
