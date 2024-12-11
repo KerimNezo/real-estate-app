@@ -196,7 +196,7 @@
     <!-- Chart scripts -->
     <script>
         var pieData = {
-            labels: ['Houses', 'Apartments', 'Offices'], // Add labels corresponding to each series value
+            labels: ['Houses', 'Apartments', 'Offices'], // prvi label odgovara prvoj series value
             series: [20, 14, 10],
         };
 
@@ -208,7 +208,7 @@
                 labelInterpolationFnc: function(value, index) {
                     var total = pieData.series.reduce((a, b) => a + b, 0);
                     var percentage = Math.round((pieData.series[index] / total) * 100) + '%';
-                    return value + ' (' + percentage + ')'; // Display label with percentage
+                    return value + ' (' + percentage + ')';
                 }
             }],
             ['screen and (min-width: 1024px)', {
