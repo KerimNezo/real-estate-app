@@ -73,15 +73,21 @@
                     <!-- Table display of most recent actions -->
                     <div class="w-full">
                         <div class="text-xl text-center">
+                            <!-- Actions Table Header-->
                             <div>
                                 <p class="pb-2 pl-4 text-sm text-left">
                                     Actions table
                                 </p>
                             </div>
+
+                            <!-- Actions Table Content-->
                             <div class="overflow-x-auto">
                                 <table class="min-w-full overflow-hidden bg-gray-800 rounded-xl">
                                     <thead class="bg-gray-800 border-gray-700">
-                                        <tr id="table-header">
+                                        <tr id="table-header" class="border-b border-gray-700">
+                                            <!-- Id -->
+                                            <x-table.table-header title="Id" />
+
                                             <!-- Agent -->
                                             <x-table.table-header title="Agent" />
 
@@ -92,15 +98,32 @@
                                             <x-table.table-header title="Property" />
 
                                             <!-- Time -->
-                                            <x-table.table-header title="Time" />
+                                            <x-table.table-header title="Created" />
 
                                             <!-- Options -->
                                             <x-table.table-header title="Options" />
+
+                                            <th class="pr-2">
+                                                <button class="p-1 ml-auto bg-gray-700 rounded-xl">
+                                                    <x-ionicon-refresh-outline class="w-5" />
+                                                </button>
+                                            </th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         {{-- @foreach ($actions as $action) --}}
                                         <tr class="border-t border-gray-700" wire:key="1">
+                                            <!-- Action Id -->
+                                            <td class="px-4 py-3">
+                                                <div class="flex items-center justify-start">
+                                                    <a href="{{ route('dashboard') }}">
+                                                        <p class="text-sm text-left hover:text-white">
+                                                            1
+                                                        </p>
+                                                    </a>
+                                                </div>
+                                            </td>
+
                                             <!-- Agent name -->
                                             <td class="px-4 py-3">
                                                 <div class="flex items-center justify-start">
@@ -115,8 +138,8 @@
                                             <!-- Action -->
                                             <td class="px-4 py-3">
                                                 <div class="flex items-center justify-start">
-                                                    <p class="text-sm text-left">
-                                                        SOLD
+                                                    <p class="px-3 py-2 text-sm font-bold text-left bg-red-600 rounded-xl">
+                                                        ADDED
                                                     </p>
                                                 </div>
                                             </td>
@@ -145,9 +168,7 @@
                                                     <a href="{{ route('dashboard') }}" class="hover:text-red-400">
                                                         <x-carbon-view class="w-[20px]"/>
                                                     </a>
-                                                    <a href="{{ route('dashboard') }}" class="hover:text-red-400">
-                                                        <x-feathericon-edit class="w-[20px] h-[20px]" />
-                                                    </a>
+
                                                     <a class="hover:text-red-400">
                                                         <x-heroicon-s-trash class="w-[20px]" />
                                                     </a>
@@ -158,9 +179,9 @@
                                     </tbody>
                                 </table>
                             </div>
-{{--
+
                             <!-- Pagination -->
-                            <div class="static flex items-center justify-between w-full py-2">
+                            {{-- <div class="static flex items-center justify-between w-full py-2">
                                 {{ $this->properties->links() }}
                             </div> --}}
                         </div>
@@ -175,16 +196,8 @@
     <!-- Chart scripts -->
     <script>
         var pieData = {
-            labels: ['Houses', 'Appartements', 'Offices'],
+            labels: ['Houses', 'Apartments', 'Offices'], // Add labels corresponding to each series value
             series: [20, 14, 10],
-        }
-
-        var sum = function(a, b) { return a + b };
-
-        var options = {
-            labelInterpolationFnc: function(value) {
-                return Math.round(value / pieData.series.reduce(sum) * 100) + '%';
-            }
         };
 
         var responsiveOptions = [
@@ -192,16 +205,26 @@
                 chartPadding: 30,
                 labelOffset: 100,
                 labelDirection: 'explode',
-                labelInterpolationFnc: function(value) {
-                    return value;
+                labelInterpolationFnc: function(value, index) {
+                    var total = pieData.series.reduce((a, b) => a + b, 0);
+                    var percentage = Math.round((pieData.series[index] / total) * 100) + '%';
+                    return value + ' (' + percentage + ')'; // Display label with percentage
                 }
-            }], ['screen and (min-width: 1024px)', {
+            }],
+            ['screen and (min-width: 1024px)', {
                 labelOffset: 80,
                 chartPadding: 20
-                }]
-            ];
+            }]
+        ];
 
-        new Chartist.Pie('.ct-chart', pieData, options, responsiveOptions);
+        new Chartist.Pie('.ct-chart', pieData, {
+            labelInterpolationFnc: function(value, index) {
+                var total = pieData.series.reduce((a, b) => a + b, 0);
+                var percentage = Math.round((pieData.series[index] / total) * 100) + '%';
+                return percentage; // Display label with percentage
+            }
+        }, responsiveOptions);
+
 
         new Chartist.Line('.ct-chart1', {
             // labels su kolone, x-osa
