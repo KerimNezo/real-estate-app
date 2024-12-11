@@ -21,7 +21,7 @@
                     <div class="flex flex-col w-full gap-8 lg:gap-4 lg:flex-row">
                         <div class="flex flex-col w-full lg:w-1/2">
                             <div class="flex w-full p-1">
-                                <p class="mr-auto text-sm">Properties <i>make this a pie chart</i></p>
+                                <p class="mr-auto text-sm">Properties</p>
 
                                 <x-chart-color-text text="Houses" color="bg-[#2563eb]" />
 
@@ -62,17 +62,34 @@
 
 
     <script>
-        new Chartist.Line('.ct-chart', {
-            // labels su kolone, x-osa
-            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Maj', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dec'],
-            // series su redovi, y-osa
-            series: [
-                [5, 9, 7, 8, 5, 3, 5, 4, 1, 6, 1, 11]
-            ]
-        }, {
-            low: 0,
-            showArea: true,
-        });
+        var pieData = {
+            labels: ['Houses', 'Appartements', 'Offices'],
+            series: [20, 14, 10],
+        }
+
+        var sum = function(a, b) { return a + b };
+
+        var options = {
+            labelInterpolationFnc: function(value) {
+                return Math.round(value / pieData.series.reduce(sum) * 100) + '%';
+            }
+        };
+
+        var responsiveOptions = [
+            ['screen and (min-width: 640px)', {
+                chartPadding: 30,
+                labelOffset: 100,
+                labelDirection: 'explode',
+                labelInterpolationFnc: function(value) {
+                    return value;
+                }
+            }], ['screen and (min-width: 1024px)', {
+                labelOffset: 80,
+                chartPadding: 20
+                }]
+            ];
+
+        new Chartist.Pie('.ct-chart', pieData, options, responsiveOptions);
 
         new Chartist.Line('.ct-chart1', {
             // labels su kolone, x-osa
