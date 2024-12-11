@@ -20,7 +20,7 @@
                     <div class="w-full py-8 text-xl text-center">
                         {{-- Section Title --}}
                         <div>
-                            <p class="pb-2 text-sm text-left">
+                            <p class="pb-2 pl-4 text-sm text-left">
                                 Property images
                             </p>
                         </div>
@@ -46,7 +46,7 @@
                     <!-- table to display property agent data -->
                     <div class="w-full py-8 text-xl text-center">
                         <div>
-                            <p class="pb-2 text-sm text-left">
+                            <p class="pb-2 pl-4 text-sm text-left">
                                 Agent information
                             </p>
                         </div>
@@ -114,7 +114,7 @@
                         <!-- Property data -->
                         <div class="lg:w-[50%] sm:w-full pb-2">
                             <div>
-                                <p class="pb-2 text-sm text-left">
+                                <p class="pb-2 pl-4 text-sm text-left">
                                     Property information
                                 </p>
                             </div>
@@ -184,7 +184,7 @@
                         <!-- Property location on map -->
                         <div class="lg:w-[50%] sm:w-full">
                             <div class="w-full">
-                                <p class="pb-2 text-sm text-left">
+                                <p class="pb-2 pl-4 text-sm text-left">
                                     Properity location
                                 </p>
                             </div>

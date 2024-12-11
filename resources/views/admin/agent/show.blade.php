@@ -20,7 +20,7 @@
                     <div class="py-8 text-xl text-center px-[6%] w-full">
                         {{-- Table header --}}
                         <div>
-                            <p class="pb-2 text-sm text-left">
+                            <p class="pb-2 pl-4 text-sm text-left">
                                 {{ ucwords($agent->getRoleNames()[0]) }} information
                             </p>
                         </div>

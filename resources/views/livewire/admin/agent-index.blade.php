@@ -12,7 +12,7 @@
         <!-- Agents Found -->
             <div class="text-xl text-center">
                 <div>
-                    <p class="pb-2 text-sm text-left">
+                    <p class="pb-2 pl-4 text-sm text-left">
                         Agents table
                     </p>
                 </div>
