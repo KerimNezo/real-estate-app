@@ -2,7 +2,7 @@
 
 <th class="px-3 py-2 text-lg border-b border-gray-700">
     <div id="header-title">
-        <p class="text-lg">
+        <p class="text-base">
             {{ $title }}
         </p>
     </div>
