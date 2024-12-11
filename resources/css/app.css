@@ -784,7 +784,22 @@ section {
 
 .ct-chart .ct-label {
     fill: #888C93;
-    font-size: small ;
+    font-size: small;
+    font-weight: bold;
+}
+
+/* Styling for medium screens (min-width: 640px) */
+@media screen and (max-width: 640px) {
+    .ct-chart .ct-label {
+        fill: #ffffff; /* Green */
+    }
+}
+
+/* Styling for large screens (min-width: 1024px) */
+@media screen and (min-width: 1024px) {
+    .ct-chart .ct-label {
+        fill: #888C93; /* Orange */
+    }
 }
 
 .ct-chart .ct-series-a .ct-slice-pie {
