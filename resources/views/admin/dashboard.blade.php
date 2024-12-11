@@ -15,13 +15,14 @@
 
             <!-- Main content -->
             <div id="main-content" class="w-full py-6 bg-gray-900">
-                <!-- Update Property Form -->
+                <!-- Admin dashboard page content -->
                 <div class="flex flex-col items-center justify-center p-4 mx-auto bg-gray-900 rounded-lg w-[90%]">
-                    <!-- Title -->
+                    <!-- Charts -->
                     <div class="flex flex-col w-full gap-8 lg:gap-4 lg:flex-row">
+                        <!-- Property Type Pie Chart -->
                         <div class="flex flex-col w-full lg:w-1/2">
                             <div class="flex w-full p-1">
-                                <p class="mr-auto text-sm">Properties</p>
+                                <p class="pl-3 mr-auto text-sm">Properties</p>
 
                                 <x-chart-color-text text="Houses" color="bg-[#2563eb]" />
 
@@ -30,14 +31,23 @@
                                 <x-chart-color-text text="Offices" color="bg-[#16a34a]" />
                             </div>
 
-                            <div class="w-full bg-gray-800 rounded-[10px]">
-                                <div class="ct-chart h-[300px] w-full mb-auto pt-4"></div>
+                            <div class="w-full bg-gray-800 rounded-[10px] p-4">
+                                <div class="pb-4">
+                                    <select name="PropertyTypeChart" id="property-type-chart" class="bg-gray-900 rounded-[10px] pl-2 p-1 pr-8 text-sm">
+                                        <option selected value="Available">Available</option>
+                                        <option value="Sold">Sold</option>
+                                        <option value="Rented">Rented</option>
+                                    </select>
+                                </div>
+
+                                <div class="ct-chart h-[300px] w-full mb-auto"></div>
                             </div>
                         </div>
 
+                        <!-- Profit Line Chart -->
                         <div class="flex flex-col w-full lg:w-1/2">
                             <div class="flex w-full p-1">
-                                <p class="mr-auto text-sm">Profit</p>
+                                <p class="pl-3 mr-auto text-sm">Profit</p>
 
                                 <x-chart-color-text text="Total" color="bg-[#2563eb]" />
 
@@ -46,13 +56,24 @@
                                 <x-chart-color-text text="Rent" color="bg-[#16a34a]" />
                             </div>
 
-                            <div class="w-full bg-gray-800 rounded-[10px]">
-                                <div class="ct-chart1 h-[300px] w-full mb-auto pt-4"></div>
+                            <div class="w-full bg-gray-800 rounded-[10px] p-4">
+                                <div class="pb-4">
+                                    <select name="PropertyTypeChart" id="property-type-chart" class="bg-gray-900 rounded-[10px] pl-2 p-1 pr-8 text-sm">
+                                        <option selected value="1">30 Days</option>
+                                        <option value="6">6 Months</option>
+                                        <option value="12">Last Year</option>
+                                    </select>
+                                </div>
+
+                                <div class="ct-chart1 h-[300px] w-full mb-auto"></div>
                             </div>
                         </div>
                     </div>
 
+                    <!-- Table display of most recent actions -->
+                    <div>
 
+                    </div>
                 </div>
             </div>
         </div>
@@ -60,7 +81,7 @@
         @include('admin.footer')
     </div>
 
-
+    <!-- Chart scripts -->
     <script>
         var pieData = {
             labels: ['Houses', 'Appartements', 'Offices'],
