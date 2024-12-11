@@ -18,9 +18,9 @@
                 <!-- Update Property Form -->
                 <div class="flex flex-col items-center justify-center p-4 mx-auto bg-gray-900 rounded-lg w-[90%]">
                     <!-- Title -->
-                    <div class="flex w-full gap-4">
-                        <div class="flex flex-col w-1/2">
-                            <div class="flex p-1">
+                    <div class="flex flex-col w-full gap-8 lg:gap-4 lg:flex-row">
+                        <div class="flex flex-col w-full lg:w-1/2">
+                            <div class="flex w-full p-1">
                                 <p class="mr-auto text-sm">Properties <i>make this a pie chart</i></p>
 
                                 <x-chart-color-text text="Houses" color="bg-[#2563eb]" />
@@ -35,8 +35,8 @@
                             </div>
                         </div>
 
-                        <div class="flex flex-col w-1/2">
-                            <div class="flex p-1">
+                        <div class="flex flex-col w-full lg:w-1/2">
+                            <div class="flex w-full p-1">
                                 <p class="mr-auto text-sm">Profit</p>
 
                                 <x-chart-color-text text="Total" color="bg-[#2563eb]" />
