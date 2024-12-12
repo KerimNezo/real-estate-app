@@ -46,27 +46,7 @@
 
                         <!-- Profit Line Chart -->
                         <div class="flex flex-col w-full lg:w-1/2">
-                            <div class="flex w-full p-1">
-                                <p class="pl-3 mr-auto text-sm">Profit</p>
-
-                                <x-chart-color-text text="Total" color="bg-[#2563eb]" />
-
-                                <x-chart-color-text text="Sell" color="bg-[#ef4444]" />
-
-                                <x-chart-color-text text="Rent" color="bg-[#16a34a]" />
-                            </div>
-
-                            <div class="w-full bg-gray-800 rounded-[10px] p-4">
-                                <div class="pb-4">
-                                    <select name="PropertyTypeChart" id="property-type-chart" class="bg-gray-900 rounded-[10px] pl-2 p-1 pr-8 text-sm">
-                                        <option selected value="3">3 Months</option>
-                                        <option value="6">6 Months</option>
-                                        <option value="12">Last Year</option>
-                                    </select>
-                                </div>
-
-                                <div class="ct-chart1 h-[300px] w-full mb-auto"></div>
-                            </div>
+                            <livewire:admin.profit-chart />
                         </div>
                     </div>
 
@@ -223,21 +203,5 @@
                 return percentage; // Display label with percentage
             }
         }, responsiveOptions);
-
-
-        new Chartist.Line('.ct-chart1', {
-            // labels su kolone, x-osa
-            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Maj', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dec'],
-            // series su redovi, y-osa
-            series: [
-                [5, 10, 25, 8, 14, 10, 16, 5, 11, 9, 10, 11], // UKUPNE PRODAJE GRAPH (ovdje ćemo stavljati liste vrijednosti iz baze koje pokupimp za različite vrste podataka i linija)
-                [2, 6, 17, 3, 7, 4, 9, 3, 5, 4, 3, 5], // SELL PRODAJE GRAPH
-                [3, 4, 8, 5, 7, 6, 7, 1, 6, 5, 7, 6], // RENT PRODAJE GRAPH
-            ]
-        }, {
-            low: 0,
-            showArea: true,
-        });
-
     </script>
 </x-admin-layout>
