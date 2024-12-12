@@ -778,16 +778,16 @@ section {
 }
 
 .ct-chart1 .ct-label {
-    color: #888C93;
+    color: rgb(136, 140, 147);
     font-size: small ;
 }
 
-.ch-chart1 .ct-grid .ct-vertical {
-    stroke: #888C93; /* Red color for horizontal lines */
+.ct-chart1 .ct-grid.ct-vertical {
+    stroke: rgb(136, 140, 147, 0.2); /* Red color for horizontal lines */
 }
 
-.ct-chart1 ct-chart-line .ct-grids .ct-grid .ct-horizontal {
-    stroke: #888C93; /* Red color for horizontal lines */
+.ct-chart1 .ct-grid.ct-horizontal {
+    stroke: rgb(136, 140, 147, 0.2); /* Red color for horizontal lines */
 }
 
 
