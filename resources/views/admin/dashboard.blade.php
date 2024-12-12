@@ -73,7 +73,7 @@
                     <!-- Table display of most recent actions -->
                     <div class="w-full">
                         <div class="text-xl text-center">
-                            <!-- Actions Table Header-->
+                            <!-- Table Header-->
                             <div>
                                 <p class="pb-2 pl-4 text-sm text-left">
                                     Actions table
@@ -83,6 +83,7 @@
                             <!-- Actions Table Content-->
                             <div class="overflow-x-auto">
                                 <table class="min-w-full overflow-hidden bg-gray-800 rounded-xl">
+                                    <!-- Action Tables Header-->
                                     <thead class="bg-gray-800 border-gray-700">
                                         <tr id="table-header" class="border-b border-gray-700">
                                             <!-- Id -->
@@ -97,12 +98,13 @@
                                             <!-- Property-->
                                             <x-table.table-header title="Property" />
 
-                                            <!-- Time -->
+                                            <!-- Created -->
                                             <x-table.table-header title="Created" />
 
                                             <!-- Options -->
                                             <x-table.table-header title="Options" />
 
+                                            <!-- Refresh Table Button-->
                                             <th class="pr-2">
                                                 <button class="p-1 ml-auto bg-gray-700 rounded-xl">
                                                     <x-ionicon-refresh-outline class="w-5" />
@@ -110,8 +112,10 @@
                                             </th>
                                         </tr>
                                     </thead>
+
+                                    <!-- Action Tables Content-->
                                     <tbody>
-                                        {{-- @foreach ($actions as $action) --}}
+                                        {{-- @foreach ($this->actions as $action) --}}
                                         <tr class="border-t border-gray-700" wire:key="1">
                                             <!-- Action Id -->
                                             <td class="px-4 py-3">
@@ -179,11 +183,6 @@
                                     </tbody>
                                 </table>
                             </div>
-
-                            <!-- Pagination -->
-                            {{-- <div class="static flex items-center justify-between w-full py-2">
-                                {{ $this->properties->links() }}
-                            </div> --}}
                         </div>
                     </div>
                 </div>
