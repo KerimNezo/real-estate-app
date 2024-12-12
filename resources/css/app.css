@@ -782,6 +782,15 @@ section {
     font-size: small ;
 }
 
+.ch-chart1 .ct-grid .ct-vertical {
+    stroke: #888C93; /* Red color for horizontal lines */
+}
+
+.ct-chart1 ct-chart-line .ct-grids .ct-grid .ct-horizontal {
+    stroke: #888C93; /* Red color for horizontal lines */
+}
+
+
 .ct-chart .ct-label {
     fill: #888C93;
     font-size: small;
