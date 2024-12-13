@@ -23,7 +23,7 @@
 
     @script
     <script>
-        let ogChart = new Chartist.Line('.ct-chart1', {
+        let lineChart = new Chartist.Line('.ct-chart1', {
                 // labels su kolone, x-osa
                 labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Maj', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dec'],
                 // series su redovi, y-osa
@@ -42,12 +42,12 @@
         durations = 500;
 
         // Once the chart is fully created we reset the sequence
-        ogChart.on('created', function() {
+        lineChart.on('created', function() {
             seq = 0;
         });
 
         // On each drawn element by Chartist we use the Chartist.Svg API to trigger SMIL animations
-        ogChart.on('draw', function(data) {
+        lineChart.on('draw', function(data) {
             seq++;
 
             if(data.type === 'line') {
@@ -143,12 +143,12 @@
         });
 
         // For the sake of the example we update the chart every time it's created with a delay of 10 seconds
-        ogChart.on('created', function() {
+        lineChart.on('created', function() {
         if(window.__exampleAnimateTimeout) {
             clearTimeout(window.__exampleAnimateTimeout);
             window.__exampleAnimateTimeout = null;
         }
-        window.__exampleAnimateTimeout = setTimeout(ogChart.update.bind(ogChart), 2000000);
+        window.__exampleAnimateTimeout = setTimeout(lineChart.update.bind(lineChart), 2000000);
         });
 
         // kupit ćemo podatke iz action tabele, jer će ona imati uviđaj kad je prodano/rentano šta, te ćemo znati tako kad je baš sellan property
