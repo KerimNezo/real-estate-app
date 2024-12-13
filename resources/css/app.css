@@ -743,7 +743,7 @@ section {
 
 /* Mali ekrani */
 @media screen and (max-width: 640px) {
-
+    /* Ovdje će ići klase preko kojih ćemo on mobile view hideat boje i njihov explanation u headeru charta i staviti ih ispod samog charta u sivom divu na mobile */
 }
 
 /* Veliki ekrani */
