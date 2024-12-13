@@ -153,7 +153,7 @@
 
         // kupit ćemo podatke iz action tabele, jer će ona imati uviđaj kad je prodano/rentano šta, te ćemo znati tako kad je baš sellan property
         // ovo ćemo koristiti od starta, stavit ćemo da se on component load, dispatcha ovaj event i tjt
-        $wire.on('updateChart', (data) => {
+        $wire.on('updateLineChart', (data) => {
             let labels = data[0].labels;
             let totalSeries = data[0].totalSeries;
             let sellSeries = data[0].sellSeries;
