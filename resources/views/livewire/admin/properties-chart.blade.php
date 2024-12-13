@@ -23,43 +23,43 @@
 
     @script
         <script>
-            let pieData = {
-                labels: ['Houses', 'Apartments', 'Offices'], // prvi label odgovara prvoj series value
-                series: [20, 14, 10],
-            };
-
-            $wire.on('updatePieChart', (data) => {
-                let pieData = {
+            $wire.on('updateDonutChart', (data) => {
+                let donutChartData = {
                     labels: data[0].labels,
                     series: data[0].series,
-                }
+                };
 
                 let responsiveOptions = [
                     ['screen and (min-width: 640px)', {
                         chartPadding: 30,
-                        labelOffset: 100,
-                        labelDirection: 'explode',
+                        labelOffset: 20,
+                        labelDirection: 'explode', // Try removing this if labels overlap
                         labelInterpolationFnc: function(value, index) {
-                            var total = pieData.series.reduce((a, b) => a + b, 0);
-                            var percentage = Math.round((pieData.series[index] / total) * 100) + '%';
-                            return value + ' (' + percentage + ')';
+                            var total = donutChartData.series.reduce((a, b) => a + b, 0);
+                            var percentage = Math.round((donutChartData.series[index] / total) * 100) + '%';
+                            return value + ' (' + percentage + ')';  // Display label with percentage
                         }
                     }],
                     ['screen and (min-width: 1024px)', {
-                        labelOffset: 80,
-                        chartPadding: 20
+                        labelOffset: 70, // Increase offset for larger screens
+                        chartPadding: 40, // More space for labels to avoid overlap
+                        labelInterpolationFnc: function(value, index) {
+                            var total = donutChartData.series.reduce((a, b) => a + b, 0);
+                            var percentage = Math.round((donutChartData.series[index] / total) * 100) + '%';
+                            return value + ' (' + percentage + ')'; // Display label with percentage
+                        }
                     }]
                 ];
 
-                var pitaChart = new Chartist.Pie('.ct-chart', pieData, {
-                    labelInterpolationFnc: function(value, index) {
-                        var total = pieData.series.reduce((a, b) => a + b, 0);
-                        var percentage = Math.round((pieData.series[index] / total) * 100) + '%';
-                        return percentage; // Display label with percentage
-                    }
+                var donutChart = new Chartist.Pie('.ct-chart', donutChartData, {
+                    donut: true,
+                    donutWidth: 100,
+                    startAngle: 0,
+                    showLabel: true,
+                    chartPadding: 10,  // Ensure enough padding around the chart
                 }, responsiveOptions);
 
-                pitaChart.on('draw', function (data) {
+                donutChart.on('draw', function (data) {
                     if (data.type === 'slice') {
                         const node = data.element.getNode();
                         if (!node || typeof node.getTotalLength !== 'function') {
@@ -68,8 +68,6 @@
                         }
 
                         const pathLength = node.getTotalLength();
-                        console.log('Path Length:', pathLength);
-
                         data.element.attr({
                             'stroke-dasharray': `${pathLength}px ${pathLength}px`,
                             'stroke-dashoffset': `${-pathLength}px`,
@@ -96,12 +94,13 @@
 
                 let timerId;
 
-                pitaChart.on('created', function () {
+                donutChart.on('created', function () {
                     if (timerId) {
                         clearTimeout(timerId);
                     }
 
-                    //timerId = setTimeout(() => pitaChart.update(), 10000);
+                    // Uncomment to periodically update the chart if needed
+                    //timerId = setTimeout(() => donutChart.update(), 10000);
                 });
             });
         </script>
