@@ -2,11 +2,13 @@
     <div class="flex w-full p-1">
         <p class="pl-3 mr-auto text-sm">Properties</p>
 
-        <x-chart-color-text text="Houses" color="bg-[#2563eb]" />
+        <div id="chart-legend">
+            <x-chart-color-text text="Houses" color="bg-[#2563eb]" />
 
-        <x-chart-color-text text="Appartements" color="bg-[#ef4444]" />
+            <x-chart-color-text text="Appartements" color="bg-[#ef4444]" />
 
-        <x-chart-color-text text="Offices" color="bg-[#16a34a]" />
+            <x-chart-color-text text="Offices" color="bg-[#16a34a]" />
+        </div>
     </div>
 
     <div class="w-full bg-gray-800 rounded-[10px] p-4">
@@ -19,6 +21,14 @@
         </div>
 
         <div class="ct-chart h-[300px] w-full mb-auto"></div>
+
+        <div id="mobile-chart-legend" class="flex items-center w-full justify-evenly">
+            <x-chart-color-text text="Houses" color="bg-[#2563eb]" />
+
+            <x-chart-color-text text="Appartements" color="bg-[#ef4444]" />
+
+            <x-chart-color-text text="Offices" color="bg-[#16a34a]" />
+        </div>
     </div>
 
     @script
