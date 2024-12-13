@@ -6,10 +6,12 @@ use Livewire\Component;
 
 class PropertiesChart extends Component
 {
+    public $status = "Available";
 
     public function mount() {
         // samo promijeni podatke
 
+        // pobrini se da ovako šalješ datu da bi radilo sve kako treba
         $this->dispatch('updatePieChart', ['labels' => ['Houses', 'Apartments', 'Offices'], 'series' => [20, 14, 10]]);
     }
 
