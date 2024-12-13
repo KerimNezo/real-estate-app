@@ -43,7 +43,7 @@
                     ['screen and (min-width: 640px)', {
                         chartPadding: 30,
                         labelOffset: 20,
-                        labelDirection: 'explode', // Try removing this if labels overlap
+                        labelDirection: 'explode',
                         labelInterpolationFnc: function(value, index) {
                             var total = donutChartData.series.reduce((a, b) => a + b, 0);
                             var percentage = Math.round((donutChartData.series[index] / total) * 100) + '%';
@@ -51,8 +51,8 @@
                         }
                     }],
                     ['screen and (min-width: 1024px)', {
-                        labelOffset: 70, // Increase offset for larger screens
-                        chartPadding: 40, // More space for labels to avoid overlap
+                        labelOffset: 70,
+                        chartPadding: 40,
                         labelInterpolationFnc: function(value, index) {
                             var total = donutChartData.series.reduce((a, b) => a + b, 0);
                             var percentage = Math.round((donutChartData.series[index] / total) * 100) + '%';
@@ -66,7 +66,7 @@
                     donutWidth: 100,
                     startAngle: 0,
                     showLabel: true,
-                    chartPadding: 10,  // Ensure enough padding around the chart
+                    chartPadding: 10,
                 }, responsiveOptions);
 
                 donutChart.on('draw', function (data) {
@@ -108,9 +108,6 @@
                     if (timerId) {
                         clearTimeout(timerId);
                     }
-
-                    // Uncomment to periodically update the chart if needed
-                    //timerId = setTimeout(() => donutChart.update(), 10000);
                 });
             });
         </script>
