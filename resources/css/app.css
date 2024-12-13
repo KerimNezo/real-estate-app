@@ -811,16 +811,16 @@ section {
     }
 }
 
-.ct-chart .ct-series-a .ct-slice-pie {
-    fill: rgb(37, 99, 235);
+.ct-chart .ct-series-a .ct-slice-donut {
+    stroke: rgb(37, 99, 235);
 }
 
-.ct-chart .ct-series-b .ct-slice-pie {
-    fill: rgb(239, 68, 68);
+.ct-chart .ct-series-b .ct-slice-donut {
+    stroke: rgb(239, 68, 68);
 }
 
-.ct-chart .ct-series-c .ct-slice-pie {
-    fill: rgb(22, 163, 74);
+.ct-chart .ct-series-c .ct-slice-donut {
+    stroke: rgb(22, 163, 74);
 }
 
 .ct-chart1 .ct-axis-title {
