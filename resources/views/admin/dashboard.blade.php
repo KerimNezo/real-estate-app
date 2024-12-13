@@ -140,6 +140,17 @@
                                             </td>
                                         </tr>
                                         {{-- @endforeach --}}
+                                        <tr class="border-t border-gray-700">
+                                            <td colspan="7">
+                                                <div class="flex items-center justify-center w-full p-2">
+                                                    <a href="{{ route('admin-properties') }}" class="mx-auto cursor-pointer">
+                                                        <p class="text-sm font-bold cursor-pointer hover:text-gray-900">
+                                                            See all Actions
+                                                        </p>
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
