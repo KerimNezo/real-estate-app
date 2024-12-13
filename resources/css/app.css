@@ -741,6 +741,42 @@ section {
     position: relative; /* to make absolute child elements stay within it */
 }
 
+/* Mali ekrani */
+@media screen and (max-width: 640px) {
+
+}
+
+/* Veliki ekrani */
+@media screen and (min-width: 1024px) {
+
+}
+
+.ct-chart1 .ct-label {
+    fill: #888C93;
+    font-size: large;
+    font: bold;
+}
+
+/* Styling for medium screens (min-width: 640px) */
+@media screen and (max-width: 640px) {
+
+    .ct-chart1 .ct-horizontal {
+        font-size: 2px;
+        font-weight: normal;
+        writing-mode: vertical-rl;
+        transform: translateY(-10%);
+    }
+}
+
+/* Styling for large screens (min-width: 1024px) */
+@media screen and (min-width: 1024px) {
+    .ct-chart1 .ct-horizontal{
+        font-size: 2px;
+        font-weight: normal;
+        writing-mode: initial;
+    }
+}
+
 .ct-chart1 .ct-series-a .ct-line{
     stroke: rgb(37, 99, 235);
 }
