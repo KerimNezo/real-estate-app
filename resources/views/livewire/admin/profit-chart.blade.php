@@ -12,9 +12,9 @@
     <div class="w-full bg-gray-800 rounded-[10px] p-4">
         <div class="pb-4">
             <select wire:model="timeframe" name="timeframe" id="timeframe" class="bg-gray-900 rounded-[10px] pl-2 p-1 pr-8 text-sm">
-                <option wire:click="updateGraph()" value="3" >3 Months</option>
-                <option wire:click="updateGraph()" value="6" >6 Months</option>
-                <option wire:click="updateGraph()" value="12" >Last Year</option>
+                <option wire:click="updateLineChart()" value="3" >3 Months</option>
+                <option wire:click="updateLineChart()" value="6" >6 Months</option>
+                <option wire:click="updateLineChart()" value="12" >Last Year</option>
             </select>
         </div>
 

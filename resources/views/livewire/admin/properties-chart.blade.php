@@ -12,9 +12,9 @@
     <div class="w-full bg-gray-800 rounded-[10px] p-4">
         <div class="pb-4">
             <select name="PropertyTypeChart" id="property-type-chart" class="bg-gray-900 rounded-[10px] pl-2 p-1 pr-8 text-sm">
-                <option wire:click="updateGraph()" selected value="Available">Available</option>
-                <option wire:click="updateGraph()" value="Sold">Sold</option>
-                <option wire:click="updateGraph()" value="Rented">Rented</option>
+                <option wire:click="updatePieChart()" selected value="Available">Available</option>
+                <option wire:click="updatePieChart()" value="Sold">Sold</option>
+                <option wire:click="updatePieChart()" value="Rented">Rented</option>
             </select>
         </div>
 

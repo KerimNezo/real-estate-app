@@ -17,7 +17,7 @@ class ProfitChart extends Component
         // $this->dispatch('updateLineChart', ['labels' => ['Jan', 'Feb', 'Mar', 'Apr'], 'totalSeries' => [3,5,7,9], 'sellSeries' => [2,3,4,5], 'rentSeries' => [1,2,3,4]]);
     }
 
-    public function updateGraph(){
+    public function updateLineChart(){
         // ovdje trebam da skontam logiku po kojoj ću dobijati datu i to samo onda dispatchat.
 
         $this->dispatch('updateLineChart', ['labels' => ['Jan', 'Feb', 'Mar', 'Apr'], 'totalSeries' => [3,5,7,9], 'sellSeries' => [2,3,4,5], 'rentSeries' => [1,2,3,4]]);
