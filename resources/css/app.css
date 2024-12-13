@@ -743,12 +743,27 @@ section {
 
 /* Mali ekrani */
 @media screen and (max-width: 640px) {
+    #chart-legend {
+        display: none;
+    }
+
+    #mobile-chart-legend {
+        padding-top: 8px;
+        display: flex;
+    }
     /* Ovdje će ići klase preko kojih ćemo on mobile view hideat boje i njihov explanation u headeru charta i staviti ih ispod samog charta u sivom divu na mobile */
 }
 
 /* Veliki ekrani */
 @media screen and (min-width: 1024px) {
+    #chart-legend {
+        display: flex;
+    }
 
+    #mobile-chart-legend {
+        padding-top: 0px;
+        display: none;
+    }
 }
 
 .ct-chart1 .ct-label {
