@@ -142,15 +142,6 @@
             }
         });
 
-        // For the sake of the example we update the chart every time it's created with a delay of 10 seconds
-        lineChart.on('created', function() {
-        if(window.__exampleAnimateTimeout) {
-            clearTimeout(window.__exampleAnimateTimeout);
-            window.__exampleAnimateTimeout = null;
-        }
-        window.__exampleAnimateTimeout = setTimeout(lineChart.update.bind(lineChart), 2000000);
-        });
-
         // kupit ćemo podatke iz action tabele, jer će ona imati uviđaj kad je prodano/rentano šta, te ćemo znati tako kad je baš sellan property
         // ovo ćemo koristiti od starta, stavit ćemo da se on component load, dispatcha ovaj event i tjt
         $wire.on('updateLineChart', (data) => {
@@ -277,15 +268,6 @@
 
                 data.element.animate(animations);
             }
-            });
-
-            // For the sake of the example we update the chart every time it's created with a delay of 10 seconds
-            chart.on('created', function() {
-            if(window.__exampleAnimateTimeout) {
-                clearTimeout(window.__exampleAnimateTimeout);
-                window.__exampleAnimateTimeout = null;
-            }
-            window.__exampleAnimateTimeout = setTimeout(chart.update.bind(chart), 2000000);
             });
         });
     </script>
