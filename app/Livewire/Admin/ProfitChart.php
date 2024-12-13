@@ -6,7 +6,7 @@ use Livewire\Component;
 
 class ProfitChart extends Component
 {
-    public $timeframe = '3';
+    public $timeframe = "3";
     public $data = [];
 
     public $rentSeries, $sellSeries, $totalSeries, $labels = '';
