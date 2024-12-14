@@ -33,7 +33,7 @@
 
                         <!-- Refresh Table Button-->
                         <th class="pr-2">
-                            <button class="p-1 ml-auto bg-gray-700 rounded-xl">
+                            <button wire:click="refreshActions()" class="p-1 ml-auto bg-gray-700 rounded-xl">
                                 <x-ionicon-refresh-outline class="w-5" />
                             </button>
                         </th>
@@ -78,9 +78,11 @@
                         <!-- Property Name -->
                         <td class="px-4 py-3">
                             <div class="flex items-center sjustify-start">
-                                <p class="text-sm text-left">
-                                    2 Bedroom House
-                                </p>
+                                <a href="{{ route('dashboard') }}">
+                                    <p class="text-sm text-left hover:text-white">
+                                        2 Bedroom House
+                                    </p>
+                                </a>
                             </div>
                         </td>
 
