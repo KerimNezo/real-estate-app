@@ -9,7 +9,7 @@
 
         <!-- Actions Table Content-->
         <div class="overflow-x-auto">
-            <table class="min-w-full overflow-hidden bg-gray-800 rounded-xl">
+            <table class="min-w-full overflow-hidden bg-gray-800 rounded-t-xl">
                 <!-- Action Tables Header-->
                 <thead class="bg-gray-800 border-gray-700">
                     <tr id="table-header" class="border-b border-gray-700">
@@ -109,20 +109,15 @@
                         </td>
                     </tr>
                     {{-- @endforeach --}}
-
-                    <tr class="border-t border-gray-700">
-                        <td colspan="7">
-                            <div class="flex items-center justify-center w-full p-2">
-                                <a href="" class="mx-auto cursor-pointer">
-                                    <p class="text-sm font-bold cursor-pointer hover:text-gray-900">
-                                        See all Actions
-                                    </p>
-                                </a>
-                            </div>
-                        </td>
-                    </tr>
                 </tbody>
             </table>
+        </div>
+        <div class="flex items-center justify-center w-full p-2 bg-gray-800 border-t border-gray-700 rounded-b-xl">
+            <a href="" class="mx-auto cursor-pointer">
+                <p class="text-sm font-bold cursor-pointer hover:text-white">
+                    See all Actions
+                </p>
+            </a>
         </div>
     </div>
 </div>
