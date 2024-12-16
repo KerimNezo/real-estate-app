@@ -58,4 +58,9 @@ class User extends Authenticatable implements HasMedia
     {
         return $this->hasMany(Property::class);
     }
+
+    public function actions(): HasMany
+    {
+        return $this->hasMany(Actions::class);
+    }
 }
