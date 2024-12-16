@@ -16,7 +16,7 @@ class ActionsTable extends Component
 
     public function refreshActions()
     {
-        $this->render();
+        $this->reset();
     }
 
     public function render()
