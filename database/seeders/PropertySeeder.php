@@ -2,8 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Models\Actions;
 use App\Models\Property;
 use App\Models\Type;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class PropertySeeder extends Seeder
@@ -75,8 +77,16 @@ class PropertySeeder extends Seeder
                     $property->addMedia(''.$path.'/'.$propertyPhoto[$type - 1].'s/'.$propertyPhoto[$type - 1].''.$y.'.jpg')
                         ->preservingOriginal()
                         ->toMediaCollection('property-photos');
-
                 }
+
+                $user = User::firstWhere('id', '=', $x + 2);
+                $name = $user->name;
+
+                $action = Actions::factory()->create([
+                    'user_id' => $x + 2,
+                    'property_id' => $property->id,
+                    'message' => "Property added to the system by agent: $name",
+                ]);
             }
         }
     }

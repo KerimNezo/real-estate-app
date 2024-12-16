@@ -30,6 +30,7 @@ class DatabaseSeeder extends Seeder
             'roles',
             'types',
             'users',
+            'actions',
             // Add more tables as needed
         ];
 
