@@ -42,73 +42,67 @@
 
                 <!-- Action Tables Content-->
                 <tbody>
-                    {{-- @foreach ($this->actions as $action) --}}
-                    <tr class="border-t border-gray-700" wire:key="1">
-                        <!-- Action Id -->
-                        <td class="px-4 py-3">
-                            <div class="flex items-center justify-start">
-                                <a href="{{ route('dashboard') }}">
-                                    <p class="text-sm text-left hover:text-white">
-                                        1
+                    @foreach ($this->actions as $action)
+                        <tr class="border-t border-gray-700" wire:key="1">
+                            <!-- Action Id -->
+                            <td class="px-4 py-3">
+                                <div class="flex items-center justify-start">
+                                    <a href="{{ route('dashboard') }}">
+                                        <p class="text-sm text-left hover:text-white">
+                                            {{ $action->id }}
+                                        </p>
+                                    </a>
+                                </div>
+                            </td>
+
+                            <!-- Agent name -->
+                            <td class="px-4 py-3">
+                                <div class="flex items-center justify-start">
+                                    <a href="{{ route('single-agent', ['user' => $action->user])}}">
+                                        <p class="text-sm text-left hover:text-white">
+                                            {{ $action->user->name }}
+                                        </p>
+                                    </a>
+                                </div>
+                            </td>
+
+                            <!-- Action -->
+                            <td class="px-4 py-3">
+                                <div class="flex items-center justify-start">
+                                    <x-action-name :name="$action->name" />
+                                </div>
+                            </td>
+
+                            <!-- Property Name -->
+                            <td class="px-4 py-3">
+                                <div class="flex items-center sjustify-start">
+                                    <a href="{{ route('admin-single-property', ['property' => $action->property, 'user' => $action->user])}}">
+                                        <p class="text-sm text-left hover:text-white">
+                                            {{ $action->property->name }}
+                                        </p>
+                                    </a>
+                                </div>
+                            </td>
+
+                            <!-- Time -->
+                            <td class="px-4 py-3">
+                                <div class="flex items-center justify-start">
+                                    <p class="text-sm text-left">
+                                        {{ $action->created_at->diffForHumans()}}
                                     </p>
-                                </a>
-                            </div>
-                        </td>
+                                </div>
+                            </td>
 
-                        <!-- Agent name -->
-                        <td class="px-4 py-3">
-                            <div class="flex items-center justify-start">
-                                <a href="{{ route('dashboard') }}">
-                                    <p class="text-sm text-left hover:text-white">
-                                        Kerim Nezo
-                                    </p>
-                                </a>
-                            </div>
-                        </td>
-
-                        <!-- Action -->
-                        <td class="px-4 py-3">
-                            <div class="flex items-center justify-start">
-                                <p class="px-3 py-2 text-sm font-bold text-left bg-red-600 rounded-xl">
-                                    ADDED
-                                </p>
-                            </div>
-                        </td>
-
-                        <!-- Property Name -->
-                        <td class="px-4 py-3">
-                            <div class="flex items-center sjustify-start">
-                                <a href="{{ route('dashboard') }}">
-                                    <p class="text-sm text-left hover:text-white">
-                                        2 Bedroom House
-                                    </p>
-                                </a>
-                            </div>
-                        </td>
-
-                        <!-- Time -->
-                        <td class="px-4 py-3">
-                            <div class="flex items-center justify-start">
-                                <p class="text-sm text-left">
-                                    13 minutes ago
-                                </p>
-                            </div>
-                        </td>
-
-                        <!-- Options-->
-                        <td class="px-4 py-3">
-                            <div class="flex items-center justify-start gap-4">
-                                <a href="{{ route('dashboard') }}" class="hover:text-red-400">
-                                    <x-carbon-view class="w-[20px]"/>
-                                </a>
-
-                                <a class="hover:text-red-400">
-                                    <x-heroicon-s-trash class="w-[20px]" />
-                                </a>
-                            </div>
-                        </td>
-                    </tr>
-                    {{-- @endforeach --}}
+                            <!-- Options-->
+                            <td class="px-4 py-3">
+                                <div class="flex items-center justify-start">
+                                    <a href="{{ route('dashboard') }}" class="hover:text-red-400">
+                                        <x-carbon-view class="w-[25px]"/>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>
