@@ -78,7 +78,7 @@ Route::middleware(['role:admin', 'auth', 'verified'])->group(function () {
     Route::get('admin/action/index', [ActionsController::class, 'index'])
         ->name('admin-actions');
 
-    Route::get('admin/action/{id}', [AdminController::class, 'show'])
+    Route::get('admin/action/{id}', [ActionsController::class, 'show'])
         ->name('admin-single-action');
 
 });
