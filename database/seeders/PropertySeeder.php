@@ -7,6 +7,7 @@ use App\Models\Property;
 use App\Models\Type;
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Database\Eloquent\Events\Created;
 
 class PropertySeeder extends Seeder
 {
@@ -79,13 +80,10 @@ class PropertySeeder extends Seeder
                         ->toMediaCollection('property-photos');
                 }
 
-                $user = User::firstWhere('id', '=', $x + 2);
-                $name = $user->name;
-
                 $action = Actions::factory()->create([
                     'user_id' => $x + 2,
                     'property_id' => $property->id,
-                    'message' => "Property added to the system by agent: $name",
+                    'message' => "Property was seeded to the database",
                 ]);
             }
         }
