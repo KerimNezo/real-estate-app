@@ -203,6 +203,12 @@
                                             {{ $property->status }}
                                         </div>
                                     </div>
+                                @elseif ($property->status == 'Removed')
+                                    <div id="type" class="mb-auto mr-auto bg-gray-600 py-1 px-2 rounded-[5px] w-[90px] h-8 text-sm font-bold flex items-center justify-center">
+                                        <div class="align-middle">
+                                            {{ $property->status }}
+                                        </div>
+                                    </div>
                                 @else
                                     <div id="type" class="mb-auto mr-auto bg-red-600 rounded-[5px] w-[90px] h-8 text-sm font-bold flex items-center justify-center">
                                         <div class="align-middle">
@@ -221,9 +227,11 @@
                                     <a href="{{ route('edit-property', $property) }}" class="hover:text-red-400">
                                         <x-feathericon-edit class="w-[25px] h-[25px]" />
                                     </a>
-                                    <a class="hover:text-red-400" onclick="openConfirmationModal({{$property}}, '{{$property->getFirstMediaUrl('property-photos')}}')">
-                                        <x-heroicon-s-trash class="w-[25px]" />
-                                    </a>
+                                    @if ($property->status !== 'Removed')
+                                        <a class="hover:text-red-400" onclick="openConfirmationModal({{$property}}, '{{$property->getFirstMediaUrl('property-photos')}}')">
+                                            <x-heroicon-s-trash class="w-[25px]" />
+                                        </a>
+                                    @endif
                                 </div>
                             </td>
                         </tr>
