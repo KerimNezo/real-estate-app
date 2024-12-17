@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Property;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 // OVDJE IMA POSLA ZNAČI MILION, ali kasnije malo. index i show, sad, a ovi ostali su tek kasnije kad agente ubacimo
@@ -120,15 +121,22 @@ class PropertyController extends Controller
         $property = Property::find($id);
 
         if ($property === null) {
-            return redirect()->route('all-properties')->with('error', 'This property does not exist');
+            return redirect()->route('admin-properties')->with('error', 'This property does not exist in the database');
         }
 
         try {
-            // Delete the property
-            $property->delete();
+            if (Auth::user()->hasRole('admin') || Auth::id() === $property->user_id)
+            {
+                // Delete the property
+                $property->status = "Removed";
 
-            // Return a success response
-            return redirect()->route('admin-properties')->with('success', 'Property deleted successfully.');
+                $property->save();
+
+                $property->delete();
+
+                // Return a success response
+                return redirect()->route('admin-properties')->with('success', 'Property deleted successfully.');
+            }
         } catch (\Exception $e) {
             // Handle any errors that might occur
             return redirect()->route('admin-properties')->with('error', 'There was an issue deleting the property.');
