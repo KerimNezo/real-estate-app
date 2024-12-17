@@ -42,6 +42,7 @@ class PropertyIndex extends Component
     public function properties()
     {
         $prop = Property::query()
+            ->withTrashed()
             ->select()
             ->latest()
             ->with(['media' => function ($query) {
