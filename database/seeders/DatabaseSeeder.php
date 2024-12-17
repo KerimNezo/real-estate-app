@@ -54,6 +54,7 @@ class DatabaseSeeder extends Seeder
             'delete agent',
             'edit property',
             'delete property',
+            'view actions',
         ];
 
         $adminRole = Role::firstOrCreate(['name' => 'admin']);
