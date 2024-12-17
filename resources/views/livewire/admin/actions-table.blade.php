@@ -96,7 +96,7 @@
                             <!-- Options-->
                             <td class="px-4 py-3">
                                 <div class="flex items-center justify-start">
-                                    <a href="{{ route('dashboard') }}" class="hover:text-red-400">
+                                    <a href="{{ route('admin-single-action', ['id' => $action->id]) }}" class="hover:text-red-400">
                                         <x-carbon-view class="w-[25px]"/>
                                     </a>
                                 </div>
@@ -107,7 +107,7 @@
             </table>
         </div>
         <div class="flex items-center justify-center w-full p-2 bg-gray-800 border-t border-gray-700 rounded-b-xl">
-            <a href="" class="mx-auto cursor-pointer">
+            <a href="{{ route('admin-actions') }}" class="mx-auto cursor-pointer">
                 <p class="text-sm font-bold cursor-pointer hover:text-white">
                     See all Actions
                 </p>
