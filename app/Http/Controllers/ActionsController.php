@@ -15,7 +15,7 @@ class ActionsController extends Controller
 
     public function show(string $id)
     {
-        return view('admin.action.index', [
+        return view('admin.action.show', [
             'actionId' => $id,
         ]);
     }
