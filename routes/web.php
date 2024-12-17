@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ActionsController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PropertyController;
@@ -72,6 +73,13 @@ Route::middleware(['role:admin', 'auth', 'verified'])->group(function () {
 
     Route::delete('admin/property/{property}', [PropertyController::class, 'destroy'])
         ->name('delete-property');
+
+    // Action routes
+    Route::get('admin/action/index', [ActionsController::class, 'index'])
+        ->name('admin-actions');
+
+    Route::get('admin/action/{id}', [AdminController::class, 'show'])
+        ->name('admin-single-action');
 
 });
 
