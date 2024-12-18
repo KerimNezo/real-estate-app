@@ -16,7 +16,7 @@ class PropertyObserver
         $action = new Actions();
 
         $action->property_id = $property->id;
-        $action->user = $property->user_id;
+        $action->user_id= $property->user_id;
         $action->name = "created";
         if (Auth::check() && Auth::user()->hasRole('admin')){
             $action->message = "Property added to the system by Admin";
@@ -33,19 +33,29 @@ class PropertyObserver
      */
     public function updated(Property $property): void
     {
-        logger($property->user_id);
-        logger($property->id);
-        // $action = new Actions();
+        // ovdje treba skontati kako da prepoznat je li property prodan/rentan ili samo editan
+        // i treba skontati kako poslati poruku od agenta ovdje
 
-        // $action->property_id = $property->id;
-        // $action->user = $property->user_id;
-        // $action->name = "created";
-        // if (Auth::check() && Auth::user()->hasRole('admin')){
-        //     $action->message = "Property added to the system by Admin";
-        // } else {
-        //     $name = Auth::user()->name;
-        //     $action->message = "Property added to the system by agent: {$name}";
-        // }
+        $action = new Actions();
+
+        $action->property_id = $property->id;
+        $action->user_id = $property->user_id;
+        $action->name = "edited";
+        if (Auth::check() && Auth::user()->hasRole('admin')){
+            $action->message = "Property removed from the system by Admin";
+        } elseif(Auth::check() && Auth::user()->hasRole('agent')) {
+            $name = Auth::user()->name;
+            $action->message = "Property was removed from the system by agent: {$name}";
+        } else {
+            $action->message = "Property was removed from the database";
+        }
+
+        $action->save();
+    }
+
+    public function updating(Property $property)
+    {
+        logger('updating');
     }
 
     /**
@@ -56,7 +66,7 @@ class PropertyObserver
         $action = new Actions();
 
         $action->property_id = $property->id;
-        $action->user = $property->user_id;
+        $action->user_id = $property->user_id;
         $action->name = "removed";
         if (Auth::check() && Auth::user()->hasRole('admin')){
             $action->message = "Property removed from the system by Admin";
@@ -84,7 +94,7 @@ class PropertyObserver
         $action = new Actions();
 
         $action->property_id = $property->id;
-        $action->user = $property->user_id;
+        $action->user_id = $property->user_id;
         $action->name = "deleted";
         if (Auth::check() && Auth::user()->hasRole('admin')){
             $action->message = "Property deleted from the system by Admin";
