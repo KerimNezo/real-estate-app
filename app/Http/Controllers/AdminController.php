@@ -94,9 +94,9 @@ class AdminController extends Controller
         $lon = $propertyData['lon'];
         $lat = $propertyData['lat'];
 
-        unset($propertyData['type_id'], $propertyData['created_at'], $propertyData['updated_at'], $propertyData['user_id'], $propertyData['id'], $propertyData['lon'], $propertyData['lat']);
+        unset($propertyData['type_id'], $propertyData['created_at'], $propertyData['updated_at'], $propertyData['user_id'], $propertyData['id'], $propertyData['lon'], $propertyData['lat'], $propertyData['deleted_at']);
 
-        unset($userData['created_at'], $userData['updated_at'], $userData['email_verified_at'], $userData['password'], $userData['remember_token']);
+        unset($userData['created_at'], $userData['updated_at'], $userData['email_verified_at'], $userData['password'], $userData['remember_token'], $userData['deleted_at']);
 
         if ($media->isNotEmpty()) {
             foreach ($media as $slike) {
