@@ -53,7 +53,19 @@ class PropertyObserver
      */
     public function deleted(Property $property): void
     {
-        //
+        $action = new Actions();
+
+        $action->property_id = $property->id;
+        $action->user = $property->user_id;
+        $action->name = "removed";
+        if (Auth::check() && Auth::user()->hasRole('admin')){
+            $action->message = "Property removed from the system by Admin";
+        } elseif(Auth::check() && Auth::user()->hasRole('agent')) {
+            $name = Auth::user()->name;
+            $action->message = "Property was removed from the system by agent: {$name}";
+        } else {
+            $action->message = "Property was removed from the database";
+        }
     }
 
     /**
@@ -69,6 +81,18 @@ class PropertyObserver
      */
     public function forceDeleted(Property $property): void
     {
-        //
+        $action = new Actions();
+
+        $action->property_id = $property->id;
+        $action->user = $property->user_id;
+        $action->name = "deleted";
+        if (Auth::check() && Auth::user()->hasRole('admin')){
+            $action->message = "Property deleted from the system by Admin";
+        } elseif(Auth::check() && Auth::user()->hasRole('agent')) {
+            $name = Auth::user()->name;
+            $action->message = "Property was deleted from the system by agent: {$name}";
+        } else {
+            $action->message = "Property was deleted from the database";
+        }
     }
 }
