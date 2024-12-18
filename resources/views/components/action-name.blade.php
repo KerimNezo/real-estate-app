@@ -2,7 +2,7 @@
 
 @switch($name)
     @case('created')
-        <p class="px-3 py-2 text-sm font-bold text-left bg-teal-700 rounded-xl">
+        <p class="px-3 py-2 text-sm font-bold text-left bg-lime-700 rounded-xl">
             {{ strtoupper($name) }}
         </p>
         @break
@@ -38,7 +38,7 @@
         @break
 
     @default
-        <p class="px-3 py-2 text-sm font-bold text-left bg-gray-800 rounded-xl">
+        <p class="px-3 py-2 text-sm font-bold text-left bg-gray-700 rounded-xl">
             {{ strtoupper($name) }}
         </p>
 @endswitch
