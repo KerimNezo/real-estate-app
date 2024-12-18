@@ -11,7 +11,7 @@
         </div>
     </div>
 
-    <div class="w-full bg-gray-800 rounded-[10px] p-4">
+    <div class="w-full bg-gray-800 rounded-[10px] p-4" wire:loading.class="opacity-30">
         <div class="pb-4">
             <select name="PropertyTypeChart" id="property-type-chart" class="bg-gray-900 rounded-[10px] pl-2 p-1 pr-8 text-sm">
                 <option wire:click="updatePieChart()" selected value="Available">Available</option>
