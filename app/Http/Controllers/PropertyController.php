@@ -130,7 +130,7 @@ class PropertyController extends Controller
                 // Delete the property
                 $property->status = "Removed";
 
-                $property->save();
+                $property->saveQuietly();
 
                 $property->delete();
 
