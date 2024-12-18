@@ -77,7 +77,7 @@
                     Properties table
                 </p>
             </div>
-            <div class="overflow-x-auto">
+            <div class="overflow-x-auto" wire:loading.class="opacity-30">
                 <table class="min-w-full overflow-hidden bg-gray-800 rounded-xl">
                     <thead class="bg-gray-800 border-gray-700">
                         <tr id="table-header">
@@ -150,7 +150,7 @@
 
                             <!-- Property Offer -->
                             <td id="table-data">
-                                @if (is_null($property->lease_duration) || $property->lease_duration === 0)
+                                @if ($property->lease_duration === 0 || is_null($property->lease_duration))
                                     <div id="type" class="mb-auto mr-auto bg-red-600 rounded-[5px] w-[90px] h-8 text-sm font-bold flex items-center justify-center">
                                         <div class="align-middle">FOR SALE</div>
                                     </div>
