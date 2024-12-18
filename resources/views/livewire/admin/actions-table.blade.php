@@ -8,7 +8,7 @@
         </div>
 
         <!-- Actions Table Content-->
-        <div class="overflow-x-auto">
+        <div class="overflow-x-auto" wire:loading.class="opacity-30">
             <table class="min-w-full overflow-hidden bg-gray-800 rounded-t-xl">
                 <!-- Action Tables Header-->
                 <thead class="bg-gray-800 border-gray-700">
@@ -105,13 +105,14 @@
                     @endforeach
                 </tbody>
             </table>
+            <div class="flex items-center justify-center w-full p-2 bg-gray-800 border-t border-gray-700 rounded-b-xl">
+                <a href="{{ route('admin-actions') }}" class="mx-auto cursor-pointer">
+                    <p class="text-sm font-bold cursor-pointer hover:text-white">
+                        See all Actions
+                    </p>
+                </a>
+            </div>
         </div>
-        <div class="flex items-center justify-center w-full p-2 bg-gray-800 border-t border-gray-700 rounded-b-xl">
-            <a href="{{ route('admin-actions') }}" class="mx-auto cursor-pointer">
-                <p class="text-sm font-bold cursor-pointer hover:text-white">
-                    See all Actions
-                </p>
-            </a>
-        </div>
+        
     </div>
 </div>
