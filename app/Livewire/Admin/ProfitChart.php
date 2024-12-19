@@ -12,6 +12,15 @@ class ProfitChart extends Component
     public $rentSeries, $sellSeries, $totalSeries, $labels = '';
 
     public function mount() {
+
+        // I want to have chart graph, that will display, 3 6 or 12 months as labels.
+        // Depending on them, lets use 3 months as example, I want it to query
+        // actions, for last three months from todays day, and fetch every action
+        // named 'rented' and 'sold' during that period, and I want them grouped by
+        // the month from now. then add values in month together for rented and for sold
+        // then I want third column, total that will combine each month rented + sold.
+        // so for e.x. I have july total 5, rented 4, sold 2.
+
         // samo promijeni podatke
 
         // podaci se ovako trebaju slati u eventu
