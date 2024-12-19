@@ -13,10 +13,10 @@
 
     <div class="w-full bg-gray-800 rounded-[10px] p-4" wire:loading.class="opacity-30">
         <div class="pb-4">
-            <select wire:model="timeframe" name="timeframe" id="timeframe" class="bg-gray-900 rounded-[10px] pl-2 p-1 pr-8 text-sm">
-                <option wire:click="updateLineChart()" value="3" >3 Months</option>
-                <option wire:click="updateLineChart()" value="6" >6 Months</option>
-                <option wire:click="updateLineChart()" value="12" >Last Year</option>
+            <select wire:change="updateLineChart($event.target.value)" name="propertyProfitChart" id="propertyProfitChart" class="bg-gray-900 rounded-[10px] pl-2 p-1 pr-8 text-sm">
+                <option value="3">3 Months</option>
+                <option value="6">6 Months</option>
+                <option value="12">Last Year</option>
             </select>
         </div>
 
