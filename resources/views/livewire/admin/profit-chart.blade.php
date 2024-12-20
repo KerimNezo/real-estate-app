@@ -57,9 +57,9 @@
                 axisY: {
                     labelInterpolationFnc: function (value) {
                         if (value >= 1000000) {
-                            return (value / 1000000).toFixed(1) + 'mil';
+                            return (value / 1000000).toFixed(1) + ' mil';
                         } else if (value >= 1000) {
-                            return (value / 1000).toFixed(1) + 'k';
+                            return (value / 1000).toFixed(0) + ' k';
                         }
                         return value;
                     }
