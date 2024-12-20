@@ -22,7 +22,7 @@
             </select>
         </div>
 
-        <div class="ct-chart h-[300px] w-full mb-auto"></div>
+        <div id="propertiesChart" class="ct-chart h-[300px] w-full mb-auto"></div>
 
         <div id="mobile-chart-legend" class="flex items-center w-full justify-evenly">
             <x-chart-color-text text="Houses" color="bg-[#2563eb]" />
@@ -36,7 +36,8 @@
     @script
         <script>
             $wire.on('updateDonutChart', (data) => {
-                let donutChartData = {
+
+                var donutChartData = {
                     labels: data[0].labels,
                     series: data[0].series,
                 };
