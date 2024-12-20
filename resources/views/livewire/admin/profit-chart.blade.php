@@ -54,6 +54,16 @@
             }, {
                 low: 0,
                 showArea: true,
+                axisY: {
+                    labelInterpolationFnc: function (value) {
+                        if (value >= 1000000) {
+                            return (value / 1000000).toFixed(1) + 'mil';
+                        } else if (value >= 1000) {
+                            return (value / 1000).toFixed(1) + 'k';
+                        }
+                        return value;
+                    }
+                },
             });
 
             // Let's put a sequence number aside so we can use it in the event callbacks
