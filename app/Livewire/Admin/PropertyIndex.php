@@ -74,14 +74,10 @@ class PropertyIndex extends Component
         }
 
         if (! is_null($this->assetOfferId)) {
-            if ($this->assetOfferId == 3) {
-                $prop = $prop->where('status', '=', 'Available');
-            } elseif ($this->assetOfferId == 4) {
-                $prop = $prop->where('status', '!=', 'Available');
-            } elseif ($this->assetOfferId == 1) {
-                $prop = $prop->where('lease_duration', '=', null);
+            if ($this->assetOfferId == 1) {
+                $prop = $prop->where('lease_duration', '=', 0);
             } elseif ($this->assetOfferId == 2) {
-                $prop = $prop->where('lease_duration', '!=', null);
+                $prop = $prop->where('lease_duration', '>', 0);
             } else {
             }
         }

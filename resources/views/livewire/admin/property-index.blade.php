@@ -14,8 +14,6 @@
                     <option value="0" selected>Offer</option>
                     <option value="1">Sale</option>
                     <option value="2">Rent</option>
-                    <option value="3">Available</option>
-                    <option value="4">Unavailable</option>
                 </select>
             </div>
 
@@ -209,6 +207,12 @@
                                             {{ $property->status }}
                                         </div>
                                     </div>
+                                @elseif ($property->status == 'Unavailable')
+                                    <div id="type" class="mb-auto mr-auto bg-blue-600 py-1 px-2 rounded-[5px] w-[90px] h-8 text-sm font-bold flex items-center justify-center">
+                                        <div class="align-middle">
+                                            {{ $property->status }}
+                                        </div>
+                                    </div>
                                 @else
                                     <div id="type" class="mb-auto mr-auto bg-red-600 rounded-[5px] w-[90px] h-8 text-sm font-bold flex items-center justify-center">
                                         <div class="align-middle">
@@ -224,10 +228,12 @@
                                     <a href="{{ route('admin-single-property', ['property' => $property, 'user' => $property->user]) }}" class="hover:text-red-400">
                                         <x-carbon-view class="w-[25px]"/>
                                     </a>
-                                    <a href="{{ route('edit-property', $property) }}" class="hover:text-red-400">
-                                        <x-feathericon-edit class="w-[25px] h-[25px]" />
-                                    </a>
+
                                     @if ($property->status !== 'Removed')
+                                        <a href="{{ route('edit-property', $property) }}" class="hover:text-red-400">
+                                            <x-feathericon-edit class="w-[25px] h-[25px]" />
+                                        </a>
+
                                         <a class="hover:text-red-400" onclick="openConfirmationModal({{$property}}, '{{$property->getFirstMediaUrl('property-photos')}}')">
                                             <x-heroicon-s-trash class="w-[25px]" />
                                         </a>
