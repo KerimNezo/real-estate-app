@@ -60,12 +60,14 @@ class PropertyObserver
         }
 
         if (Auth::check() && Auth::user()->hasRole('admin')){
-            $action->message = "Property removed from the system by Admin";
+            $action->message = "Property was edited by Admin";
         } elseif(Auth::check() && Auth::user()->hasRole('agent')) {
             $name = Auth::user()->name;
+
+            // ovdje će generalno ići message koji agent unese u zasebno polje prilikom updatea nekretnine
             $action->message = "Property was removed from the system by agent: {$name}";
         } else {
-            $action->message = "Property was removed from the database";
+            $action->message = "Property was edited by seeder";
         }
 
         $action->save();
