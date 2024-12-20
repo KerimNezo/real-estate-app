@@ -767,6 +767,7 @@ section {
 }
 
 .ct-chart1 .ct-label {
+    white-space: nowrap;
     fill: #888C93;
     font-size: large;
     font: bold;
