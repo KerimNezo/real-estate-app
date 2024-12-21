@@ -18,6 +18,7 @@ class AgentPropertyTable extends Component
     {
         $prop = Property::query()
             ->select()
+            ->withTrashed()
             ->where('user_id', '=', $this->agent->id)
             ->with(['media' => function ($query) {
                 $query->orderBy('order_column', 'asc')
