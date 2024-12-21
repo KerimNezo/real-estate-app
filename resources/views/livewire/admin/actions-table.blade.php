@@ -76,7 +76,7 @@
                             <!-- Property Name -->
                             <td class="px-4 py-3">
                                 <div class="flex items-center sjustify-start">
-                                    <a href="{{ route('admin-single-property', ['property' => $action->property, 'user' => $action->user])}}">
+                                    <a href="{{ route('admin-single-property', [ 'user' => $action->property->user_id, 'property' => $action->property])}}">
                                         <p class="text-sm text-left hover:text-white">
                                             {{ $action->property->name }}
                                         </p>
@@ -113,6 +113,6 @@
                 </a>
             </div>
         </div>
-        
+
     </div>
 </div>
