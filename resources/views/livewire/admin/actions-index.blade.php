@@ -5,10 +5,14 @@
             <div class="flex flex-col justify-center w-full lg:flex-row sm:items-start lg:items-center z-9 ">
                 <!-- Status (Sold - For Sale - Rent) -->
                 <div class="flex-col items-center justify-center pb-2 lg:pr-3 lg:mr-0 lg:ml-auto sm:ml-0 sm:mr-auto lg:pb-0">
-                    <select id="" wire:model="assetOfferId" class="rounded-[5px] h-[40px] pl-[10px] pr-8 text-[#989898]-black bg-gray-800 w-full" name="asset-offer-id">
-                        <option value="0" selected>Offer</option>
-                        <option value="1">Sale</option>
-                        <option value="2">Rent</option>
+                    <select id="" wire:model="actionName" class="rounded-[5px] h-[40px] pl-[10px] pr-8 text-[#989898]-black bg-gray-800 w-full" name="asset-offer-id">
+                        <option value="0" selected>Action</option>
+                        <option value="Sold">Sold</option>
+                        <option value="Created">Created</option>
+                        <option value="Deleted">Deleted</option>
+                        <option value="Rented">Rented</option>
+                        <option value="Edited">Edited</option>
+                        <option value="Removed">Removed</option>
                     </select>
                 </div>
 
@@ -19,16 +23,6 @@
                         @foreach ($this->agents as $agent)
                             <option value="{{$agent}}">{{$agent->name}}</option>
                         @endforeach
-                    </select>
-                </div>
-
-                <!-- property type -->
-                <div class="flex-col items-center justify-center pb-2 lg:pr-3 lg:pb-0 sm:mr-auto lg:mr-0">
-                    <select id="" wire:model="assetTypeId" class="w-full rounded-[5px] h-[40px] pl-[10px] pr-8 text-[#989898]-black bg-gray-800" name="type-of-asset-id">
-                        <option value="0" selected>Choose property type</option>
-                        <option value="1">Office</option>
-                        <option value="2">House</option>
-                        <option value="3">Appartement</option>
                     </select>
                 </div>
 
