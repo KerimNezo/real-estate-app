@@ -12,6 +12,10 @@ class ActionsIndex extends Component
 {
     use WithPagination;
 
+    public $actionName;
+
+    public $agentId;
+
     #[Computed]
     public function agents()
     {
