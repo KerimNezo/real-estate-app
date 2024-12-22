@@ -1,8 +1,8 @@
 <div>
     {{-- Actions filter form --}}
-    <div>
+    <div class="w-full">
         <form wire:submit.prevent="submitForm">
-            <div class="flex lg:flex-row flex-col sm:items-start lg:items-center justify-center w-full z-9 px-[6%]">
+            <div class="flex flex-col justify-center w-full lg:flex-row sm:items-start lg:items-center z-9 ">
                 <!-- Status (Sold - For Sale - Rent) -->
                 <div class="flex-col items-center justify-center pb-2 lg:pr-3 lg:mr-0 lg:ml-auto sm:ml-0 sm:mr-auto lg:pb-0">
                     <select id="" wire:model="assetOfferId" class="rounded-[5px] h-[40px] pl-[10px] pr-8 text-[#989898]-black bg-gray-800 w-full" name="asset-offer-id">
@@ -14,7 +14,7 @@
 
                 <!-- cities -->
                 <div class="flex-col items-center justify-center pb-2 lg:pr-3 lg:pb-0 sm:mr-auto lg:mr-0">
-                    <select id="" wire:model="assetLocation" class="rounded-[5px] h-[40px] pl-[10px] pr-8 text-[#989898]-black bg-gray-800 w-full" name="asset-location">
+                    <select id="" wire:model="agentId" class="rounded-[5px] h-[40px] pl-[10px] pr-8 text-[#989898]-black bg-gray-800 w-full" name="asset-location">
                         <option value="" selected>Agent</option>
                         @foreach ($this->agents as $agent)
                             <option value="{{$agent}}">{{$agent->name}}</option>
