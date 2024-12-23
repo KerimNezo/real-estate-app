@@ -8,6 +8,17 @@
         </div>
     </div>
 
+    <!-- Dashboard -->
+    <div class="mb-auto mr-auto">
+        <x-section-title text="Dashboard" image="simpleline-graph"/>
+
+        <div class="flex flex-col items-center justify-center gap-4">
+            <x-section-option text="Stats" link="{{ route('dashboard') }}"/>
+
+            <x-section-option text="Actions" link="{{ route('admin-actions') }}"/>
+        </div>
+    </div>
+
     <!-- Agents -->
     <div class="mr-auto">
         <x-section-title text="Agents" image="heroicon-s-user"/>
@@ -33,17 +44,6 @@
             <x-section-option text="Appartements" link="{{ route('admin-properties', ['type-of-asset-id' => 3]) }}"/>
 
             <x-section-option text="Add new" link="{{ route('new-property') }}"/>
-        </div>
-    </div>
-
-    <!-- Dashboard -->
-    <div class="mb-auto mr-auto">
-        <x-section-title text="Dashboard" image="simpleline-graph"/>
-
-        <div class="flex flex-col items-center justify-center gap-4">
-            <x-section-option text="Stats" link="{{ route('dashboard') }}"/>
-
-            <x-section-option text="Actions" link="{{ route('admin-actions') }}"/>
         </div>
     </div>
 
