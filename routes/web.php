@@ -83,7 +83,10 @@ Route::middleware(['role:admin', 'auth', 'verified'])->group(function () {
 
 });
 
-Route::middleware(['role:agent', 'auth', 'verified'])->group(function () {});
+Route::middleware(['role:agent', 'auth', 'verified'])->group(function () {
+    Route::get('agent/dashboard', [AgentController::class, 'dashboard'])
+        ->name('agent-dashboard');
+});
 
 // Not my routes
 Route::middleware('auth')->group(function () {
