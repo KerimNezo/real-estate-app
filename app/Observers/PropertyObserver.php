@@ -17,8 +17,13 @@ class PropertyObserver
 
         $action->property_id = $property->id;
         $action->user_id= Auth::user()->id;
-        $action->name = "created";
-        if (Auth::check() && Auth::user()->hasRole('admin')){
+        $action->name = "created"; // Use the custom message if provided
+
+        $customMessage = $property->getAttribute('action_message');
+
+        if ($customMessage) {
+            $action->message = $customMessage;
+        } elseif (Auth::check() && Auth::user()->hasRole('admin')){
             $action->message = "Property added to the system by Admin";
         } elseif(Auth::check() && Auth::user()->hasRole('agent')) {
             $name = Auth::user()->name;
@@ -42,6 +47,8 @@ class PropertyObserver
 
         $action->property_id = $property->id;
         $action->user_id = Auth::user()->id;
+
+        // ovaj dio ćeš morati sjesti od nule i skontati jer očigledno nisi to dobro objasnio, čim ti ovaj text nema smisla
 
         // provjeravamo da li je property samo editovan podacima ili je prodana/rentana nekretnina
         if($property->getOriginal('transaction_at') === null) {
