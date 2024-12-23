@@ -40,7 +40,11 @@
     <div class="mb-auto mr-auto">
         <x-section-title text="Dashboard" image="simpleline-graph"/>
 
-        <x-section-option text="Stats" link="{{ route('dashboard') }}"/>
+        <div class="flex flex-col items-center justify-center gap-4">
+            <x-section-option text="Stats" link="{{ route('dashboard') }}"/>
+
+            <x-section-option text="Actions" link="{{ route('admin-actions') }}"/>
+        </div>
     </div>
 
      <!-- mobile view menu button script -->
