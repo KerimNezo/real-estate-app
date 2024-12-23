@@ -45,7 +45,18 @@ class PropertyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Agent će koristiti ovu akciju za storeanje nekretnine.
+        // $validated = $request->validate([
+        //     'name' => 'required|string|max:255',
+        //     'action_message' => 'nullable|string|max:500',
+        //     // other fields...
+        // ]);
+
+        // $property = new Property($validated);
+        // $property->setAttribute('action_message', $request->input('action_message')); // Set temporary attribute
+        // $property->save();
+
+        // return redirect()->route('properties.index');
     }
 
     /**
