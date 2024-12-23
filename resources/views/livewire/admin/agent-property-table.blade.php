@@ -76,7 +76,7 @@
 
                         <!-- Property Offer -->
                         <td id="table-data">
-                            @if (is_null($property->lease_duration))
+                            @if ($property->lease_duration === 0 || is_null($property->lease_duration))
                                 <div id="type" class="mb-auto mr-auto bg-red-600 rounded-[5px] w-[90px] h-8 text-sm font-bold flex items-center justify-center">
                                     <div class="align-middle">FOR SALE</div>
                                 </div>
