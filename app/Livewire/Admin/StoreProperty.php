@@ -289,6 +289,10 @@ class StoreProperty extends Component
                 $property->$field = $this->$field;
         }
 
+        if($property->garden === null) {
+            $property->garden = 0;
+        }
+
         foreach ($this->mediaArray as $key => $photo) {
             $property->addMedia($photo)->toMediaCollection('property-photos');
         }
