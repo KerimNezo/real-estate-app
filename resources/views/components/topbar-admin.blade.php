@@ -17,7 +17,11 @@
         </div>
 
         <button id="dugme" class="w-12 pr-8 my-auto" type="button">
-            <img src="{{ Auth::user()->getFirstMediaUrl('admin-pfp') }}" alt="Admin Photo" class="h-[50px] w-[50px] rounded-[5px]">
+            @if (Auth::user()->hasRole('admin'))
+                <img src="{{ Auth::user()->getFirstMediaUrl('admin-pfp') }}" alt="Admin Photo" class="h-[50px] w-[50px] rounded-[5px]">
+            @elseif(Auth::user()->hasRole('agent'))
+                <img src="{{ Auth::user()->getFirstMediaUrl('agent-pfps') }}" alt="Agent Photo" class="h-[50px] w-[50px] rounded-[5px]">
+            @endif
         </button>
 
         <!-- dropdown which waits for a click on the user icon -->
@@ -39,8 +43,11 @@
         </div>
     </div>
 
-    <form id="goto-profile-form" action="{{ route('single-agent', $user = Auth::user())}}" method="GET" style="display: none;">
-    </form>
+    @if (Auth::user()->hasRole('admin'))
+        <form id="goto-profile-form" action="{{ route('single-agent', $user = Auth::user())}}" method="GET" style="display: none;"></form>
+    @elseif(Auth::user()->hasRole('agent'))
+        <form id="goto-profile-form" action="{{ route('agent-show')}}" method="GET" style="display: none;"></form>
+    @endif
 
     <!-- Logout form-->
     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
