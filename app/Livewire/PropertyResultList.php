@@ -27,8 +27,9 @@ class PropertyResultList extends Component
 
         if ($filters['offer_type']) {
             $query = match ($filters['offer_type']) {
-                '1' => $query->whereNull('lease_duration'),
-                '2' => $query->whereNotNull('lease_duration'),
+                '1' => $query->where('lease_duration', '=', null)
+                        ->orWhere('lease_duration', '=', 0), // sell
+                '2' => $query->whereNotNull('lease_duration', '>', 0),
                 default => $query,
             };
         }

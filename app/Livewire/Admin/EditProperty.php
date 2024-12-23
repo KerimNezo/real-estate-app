@@ -57,7 +57,7 @@ class EditProperty extends Component
         $this->tempDescription = $property->description;
         $this->tempPhotos = $this->propertyMedia;
         $this->tempAgent = $property->user_id;
-        $this->tempOffer = $this->property->lease_duration === null ? 'Sale' : 'Rent';
+        $this->tempOffer = $this->property->lease_duration === null || $this->property->lease_duration === 0 ? 'Sale' : 'Rent';
         $this->tempStatus = $this->property->status;
     }
 
@@ -144,7 +144,7 @@ class EditProperty extends Component
         $this->property->status = $this->tempStatus;
 
         if ($this->tempOffer === 'Sale') {
-            $this->property->lease_duration = null;
+            $this->property->lease_duration = 0;
         } elseif ($this->tempOffer === 'Rent') {
             $this->property->lease_duration = 1;
         } else {

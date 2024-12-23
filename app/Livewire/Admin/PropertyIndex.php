@@ -75,7 +75,8 @@ class PropertyIndex extends Component
 
         if (! is_null($this->assetOfferId)) {
             if ($this->assetOfferId == 1) {
-                $prop = $prop->where('lease_duration', '=', 0);
+                $prop = $prop->where('lease_duration', '=', 0)
+                    ->orWhere('lease_duration', '=', null);
             } elseif ($this->assetOfferId == 2) {
                 $prop = $prop->where('lease_duration', '>', 0);
             } else {
