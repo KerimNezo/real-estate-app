@@ -6,6 +6,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PropertyController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\WelcomeController;
+use App\Http\Controllers\AgentController;
 use Illuminate\Support\Facades\Route;
 
 // A nisi ni počeo raditi AGENT VIEWS cmon man. Zadaj se pravo na ovo.
@@ -20,11 +21,6 @@ Route::get('property/{id}', [PropertyController::class, 'show'])
     ->name('single-property');
 
 Route::get('search', SearchController::class);
-
-Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('user/{id}', [ProfileController::class, 'show'])
-        ->name('user.show');
-});
 
 Route::middleware(['role:admin', 'auth', 'verified'])->group(function () {
     Route::get('admin/dashboard', function () {
@@ -80,12 +76,14 @@ Route::middleware(['role:admin', 'auth', 'verified'])->group(function () {
 
     Route::get('admin/action/{id}', [ActionsController::class, 'show'])
         ->name('admin-single-action');
-
 });
 
 Route::middleware(['role:agent', 'auth', 'verified'])->group(function () {
     Route::get('agent/dashboard', [AgentController::class, 'dashboard'])
         ->name('agent-dashboard');
+
+    Route::get('agent/profile', [AgentController::class, 'show'])
+        ->name('agent-show');
 });
 
 // Not my routes
