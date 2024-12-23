@@ -27,11 +27,22 @@ class ActionsIndex extends Component
     #[Computed]
     public function actions()
     {
-        return Actions::query()
+        $actions = Actions::query()
             ->select(['id', 'property_id', 'user_id', 'name', 'created_at'])
             ->latest()
-            ->with(['user','property'])
-            ->paginate(10);
+            ->with(['user','property']);
+
+        if (! is_null($this->actionName) && $this->actionName != '') {
+            $actions = $actions->where('name', '=', $this->actionName);
+        }
+
+        if (! is_null($this->agentId) && $this->agentId > 0) {
+            $actions = $actions->where('user_id', '=', $this->agentId);
+        }
+
+        $this->reset(['actionName', 'agentId']);
+
+        return $actions->paginate(10);
     }
 
     public function submitForm()
