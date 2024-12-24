@@ -37,7 +37,7 @@ class PropertyController extends Controller
      */
     public function create()
     {
-        //
+        return view('agent.property.create');
     }
 
     /**
