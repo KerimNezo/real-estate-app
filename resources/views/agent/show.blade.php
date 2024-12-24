@@ -103,13 +103,6 @@
                             </div>
                         </div>
                     </div>
-
-                    {{-- Table that display agents properties --}}
-                    @if ($agent->id !== 1)
-                        <div class="py-8 text-xl text-center px-[6%] w-full">
-                            <livewire:admin.agent-property-table :$agent />
-                        </div>
-                    @endif
                 </div>
             </div>
         </div>
