@@ -84,6 +84,15 @@ Route::middleware(['role:agent', 'auth', 'verified'])->group(function () {
 
     Route::get('agent/profile', [AgentController::class, 'show'])
         ->name('agent-show');
+
+    Route::get('agent/property/index', [AgentController::class, 'indexProperties'])
+        ->name('agent-properties');
+
+    Route::get('agent/property/create', [])
+        ->name('agent-new-property');
+
+    Route::post('agent/property/create', [])
+        ->name('agent-store-property');
 });
 
 // Not my routes
