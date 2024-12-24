@@ -2,11 +2,11 @@
 
 namespace App\Livewire\Admin;
 
-use Livewire\Component;
-use Livewire\WithPagination;
 use App\Models\Actions;
 use App\Models\User;
 use Livewire\Attributes\Computed;
+use Livewire\Component;
+use Livewire\WithPagination;
 
 class ActionsIndex extends Component
 {
@@ -30,7 +30,7 @@ class ActionsIndex extends Component
         $actions = Actions::query()
             ->select(['id', 'property_id', 'user_id', 'name', 'created_at'])
             ->latest()
-            ->with(['user','property']);
+            ->with(['user', 'property']);
 
         if (! is_null($this->actionName) && $this->actionName != '') {
             $actions = $actions->where('name', '=', $this->actionName);

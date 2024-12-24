@@ -2,10 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Actions;
-use Illuminate\Notifications\Action;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Carbon;
 
 class ActionsController extends Controller

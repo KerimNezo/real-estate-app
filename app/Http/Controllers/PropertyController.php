@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Property;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 // OVDJE IMA POSLA ZNAČI MILION, ali kasnije malo. index i show, sad, a ovi ostali su tek kasnije kad agente ubacimo
 
@@ -53,7 +53,6 @@ class PropertyController extends Controller
         //     <textarea name="action_message" placeholder="Enter action message (optional)" class="form-input"></textarea>
         //     <button type="submit">Submit</button>
         // </form>
-
 
         // Agent će koristiti ovu akciju za storeanje nekretnine.
         // $validated = $request->validate([
@@ -146,10 +145,9 @@ class PropertyController extends Controller
         }
 
         try {
-            if (Auth::user()->hasRole('admin') || Auth::id() === $property->user_id)
-            {
+            if (Auth::user()->hasRole('admin') || Auth::id() === $property->user_id) {
                 // Delete the property
-                $property->status = "Removed";
+                $property->status = 'Removed';
 
                 $property->saveQuietly();
 

@@ -2,13 +2,12 @@
 
 namespace App\Livewire\Admin;
 
-use Livewire\Attributes\Computed;
 use App\Models\Actions;
+use Livewire\Attributes\Computed;
 use Livewire\Component;
 
 class ActionsTable extends Component
 {
-
     #[Computed]
     public function actions()
     {
@@ -16,7 +15,7 @@ class ActionsTable extends Component
             ->select(['id', 'property_id', 'user_id', 'name', 'created_at'])
             ->latest()
             ->limit(5)
-            ->with(['user','property'])
+            ->with(['user', 'property'])
             ->get();
 
         // trebas sad ovdje još dodati da od usera uzmes ime samo a od propertya uzmes isto samo ime.

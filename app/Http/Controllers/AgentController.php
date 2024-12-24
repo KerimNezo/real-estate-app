@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Property;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Property;
 
 class AgentController extends Controller
 {
@@ -28,7 +28,6 @@ class AgentController extends Controller
     public function indexProperties(Request $request)
     {
         // action that returns index blade that displays all properties
-
         $cities = Property::query()
             ->select('city')
             ->distinct()

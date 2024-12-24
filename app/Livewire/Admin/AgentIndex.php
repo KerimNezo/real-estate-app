@@ -6,7 +6,6 @@ use App\Models\User;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
 use Livewire\WithPagination;
-use Illuminate\Support\Facades\Auth;
 
 class AgentIndex extends Component
 {
@@ -33,7 +32,7 @@ class AgentIndex extends Component
 
     public function deleteAgent($id)
     {
-        logger('ID of agent I need to delete '. $id);
+        logger('ID of agent I need to delete '.$id);
 
         $agent = User::find($id);
 
@@ -46,7 +45,7 @@ class AgentIndex extends Component
         }
 
         // provjeri da li je ovo ispravan način da se radi validacija na bekendu i ako ima neka bolja riješenja.
-        if($agent->properties->count() === 0) {
+        if ($agent->properties->count() === 0) {
             try {
                 $agent->delete();
 

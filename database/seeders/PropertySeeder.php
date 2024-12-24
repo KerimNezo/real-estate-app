@@ -5,9 +5,7 @@ namespace Database\Seeders;
 use App\Models\Actions;
 use App\Models\Property;
 use App\Models\Type;
-use App\Models\User;
 use Illuminate\Database\Seeder;
-use Illuminate\Database\Eloquent\Events\Created;
 
 class PropertySeeder extends Seeder
 {
@@ -83,7 +81,7 @@ class PropertySeeder extends Seeder
                 $action = Actions::factory()->create([
                     'user_id' => $x + 2,
                     'property_id' => $property->id,
-                    'message' => "Property was seeded to the database",
+                    'message' => 'Property was seeded to the database',
                 ]);
             }
         }

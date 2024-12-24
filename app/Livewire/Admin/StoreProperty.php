@@ -2,13 +2,13 @@
 
 namespace App\Livewire\Admin;
 
+use App\Models\Property;
+use App\Models\User;
 use Livewire\Attributes\Computed;
+use Livewire\Attributes\On;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 use Livewire\WithFileUploads;
-use Livewire\Attributes\On;
-use App\Models\User;
-use App\Models\Property;
 
 class StoreProperty extends Component
 {
@@ -48,18 +48,18 @@ class StoreProperty extends Component
 
     public function updatedMedia()
     {
-        foreach($this->media as $key => $photo){
-            logger('key. ' . $key . ', photo: ' . $photo);
+        foreach ($this->media as $key => $photo) {
+            logger('key. '.$key.', photo: '.$photo);
 
             // Extract the MIME type from the image info
             $mimeType = $photo->getMimeType();
             logger($mimeType);
 
-            if(in_array($mimeType, $this->allowedMimeTypes, true)) {
+            if (in_array($mimeType, $this->allowedMimeTypes, true)) {
                 if ($photo) {
                     // Mislim da ti je ovdje error, po načinu na koji storeas slike ovdje u mediaArray
                     $this->mediaArray[$this->sanitizePhotoName($photo)] = $photo;
-                    logger('photo name: ' . $this->sanitizePhotoName($photo));
+                    logger('photo name: '.$this->sanitizePhotoName($photo));
                 }
             } else {
                 $naziv = $this->sanitizePhotoName($photo); // i dodaj file extenziju ovdje
@@ -73,7 +73,6 @@ class StoreProperty extends Component
     {
         session()->forget('notImage');
     }
-
 
     public function sanitizePhotoName($photo)
     {
@@ -100,7 +99,53 @@ class StoreProperty extends Component
 
     // Ako ćeš koristiti ovo, moraš ovo da koristiš wire:model.blur="", tj real-time validation
     #[Validate]
-    public $user_id, $type_id, $name, $price, $surface, $lat, $lon, $rooms, $toilets, $bedrooms, $garage, $furnished, $floors, $lease_duration, $video_intercom, $keycard_entry, $elevator, $city, $street, $country, $description, $year_built, $garden, $status = null;
+    public $user_id;
+
+    public $type_id;
+
+    public $name;
+
+    public $price;
+
+    public $surface;
+
+    public $lat;
+
+    public $lon;
+
+    public $rooms;
+
+    public $toilets;
+
+    public $bedrooms;
+
+    public $garage;
+
+    public $furnished;
+
+    public $floors;
+
+    public $lease_duration;
+
+    public $video_intercom;
+
+    public $keycard_entry;
+
+    public $elevator;
+
+    public $city;
+
+    public $street;
+
+    public $country;
+
+    public $description;
+
+    public $year_built;
+
+    public $garden;
+
+    public $status = null;
 
     #[Computed]
     public function agents()
@@ -169,7 +214,6 @@ class StoreProperty extends Component
             'lease_duration.required' => 'Property offer type is required.',
             'lease_duration.string' => 'The lease duration must be a string.',
 
-
             // Location and desc messages
 
             'description.required' => 'Property description is required',
@@ -193,7 +237,6 @@ class StoreProperty extends Component
             'lon.required' => 'Property longitude is required.',
             'lon.numeric' => 'The longitude must be a valid number.',
 
-
             // Number input messages
 
             'rooms.required' => 'Number of rooms is required',
@@ -210,7 +253,6 @@ class StoreProperty extends Component
 
             'surface.required' => 'Property surface area is required.',
             'surface.numeric' => 'The surface area must be a valid number.',
-
 
             // Checkbox input messages
 
@@ -229,48 +271,50 @@ class StoreProperty extends Component
     }
 
     #[On('update-location-data')]
-    public function updateLocationData($city, $street, $lat, $lon, $country) {
+    public function updateLocationData($city, $street, $lat, $lon, $country)
+    {
         $this->street = $street;
         $this->city = $city;
         $this->country = $country;
         $this->lat = $lat;
         $this->lon = $lon;
-        logger('lat: ' . $this->lat);
-        logger('lon: ' . $this->lon);
-        logger('city: ' . $this->city);
-        logger('street: ' . $this->street);
-        logger('country: ' . $this->country);
+        logger('lat: '.$this->lat);
+        logger('lon: '.$this->lon);
+        logger('city: '.$this->city);
+        logger('street: '.$this->street);
+        logger('country: '.$this->country);
     }
 
-    public function storeProperty() {
+    public function storeProperty()
+    {
         logger('>---------------------------------------------<');
 
         logger('Before validation');
 
-        logger('user_id: ' . $this->user_id);
-        logger('type_id: ' . $this->type_id);
-        logger('name: ' . $this->name);
-        logger('price: ' . $this->price);
-        logger('surface: ' . $this->surface);
-        logger('lat: ' . $this->lat);
-        logger('lon: ' . $this->lon);
-        logger('rooms: ' . $this->rooms);
-        logger('toilets: ' . $this->toilets);
-        logger('bedrooms: ' . $this->bedrooms);
-        logger('garage: ' . $this->garage);
-        logger('furnished: ' . $this->furnished);
-        logger('floors: ' . $this->floors);
-        logger('lease_duration: ' . $this->lease_duration);
-        logger('video_intercom: ' . $this->video_intercom);
-        logger('keycard_entry: ' . $this->keycard_entry);
-        logger('elevator: ' . $this->elevator);
-        logger('city: ' . $this->city);
-        logger('street: ' . $this->street);
-        logger('country: ' . $this->country);
-        logger('description: ' . $this->description);
-        logger('year_built: ' . $this->year_built);
-        logger('garden: ' . $this->garden);
-        logger('status: ' . $this->status);
+        logger('user_id: '.$this->user_id);
+        logger('type_id: '.$this->type_id);
+        logger('name: '.$this->name);
+        logger('price: '.$this->price);
+        logger('surface: '.$this->surface);
+        logger('lat: '.$this->lat);
+        logger('lon: '.$this->lon);
+        logger('rooms: '.$this->rooms);
+        logger('toilets: '.$this->toilets);
+        logger('bedrooms: '.$this->bedrooms);
+        logger('garage: '.$this->garage);
+        logger('furnished: '.$this->furnished);
+        logger('floors: '.$this->floors);
+        logger('lease_duration: '.$this->lease_duration);
+        logger('video_intercom: '.$this->video_intercom);
+        logger('keycard_entry: '.$this->keycard_entry);
+        logger('elevator: '.$this->elevator);
+        logger('city: '.$this->city);
+        logger('street: '.$this->street);
+        logger('country: '.$this->country);
+        logger('description: '.$this->description);
+        logger('year_built: '.$this->year_built);
+        logger('garden: '.$this->garden);
+        logger('status: '.$this->status);
 
         $this->validate();
 
@@ -284,12 +328,12 @@ class StoreProperty extends Component
             'user_id', 'type_id', 'name', 'price', 'surface', 'lat', 'lon',
             'rooms', 'toilets', 'bedrooms', 'garage', 'furnished', 'floors',
             'lease_duration', 'video_intercom', 'keycard_entry', 'elevator',
-            'city', 'street', 'country', 'description', 'year_built', 'garden'
-            ] as $field) {
-                $property->$field = $this->$field;
+            'city', 'street', 'country', 'description', 'year_built', 'garden',
+        ] as $field) {
+            $property->$field = $this->$field;
         }
 
-        if($property->garden === null) {
+        if ($property->garden === null) {
             $property->garden = 0;
         }
 
@@ -299,7 +343,7 @@ class StoreProperty extends Component
 
         //$this->reorderPhotos($property->getMedia('property-photos'));
 
-        $property->status = "Available";
+        $property->status = 'Available';
         $property->save();
 
         return redirect()->route('admin-properties')->with('success', 'Property created successfully.');

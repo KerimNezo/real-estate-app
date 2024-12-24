@@ -2,24 +2,26 @@
 
 namespace App\Livewire\Admin;
 
-use Livewire\Component;
 use App\Models\Actions;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\DB;
+use Livewire\Component;
 
 class ProfitChart extends Component
 {
-    public function mount() {
+    public function mount()
+    {
 
         $this->updateChartData(3);
     }
 
-    public function updateLineChart($numMonths) {
+    public function updateLineChart($numMonths)
+    {
 
         $this->updateChartData($numMonths);
     }
 
-    public function updateChartData($months) {
+    public function updateChartData($months)
+    {
 
         // Calculate the starting date (last X months from today)
         $startDate = Carbon::now()->subMonths($months)->startOfMonth();
@@ -44,7 +46,7 @@ class ProfitChart extends Component
             'labels' => [],
             'rented' => [],
             'sold' => [],
-            'total' => []
+            'total' => [],
         ];
 
         // Iterate over each month within the range
@@ -67,7 +69,8 @@ class ProfitChart extends Component
         $this->dispatch('updateLineChart', ['labels' => $chartData['labels'], 'totalSeries' => $chartData['total'], 'sellSeries' => $chartData['sold'], 'rentSeries' => $chartData['rented']]);
     }
 
-    public function render() {
+    public function render()
+    {
         return view('livewire.admin.profit-chart');
     }
 }
