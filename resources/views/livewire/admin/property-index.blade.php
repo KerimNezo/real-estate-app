@@ -112,7 +112,7 @@
                             <td id="table-data">
                                 <div class="flex items-center justify-start">
                                     <p>
-                                        <a href=" {{ route('admin-single-property', ['property' => $property, 'user' => $property->user])}}">
+                                        <a href=" {{ route('agent-single-property', ['property' => $property])}}">
                                             @if ($property->getMedia('property-photos')->isNotEmpty())
                                                 <img src="{{ $property->getFirstMediaUrl('property-photos') }}" alt="Property Image" class="w-[100px] h-[75px] object-cover rounded-lg">
                                             @else
@@ -128,11 +128,17 @@
                             <!-- Agent name -->
                             <td id="table-data">
                                 <div class="flex items-center justify-start">
-                                    <a href="{{ route('single-agent', $user = $property->user) }}">
-                                        <p class="text-left hover:text-white">
+                                    @if (Auth::user()->hasRole('admin'))
+                                        <a href="{{ route('single-agent', $user = $property->user) }}">
+                                            <p class="text-left hover:text-white">
+                                                {{ $property->user->name }}
+                                            </p>
+                                        </a>
+                                    @else
+                                        <p class="text-left">
                                             {{ $property->user->name }}
                                         </p>
-                                    </a>
+                                    @endif
                                 </div>
                             </td>
 
@@ -233,13 +239,23 @@
                             <!-- Row options-->
                             <td id="table-data">
                                 <div class="flex items-center justify-start gap-4">
-                                    <a href="{{ route('admin-single-property', ['property' => $property, 'user' => $property->user]) }}" class="hover:text-red-400">
-                                        <x-carbon-view class="w-[25px]"/>
-                                    </a>
+                                    @if (Auth::user()->hasRole('admin'))
+                                        <a href="{{ route('admin-single-property', ['property' => $property, 'user' => $property->user]) }}" class="hover:text-red-400">
+                                            <x-carbon-view class="w-[25px]"/>
+                                        </a>
+                                    @else
+                                        <a href="{{ route('agent-single-property', ['property' => $property]) }}" class="hover:text-red-400">
+                                            <x-carbon-view class="w-[25px]"/>
+                                        </a>
+                                    @endif
 
                                     @if ($property->status !== 'Removed')
-                                        @if (Auth::user()->id === $property->user_id || Auth::user()->hasRole('admin'))
+                                        @if (Auth::user()->hasRole('admin'))
                                             <a href="{{ route('edit-property', $property) }}" class="hover:text-red-400">
+                                                <x-feathericon-edit class="w-[25px] h-[25px]" />
+                                            </a>
+                                        @elseif (Auth::user()->id === $property->user_id)
+                                            <a href="{{ route('agent-edit-property', $property) }}" class="hover:text-red-400">
                                                 <x-feathericon-edit class="w-[25px] h-[25px]" />
                                             </a>
                                         @endif
