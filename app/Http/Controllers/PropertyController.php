@@ -45,6 +45,16 @@ class PropertyController extends Controller
      */
     public function store(Request $request)
     {
+        // Ovo stavi u createProperty formu
+
+        // <form method="POST" action="{{ route('properties.store') }}">
+        //     @csrf
+        //     <!-- Other form fields -->
+        //     <textarea name="action_message" placeholder="Enter action message (optional)" class="form-input"></textarea>
+        //     <button type="submit">Submit</button>
+        // </form>
+
+
         // Agent će koristiti ovu akciju za storeanje nekretnine.
         // $validated = $request->validate([
         //     'name' => 'required|string|max:255',
