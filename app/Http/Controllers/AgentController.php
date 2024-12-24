@@ -45,4 +45,109 @@ class AgentController extends Controller
             ->with('assetLocation', $assetLocation)
             ->with('assetTypeId', $assetId);
     }
+
+    public function editProperty(Property $property)
+    {
+        $propertyMedia = $property->getMedia('property-photos')->sortBy('order_column');
+
+        return view('agent.property.edit')
+            ->with('property', $property)
+            ->with('propertyMedia', $propertyMedia);
+    }
+
+    public function showProperty(Property $property)
+    {
+        // action that return blade that displays single property data
+
+        $propertyData = $property->getAttributes();
+
+        $media = $property->getMedia('property-photos');
+
+        $propertyData['Type'] = $this->changeTypeData($propertyData['type_id']);
+
+        $lon = $propertyData['lon'];
+        $lat = $propertyData['lat'];
+
+        unset($propertyData['type_id'], $propertyData['created_at'], $propertyData['updated_at'], $propertyData['user_id'], $propertyData['id'], $propertyData['lon'], $propertyData['lat'], $propertyData['deleted_at']);
+
+        if ($media->isNotEmpty()) {
+            foreach ($media as $slike) {
+                $urlovi[$slike->order_column] = $slike->getUrl();
+            }
+        } else {
+            $urlovi = 0;
+        }
+
+        $propertyData['garden'] = $this->numberToBool($propertyData['garden']);
+        $propertyData['furnished'] = $this->numberToBool($propertyData['furnished']);
+        $propertyData['keycard_entry'] = $this->numberToBool($propertyData['keycard_entry']);
+        $propertyData['elevator'] = $this->numberToBool($propertyData['elevator']);
+        $propertyData['video_intercom'] = $this->numberToBool($propertyData['video_intercom']);
+        $propertyData['garage'] = $this->numberOrNo($propertyData['garage']);
+
+        $propertyData = $this->reorderArray($propertyData);
+
+        return view('agent.property.show')
+            ->with('property', $property)
+            ->with('propertyData', $propertyData)
+            ->with('media', $media)
+            ->with('urlovi', $urlovi)
+            ->with('lon', $lon)
+            ->with('lat', $lat);
+    }
+
+    // sve ove funkcije iza možeš staviti u jedan controller (propertyDataController) i pozvati ga ovdje i u adminController da možeš
+    // ove funckije koristiti bez da ih napišeš dva puta. Trenutno nek stoje dva put samo da ima
+
+    public function changeTypeData(int $number)
+    {
+        switch ($number) {
+            case 1:
+                return 'Office';
+            case 2:
+                return 'House';
+            case 3:
+                return 'Appartement';
+            default:
+                return 'Unknown';
+        }
+    }
+
+    public function reorderArray($array)
+    {
+        $reorderedArray = [];
+
+        $desiredOrder = [
+            'name', 'Type', 'price', 'city', 'street', 'country', 'surface',
+            'year_built', 'status', 'lat', 'lon', 'rooms', 'bedrooms', 'toilets',
+            'garage', 'furnished', 'floors', 'garden', 'lease_duration',
+            'video_intercom', 'keycard_entry', 'elevator', 'description',
+        ];
+
+        foreach ($desiredOrder as $key) {
+            if (isset($array[$key])) {
+                $reorderedArray[$key] = $array[$key];
+            }
+        }
+
+        return $reorderedArray;
+    }
+
+    public function numberToBool($value)
+    {
+        if ($value === 0 || $value === null) {
+            return $value = 'No';
+        } else {
+            return $value = 'Yes';
+        }
+    }
+
+    public function numberOrNo($value)
+    {
+        if ($value === null || $value === 0) {
+            return $value = 'No';
+        } else {
+            return $value;
+        }
+    }
 }
