@@ -6,8 +6,8 @@
 
     $price = number_format($property->price, 0, '.',',');
 
-    $propertyOffer = is_null($property->lease_duration) ? "FOR SELL" : "FOR RENT";
-    $color = is_null($property->lease_duration) ? "red" : "sky";
+    $propertyOffer = is_null($property->lease_duration) || $property->lease_duration === 0 ? "FOR SELL" : "FOR RENT";
+    $color = is_null($property->lease_duration) || $property->lease_duration === 0 ? "red" : "sky";
     $property->furnsihed === null ? $furnished = "No" : $furnished = "Yes";
     $property->video_intercom === null ? $video = "No" : $video = "Yes";
     $property->garage === null ? $garage = "No" : $garage = $property->garage;
