@@ -2,11 +2,11 @@
 
 use App\Http\Controllers\ActionsController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AgentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PropertyController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\WelcomeController;
-use App\Http\Controllers\AgentController;
 use Illuminate\Support\Facades\Route;
 
 // A nisi ni počeo raditi AGENT VIEWS cmon man. Zadaj se pravo na ovo.
@@ -82,6 +82,7 @@ Route::middleware(['role:agent', 'auth', 'verified'])->group(function () {
     Route::get('agent/dashboard', [AgentController::class, 'dashboard'])
         ->name('agent-dashboard');
 
+    // Property routes
     Route::get('agent/profile', [AgentController::class, 'show'])
         ->name('agent-show');
 
