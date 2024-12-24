@@ -2,21 +2,24 @@
 
 namespace App\Livewire\Admin;
 
+use App\Models\Property;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
-use App\Models\Property;
 
 class PropertiesChart extends Component
 {
-    public function mount() {
+    public function mount()
+    {
         $this->updateChartData('Available');
     }
 
-    public function updatePieChart($status){
+    public function updatePieChart($status)
+    {
         $this->updateChartData($status);
     }
 
-    public function updateChartData($status) {
+    public function updateChartData($status)
+    {
         $labels = [];
 
         $series = [];
@@ -28,9 +31,8 @@ class PropertiesChart extends Component
             ->groupBy('type_id')
             ->get();
 
-        foreach ($data as $property)
-        {
-            if($property->type_id === 1) {
+        foreach ($data as $property) {
+            if ($property->type_id === 1) {
                 $series[] = $property->total;
                 $labels[] = 'Offices';
             } elseif ($property->type_id === 2) {

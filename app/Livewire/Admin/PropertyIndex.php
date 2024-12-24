@@ -3,6 +3,7 @@
 namespace App\Livewire\Admin;
 
 use App\Models\Property;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Locked;
 use Livewire\Component;
@@ -55,7 +56,7 @@ class PropertyIndex extends Component
         // Ovdje loadam sve slike, samo 6 ako mu slučajno spasi više, jer šaljemo cijeli property objekat na rutu
         // da ne bih morao queryat ponovo na show-property ruti
 
-        logger('Max price je '. $this->maxPrice);
+        logger('Max price je '.$this->maxPrice);
 
         if (! is_null($this->assetLocation) && $this->assetLocation != '') {
             $prop = $prop->where('city', '=', $this->assetLocation);
@@ -65,7 +66,7 @@ class PropertyIndex extends Component
             $prop = $prop->where('type_id', '=', $this->assetTypeId);
         }
 
-        if ($this->minPrice !== null  && $this->minPrice !== '') {
+        if ($this->minPrice !== null && $this->minPrice !== '') {
             $prop = $prop->where('price', '>', $this->minPrice);
         }
 
@@ -81,6 +82,11 @@ class PropertyIndex extends Component
                 $prop = $prop->where('lease_duration', '>', 0);
             } else {
             }
+        }
+
+        // Added this to check if agent is using this class, to only display him available properties
+        if (Auth::user()->hasRole('agent')) {
+            $prop = $prop->where('status', '=', 'Available');
         }
 
         $this->reset(['minPrice', 'maxPrice', 'assetLocation', 'assetTypeId', 'assetOfferId']);
