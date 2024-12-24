@@ -11,7 +11,7 @@
         </div>
 
         <div class="flex w-full pt-[100px] flex-grow">
-            @include('components.sidebar-admin')
+            @include('components.sidebar-agent')
 
             <!-- Main content -->
             <div id="main-content" class="w-full py-6 bg-gray-900">
