@@ -43,6 +43,72 @@
                         </div>
                     </div>
 
+                    <!-- table to display property agent data -->
+                    <div class="w-full py-8 text-xl text-center">
+                        <div>
+                            <p class="pb-2 pl-4 text-sm text-left">
+                                Agent information
+                            </p>
+                        </div>
+                        <div class="w-full overflow-x-auto">
+                            <table class="min-w-full overflow-hidden bg-gray-800 rounded-xl">
+                                <!-- Header of the table -->
+                                <thead class="w-full bg-gray-800 border-gray-700">
+                                    <tr id="table-header" style="width: 100%">
+                                        <!-- Key -->
+                                        <th class="px-4 py-2 text-lg border-b border-gray-700">
+                                            <div class="flex items-center justify-start">
+                                                <p class="text-lg">Key</p>
+                                            </div>
+                                        </th>
+
+                                        <!-- Data -->
+                                        <th class="w-full px-4 py-2 text-lg border-b border-gray-700">
+                                            <div class="flex items-center justify-start">
+                                                <p class="text-lg">Data</p>
+                                            </div>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody class="w-full">
+                                    <!-- user data -->
+                                    @foreach ($userData as $key => $value)
+                                        @if ($key === 'id')
+                                        <!-- Don't display his id -->
+                                        @else
+                                        <tr class="w-full border-t border-gray-700">
+                                            <!-- Key -->
+                                            <td class="px-4 py-4 text-base leading-6">
+                                                <div class="flex items-center justify-start">
+                                                    <p class="text-left w-36">
+                                                        {{ ucwords(str_replace('_', ' ', $key)) }}
+                                                    </p>
+                                                </div>
+                                            </td>
+                                            <!-- Value -->
+                                            <td class="w-full px-4 py-4 text-base leading-6">
+                                                <div class="flex items-center justify-start">
+                                                    @if ($key === 'name')
+                                                    <a href="{{ route('single-agent', $user = $property->user) }}">
+                                                        <p class="text-left hover:text-white">
+                                                            {{ $value }}
+                                                        </p>
+                                                    </a>
+                                                    @else
+                                                    <p class="text-left">
+                                                        {{ $value }}
+                                                    </p>
+                                                    @endif
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        @endif
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
                     <!-- table to display property data and properity location on map-->
                     <div class="items-stretch justify-center w-full gap-2 py-8 text-xl text-center lg:flex sm:flex">
                         <!-- Property data -->
