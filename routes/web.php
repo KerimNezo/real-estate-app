@@ -89,11 +89,11 @@ Route::middleware(['role:agent', 'auth', 'verified'])->group(function () {
     Route::get('agent/property/index', [AgentController::class, 'indexProperties'])
         ->name('agent-properties');
 
-    Route::get('agent/property/{property}', [AgentController::class, 'showProperty'])
-        ->name('agent-single-property');
-
     Route::get('agent/property/create', [PropertyController::class, 'create'])
         ->name('agent-new-property');
+
+    Route::get('agent/property/{property}', [AgentController::class, 'showProperty'])
+        ->name('agent-single-property');
 
     Route::post('agent/property/create', [])
         ->name('agent-store-property');
