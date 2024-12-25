@@ -2,9 +2,8 @@
     <!-- Query form on top of the property list -->
     <form wire:submit.prevent="submitForm">
         <div class="flex lg:flex-row flex-col sm:items-start lg:items-center justify-center w-full z-9 px-[6%]">
+
             <!-- new property button -->
-
-
             @if (Auth::user()->hasRole('admin'))
                 <a href="{{ route('new-property') }}" class="bg-green-600 py-2 px-4 rounded-[5px] hover:bg-green-500 mb-2 lg:mb-0">
                     <p class="text-base text-center">Add new</p>
@@ -14,7 +13,6 @@
                     <p class="text-base text-center">Add new</p>
                 </a>
             @endif
-
 
             <!-- Status (Sold - For Sale - Rent) -->
             <div class="flex-col items-center justify-center pb-2 lg:pr-3 lg:mr-0 lg:ml-auto sm:ml-0 sm:mr-auto lg:pb-0">
