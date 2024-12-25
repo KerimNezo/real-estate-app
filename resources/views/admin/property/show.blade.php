@@ -15,9 +15,9 @@
 
             <!-- Main content-->
             <div id="main-content" class="w-full bg-gray-900 !max-w-[100vw] overflow-scroll flex">
-                <div class="flex flex-col items-center justify-center w-[80%] mx-auto">
+                <div class="flex flex-col items-center justify-center w-[80%] mx-auto gap-8">
                     <!-- table to display property media -->
-                    <div class="w-full py-8 text-xl text-center">
+                    <div class="w-full pt-8 text-xl text-center">
                         {{-- Section Title --}}
                         <div>
                             <p class="pb-2 pl-4 text-sm text-left">
@@ -44,7 +44,7 @@
                     </div>
 
                     <!-- table to display property agent data -->
-                    <div class="w-full py-8 text-xl text-center">
+                    <div class="w-full text-xl text-center">
                         <div>
                             <p class="pb-2 pl-4 text-sm text-left">
                                 Agent information
@@ -110,7 +110,7 @@
                     </div>
 
                     <!-- table to display property data and properity location on map-->
-                    <div class="items-stretch justify-center w-full gap-2 py-8 text-xl text-center lg:flex sm:flex">
+                    <div class="items-stretch justify-center w-full gap-2 pb-8 text-xl text-center lg:flex sm:flex">
                         <!-- Property data -->
                         <div class="lg:w-[50%] sm:w-full pb-2">
                             <div>
