@@ -19,11 +19,7 @@ class PropertyObserver
         $action->user_id = Auth::user()->id;
         $action->name = 'created'; // Use the custom message if provided
 
-        $customMessage = $property->getAttribute('action_message');
-
-        if ($customMessage) {
-            $action->message = $customMessage;
-        } elseif (Auth::check() && Auth::user()->hasRole('admin')) {
+        if (Auth::check() && Auth::user()->hasRole('admin')) {
             $action->message = 'Property added to the system by Admin';
         } elseif (Auth::check() && Auth::user()->hasRole('agent')) {
             $name = Auth::user()->name;
@@ -70,8 +66,6 @@ class PropertyObserver
             $action->message = 'Property was edited by Admin';
         } elseif (Auth::check() && Auth::user()->hasRole('agent')) {
             $name = Auth::user()->name;
-
-            // ovdje će generalno ići message koji agent unese u zasebno polje prilikom updatea nekretnine
             $action->message = "Property was removed from the system by agent: {$name}";
         } else {
             $action->message = 'Property was edited by seeder';
