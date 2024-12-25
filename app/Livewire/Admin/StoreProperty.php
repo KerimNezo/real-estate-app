@@ -8,6 +8,7 @@ use Livewire\Attributes\Computed;
 use Livewire\Attributes\On;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
+use Illuminate\Support\Facades\Auth;
 use Livewire\WithFileUploads;
 
 class StoreProperty extends Component
@@ -101,50 +102,73 @@ class StoreProperty extends Component
     #[Validate]
     public $user_id;
 
+    #[Validate]
     public $type_id;
 
+    #[Validate]
     public $name;
 
+    #[Validate]
     public $price;
 
+    #[Validate]
     public $surface;
 
+    #[Validate]
     public $lat;
 
+    #[Validate]
     public $lon;
 
+    #[Validate]
     public $rooms;
 
+    #[Validate]
     public $toilets;
 
+    #[Validate]
     public $bedrooms;
 
+    #[Validate]
     public $garage;
 
+    #[Validate]
     public $furnished;
 
+    #[Validate]
     public $floors;
 
+    #[Validate]
     public $lease_duration;
 
+    #[Validate]
     public $video_intercom;
 
+    #[Validate]
     public $keycard_entry;
 
+    #[Validate]
     public $elevator;
 
+    #[Validate]
     public $city;
 
+    #[Validate]
     public $street;
 
+    #[Validate]
     public $country;
 
+    #[Validate]
     public $description;
 
+    #[Validate]
     public $year_built;
 
+    #[Validate]
     public $garden;
 
+    #[Validate]
     public $status = null;
 
     #[Computed]
@@ -316,6 +340,10 @@ class StoreProperty extends Component
         logger('garden: '.$this->garden);
         logger('status: '.$this->status);
 
+        if(Auth::user()->hasRole('agent')) {
+            $this->user_id = Auth::user()->id;
+        }
+
         $this->validate();
 
         logger('Validation passed');
@@ -346,6 +374,10 @@ class StoreProperty extends Component
         $property->status = 'Available';
         $property->save();
 
-        return redirect()->route('admin-properties')->with('success', 'Property created successfully.');
+        if(Auth::user()->hasRole('agent')) {
+            return redirect()->route('agent-properties')->with('success', 'Property created successfully.');
+        } else {
+            return redirect()->route('admin-properties')->with('success', 'Property created successfully.');
+        }
     }
 }
