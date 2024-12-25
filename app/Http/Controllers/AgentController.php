@@ -60,6 +60,7 @@ class AgentController extends Controller
         // action that return blade that displays single property data
 
         $propertyData = $property->getAttributes();
+        $userData = $property->user->getAttributes();
 
         $media = $property->getMedia('property-photos');
 
@@ -69,6 +70,8 @@ class AgentController extends Controller
         $lat = $propertyData['lat'];
 
         unset($propertyData['type_id'], $propertyData['created_at'], $propertyData['updated_at'], $propertyData['user_id'], $propertyData['id'], $propertyData['lon'], $propertyData['lat'], $propertyData['deleted_at']);
+
+        unset($userData['created_at'], $userData['updated_at'], $userData['email_verified_at'], $userData['password'], $userData['remember_token'], $userData['deleted_at']);
 
         if ($media->isNotEmpty()) {
             foreach ($media as $slike) {
@@ -90,6 +93,7 @@ class AgentController extends Controller
         return view('agent.property.show')
             ->with('property', $property)
             ->with('propertyData', $propertyData)
+            ->with('userData', $userData)
             ->with('media', $media)
             ->with('urlovi', $urlovi)
             ->with('lon', $lon)
