@@ -59,23 +59,25 @@
                                 </div>
                             </div>
 
-                            <!-- Property Agent -->
-                            <div class="w-full mb-2 mr-auto">
-                                <div class="relative w-full">
-                                    <label class="block mb-2 font-bold">Choose agent:</label>
+                            {{-- Property Agent --}}
+                            @if (Auth::user()->hasRole('admin'))
+                                <div class="w-full mb-2 mr-auto">
+                                    <div class="relative w-full">
+                                        <label class="block mb-2 font-bold">Choose agent:</label>
 
-                                    <x-error-message-info title="user_id" />
-                                </div>
+                                        <x-error-message-info title="user_id" />
+                                    </div>
 
-                                <div class="flex gap-4">
-                                    <select id="agent_input" wire:model.blur="user_id" class="w-full rounded-lg py-2 pl-[10px] pr-8 text-[#989898]-black bg-gray-800 @error('user_id') border-red-500 @enderror" name="offer_type">
-                                        <option value="null" disabled selected>Choose an agent</option>
-                                        @foreach ($this->agents as $agent)
-                                            <option value="{{ $agent->id }}">{{ $agent->name }}</option>
-                                        @endforeach
-                                    </select>
+                                    <div class="flex gap-4">
+                                        <select id="agent_input" wire:model.blur="user_id" class="w-full rounded-lg py-2 pl-[10px] pr-8 text-[#989898]-black bg-gray-800 @error('user_id') border-red-500 @enderror" name="offer_type">
+                                            <option value="null" disabled selected>Choose an agent</option>
+                                            @foreach ($this->agents as $agent)
+                                                <option value="{{ $agent->id }}">{{ $agent->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
+                            @endif
                         </div>
 
                         <!-- Other property input data -->
