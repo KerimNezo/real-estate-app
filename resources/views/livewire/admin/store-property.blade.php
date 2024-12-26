@@ -154,10 +154,10 @@
                                 <div class="relative w-full">
                                     <label for="location" class="block mb-2 font-bold">Location:</label>
 
-                                    <x-error-message-info title="country" />
+                                    <x-error-message-info title="city" />
                                 </div>
 
-                                <div id="sticky" class="rounded-[10px] @error('lat') border-2 border-red-500 @enderror">
+                                <div id="sticky" wire:model.live="city" class="rounded-[10px] @error('city') border-2 border-red-500 @enderror">
                                     <!-- Leaflet Map -->
                                     <div id="admin-map" wire:ignore class="z-[2] rounded-[10px]"></div>
                                     {{-- this wire:ignore is needed that when validation happens, and livewire re-renders the form
