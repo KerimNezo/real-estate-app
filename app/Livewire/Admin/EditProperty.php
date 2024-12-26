@@ -8,6 +8,7 @@ use Livewire\Attributes\Locked;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use Illuminate\Support\Facades\Auth;
 
 class EditProperty extends Component
 {
@@ -166,6 +167,10 @@ class EditProperty extends Component
 
         $this->property->save();
 
-        return redirect()->route('admin-properties')->with('success', 'Property edited successfully.');
+        if(Auth::user()->hasRole('agent')) {
+            return redirect()->route('agent-properties')->with('success', 'Property edited successfully.');
+        } else {
+            return redirect()->route('admin-properties')->with('success', 'Property edited successfully.');
+        }
     }
 }
