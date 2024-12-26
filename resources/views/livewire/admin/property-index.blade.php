@@ -261,20 +261,26 @@
                                     @endif
 
                                     @if ($property->status !== 'Removed')
-                                        @if (Auth::user()->hasRole('admin'))
-                                            <a href="{{ route('edit-property', $property) }}" class="hover:text-red-400">
-                                                <x-feathericon-edit class="w-[25px] h-[25px]" />
-                                            </a>
-                                        @elseif (Auth::user()->id === $property->user_id)
-                                            <a href="{{ route('agent-edit-property', $property) }}" class="hover:text-red-400">
-                                                <x-feathericon-edit class="w-[25px] h-[25px]" />
-                                            </a>
+                                        @if ($property->status !== 'Sold' && $property->status !== 'Rented')
+                                            @if (Auth::user()->hasRole('admin'))
+                                                <a href="{{ route('edit-property', $property) }}" class="hover:text-red-400">
+                                                    <x-feathericon-edit class="w-[25px] h-[25px]" />
+                                                </a>
+                                            @elseif (Auth::user()->id === $property->user_id)
+                                                <a href="{{ route('agent-edit-property', $property) }}" class="hover:text-red-400">
+                                                    <x-feathericon-edit class="w-[25px] h-[25px]" />
+                                                </a>
+                                            @endif
                                         @endif
 
                                         @if (Auth::user()->hasRole('admin'))
-                                            <a class="hover:text-red-400" onclick="openConfirmationModal({{$property}}, '{{$property->getFirstMediaUrl('property-photos')}}')">
-                                                <x-heroicon-s-trash class="w-[25px]" />
-                                            </a>
+                                            @if ($property->status === 'Unavailable' || $property->status === 'Sold' || $property->status === 'Rented')
+
+                                            @else
+                                                <a class="hover:text-red-400" onclick="openConfirmationModal({{$property}}, '{{$property->getFirstMediaUrl('property-photos')}}')">
+                                                    <x-heroicon-s-trash class="w-[25px]" />
+                                                </a>
+                                            @endif
                                         @endif
                                     @endif
                                 </div>
