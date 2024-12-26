@@ -6,6 +6,7 @@ use App\Models\Property;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Illuminate\Support\Facades\Auth;
 
 class AgentPropertyTable extends Component
 {
@@ -24,6 +25,10 @@ class AgentPropertyTable extends Component
                 $query->orderBy('order_column', 'asc')
                     ->limit(1);
             }]);
+
+        if(Auth::user()->hasRole('agent')) {
+            $prop = $prop->where('status', '=', 'Unavailable');
+        }
 
         return $prop->paginate(5);
     }
