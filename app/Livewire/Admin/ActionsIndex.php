@@ -47,6 +47,7 @@ class ActionsIndex extends Component
 
     public function submitForm()
     {
+        $this->resetPage();
         logger('Form submitted');
         // this action here will just change the values of component properties, and when those change
         // by default the computed property will update.
