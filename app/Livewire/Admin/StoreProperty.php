@@ -307,6 +307,18 @@ class StoreProperty extends Component
         logger('city: '.$this->city);
         logger('street: '.$this->street);
         logger('country: '.$this->country);
+
+        if($this->city) {
+            $this->resetErrorBag(['city']);
+        } else {
+            $this->city = null;
+        }
+
+        if($this->street) {
+            $this->resetErrorBag(['street']);
+        } else {
+            $this->street = null;
+        }
     }
 
     public function storeProperty()
