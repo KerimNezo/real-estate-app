@@ -66,7 +66,7 @@ class PropertyObserver
             $action->message = 'Property was edited by Admin';
         } elseif (Auth::check() && Auth::user()->hasRole('agent')) {
             $name = Auth::user()->name;
-            $action->message = "Property was removed from the system by agent: {$name}";
+            $action->message = "Property was edited by agent: {$name}";
         } else {
             $action->message = 'Property was edited by seeder';
         }
