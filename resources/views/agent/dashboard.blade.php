@@ -18,6 +18,10 @@
                 <!-- Admin dashboard page content -->
                 <div class="flex flex-col items-center justify-center mx-auto bg-gray-900 rounded-lg w-[90%] gap-4">
                     <p>Dashboard</p>
+
+                    <div class="py-8 text-xl text-center px-[6%] w-full">
+                        <livewire:admin.agent-property-table :agent="Auth::user()" />
+                    </div>
                 </div>
             </div>
         </div>
