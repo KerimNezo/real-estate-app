@@ -6,15 +6,26 @@
             <div class="flex-grow flex items-center justify-center px-[6%] py-4 mb-5">
                 <div class="text-center">
                     <img src="{{ asset('photos/icons/no-result.svg') }}" alt="No results" class="w-[100px] mx-auto">
-                    <p class="pt-[40px]">It seems like this agent has no properties under their name....</p>
+                    @if (Auth::user()->hasRole('admin'))
+                        <p class="pt-[40px]">It seems like this agent has no properties under their name....</p>
+                    @else
+                        <p class="pt-[40px]">It seems like you don't have any properties waiting for update....</p>
+                    @endif
                 </div>
             </div>
         @else
             <!-- Agent Properties -->
             <div>
-                <p class="pb-2 pl-4 text-sm text-left">
-                    Agent's properties
-                </p>
+
+                @if (Auth::user()->hasRole('admin'))
+                    <p class="pb-2 pl-4 text-sm text-left">
+                        Agent's properties
+                    </p>
+                @else
+                    <p class="pb-2 pl-4 text-sm text-left">
+                        Your pending properties
+                    </p>
+                @endif
             </div>
 
             <div class="w-full overflow-x-auto">
@@ -124,18 +135,30 @@
                             <!-- Status -->
                             <td id="table-data">
                                 @if ($property->status == 'Available')
-                                        <div id="type" class="mb-auto mr-auto bg-green-600 rounded-[5px] w-[90px] h-8 text-sm font-bold flex items-center justify-center">
-                                            <div class="align-middle">
-                                                {{ $property->status }}
-                                            </div>
+                                    <div id="type" class="mb-auto mr-auto bg-green-600 py-1 px-2 rounded-[5px] w-[90px] h-8 text-sm font-bold flex items-center justify-center">
+                                        <div class="align-middle">
+                                            {{ $property->status }}
                                         </div>
-                                    @else
-                                        <div id="type" class="mb-auto mr-auto bg-red-600 rounded-[5px] w-[90px] h-8 text-sm font-bold flex items-center justify-center">
-                                            <div class="align-middle">
-                                                {{ $property->status }}
-                                            </div>
+                                    </div>
+                                @elseif ($property->status == 'Removed')
+                                    <div id="type" class="mb-auto mr-auto bg-gray-600 py-1 px-2 rounded-[5px] w-[90px] h-8 text-sm font-bold flex items-center justify-center">
+                                        <div class="align-middle">
+                                            {{ $property->status }}
                                         </div>
-                                    @endif
+                                    </div>
+                                @elseif ($property->status == 'Unavailable')
+                                    <div id="type" class="mb-auto mr-auto bg-blue-600 py-1 px-2 rounded-[5px] w-[90px] h-8 text-sm font-bold flex items-center justify-center">
+                                        <div class="align-middle">
+                                            {{ $property->status }}
+                                        </div>
+                                    </div>
+                                @else
+                                    <div id="type" class="mb-auto mr-auto bg-red-600 rounded-[5px] w-[90px] h-8 text-sm font-bold flex items-center justify-center">
+                                        <div class="align-middle">
+                                            {{ $property->status }}
+                                        </div>
+                                    </div>
+                                @endif
                             </td>
 
                             <!-- Row options -->
