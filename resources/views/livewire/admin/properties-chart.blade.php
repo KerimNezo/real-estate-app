@@ -5,7 +5,7 @@
 
     <div class="w-full bg-gray-800 rounded-[10px] p-4" wire:loading.class="opacity-30">
         <div class="pb-4">
-            <select wire:change="updatePieChart($event.target.value)" name="PropertyTypeChart" id="property-type-chart" class="bg-gray-900 rounded-[10px] pl-2 p-1 pr-8 text-sm">
+            <select wire:change="updateChartData($event.target.value)" name="PropertyTypeChart" id="property-type-chart" class="bg-gray-900 rounded-[10px] pl-2 p-1 pr-8 text-sm">
                 <option selected value="Available">Available</option>
                 <option value="Sold">Sold</option>
                 <option value="Rented">Rented</option>
@@ -14,89 +14,123 @@
             </select>
         </div>
 
-        <div id="propertiesChart" class="ct-chart h-[300px] w-full mb-auto"></div>
+        <div id="propertiesChart" class="ct-chart h-[300px] w-full mb-auto flex justify-center items-center" wire:ignore></div>
     </div>
 
     @script
         <script>
             $wire.on('updateDonutChart', (data) => {
+    const chartContainer = document.getElementById('propertiesChart');
 
-                var donutChartData = {
-                    labels: data[0].labels,
-                    series: data[0].series,
-                };
+    // Clear previous chart content
+    if (chartContainer) {
+        chartContainer.innerHTML = ''; // Reset the container
+    }
 
-                let responsiveOptions = [
-                    ['screen and (min-width: 640px)', {
-                        chartPadding: 30,
-                        labelOffset: 20,
-                        labelDirection: 'explode',
-                        labelInterpolationFnc: function(value, index) {
-                            var total = donutChartData.series.reduce((a, b) => a + b, 0);
-                            var percentage = Math.round((donutChartData.series[index] / total) * 100) + '%';
-                            return value + ' (' + percentage + ')';  // Display label with percentage
-                        }
-                    }],
-                    ['screen and (min-width: 1024px)', {
-                        labelOffset: 70,
-                        chartPadding: 40,
-                        labelInterpolationFnc: function(value, index) {
-                            var total = donutChartData.series.reduce((a, b) => a + b, 0);
-                            var percentage = Math.round((donutChartData.series[index] / total) * 100) + '%';
-                            return value + ' (' + percentage + ')'; // Display label with percentage
-                        }
-                    }]
-                ];
+    // Log the incoming data for debugging
+    console.log('Incoming Data:', data);
 
-                var donutChart = new Chartist.Pie('.ct-chart', donutChartData, {
-                    donut: true,
-                    donutWidth: 100,
-                    startAngle: 0,
-                    showLabel: true,
-                    chartPadding: 10,
-                }, responsiveOptions);
+    // If there's no data, display a message and exit
+    if (data[0].labels.length === 0 || data[0].series.length === 0) {
+        chartContainer.innerHTML = '<p class="text-center text-gray-500">No data available for the selected properties</p>';
+        console.log('No data available, displaying message');
+        return;
+    }
 
-                donutChart.on('draw', function (data) {
-                    if (data.type === 'slice') {
-                        const node = data.element.getNode();
-                        if (!node || typeof node.getTotalLength !== 'function') {
-                            console.error('SVG node not valid or getTotalLength not supported.');
-                            return;
-                        }
+    // Define chart data based on the incoming data
+    const donutChartData = {
+        labels: data[0].labels,
+        series: data[0].series,
+    };
 
-                        const pathLength = node.getTotalLength();
-                        data.element.attr({
-                            'stroke-dasharray': `${pathLength}px ${pathLength}px`,
-                            'stroke-dashoffset': `${-pathLength}px`,
-                        });
+    // Log the chart data
+    console.log('Chart Data:', donutChartData);
 
-                        const animationDefinition = {
-                            'stroke-dashoffset': {
-                                id: 'anim' + data.index,
-                                dur: 1000,
-                                from: -pathLength + 'px',
-                                to: '0px',
-                                easing: Chartist.Svg.Easing.easeOutQuint,
-                                fill: 'freeze',
-                            },
-                        };
+    // Define responsive options
+    const responsiveOptions = [
+        ['screen and (min-width: 640px)', {
+            chartPadding: 30,
+            labelOffset: 20,
+            labelDirection: 'explode',
+            labelInterpolationFnc: function(value, index) {
+                const total = donutChartData.series.reduce((a, b) => a + b, 0);
+                const percentage = Math.round((donutChartData.series[index] / total) * 100) + '%';
+                return value + ' (' + percentage + ')';
+            }
+        }],
+        ['screen and (min-width: 1024px)', {
+            labelOffset: 70,
+            chartPadding: 40,
+            labelInterpolationFnc: function(value, index) {
+                const total = donutChartData.series.reduce((a, b) => a + b, 0);
+                const percentage = Math.round((donutChartData.series[index] / total) * 100) + '%';
+                return value + ' (' + percentage + ')';
+            }
+        }]
+    ];
 
-                        if (data.index !== 0) {
-                            animationDefinition['stroke-dashoffset'].begin = 'anim' + (data.index - 1) + '.end';
-                        }
+    // Initialize the donut chart
+    const donutChart = new Chartist.Pie('.ct-chart', donutChartData, {
+        donut: true,
+        donutWidth: 100,
+        startAngle: 0,
+        showLabel: true,
+        chartPadding: 10,
+    }, responsiveOptions);
 
-                        data.element.animate(animationDefinition, false);
-                    }
-                });
+    donutChart.on('draw', function(data) {
+        if (data.type === 'slice') {
+            console.log('Animating slice:', data);
 
-                let timerId;
+            const node = data.element.getNode();
+            if (!node || typeof node.getTotalLength !== 'function') {
+                console.error('SVG node not valid or getTotalLength not supported.');
+                return;
+            }
 
-                donutChart.on('created', function () {
-                    if (timerId) {
-                        clearTimeout(timerId);
-                    }
-                });
+            const pathLength = node.getTotalLength();
+            data.element.attr({
+                'stroke-dasharray': `${pathLength}px ${pathLength}px`,
+                'stroke-dashoffset': `${-pathLength}px`,
             });
+
+            const animationDefinition = {
+                'stroke-dashoffset': {
+                    id: 'anim' + data.index,
+                    dur: 1000,
+                    from: -pathLength + 'px',
+                    to: '0px',
+                    easing: Chartist.Svg.Easing.easeOutQuint,
+                    fill: 'freeze',
+                },
+            };
+
+            if (data.index !== 0) {
+                animationDefinition['stroke-dashoffset'].begin = 'anim' + (data.index - 1) + '.end';
+            }
+
+            setTimeout(() => {
+                data.element.animate(animationDefinition, false);
+            }, data.index * 200); // Delay each slice animation by a small amount
+        }
+    });
+
+    donutChart.on('created', function() {
+        console.log('Chart created successfully.');
+
+        // Ensure the chart fades in after being created
+        const chartElement = document.querySelector('.ct-chart');
+        if (chartElement) {
+            chartElement.style.opacity = 0;
+            setTimeout(() => {
+                chartElement.style.transition = 'opacity 0.3s';
+                chartElement.style.opacity = 1;
+            }, 100);
+        }
+    });
+});
+
+
         </script>
     @endscript
 </div>
