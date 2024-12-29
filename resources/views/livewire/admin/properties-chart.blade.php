@@ -20,117 +20,115 @@
     @script
         <script>
             $wire.on('updateDonutChart', (data) => {
-    const chartContainer = document.getElementById('propertiesChart');
+                const chartContainer = document.getElementById('propertiesChart');
 
-    // Clear previous chart content
-    if (chartContainer) {
-        chartContainer.innerHTML = ''; // Reset the container
-    }
+                // Clear previous chart content
+                if (chartContainer) {
+                    chartContainer.innerHTML = ''; // Reset the container
+                }
 
-    // Log the incoming data for debugging
-    console.log('Incoming Data:', data);
+                // Log the incoming data for debugging
+                console.log('Incoming Data:', data);
 
-    // If there's no data, display a message and exit
-    if (data[0].labels.length === 0 || data[0].series.length === 0) {
-        chartContainer.innerHTML = '<p class="text-center text-gray-500">No data available for the selected properties</p>';
-        console.log('No data available, displaying message');
-        return;
-    }
+                // If there's no data, display a message and exit
+                if (data[0].labels.length === 0 || data[0].series.length === 0) {
+                    chartContainer.innerHTML = '<p class="text-center text-gray-500">No data available for the selected properties</p>';
+                    console.log('No data available, displaying message');
+                    return;
+                }
 
-    // Define chart data based on the incoming data
-    const donutChartData = {
-        labels: data[0].labels,
-        series: data[0].series,
-    };
+                // Define chart data based on the incoming data
+                const donutChartData = {
+                    labels: data[0].labels,
+                    series: data[0].series,
+                };
 
-    // Log the chart data
-    console.log('Chart Data:', donutChartData);
+                // Log the chart data
+                console.log('Chart Data:', donutChartData);
 
-    // Define responsive options
-    const responsiveOptions = [
-        ['screen and (min-width: 640px)', {
-            chartPadding: 30,
-            labelOffset: 20,
-            labelDirection: 'explode',
-            labelInterpolationFnc: function(value, index) {
-                const total = donutChartData.series.reduce((a, b) => a + b, 0);
-                const percentage = Math.round((donutChartData.series[index] / total) * 100) + '%';
-                return value + ' (' + percentage + ')';
-            }
-        }],
-        ['screen and (min-width: 1024px)', {
-            labelOffset: 70,
-            chartPadding: 40,
-            labelInterpolationFnc: function(value, index) {
-                const total = donutChartData.series.reduce((a, b) => a + b, 0);
-                const percentage = Math.round((donutChartData.series[index] / total) * 100) + '%';
-                return value + ' (' + percentage + ')';
-            }
-        }]
-    ];
+                // Define responsive options
+                const responsiveOptions = [
+                    ['screen and (min-width: 640px)', {
+                        chartPadding: 30,
+                        labelOffset: 20,
+                        labelDirection: 'explode',
+                        labelInterpolationFnc: function(value, index) {
+                            const total = donutChartData.series.reduce((a, b) => a + b, 0);
+                            const percentage = Math.round((donutChartData.series[index] / total) * 100) + '%';
+                            return value + ' (' + percentage + ')';
+                        }
+                    }],
+                    ['screen and (min-width: 1024px)', {
+                        labelOffset: 70,
+                        chartPadding: 40,
+                        labelInterpolationFnc: function(value, index) {
+                            const total = donutChartData.series.reduce((a, b) => a + b, 0);
+                            const percentage = Math.round((donutChartData.series[index] / total) * 100) + '%';
+                            return value + ' (' + percentage + ')';
+                        }
+                    }]
+                ];
 
-    // Initialize the donut chart
-    const donutChart = new Chartist.Pie('.ct-chart', donutChartData, {
-        donut: true,
-        donutWidth: 100,
-        startAngle: 0,
-        showLabel: true,
-        chartPadding: 10,
-    }, responsiveOptions);
+                // Initialize the donut chart
+                const donutChart = new Chartist.Pie('.ct-chart', donutChartData, {
+                    donut: true,
+                    donutWidth: 100,
+                    startAngle: 0,
+                    showLabel: true,
+                    chartPadding: 10,
+                }, responsiveOptions);
 
-    donutChart.on('draw', function(data) {
-        if (data.type === 'slice') {
-            console.log('Animating slice:', data);
+                donutChart.on('draw', function(data) {
+                    if (data.type === 'slice') {
+                        console.log('Animating slice:', data);
 
-            const node = data.element.getNode();
-            if (!node || typeof node.getTotalLength !== 'function') {
-                console.error('SVG node not valid or getTotalLength not supported.');
-                return;
-            }
+                        const node = data.element.getNode();
+                        if (!node || typeof node.getTotalLength !== 'function') {
+                            console.error('SVG node not valid or getTotalLength not supported.');
+                            return;
+                        }
 
-            const pathLength = node.getTotalLength();
-            data.element.attr({
-                'stroke-dasharray': `${pathLength}px ${pathLength}px`,
-                'stroke-dashoffset': `${-pathLength}px`,
+                        const pathLength = node.getTotalLength();
+                        data.element.attr({
+                            'stroke-dasharray': `${pathLength}px ${pathLength}px`,
+                            'stroke-dashoffset': `${-pathLength}px`,
+                        });
+
+                        const animationDefinition = {
+                            'stroke-dashoffset': {
+                                id: 'anim' + data.index,
+                                dur: 1000,
+                                from: -pathLength + 'px',
+                                to: '0px',
+                                easing: Chartist.Svg.Easing.easeOutQuint,
+                                fill: 'freeze',
+                            },
+                        };
+
+                        if (data.index !== 0) {
+                            animationDefinition['stroke-dashoffset'].begin = 'anim' + (data.index - 1) + '.end';
+                        }
+
+                        setTimeout(() => {
+                            data.element.animate(animationDefinition, false);
+                        }, data.index * 200); // Delay each slice animation by a small amount
+                    }
+                });
+
+                donutChart.on('created', function() {
+                    console.log('Chart created successfully.');
+
+                    // Ensure the chart fades in after being created
+                    const chartElement = document.querySelector('.ct-chart');
+                    if (chartElement) {
+                        chartElement.style.opacity = 0;
+                        setTimeout(() => {
+                            chartElement.style.transition = 'opacity 0.3s';
+                            chartElement.style.opacity = 1;
+                        }, 100);
+                    }
+                });
             });
-
-            const animationDefinition = {
-                'stroke-dashoffset': {
-                    id: 'anim' + data.index,
-                    dur: 1000,
-                    from: -pathLength + 'px',
-                    to: '0px',
-                    easing: Chartist.Svg.Easing.easeOutQuint,
-                    fill: 'freeze',
-                },
-            };
-
-            if (data.index !== 0) {
-                animationDefinition['stroke-dashoffset'].begin = 'anim' + (data.index - 1) + '.end';
-            }
-
-            setTimeout(() => {
-                data.element.animate(animationDefinition, false);
-            }, data.index * 200); // Delay each slice animation by a small amount
-        }
-    });
-
-    donutChart.on('created', function() {
-        console.log('Chart created successfully.');
-
-        // Ensure the chart fades in after being created
-        const chartElement = document.querySelector('.ct-chart');
-        if (chartElement) {
-            chartElement.style.opacity = 0;
-            setTimeout(() => {
-                chartElement.style.transition = 'opacity 0.3s';
-                chartElement.style.opacity = 1;
-            }, 100);
-        }
-    });
-});
-
-
         </script>
     @endscript
 </div>
