@@ -19,10 +19,12 @@
 
     @script
         <script>
+            let wasEmpty = false;
+
             $wire.on('updateDonutChart', (data) => {
                 const chartContainer = document.getElementById('propertiesChart');
 
-                // Clear previous chart content
+                // Clear previous chart content and remove event listeners
                 if (chartContainer) {
                     chartContainer.innerHTML = ''; // Reset the container
                 }
@@ -34,6 +36,7 @@
                 if (data[0].labels.length === 0 || data[0].series.length === 0) {
                     chartContainer.innerHTML = '<p class="text-center text-gray-500">No data available for the selected properties</p>';
                     console.log('No data available, displaying message');
+                    wasEmpty = true;
                     return;
                 }
 
@@ -97,7 +100,7 @@
                         const animationDefinition = {
                             'stroke-dashoffset': {
                                 id: 'anim' + data.index,
-                                dur: 1000,
+                                dur: 1500,
                                 from: -pathLength + 'px',
                                 to: '0px',
                                 easing: Chartist.Svg.Easing.easeOutQuint,
@@ -111,23 +114,17 @@
 
                         setTimeout(() => {
                             data.element.animate(animationDefinition, false);
-                        }, data.index * 200); // Delay each slice animation by a small amount
+                        });
                     }
                 });
 
-                donutChart.on('created', function() {
-                    console.log('Chart created successfully.');
-
-                    // Ensure the chart fades in after being created
-                    const chartElement = document.querySelector('.ct-chart');
-                    if (chartElement) {
-                        chartElement.style.opacity = 0;
-                        setTimeout(() => {
-                            chartElement.style.transition = 'opacity 0.3s';
-                            chartElement.style.opacity = 1;
-                        }, 100);
-                    }
-                });
+                // Conditionally force a redraw if the previous state was empty
+                if (wasEmpty) {
+                    setTimeout(() => {
+                        donutChart.update();
+                        wasEmpty = false;
+                    }, 100);
+                }
             });
         </script>
     @endscript
