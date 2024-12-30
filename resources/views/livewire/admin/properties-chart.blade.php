@@ -122,10 +122,11 @@
                 if (wasEmpty) {
                     setTimeout(() => {
                         donutChart.update();
-                        wasEmpty = false;
-                    }, 10);
+                    }, 5);
                 }
             });
+
+            wasEmpty = false;
         </script>
     @endscript
 </div>
