@@ -35,7 +35,7 @@
 
                             <!-- Refresh Table Button-->
                             <th class="pr-2">
-                                <button wire:click="refreshActions()" class="p-1 ml-auto bg-gray-700 rounded-xl">
+                                <button wire:loading.attr="disabled" wire:click="refreshActions()" class="p-1 ml-auto bg-gray-700 rounded-xl">
                                     <x-ionicon-refresh-outline class="w-5" />
                                 </button>
                             </th>
