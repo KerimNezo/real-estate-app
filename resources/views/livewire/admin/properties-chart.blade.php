@@ -20,6 +20,7 @@
     @script
         <script>
             let wasEmpty = false;
+            let donutChart = null;
 
             $wire.on('updateDonutChart', (data) => {
                 const chartContainer = document.getElementById('propertiesChart');
@@ -69,8 +70,7 @@
                             const percentage = Math.round((donutChartData.series[index] / total) * 100) + '%';
                             return value + ' (' + percentage + ')';
                         }
-                    }]
-                ];
+                    }]];
 
                 // Initialize the donut chart
                 const donutChart = new Chartist.Pie('.ct-chart', donutChartData, {
@@ -100,7 +100,7 @@
                         const animationDefinition = {
                             'stroke-dashoffset': {
                                 id: 'anim' + data.index,
-                                dur: 1500,
+                                dur: 2000,
                                 from: -pathLength + 'px',
                                 to: '0px',
                                 easing: Chartist.Svg.Easing.easeOutQuint,
@@ -123,7 +123,7 @@
                     setTimeout(() => {
                         donutChart.update();
                         wasEmpty = false;
-                    }, 100);
+                    }, 10);
                 }
             });
         </script>
