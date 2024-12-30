@@ -48,7 +48,7 @@
                             <tr class="border-t border-gray-700" wire:key="1">
                                 <!-- Action Id -->
                                 <td class="px-4 py-3">
-                                    <div class="flex items-center justify-start">
+                                    <div class="flex items-center justify-start" wire:loading.remove>
                                         <a href="{{ route('dashboard') }}">
                                             <p class="text-sm text-left hover:text-white">
                                                 {{ $action->id }}
@@ -59,7 +59,7 @@
 
                                 <!-- Agent name -->
                                 <td class="px-4 py-3">
-                                    <div class="flex items-center justify-start">
+                                    <div class="flex items-center justify-start" wire:loading.remove>
                                         <a href="{{ route('single-agent', ['user' => $action->user])}}">
                                             <p class="text-sm text-left hover:text-white">
                                                 {{ $action->user->name }}
@@ -98,7 +98,7 @@
                                 <!-- Options-->
                                 <td class="px-4 py-3">
                                     <div class="flex items-center justify-start">
-                                        <a wire:loading.class="hidden" href="{{ route('admin-single-action', ['id' => $action->id]) }}" class="hover:text-red-400">
+                                        <a wire:loading.remove href="{{ route('admin-single-action', ['id' => $action->id]) }}" class="hover:text-red-400">
                                             <x-carbon-view class="w-[25px]"/>
                                         </a>
                                     </div>
