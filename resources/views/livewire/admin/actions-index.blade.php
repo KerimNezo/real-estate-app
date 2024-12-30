@@ -92,7 +92,7 @@
                                     <!-- Action Id -->
                                     <td class="px-4 py-3">
                                         <div class="flex items-center justify-start">
-                                            <a href="{{ route('dashboard') }}">
+                                            <a wire:loading.class="hidden" href="{{ route('admin-single-action', ['id' => $action->id]) }}"">
                                                 <p class="text-sm text-left hover:text-white">
                                                     {{ $action->id }}
                                                 </p>
@@ -103,7 +103,7 @@
                                     <!-- Agent name -->
                                     <td class="px-4 py-3">
                                         <div class="flex items-center justify-start">
-                                            <a href="{{ route('single-agent', ['user' => $action->user])}}">
+                                            <a wire:loading.class="hidden" href="{{ route('single-agent', ['user' => $action->user])}}">
                                                 <p class="text-sm text-left hover:text-white">
                                                     {{ $action->user->name }}
                                                 </p>
@@ -121,7 +121,7 @@
                                     <!-- Property Name -->
                                     <td class="px-4 py-3">
                                         <div class="flex items-center sjustify-start">
-                                            <a href="{{ route('admin-single-property', [ 'user' => $action->property->user_id, 'property' => $action->property])}}">
+                                            <a wire:loading.class="hidden" href="{{ route('admin-single-property', [ 'user' => $action->property->user_id, 'property' => $action->property])}}">
                                                 <p class="text-sm text-left hover:text-white">
                                                     {{ $action->property->name }}
                                                 </p>
@@ -141,7 +141,7 @@
                                     <!-- Options-->
                                     <td class="px-4 py-3">
                                         <div class="flex items-center justify-start">
-                                            <a href="{{ route('admin-single-action', ['id' => $action->id]) }}" class="hover:text-red-400">
+                                            <a wire:loading.class="hidden" href="{{ route('admin-single-action', ['id' => $action->id]) }}" class="hover:text-red-400">
                                                 <x-carbon-view class="w-[25px]"/>
                                             </a>
                                         </div>

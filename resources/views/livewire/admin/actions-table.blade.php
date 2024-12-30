@@ -98,7 +98,7 @@
                                 <!-- Options-->
                                 <td class="px-4 py-3">
                                     <div class="flex items-center justify-start">
-                                        <a href="{{ route('admin-single-action', ['id' => $action->id]) }}" class="hover:text-red-400">
+                                        <a wire:loading.class="hidden" href="{{ route('admin-single-action', ['id' => $action->id]) }}" class="hover:text-red-400">
                                             <x-carbon-view class="w-[25px]"/>
                                         </a>
                                     </div>
