@@ -5,7 +5,7 @@
 
             <!-- new property button -->
             @if (Auth::user()->hasRole('admin'))
-                <a href="{{ route('new-property') }}" class="bg-green-600 py-2 px-4 rounded-[5px] hover:bg-green-500 mb-2 lg:mb-0">
+                <a wire href="{{ route('new-property') }}" class="bg-green-600 py-2 px-4 rounded-[5px] hover:bg-green-500 mb-2 lg:mb-0">
                     <p class="text-base text-center">Add new</p>
                 </a>
             @else
@@ -108,37 +108,43 @@
                         <tr class="border-t border-gray-700" wire:key="{{ $property->id }}">
                             <!-- Image -->
                             <td id="table-data">
-                                <div class="flex items-center justify-start">
-                                    <p>
-                                        @if(Auth::user()->hasRole('admin'))
-                                            <a href=" {{ route('admin-single-property', ['property' => $property, 'user' => $property->user])}}">
-                                                @if ($property->getMedia('property-photos')->isNotEmpty())
-                                                    <img src="{{ $property->getFirstMediaUrl('property-photos') }}" alt="Property Image" class="w-[100px] h-[75px] object-cover rounded-lg">
-                                                @else
-                                                    <div class="flex items-center justify-center w-[100px]">
-                                                        <x-ionicon-image-sharp class="h-[75px] mx-auto"/>
-                                                    </div>
-                                                @endif
-                                            </a>
-                                        @else
-                                            <a href=" {{ route('agent-single-property', ['property' => $property])}}">
-                                                @if ($property->getMedia('property-photos')->isNotEmpty())
-                                                    <img src="{{ $property->getFirstMediaUrl('property-photos') }}" alt="Property Image" class="w-[100px] h-[75px] object-cover rounded-lg">
-                                                @else
-                                                    <div class="flex items-center justify-center w-[100px]">
-                                                        <x-ionicon-image-sharp class="h-[75px] mx-auto"/>
-                                                    </div>
-                                                @endif
-                                            </a>
-                                        @endif
+                                <div class="flex items-center justify-start" wire:loading.remove>
+                                    @if(Auth::user()->hasRole('admin'))
+                                        <a href=" {{ route('admin-single-property', ['property' => $property, 'user' => $property->user])}}">
+                                            @if ($property->getMedia('property-photos')->isNotEmpty())
+                                                <img src="{{ $property->getFirstMediaUrl('property-photos') }}" alt="Property Image" class="w-[100px] h-[75px] object-cover rounded-lg">
+                                            @else
+                                                <div class="flex items-center justify-center w-[100px]">
+                                                    <x-ionicon-image-sharp class="h-[75px] mx-auto"/>
+                                                </div>
+                                            @endif
+                                        </a>
+                                    @else
+                                        <a href=" {{ route('agent-single-property', ['property' => $property])}}">
+                                            @if ($property->getMedia('property-photos')->isNotEmpty())
+                                                <img src="{{ $property->getFirstMediaUrl('property-photos') }}" alt="Property Image" class="w-[100px] h-[75px] object-cover rounded-lg">
+                                            @else
+                                                <div class="flex items-center justify-center w-[100px]">
+                                                    <x-ionicon-image-sharp class="h-[75px] mx-auto"/>
+                                                </div>
+                                            @endif
+                                        </a>
+                                    @endif
+                                </div>
 
-                                    </p>
+                                {{-- placeholder image that displays while component is loading --}}
+                                <div wire:loading>
+                                    <a>
+                                        <div class="flex items-center justify-center w-[100px]">
+                                            <x-ionicon-image-sharp class="h-[75px] mx-auto"/>
+                                        </div>
+                                    </a>
                                 </div>
                             </td>
 
                             <!-- Agent name -->
                             <td id="table-data">
-                                <div class="flex items-center justify-start">
+                                <div class="flex items-center justify-start" wire:loading.remove>
                                     @if (Auth::user()->hasRole('admin'))
                                         <a href="{{ route('single-agent', $user = $property->user) }}">
                                             <p class="text-left hover:text-white">
@@ -150,6 +156,13 @@
                                             {{ $property->user->name }}
                                         </p>
                                     @endif
+                                </div>
+
+                                {{-- placeholder name that displays while component is loading --}}
+                                <div wire:loading>
+                                    <p class="text-left hover:text-white">
+                                        Agent name
+                                    </p>
                                 </div>
                             </td>
 
@@ -249,7 +262,7 @@
 
                             <!-- Row options-->
                             <td id="table-data">
-                                <div class="flex items-center justify-start gap-4">
+                                <div class="flex items-center justify-start gap-4" wire:loading.remove>
                                     @if (Auth::user()->hasRole('admin'))
                                         <a href="{{ route('admin-single-property', ['property' => $property, 'user' => $property->user]) }}" class="hover:text-red-400">
                                             <x-carbon-view class="w-[25px]"/>
@@ -283,6 +296,13 @@
                                             @endif
                                         @endif
                                     @endif
+                                </div>
+
+                                {{-- placeholder text that displays while component is loading --}}
+                                <div wire:loading>
+                                    <p>
+                                        Property options
+                                    </p>
                                 </div>
                             </td>
                         </tr>

@@ -46,12 +46,17 @@
 
                                 <!-- Agent Name -->
                                 <td id="table-data">
-                                    <div class="flex items-center justify-start">
+                                    <div class="flex items-center justify-start" wire:loading.remove>
                                         <a href="{{ route('single-agent', ['user' => $agent])}}">
                                             <p class="hover:text-white">
                                                 {{ $agent->name }}
                                             </p>
                                         </a>
+                                    </div>
+
+                                    {{-- placeholder text that displays while component is loading --}}
+                                    <div class="flex items-center justify-start" wire:loading>
+                                        Agent name
                                     </div>
                                 </td>
 
@@ -75,7 +80,7 @@
 
                                 <!-- Agent Property section -->
                                 <td id="table-data">
-                                    <div class="flex items-center justify-start">
+                                    <div class="flex items-center justify-start" wire:loading.remove>
                                         @if ($agent->properties->isNotEmpty()) <!-- Check if agent has properties -->
                                             <a href="/admin/agent/{{ $agent->id }}/#agent-properties">
                                                 <p>
@@ -88,10 +93,17 @@
                                             </div>
                                         @endif
                                     </div>
+
+                                    {{-- placeholder image that displays while component is loading --}}
+                                    <div class="flex items-center justify-start" wire:loading>
+                                        <div class="flex items-center justify-center w-[100px]">
+                                            <x-ionicon-image-sharp class="h-[75px] mx-auto"/>
+                                        </div>
+                                    </div>
                                 </td>
 
                                 <td id="table-data">
-                                    <div class="flex items-center justify-start gap-4">
+                                    <div class="flex items-center justify-start gap-4" wire:loading.remove>
                                         <a href="{{ route('single-agent', $user = $agent) }}" class="hover:text-red-400">
                                             <x-carbon-view class="w-[25px]"/>
                                         </a>
@@ -101,6 +113,11 @@
                                         <a onclick="openConfirmationModal({{$agent}}, '{{$agent->getFirstMediaUrl('agent-pfps')}}')" class="hover:text-red-400">
                                             <x-heroicon-s-trash class="w-[25px]" />
                                         </a>
+                                    </div>
+
+                                    {{-- placeholder text that displays while component is loading --}}
+                                    <div class="flex items-center justify-start gap-4" wire:loading>
+                                        Agent options
                                     </div>
                                 </td>
 
