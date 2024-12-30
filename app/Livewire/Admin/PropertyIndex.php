@@ -85,6 +85,15 @@ class PropertyIndex extends Component
             }
         }
 
+        /**
+         * WHERE status = 'Available'
+           AND lease_duration = 0
+           OR lease_duration IS NULL;
+
+           Ovako bi izgledao sql query koji smo napravili gore bili, bez grupisanja where i orWhere klauzi, što u biti znaci status available i lease 0 ILI lease null
+           Sto nije ono što želimo. Ovako kada grupišeš where i orWhere klauze, dobiješ status available ILI (lease 0 ili lease null) što želimo.
+         */
+
         // Added this to check if agent is using this class, to only display him available properties
         if (Auth::user()->hasRole('agent')) {
             $prop = $prop->where('status', '=', 'Available');
