@@ -5,7 +5,7 @@
 
     <div class="w-full bg-gray-800 rounded-[10px] p-4" wire:loading.class="opacity-30">
         <div class="pb-4">
-            <select wire:change="updateChartData($event.target.value)" name="PropertyTypeChart" id="property-type-chart" class="bg-gray-900 rounded-[10px] pl-2 p-1 pr-8 text-sm">
+            <select wire:loading.attr="disabled" wire:change="updateChartData($event.target.value)" name="PropertyTypeChart" id="property-type-chart" class="bg-gray-900 rounded-[10px] pl-2 p-1 pr-8 text-sm">
                 <option selected value="Available">Available</option>
                 <option value="Sold">Sold</option>
                 <option value="Rented">Rented</option>
