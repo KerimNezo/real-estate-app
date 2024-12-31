@@ -5,6 +5,7 @@ namespace App\Livewire\Admin;
 use App\Models\Property;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
+use Illuminate\Support\Facades\Auth;
 
 class PropertiesChart extends Component
 {
@@ -21,12 +22,22 @@ class PropertiesChart extends Component
 
         $this->series = [];
 
-        $data = Property::query()
-            ->withTrashed()
-            ->select('type_id', DB::raw('count(*) as total'))
-            ->where('status', $status)
-            ->groupBy('type_id')
-            ->get();
+        if(Auth::user()->hasRole('admin')){
+            $data = Property::query()
+                ->withTrashed()
+                ->select('type_id', DB::raw('count(*) as total'))
+                ->where('status', $status)
+                ->groupBy('type_id')
+                ->get();
+        } else {
+            $data = Property::query()
+                ->withTrashed()
+                ->select('type_id', DB::raw('count(*) as total'))
+                ->where('status', $status)
+                ->where('user_id', Auth::user()->id)
+                ->groupBy('type_id')
+                ->get();
+        }
 
         foreach ($data as $property) {
             if ($property->type_id === 1) {
