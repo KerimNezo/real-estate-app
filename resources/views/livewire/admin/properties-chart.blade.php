@@ -1,6 +1,12 @@
 <div>
     <div class="flex w-full p-1">
-        <p class="pl-3 mr-auto text-sm">Properties</p>
+        <p class="pl-3 mr-auto text-sm">
+            @if (Auth::user()->hasRole('agent'))
+                Your properties
+            @else
+                Properties
+            @endif
+        </p>
     </div>
 
     <div class="w-full bg-gray-800 rounded-[10px] p-4" wire:loading.class="opacity-30">
