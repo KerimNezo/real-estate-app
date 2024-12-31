@@ -22,12 +22,25 @@ class ProfitChart extends Component
 
     public function updateChartData($months)
     {
+        // Get current date and subtract months
+        $startDate = new \DateTime();
+        $startDate->modify("-$months month")->modify('first day of this month');
 
-        // Calculate the starting date (last X months from today)
-        $startDate = Carbon::now()->subMonths($months)->startOfMonth();
-        $endDate = Carbon::now()->endOfMonth();
+        $endDate = new \DateTime();
+        $endDate->modify('last day of this month');
 
-        // Query the actions table with a join on properties to get total price
+        // Prepare all months in range
+        $allMonths = collect();
+        $current = clone $startDate;
+
+        while ($current <= $endDate) {
+            // Format as 'Y-m'
+            $allMonths->push($current->format('Y-m'));
+            // Move to the next month
+            $current->modify('first day of next month');
+        }
+
+        // Query actions table
         $actions = Actions::query()
             ->join('properties', 'actions.property_id', '=', 'properties.id')
             ->whereBetween('actions.created_at', [$startDate, $endDate])
@@ -41,7 +54,15 @@ class ProfitChart extends Component
             ->orderBy('month')
             ->get();
 
-        // Process the data
+        // Reformat results into a structured collection
+        $groupedActions = $actions->groupBy('month')->map(function ($monthData) {
+            return [
+                'rented' => $monthData->firstWhere('name', 'rented')['total_price'] ?? 0,
+                'sold' => $monthData->firstWhere('name', 'sold')['total_price'] ?? 0,
+            ];
+        });
+
+        // Prepare the chart data
         $chartData = [
             'labels' => [],
             'rented' => [],
@@ -49,24 +70,32 @@ class ProfitChart extends Component
             'total' => [],
         ];
 
-        // Iterate over each month within the range
-        foreach (range(0, $months - 1) as $i) {
-            $currentMonth = Carbon::now()->subMonths($months - $i - 1)->format('Y-m');
-
-            $rentedPrice = $actions->where('month', $currentMonth)->where('name', 'rented')->sum('total_price');
-            $soldPrice = $actions->where('month', $currentMonth)->where('name', 'sold')->sum('total_price');
+        // Process each month
+        foreach ($allMonths as $month) {
+            $monthData = $groupedActions[$month] ?? ['rented' => 0, 'sold' => 0];
+            $rentedPrice = $monthData['rented'];
+            $soldPrice = $monthData['sold'];
             $totalPrice = $rentedPrice + $soldPrice;
 
-            // Add data for the current month
-            $chartData['labels'][] = Carbon::createFromFormat('Y-m', $currentMonth)->format('M'); // Use 'M' for short month name
+            // Extract month part
+            list($year, $monthNum) = explode("-", $month);
+            // Format month number to get the abbreviated month name
+            $monthLabel = date('M', strtotime("2024-$monthNum-01"));
+
+            // Populate chart data
+            $chartData['labels'][] = $monthLabel;
             $chartData['rented'][] = $rentedPrice;
             $chartData['sold'][] = $soldPrice;
             $chartData['total'][] = $totalPrice;
         }
 
-        logger($chartData);
-
-        $this->dispatch('updateLineChart', ['labels' => $chartData['labels'], 'totalSeries' => $chartData['total'], 'sellSeries' => $chartData['sold'], 'rentSeries' => $chartData['rented']]);
+        // Dispatch chart update event
+        $this->dispatch('updateLineChart', [
+            'labels' => $chartData['labels'],
+            'totalSeries' => $chartData['total'],
+            'sellSeries' => $chartData['sold'],
+            'rentSeries' => $chartData['rented'],
+        ]);
     }
 
     public function render()
