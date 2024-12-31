@@ -30,7 +30,7 @@
                         </div>
                     </div>
 
-                    <div class="w-full text-xl text-center">
+                    <div class="w-full pt-4 text-xl text-center">
                         <livewire:admin.agent-property-table :agent="Auth::user()" />
                     </div>
                 </div>

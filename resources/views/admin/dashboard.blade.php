@@ -31,7 +31,7 @@
                     </div>
 
                     <!-- Table display of most recent actions -->
-                    <div class="w-full">
+                    <div class="w-full pt-4">
                         <livewire:admin.actions-table />
                     </div>
                 </div>
