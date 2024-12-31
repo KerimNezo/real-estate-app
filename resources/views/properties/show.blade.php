@@ -2,8 +2,6 @@
     $mediaItems = $property->getMedia('property-photos');
     $photoCount = count($mediaItems);
 
-    $similarProperties = [$property, $property, $property];
-
     $price = number_format($property->price, 0, '.',',');
 
     $propertyOffer = is_null($property->lease_duration) || $property->lease_duration === 0 ? "FOR SELL" : "FOR RENT";
