@@ -55,14 +55,27 @@
                             <td id="table-data">
                                 <div class="flex items-center justify-start">
                                     <p>
-                                        <a href=" {{ route('admin-single-property', ['property' => $property, 'user' => $agent])}}">
-                                            @if ($property->getMedia('property-photos')->isNotEmpty())
-                                                <img src="{{ $property->getFirstMediaUrl('property-photos') }}" alt="Property Image" class="w-[100px] h-[75px] object-cover rounded-lg">
-                                            @else
-                                                <div class="flex items-center justify-center w-[100px]">
-                                                    <x-ionicon-image-sharp class="h-[75px] mx-auto"/>
-                                                </div>
-                                            @endif                                    </a>
+                                        @if(Auth::user()->hasRole('admin'))
+                                            <a href=" {{ route('admin-single-property', ['property' => $property, 'user' => $agent])}}">
+                                                @if ($property->getMedia('property-photos')->isNotEmpty())
+                                                    <img src="{{ $property->getFirstMediaUrl('property-photos') }}" alt="Property Image" class="w-[100px] h-[75px] object-cover rounded-lg">
+                                                @else
+                                                    <div class="flex items-center justify-center w-[100px]">
+                                                        <x-ionicon-image-sharp class="h-[75px] mx-auto"/>
+                                                    </div>
+                                                @endif
+                                            </a>
+                                        @else
+                                            <a href=" {{ route('agent-single-property', ['property' => $property])}}">
+                                                @if ($property->getMedia('property-photos')->isNotEmpty())
+                                                    <img src="{{ $property->getFirstMediaUrl('property-photos') }}" alt="Property Image" class="w-[100px] h-[75px] object-cover rounded-lg">
+                                                @else
+                                                    <div class="flex items-center justify-center w-[100px]">
+                                                        <x-ionicon-image-sharp class="h-[75px] mx-auto"/>
+                                                    </div>
+                                                @endif
+                                            </a>
+                                        @endif
                                     </p>
                                 </div>
                             </td>
