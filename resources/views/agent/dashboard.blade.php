@@ -17,9 +17,20 @@
             <div id="main-content" class="w-full py-6 bg-gray-900">
                 <!-- Admin dashboard page content -->
                 <div class="flex flex-col items-center justify-center mx-auto bg-gray-900 rounded-lg w-[90%] gap-4">
-                    <p>Dashboard</p>
+                    <!-- Charts -->
+                    <div class="flex flex-col w-full gap-8 lg:gap-4 lg:flex-row">
+                        <!-- Property Type Pie Chart -->
+                        <div class="flex flex-col w-full lg:w-1/2">
+                            <livewire:admin.properties-chart />
+                        </div>
 
-                    <div class="py-8 text-xl text-center px-[6%] w-full">
+                        <!-- Profit Line Chart -->
+                        <div class="flex flex-col w-full lg:w-1/2">
+                            <livewire:admin.profit-chart />
+                        </div>
+                    </div>
+
+                    <div class="w-full text-xl text-center">
                         <livewire:admin.agent-property-table :agent="Auth::user()" />
                     </div>
                 </div>
