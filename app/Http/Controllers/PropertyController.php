@@ -68,6 +68,7 @@ class PropertyController extends Controller
 
         return view('properties.show', [
             'property' => $property,
+            'similarProperties' => [$property, $property, $property],
         ]);
     }
 
