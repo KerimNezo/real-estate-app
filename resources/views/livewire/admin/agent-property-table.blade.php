@@ -177,17 +177,39 @@
                             <!-- Row options -->
                             <td id="table-data">
                                 <div class="flex items-center justify-start gap-4">
-                                    <a href="{{ route('admin-single-property', ['property' => $property, 'user' => $property->user]) }}" class="hover:text-red-400">
-                                        <x-carbon-view class="w-[25px]"/>
-                                    </a>
+                                    @if (Auth::user()->hasRole('admin'))
+                                        <a href="{{ route('admin-single-property', ['property' => $property, 'user' => $property->user]) }}" class="hover:text-red-400">
+                                            <x-carbon-view class="w-[25px]"/>
+                                        </a>
+                                    @else
+                                        <a href="{{ route('agent-single-property', ['property' => $property]) }}" class="hover:text-red-400">
+                                            <x-carbon-view class="w-[25px]"/>
+                                        </a>
+                                    @endif
 
-                                    <a href="{{ route('edit-property', $property) }}" class="hover:text-red-400">
-                                        <x-feathericon-edit class="w-[25px] h-[25px]" />
-                                    </a>
+                                    @if ($property->status !== 'Removed')
+                                        @if ($property->status !== 'Sold' && $property->status !== 'Rented')
+                                            @if (Auth::user()->hasRole('admin'))
+                                                <a href="{{ route('edit-property', $property) }}" class="hover:text-red-400">
+                                                    <x-feathericon-edit class="w-[25px] h-[25px]" />
+                                                </a>
+                                            @elseif (Auth::user()->id === $property->user_id)
+                                                <a href="{{ route('agent-edit-property', $property) }}" class="hover:text-red-400">
+                                                    <x-feathericon-edit class="w-[25px] h-[25px]" />
+                                                </a>
+                                            @endif
+                                        @endif
 
-                                    <a class="hover:text-red-400" onclick="openConfirmationModal({{$property}}, '{{$property->getFirstMediaUrl('property-photos')}}')">
-                                        <x-heroicon-s-trash class="w-[25px]" />
-                                    </a>
+                                        @if (Auth::user()->hasRole('admin'))
+                                            @if ($property->status === 'Unavailable' || $property->status === 'Sold' || $property->status === 'Rented')
+
+                                            @else
+                                                <a class="hover:text-red-400" onclick="openConfirmationModal({{$property}}, '{{$property->getFirstMediaUrl('property-photos')}}')">
+                                                    <x-heroicon-s-trash class="w-[25px]" />
+                                                </a>
+                                            @endif
+                                        @endif
+                                    @endif
                                 </div>
                             </td>
                         </tr>
