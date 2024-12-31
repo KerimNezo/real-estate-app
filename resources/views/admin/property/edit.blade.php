@@ -11,7 +11,11 @@
         </div>
 
         <div class="flex w-full pt-[100px] flex-grow overflow-hidden">
-            @include('components.sidebar-admin')
+            @if (Auth::user()->hasRole('admin'))
+                @include('components.sidebar-admin')
+            @else
+                @include('components.sidebar-agent')
+            @endif
 
             <!-- Main content -->
             <div id="main-content" class="flex flex-col w-full overflow-hidden bg-gray-900">
