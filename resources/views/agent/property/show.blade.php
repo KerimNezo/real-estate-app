@@ -245,17 +245,6 @@
             previousButton.classList.remove('hidden');
         }
 
-        function nextImage() {
-            if (currentIndex === 1) {
-                previousButton.classList.remove('hidden');
-            }
-            currentIndex = currentIndex + 1
-            document.getElementById('modalImage').src = mediaUrls[currentIndex];
-            if (currentIndex === photoCount) {
-                nextButton.classList.add('hidden');
-            }
-        }
-
         document.addEventListener('keydown', function(event) {
             // Check if the right arrow key is pressed
             if (event.key === "ArrowRight") {
@@ -266,14 +255,31 @@
             }
         });
 
+        function nextImage() {
+            if (currentIndex === 1) {
+                previousButton.classList.remove('hidden');
+            }
+
+            if (currentIndex !== photoCount) {
+                currentIndex = currentIndex + 1
+                document.getElementById('modalImage').src = mediaUrls[currentIndex];
+                if(currentIndex === photoCount){
+                    nextButton.classList.add('hidden');
+                }
+            }
+        }
+
         function prevImage() {
             if (currentIndex === photoCount) {
                 nextButton.classList.remove('hidden');
             }
-            currentIndex = currentIndex - 1
-            document.getElementById('modalImage').src = mediaUrls[currentIndex];
-            if(currentIndex === 1) {
-                previousButton.classList.add('hidden');
+
+            if(currentIndex !== 1) {
+                currentIndex = currentIndex - 1
+                document.getElementById('modalImage').src = mediaUrls[currentIndex];
+                if(currentIndex === 1){
+                    previousButton.classList.add('hidden');
+                }
             }
         }
     </script>
