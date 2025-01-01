@@ -96,7 +96,10 @@ class PropertyIndex extends Component
 
         // Added this to check if agent is using this class, to only display him available properties
         if (Auth::user()->hasRole('agent')) {
-            $prop = $prop->where('status', '=', 'Available');
+            $prop = $prop->where(function ($query) {
+                $query->where('status', '=', 'Available')
+                      ->orWhere('status', 'Unavailable');
+            });
         }
 
         $this->reset(['minPrice', 'maxPrice', 'assetLocation', 'assetTypeId', 'assetOfferId']);
