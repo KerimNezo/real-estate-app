@@ -71,26 +71,6 @@
                                             </td>
                                         </tr>
 
-                                        <tr class="w-full border-t border-gray-700">
-                                            <!-- key -->
-                                            <td class="px-4 py-4 text-base leading-6">
-                                                <div class="flex items-center justify-start">
-                                                    <p class="text-left w-36">
-                                                        User
-                                                    </p>
-                                                </div>
-                                            </td>
-
-                                            <!-- value -->
-                                            <td class="w-full px-4 py-4 text-base leading-6">
-                                                <div class="flex items-center justify-start">
-                                                    <p class="text-left">
-                                                        {{ $action->user->name}}
-                                                    </p>
-                                                </div>
-                                            </td>
-                                        </tr>
-
                                         @foreach ($actionData as $key=>$value)
                                             <tr class="w-full border-t border-gray-700">
                                                 <!-- key -->
@@ -109,7 +89,7 @@
                                                             @if ($key === 'created_at')
                                                                 {{ $value }} ({{ $action->created_at->diffForHumans()}})
                                                             @elseif ($key === 'name')
-                                                                {{ ucfirst($value) }}
+                                                                <x-action-name :name="$action->name" />
                                                             @else
                                                                 {{ $value }}
                                                             @endif
