@@ -21,7 +21,7 @@ class ActionsController extends Controller
 
         $actionData = $action->getAttributes();
 
-        unset($actionData['user_id'], $actionData['property_id']);
+        unset($actionData['user_id'], $actionData['id']);
 
         $actionData['created_at'] = Carbon::parse($action->created_at)->format('F j, Y \a\t g:i A');
 
