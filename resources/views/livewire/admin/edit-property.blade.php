@@ -183,19 +183,39 @@
                 </div>
 
                 <!-- Update Button -->
-                <form class="" wire:submit.prevent="saveProperty" enctype="multipart/form-data">
-                    @csrf
-                    <div class="pt-6 text-center">
-                        <button type="submit" wire:loading.class="opacity-75" class="px-6 py-2 text-white bg-blue-600 rounded-lg">
-                            Update Property
+
+                <div class="flex items-center justify-center gap-4 pt-6 text-center">
+                    <form class="flex w-full" wire:submit.prevent="saveProperty" enctype="multipart/form-data">
+                        @csrf
+                        <button type="submit" wire:loading.class="opacity-75" class="flex px-6 py-2 gap-2 text-white bg-blue-600 rounded-lg
+                                @if(Auth::user()->hasRole('admin') && $this->property->transaction_at === null) ml-auto @else mx-auto @endif">
+                            <p>Update Property</p>
 
                             {{-- wire:target="saveProperty --}}
-                            <div wire:loading>
-                                <img src="{{ asset('photos/spinner.svg') }}" wire:loading class="w-6 h-6"></img> <!-- SVG loading spinner -->
+                            <div wire:loading wire:target="saveProperty" class="flex items-center justify-center">
+                                <img src="{{ asset('photos/spinner.svg') }}" wire:loading class="w-5 h-5"></img> <!-- SVG loading spinner -->
                             </div>
                         </button>
-                    </div>
-                </form>
+                    </form>
+
+                    @if (Auth::user()->hasRole('admin') && $this->property->transaction_at === null)
+                        <form class="flex w-full" wire:submit.prevent="makeTransaction" enctype="multipart/form-data">
+                            @csrf
+                            <button type="submit" wire:loading.class="opacity-75" class="flex gap-2 px-6 py-2 mr-auto text-white bg-yellow-600 rounded-lg">
+                                @if ($this->property->lease_duration > 0)
+                                    <p>Rent property</p>
+                                @else
+                                    <p>Sell property</p>
+                                @endif
+
+                                {{-- wire:target="saveProperty --}}
+                                <div wire:loading wire:target="makeTransaction" class="flex items-center justify-center">
+                                    <img src="{{ asset('photos/spinner.svg') }}" wire:loading class="w-5 h-5"></img> <!-- SVG loading spinner -->
+                                </div>
+                            </button>
+                        </form>
+                    @endif
+                </div>
             </div>
         </div>
     </div>
