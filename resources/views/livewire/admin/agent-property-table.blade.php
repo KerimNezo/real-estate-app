@@ -9,7 +9,7 @@
                     @if (Auth::user()->hasRole('admin'))
                         <p class="pt-[40px]">It seems like this agent has no properties under their name....</p>
                     @else
-                        <p class="pt-[40px]">It seems like you don't have any properties waiting for update....</p>
+                        <p class="pt-[40px]">It seems like you don't have any properties waiting for an update....</p>
                     @endif
                 </div>
             </div>
