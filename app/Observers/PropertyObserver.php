@@ -4,6 +4,7 @@ namespace App\Observers;
 
 use App\Models\Actions;
 use App\Models\Property;
+use Illuminate\Notifications\Action;
 use Illuminate\Support\Facades\Auth;
 
 class PropertyObserver
@@ -31,18 +32,35 @@ class PropertyObserver
         $action->save();
     }
 
+    public function propertyEditedMessage(Actions $action) {
+        if (Auth::check() && Auth::user()->hasRole('admin')) {
+            $action->message = 'Property was edited by Admin';
+        } elseif (Auth::check() && Auth::user()->hasRole('agent')) {
+            $name = Auth::user()->name;
+            $action->message = "Property was edited by agent: {$name}";
+        } else {
+            $action->message = 'Property was edited by seeder';
+        }
+    }
+
+
     /**
      * Handle the Property "updated" event.
      */
     public function updated(Property $property): void
     {
         // ovdje treba skontati kako da prepoznat je li property prodan/rentan ili samo editan
-        // i treba skontati kako poslati poruku od agenta ovdje
 
         $action = new Actions();
 
         $action->property_id = $property->id;
         $action->user_id = Auth::user()->id;
+        $action->message = '';
+
+        // provjeri getChanges() funkciju, hover getOriginal funckiju i otidji u HasAttributes file tu ces je naci, some good shit there
+        // provjeri ovu logiku još jednom
+        logger('og cijena:', [$property->getOriginal('transaction_at')]);
+        logger('nova cijena:', [$property->transaction_at]);
 
         // ovaj dio ćeš morati sjesti od nule i skontati jer očigledno nisi to dobro objasnio, čim ti ovaj text nema smisla
 
@@ -53,22 +71,27 @@ class PropertyObserver
             // Fazon je ja mislim samo što ja generalno čim stavim vamo da je unavailable da ga on prikazuje kao sold/rented
             $action->name = $property->transaction_at === null ? 'edited' : 'sold';
 
+            if ($action->name === 'edited') {
+                $this->propertyEditedMessage($action);
+            } else {
+                $name = $property->user->name;
+                $action->message = "Property was sold by agent: {$name}";
+            }
+
             // ovdje ti fali samo još način da skontaš da osnovu nečega da li je
-            if (($property->lease_duration > 0 || ! is_null($property->lease_duration)) && $property->transaction_at !== null) {
+            if (($property->lease_duration > 0 && !is_null($property->lease_duration)) && $property->transaction_at !== null) {
+
+                // OVDJE ULAZI UZ NEKOG RAZLOGA
                 $action->name = 'rented';
+                $name = $property->user->name;
+                $action->message = "Property was rented by agent: {$name}";
             }
         } else {
-            // ako je već bio null, znači može samo biti sad edit.
+            // ako je već bio !null, znači može samo biti sad edit. Jer je već sold/rented.
+            // Mada ovakav behavior nema smisla. Ako je nekretnina rentana, šta je imam editovat ?
             $action->name = 'edited';
-        }
 
-        if (Auth::check() && Auth::user()->hasRole('admin')) {
-            $action->message = 'Property was edited by Admin';
-        } elseif (Auth::check() && Auth::user()->hasRole('agent')) {
-            $name = Auth::user()->name;
-            $action->message = "Property was edited by agent: {$name}";
-        } else {
-            $action->message = 'Property was edited by seeder';
+            $this->propertyEditedMessage($action);
         }
 
         $action->save();
