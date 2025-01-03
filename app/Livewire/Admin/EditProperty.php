@@ -106,9 +106,6 @@ class EditProperty extends Component
         $this->removedPhotoIds[] = $id;
 
         $this->tempPhotos = $this->tempPhotos->filter(fn ($photo) => $photo->id !== $id)->values();
-
-        logger("index: $index");
-        logger("Id: $id");
     }
 
     public function resetPhotos()
@@ -126,6 +123,21 @@ class EditProperty extends Component
             $mediaItem->order_column = $index + 1;
             $mediaItem->save();
         }
+    }
+
+    // Function that sets property as sold/rented.
+    public function makeTransaction()
+    {
+        $this->property->transaction_at = now();
+        if ($this->property->lease_duration > 0) {
+            $this->property->status = "Rented";
+        } else {
+            $this->property->status = "Sold";
+        }
+
+        $this->property->save();
+
+        return redirect()->route('admin-properties')->with('success', 'Property sold successfully.');
     }
 
     public function saveProperty()
