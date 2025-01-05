@@ -50,6 +50,58 @@ class PropertyController extends Controller
         // return redirect()->route('properties.index');
     }
 
+
+    // Functions used for item-to-item based collaboration algorithm.
+
+    public static function recommendSimilar(Property $property, int $count = 3)
+    {
+        $properties = Property::where('id', '!=', $property->id)
+            ->where('status', 'available') // Ensure only available properties
+            ->get();
+
+        // Compute similarity scores
+        $recommendations = $properties->map(function ($otherProperty) use ($property) {
+            $similarity = self::computeSimilarity($property, $otherProperty);
+            logger("Property id: {$otherProperty->id}, similarity score: {$similarity}");
+            return [
+                'property' => $otherProperty,
+                'similarity' => $similarity,
+            ];
+        });
+
+        // Sort by similarity and return top N
+        return $recommendations->sortByDesc('similarity')->take($count)->pluck('property');
+    }
+
+    private static function computeSimilarity(Property $a, Property $b)
+    {
+        // Define weights for each attribute
+        $weights = [
+            'price' => 0.3,
+            'surface' => 0.2,
+            'rooms' => 0.1,
+            'toilets' => 0.1,
+            'bedrooms' => 0.1,
+            'garage' => 0.1,
+            'furnished' => 0.05,
+            'garden' => 0.05,
+        ];
+
+        $distance = 0;
+
+        // Calculate weighted Euclidean distance
+        foreach ($weights as $attribute => $weight) {
+            $valueA = $a->$attribute ?? 0;
+            $valueB = $b->$attribute ?? 0;
+
+            $distance += $weight * pow($valueA - $valueB, 2);
+        }
+
+        // Return similarity (inverse of distance)
+        return 1 / (1 + sqrt($distance));
+    }
+
+
     /**
      * Display the specified resource.
      */
@@ -66,9 +118,13 @@ class PropertyController extends Controller
             ->with(['media', 'user', 'type']) // Adjust relations as needed
             ->findOrFail($id);
 
+        $similarProperties = $this->recommendSimilar($property, $id);
+
+        logger($similarProperties);
+
         return view('properties.show', [
             'property' => $property,
-            'similarProperties' => [$property, $property, $property],
+            'similarProperties' => $similarProperties,
         ]);
     }
 
