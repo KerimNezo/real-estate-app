@@ -44,6 +44,7 @@ class Property extends Model implements HasMedia
         'year_built',
         'garden',
         'status',
+        'transaction_at',
     ];
 
     public function type(): BelongsTo
