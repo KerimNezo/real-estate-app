@@ -8,6 +8,8 @@ use App\Http\Controllers\PropertyController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 Route::get('/', WelcomeController::class)
     ->name('home');
@@ -16,7 +18,10 @@ Route::get('all-properties', [PropertyController::class, 'index'])
     ->name('all-properties');
 
 Route::get('property/{id}', [PropertyController::class, 'show'])
-    ->name('single-property');
+    ->name('single-property')
+    ->missing(function (Request $request) {
+        return Redirect::route('all-properties')->with('error', 'Property does not exist.');
+    });;
 
 Route::get('search', SearchController::class);
 
@@ -37,14 +42,22 @@ Route::middleware(['role:admin', 'auth', 'verified'])->group(function () {
         ->name('store-agent');
 
     Route::get('admin/agent/{user}', [AdminController::class, 'showAgent'])
-        ->name('single-agent');
+        ->name('single-agent')
+        ->missing(function (Request $request) {
+            return Redirect::route('all-agents')->with('error', 'Agent does not exist.');
+        });
 
     Route::get('admin/agent/{user}/edit', [AdminController::class, 'editAgent'])
-        ->name('edit-agent');
+        ->name('edit-agent')
+        ->missing(function (Request $request) {
+            return Redirect::route('all-agents')->with('error', 'Agent does not exist.');
+        });;
 
     Route::put('admin/agent/{user}', [AdminController::class, 'updateAgent'])
         ->name('update-agent');
 
+    //
+    //
     // Property routes
     Route::get('admin/property/index', [AdminController::class, 'indexProperites'])
         ->name('admin-properties');
@@ -57,10 +70,16 @@ Route::middleware(['role:admin', 'auth', 'verified'])->group(function () {
 
     Route::get('admin/agent/{user}/property/{property}', [AdminController::class, 'showProperty'])
         ->name('admin-single-property')
-        ->scopeBindings();
+        ->scopeBindings()
+        ->missing(function (Request $request) {
+            return Redirect::route('admin-properties')->with('error', 'Property does not exist.');
+        });
 
     Route::get('admin/property/{property}/edit', [PropertyController::class, 'edit'])
-        ->name('edit-property');
+        ->name('edit-property')
+        ->missing(function (Request $request) {
+            return Redirect::route('admin-properties')->with('error', 'Property does not exist.');
+        });
 
     Route::put('admin/property/{property}', [PropertyController::class, 'update'])
         ->name('update-property');
@@ -73,7 +92,10 @@ Route::middleware(['role:admin', 'auth', 'verified'])->group(function () {
         ->name('admin-actions');
 
     Route::get('admin/action/{id}', [ActionsController::class, 'show'])
-        ->name('admin-single-action');
+        ->name('admin-single-action')
+        ->missing(function (Request $request) {
+            return Redirect::route('admin-actions')->with('error', 'Action does not exist.');
+        });
 });
 
 Route::middleware(['role:agent', 'auth', 'verified'])->group(function () {
@@ -91,10 +113,16 @@ Route::middleware(['role:agent', 'auth', 'verified'])->group(function () {
         ->name('agent-new-property');
 
     Route::get('agent/property/{property}', [AgentController::class, 'showProperty'])
-        ->name('agent-single-property');
+        ->name('agent-single-property')
+        ->missing(function (Request $request) {
+            return Redirect::route('agent-properties')->with('error', 'Property does not exist.');
+        });
 
     Route::get('agent/property/{property}/edit', [PropertyController::class, 'edit'])
-        ->name('agent-edit-property');
+        ->name('agent-edit-property')
+        ->missing(function (Request $request) {
+            return Redirect::route('agent-properties')->with('error', 'Property does not exist.');
+        });
 });
 
 // Not my routes
