@@ -131,13 +131,17 @@ class EditProperty extends Component
         $this->property->transaction_at = now();
         if ($this->property->lease_duration > 0) {
             $this->property->status = "Rented";
+
+            $this->property->save();
+
+            return redirect()->route('admin-properties')->with('success', 'Property rented successfully.');
         } else {
             $this->property->status = "Sold";
+
+            $this->property->save();
+
+            return redirect()->route('admin-properties')->with('success', 'Property sold successfully.');
         }
-
-        $this->property->save();
-
-        return redirect()->route('admin-properties')->with('success', 'Property sold successfully.');
     }
 
     public function saveProperty()
