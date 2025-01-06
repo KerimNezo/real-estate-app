@@ -199,7 +199,60 @@
                     </form>
 
                     @if (Auth::user()->hasRole('admin') && $this->property->transaction_at === null)
-                        <form class="flex w-full" wire:submit.prevent="makeTransaction" enctype="multipart/form-data">
+                        <div class="w-full">
+                            <button type="submit" wire:loading.class="opacity-75" class="flex gap-2 px-6 py-2 mr-auto text-white bg-yellow-600 rounded-lg" onclick="openConfirmationModal({{$property}}, '{{$property->getFirstMediaUrl('property-photos')}}')">
+                                @if ($this->property->lease_duration > 0)
+                                    <p>Rent property</p>
+                                @else
+                                    <p>Sell property</p>
+                                @endif
+                            </button>
+                        </div>
+                    @endif
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @if (Auth::user()->hasRole('admin') && $this->property->transaction_at === null)
+        <!-- Confirmation form modal -->
+        <div id="confirmationButtonModal" class="fixed inset-0 z-50 hidden bg-black bg-opacity-95" onclick="closeConfirmationModal(event)">
+            <div class="bg-gray-900 bg-opacity-95 rounded-[20px] w-[450px] h-[350px] relative mx-auto my-auto" onclick="event.stopPropagation()">
+                <div class="flex flex-col items-center justify-center h-full p-2">
+                    {{-- x button --}}
+                    <span class="absolute flex items-center justify-center px-[10px] py-0 text-2xl text-white bg-gray-700 rounded-full cursor-pointer top-3 right-3 text-center" onclick="closeConfirmationModal()">&times;</span>
+
+                    {{-- Header text --}}
+                    <div class="flex items-center justify-center w-full px-5 mx-auto mt-10">
+                        @if ($this->property->lease_duration > 0)
+                            <p class="text-2xl text-center">Are you sure you want rent to this property?</p>
+                        @else
+                            <p class="text-2xl text-center">Are you sure you want sell to this property?</p>
+                        @endif
+                    </div>
+
+                    {{-- Action explanation text --}}
+                    <div class="mb-auto">
+                        <p class="text-xs">(Confirming this will permanently edit the selected property)</p>
+                    </div>
+
+                    {{-- Property details --}}
+                    <div class="flex w-full px-5 py-3">
+                        {{-- Property image --}}
+                        <div class="px-5 bg-gray-800 rounded-[20px] w-full py-3 flex justify-center items-center">
+                            <img id="propertyPhoto" src="" alt="Property image" class="w-24 rounded-[10px] mr-auto">
+                            <p id="propertyName" class="text-base text-center"></p>
+                        </div>
+                    </div>
+
+                    {{-- Form footer containing two buttons --}}
+                    <div class="flex w-full px-5 py-5">
+                        <button class="px-4 py-2 mr-auto bg-green-600 rounded-[10px]" onclick="closeConfirmationModal()">
+                            Cancel
+                        </button>
+
+                        <!-- Hidden form for deletion -->
+                        <form class="flex" wire:submit.prevent="makeTransaction" enctype="multipart/form-data">
                             @csrf
                             <button type="submit" wire:loading.class="opacity-75" class="flex gap-2 px-6 py-2 mr-auto text-white bg-yellow-600 rounded-lg">
                                 @if ($this->property->lease_duration > 0)
@@ -214,9 +267,25 @@
                                 </div>
                             </button>
                         </form>
-                    @endif
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    @endif
+
+    <script>
+    function openConfirmationModal(property, imageUrl) {
+        document.getElementById('confirmationButtonModal').classList.remove('hidden');
+        document.getElementById('confirmationButtonModal').classList.add('flex');
+        document.getElementById('propertyPhoto').src = imageUrl;
+        document.getElementById('propertyName').textContent = property.name;
+    }
+
+    function closeConfirmationModal(event) {
+        if (event) {
+            event.stopPropagation(); // Prevents the event from bubbling if the click was on the modal content
+        }
+        document.getElementById('confirmationButtonModal').classList.add('hidden');
+    }
+    </script>
 </div>
