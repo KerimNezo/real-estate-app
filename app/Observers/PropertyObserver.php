@@ -49,28 +49,26 @@ class PropertyObserver
      */
     public function updated(Property $property): void
     {
-        // ovdje treba skontati kako da prepoznat je li property prodan/rentan ili samo editan
-
+        // Create new action and assign data to its properties.
         $action = new Actions();
 
         $action->property_id = $property->id;
         $action->user_id = Auth::user()->id;
         $action->message = '';
 
-        // provjeri getChanges() funkciju, hover getOriginal funckiju i otidji u HasAttributes file tu ces je naci, some good shit there
-        // provjeri ovu logiku još jednom
-        logger('og cijena:', [$property->getOriginal('transaction_at')]);
-        logger('nova cijena:', [$property->transaction_at]);
+        // This way I could be able to somehow store and, on view of single action, be able to display change that happened on that action.
+        // $dirtyProperties = $property->getDirty();
+        // $keys = array_keys($dirtyProperties);
+        // logger($keys);
 
-        // ovaj dio ćeš morati sjesti od nule i skontati jer očigledno nisi to dobro objasnio, čim ti ovaj text nema smisla
-
-        // provjeravamo da li je property samo editovan podacima ili je prodana/rentana nekretnina
+        // We check if property's data was edited or property is sold/rented
+        // Right now if user edits some data and clicks the sell/rent button, the edited data will not be appended to the db and that data won't change.
         if ($property->getOriginal('transaction_at') === null) {
+
             // ako nije bio null, znači može biti da se sellalo ili rentalo ili je samo edit.
-            // Mislim da ovaj ovdje kod dobro pokriva je li on otišao ili ne.
-            // Fazon je ja mislim samo što ja generalno čim stavim vamo da je unavailable da ga on prikazuje kao sold/rented
             $action->name = $property->transaction_at === null ? 'edited' : 'sold';
 
+            // Storing action message based on actions name.
             if ($action->name === 'edited') {
                 $this->propertyEditedMessage($action);
             } else {
@@ -78,17 +76,15 @@ class PropertyObserver
                 $action->message = "Property was sold by agent: {$name}";
             }
 
-            // ovdje ti fali samo još način da skontaš da osnovu nečega da li je
+            // Here we're overwritting tha name and message of an action, after confirming by property data that property wasn't sold, but rather that it was rented.
             if (($property->lease_duration > 0 && !is_null($property->lease_duration)) && $property->transaction_at !== null) {
-
-                // OVDJE ULAZI UZ NEKOG RAZLOGA
                 $action->name = 'rented';
                 $name = $property->user->name;
                 $action->message = "Property was rented by agent: {$name}";
             }
         } else {
             // ako je već bio !null, znači može samo biti sad edit. Jer je već sold/rented.
-            // Mada ovakav behavior nema smisla. Ako je nekretnina rentana, šta je imam editovat ?
+            // This else statement here doesn't make much sense tho. If property is already sold/rented why would anyone edit it? Nor are they able to do so.
             $action->name = 'edited';
 
             $this->propertyEditedMessage($action);
