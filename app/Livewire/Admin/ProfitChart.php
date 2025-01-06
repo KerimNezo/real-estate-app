@@ -89,6 +89,8 @@ class ProfitChart extends Component
             $chartData['total'][] = $totalPrice;
         }
 
+        // logger($chartData);
+
         // Dispatch chart update event
         $this->dispatch('updateLineChart', [
             'labels' => $chartData['labels'],
