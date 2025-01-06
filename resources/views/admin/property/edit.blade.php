@@ -29,7 +29,6 @@
         @include('admin.footer')
     </div>
 
-
     <script>
         // ovu koristimo da maknemo boju sa offer typa gore
         function updateOfferType(type) {
