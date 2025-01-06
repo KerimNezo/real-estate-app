@@ -9,8 +9,6 @@ use App\Http\Controllers\SearchController;
 use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
 
-// A nisi ni počeo raditi AGENT VIEWS cmon man. Zadaj se pravo na ovo.
-
 Route::get('/', WelcomeController::class)
     ->name('home');
 
