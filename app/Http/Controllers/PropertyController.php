@@ -133,11 +133,15 @@ class PropertyController extends Controller
      */
     public function edit(Property $property)
     {
-        $propertyMedia = $property->getMedia('property-photos')->sortBy('order_column');
+        if ($property->status === 'Available' || $property->status === 'Unavailable') {
+            $propertyMedia = $property->getMedia('property-photos')->sortBy('order_column');
 
-        return view('admin.property.edit')
-            ->with('property', $property)
-            ->with('propertyMedia', $propertyMedia);
+            return view('admin.property.edit')
+                ->with('property', $property)
+                ->with('propertyMedia', $propertyMedia);
+        }
+
+        return redirect()->route('admin-properties')->with('error', 'Unable to edit property.');
     }
 
     /**
