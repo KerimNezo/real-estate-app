@@ -2,13 +2,17 @@
 
 namespace App\Livewire;
 
-use Livewire\Attributes\Locked;
 use Livewire\Component;
+use Livewire\Attributes\Computed;
+use App\Models\Property;
 
 class PropertyFilterForm extends Component
 {
-    #[Locked]
-    public $cities;
+    #[Computed]
+    public function cities()
+    {
+        return Property::pluck('city')->unique()->values();
+    }
 
     public $filters = [
         'location' => null,
@@ -16,6 +20,7 @@ class PropertyFilterForm extends Component
         'property_type' => null,
         'min_price' => null,
         'max_price' => null,
+        'sort' => 'created_at',
     ];
 
     public function clearForm()

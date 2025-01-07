@@ -19,12 +19,12 @@
 
         <!-- Query form -->
         <div id="query-form-all-properties" class="bg-[#5eb1f0] h-full rounded-[5px] w-full flex justify-center items-center mt-5">
-            <table class="w-full h-full pb-auto">
+            <table class="w-full h-full pb-auto" wire:loading.class="opacity-50">
                 <form wire:submit="submitForm">
                     <!-- Property location input-->
                     <x-form-select-input modelName="filters.location" heading="Property location" selectId="asset-location">
                         <option value="" selected>Select a location</option>
-                        @foreach ($cities as $city)
+                        @foreach ($this->cities as $city)
                             <option value="{{$city}}">{{$city}}</option>
                         @endforeach
                     </x-form-select-input>
@@ -71,7 +71,7 @@
                     <tr>
                         <td class="px-[10%] py-[20px] pb-5 mb-auto w-auto">
                             <div class="flex flex-col justify-end h-full">
-                                <button class="w-full rounded-[5px] h-16 bg-[#ef5d60] align-bottom flex items-center justify-center gap-3">
+                                <button wire:loading.attr="disabled" class="w-full rounded-[5px] h-16 bg-[#ef5d60] align-bottom flex items-center justify-center gap-3">
                                     <div wire:loading wire:target="submitForm" class="flex items-center justify-center">
                                         <img src="{{ asset('photos/redSpinner.svg') }}" class="w-5 h-5"></img> <!-- SVG loading spinner -->
                                     </div>
