@@ -1,9 +1,10 @@
 
 
 <div id="query-form">
-    <table class="w-full mb-auto h-full">
+    <table class="w-full h-full mb-auto">
         <tr class="w-full h-full mt-auto">
             <form action="/search" method="GET">
+                @csrf
                 <td class="pb-[20px] pl-[30px] w-[220px] align-bottom">
                     <div class="flex flex-col justify-end h-full">
                         <span class="mb-[5px] w-[220px] text-left">Property type</span>
@@ -18,7 +19,7 @@
                 </td>
 
                 <td class="pl-[26px] pb-5 w-[200px] align-bottom">
-                    <div class="flex justify-end flex-col h-full">
+                    <div class="flex flex-col justify-end h-full">
                         <span class="text-left mb-[5px] w-[200px]">Price</span>
 
                         <input type="text" placeholder="1200" class="rounded-[5px] border-2 border-[#989898] border-solid h-[35px] w-[200px]" name="min-price">
@@ -51,11 +52,11 @@
 
 <!-- Mobile view query form -->
 <div id="mobile-query-form">
-    <table class="w-full mb-auto h-full ">
+    <table class="w-full h-full mb-auto ">
         <form action="/search" method="GET">
             <tr class="w-full h-full mt-auto">
                 <td class="py-[20px] w-[80%] align-bottom">
-                    <div class="flex flex-col justify-center items-center h-full">
+                    <div class="flex flex-col items-center justify-center h-full">
                         <span class="mb-[5px] w-[80%] text-left">Property type</span>
 
                         <select id="" class="rounded-[5px] border-2 border-[#989898] border-solid h-[35px] w-[80%] pl-[10px]" name="type-of-asset-id">
