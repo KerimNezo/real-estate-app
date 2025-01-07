@@ -14,7 +14,6 @@ class PropertySeeder extends Seeder
      */
     public function run(): void
     {
-        $path = '/home/rimke/code/diplomski/realestate-app/public/photos';
         // 1 - office, 2 - house, 3 - appartement
         // moram jos uraditi da se storea više slika po nekretnini i treba naći slike
         $propertyType = [1, 2, 3];
@@ -67,22 +66,16 @@ class PropertySeeder extends Seeder
                 ]);
 
                 // Adding first property photo
-                $property->addMedia(''.$path.'/'.$propertyPhoto[$type - 1].'s/'.$propertyPhoto[$type - 1].'0.jpg')
+                $property->addMedia(public_path('photos/'.$propertyPhoto[$type - 1].'s/'.$propertyPhoto[$type - 1].'0.jpg'))
                     ->preservingOriginal()
                     ->toMediaCollection('property-photos');
 
                 // Adding rest of property photos
                 for ($y = 1; $y < 6; $y++) {
-                    $property->addMedia(''.$path.'/'.$propertyPhoto[$type - 1].'s/'.$propertyPhoto[$type - 1].''.$y.'.jpg')
+                    $property->addMedia(public_path('photos/'.$propertyPhoto[$type - 1].'s/'.$propertyPhoto[$type - 1].''.$y.'.jpg'))
                         ->preservingOriginal()
                         ->toMediaCollection('property-photos');
                 }
-
-                $action = Actions::factory()->create([
-                    'user_id' => $x + 2,
-                    'property_id' => $property->id,
-                    'message' => 'Property was seeded to the database',
-                ]);
             }
         }
     }

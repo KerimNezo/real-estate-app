@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Schema;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Auth;
 
 class DatabaseSeeder extends Seeder
 {
@@ -70,19 +71,18 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('judaspriest1970'),
         ]);
 
-        $path = '/home/rimke/code/diplomski/realestate-app/public/photos';
-
-        $admin->addMedia(''.$path.'/icons/adminPhoto.png')
+        $admin->addMedia(public_path('photos/icons/adminPhoto.png'))
             ->preservingOriginal()
             ->toMediaCollection('admin-pfp');
 
         $admin->assignRole($adminRole);
 
+        Auth::login($admin);
+
         $this->call(UserSeeder::class);
         $this->call(TypeSeeder::class);
         $this->call(PropertySeeder::class);
 
-        // ovdje generiši nekoliko officea, kuća i apartmana
-
+        Auth::logout();
     }
 }

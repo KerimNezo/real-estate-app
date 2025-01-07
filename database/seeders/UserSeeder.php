@@ -14,8 +14,6 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        $path = '/home/rimke/code/diplomski/realestate-app/public/photos';
-
         $agentPermissions = [
             'create property',
             'edit property',
@@ -32,7 +30,7 @@ class UserSeeder extends Seeder
         for ($x = 0; $x < 4; $x++) {
             $user = User::factory()->create();
             $user->assignRole($agentRole);
-            $user->addMedia(''.$path.'/icons/realestateagent.png')
+            $user->addMedia(public_path('photos/icons/realestateagent.png'))
                 ->preservingOriginal()
                 ->toMediaCollection('agent-pfps');
         }
