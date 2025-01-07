@@ -49,7 +49,7 @@
                                 <!-- Action Id -->
                                 <td class="px-4 py-3">
                                     <div class="flex items-center justify-start" wire:loading.remove>
-                                        <a href="{{ route('dashboard') }}">
+                                        <a wire:loading.class="hidden" href="{{ route('admin-single-action', ['id' => $action->id]) }}"">
                                             <p class="text-sm text-left hover:text-white">
                                                 {{ $action->id }}
                                             </p>
