@@ -20,7 +20,7 @@ class SearchController extends Controller
         $properties = Property::query()
             ->select('id', 'type_id', 'name', 'price', 'city', 'bedrooms', 'garage', 'furnished', 'floors', 'lease_duration', 'keycard_entry', 'surface', 'toilets')
             ->latest()
-            ->where('status', '=', 'Available')
+            ->where('status', 'Available')
             ->with(['media' => function ($query) {
                 $query->orderBy('order_column', 'asc')
                     ->limit(1);
@@ -32,10 +32,11 @@ class SearchController extends Controller
 
         if (! is_null($assetOffer = $request->query('asset-offer-id'))) {
             $properties = match ($assetOffer) {
-                '1' => $properties->where('lease_duration', '=', null)
-                    ->orWhere('lease_duration', '=', 0), // sell
-                '2' => $properties->whereNotNull('lease_duration', '>', 0), // rent
-                default => $properties,
+                '1' => $properties = $properties->where(function ($leaseQuery) {
+                        $leaseQuery->where('lease_duration', '=', 0)
+                            ->orWhere('lease_duration', null);
+                    }),
+            '2' => $properties->where('lease_duration', '>', 0)
             };
         }
 
