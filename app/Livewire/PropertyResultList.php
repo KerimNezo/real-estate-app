@@ -4,76 +4,78 @@ namespace App\Livewire;
 
 use App\Models\Property;
 use Livewire\Attributes\On;
+use Livewire\Attributes\Computed;
 use Livewire\Component;
 
 class PropertyResultList extends Component
 {
-    public $properties = [];
-
-    public $query;
+    public $filters = [
+        'location' => null,
+        'offer_type' => null,
+        'property_type' => null,
+        'min_price' => null,
+        'max_price' => null,
+        'sort' => 'created_at',
+    ];
 
     #[On('form-submitted')]
-    public function updateProperties($filters)
+    public function updateFilters($filters) 
     {
-        $this->reset(['properties']);
+        $this->filters = $filters;
+    }
 
+    #[Computed]
+    public function properties()
+    {
         $query = Property::query()
             ->select('id', 'type_id', 'name', 'price', 'city', 'bedrooms', 'garage', 'furnished', 'floors', 'lease_duration', 'keycard_entry', 'surface', 'toilets')
-            ->where('status', '=', 'Available');
-
-        if ($filters['location']) {
-            $query->where('city', '=', $filters['location']);
-        }
-
-        if ($filters['offer_type']) {
-            $query = match ($filters['offer_type']) {
-                '1' => $query->where('lease_duration', '=', null)
-                    ->orWhere('lease_duration', '=', 0), // sell
-                '2' => $query->whereNotNull('lease_duration', '>', 0),
-                default => $query,
-            };
-        }
-
-        if ($filters['property_type']) {
-            $query->where('type_id', '=', $filters['property_type']);
-        }
-
-        if ($filters['min_price'] && $filters['min_price'] !== '') {
-            $query->where('price', '>=', $filters['min_price']);
-        }
-
-        if ($filters['max_price'] && $filters['max_price'] !== '') {
-            $query->where('price', '<=', $filters['max_price']);
-        }
-
-        $this->properties = $query
+            ->where('status', '=', 'Available')
             ->with(['media' => function ($query) {
                 $query->orderBy('order_column', 'asc')
                     ->limit(1);
-            }])
-            ->latest()
-            ->get();
-    }
+            }]);
 
-    public function sortProperties($order)
-    {
-        $sortBy = match ($order) {
-            'lowestfirst' => 'price',
-            'highestfirst' => 'price',
-            default => 'created_at',
-        };
+        if ($this->filters['location']) {
+            $query->where('city', '=', $this->filters['location']);
+        }
 
-        $order === 'lowestfirst'
-            ? false
-            : true;
+        if ($this->filters['offer_type']) {
+            $query = match ($this->filters['offer_type']) {
+                '1' => $query = $query->where(function ($leaseQuery) {
+                            $leaseQuery->where('lease_duration', '=', 0)
+                                ->orWhere('lease_duration', null);
+                        }),
+                '2' => $query->where('lease_duration', '>', 0)
+            };
+        }
 
-        $this->properties = collect($this->properties)
-            ->sortBy($sortBy, SORT_REGULAR, $order)
-            ->values();
+        if ($this->filters['property_type']) {
+            $query->where('type_id', '=', $this->filters['property_type']);
+        }
+
+        if ($this->filters['min_price'] && $this->filters['min_price'] !== '') {
+            $query->where('price', '>=', $this->filters['min_price']);
+        }
+
+        if ($this->filters['max_price'] && $this->filters['max_price'] !== '') {
+            $query->where('price', '<=', $this->filters['max_price']);
+        }
+
+        if ($this->filters['sort'] && $this->filters['sort'] !== '') {
+            if ($this->filters['sort'] === 'created_at') {
+                $query->orderBy($this->filters['sort']);
+            } else {
+                if ($this->filters['sort'] === 'highestfirst') {
+                    $query->orderBy('price', 'desc');
+                } else {
+                    $query->orderBy('price', 'asc');
+                }
+            }
+        }
+
+        return $query->get();
     }
 }
 
-/**
- * I will eventually have to add pagination here, because as of rn index aciton return all properties from the db.
- * When there ton of properties this will not be acceptable. So this is something I will have to return to.
- */
+// Ovo treba biti computed, te search treba samo proslijediti filtere ovdje. Kada bude computed možemo onda da ih sortiramo kako nam je volja. I think
+// SOURCE: https://livewire.laravel.com/docs/properties#eloquent-constraints-arent-preserved-between-requests
