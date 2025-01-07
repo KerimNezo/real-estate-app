@@ -15,21 +15,7 @@ class PropertyController extends Controller
      */
     public function index()
     {
-        $properties = Property::query()
-            ->select('id', 'type_id', 'name', 'price', 'city', 'bedrooms', 'garage', 'furnished', 'floors', 'lease_duration', 'keycard_entry', 'surface', 'toilets')
-            ->latest()
-            ->where('status', 'Available')
-            ->with(['media' => function ($query) {
-                $query->orderBy('order_column', 'asc')
-                    ->limit(1);
-            }])
-            ->get();
-
-        $cities = $properties->pluck('city')->unique()->values();
-
-        return view('properties.index')
-            ->with('properties', $properties)
-            ->with('cities', $cities);
+        return view('properties.index');
     }
 
     /**
@@ -118,7 +104,7 @@ class PropertyController extends Controller
             ->with(['media', 'user', 'type']) // Adjust relations as needed
             ->findOrFail($id);
 
-        $similarProperties = $this->recommendSimilar($property, $id);
+        $similarProperties = $this->recommendSimilar($property);
 
         logger($similarProperties);
 
