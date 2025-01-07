@@ -15,7 +15,17 @@ class PropertyController extends Controller
      */
     public function index()
     {
-        return view('properties.index');
+        $filters = [
+            'location' => null,
+            'offer_type' => null,
+            'property_type' => null,
+            'min_price' => null,
+            'max_price' => null,
+            'sort' => 'created_at',
+        ];
+
+        return view('properties.index')
+            ->with('filters', $filters);
     }
 
     /**
