@@ -22,7 +22,7 @@ class PropertySeeder extends Seeder
         $propertyCity = ['Zenica', 'Sarajevo', 'Mostar', 'Banja Luka'];
 
         foreach ($propertyType as $type) {
-            for ($x = 0; $x < 4; $x++) {
+            for ($x = 0; $x < 40; $x++) {
                 $street = ($x % 2 == 0) ? 'Mejdandžik 11' : 'Adolfa Goldberga 5';
                 $lease = ($x % 2 == 0) ? 5 : 0; // ili ce lease duraiton biti 5 ili null
                 $elevator = ($type != 2 && $x % 2 == 0) ? 1 : null;
@@ -39,17 +39,17 @@ class PropertySeeder extends Seeder
                     default => 1,
                 };
 
-                $status = ($x === 0 || $x === 3)
+                $status = ($x%4 === 0 || $x%4 === 3)
                     ? 'Unavailable'
                     : 'Available';
 
                 $property = Property::factory()->create([
                     'name' => $propertyName[$type - 1],
                     'lease_duration' => $lease,
-                    'user_id' => $x + 2,
+                    'user_id' => $x%4 + 2,
                     'type_id' => Type::firstWhere('id', '=', $type),
                     'country' => 'Bosnia & Herzegovina',
-                    'city' => $propertyCity[$x],
+                    'city' => $propertyCity[$x%4],
                     'toilets' => $toilets,
                     'bedrooms' => $bedrooms,
                     'furnished' => $rooms,
@@ -63,6 +63,7 @@ class PropertySeeder extends Seeder
                     'street' => $street,
                     'description' => "If you have older kids or frequent guests, this home is meant for you. A spacious loft at the top of the stairs adjoins two bedrooms with walk-in closets and a shared bath, providing just the right amount of privacy for everyone.With an open-concept layout in the great room, kitchen and casual dining, there's plenty of space and seating to bring the whole family together. Stream your favorite videos. Adjust the lighting. Check the front door without leaving your comfy seat. Our HomeSmart features are included and connect tech to your device.",
                     'status' => $status,
+                    'created_at' => '2025-01-08 10:25:53', // mogu ovdje manipulisat
                 ]);
 
                 // Adding first property photo
