@@ -11,6 +11,10 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
+Route::fallback(function () {
+    return redirect('/');
+});
+
 Route::get('/', WelcomeController::class)
     ->name('home');
 
