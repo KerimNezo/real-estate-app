@@ -18,6 +18,7 @@ class PropertyObserver
 
         $action->property_id = $property->id;
         $action->user_id = Auth::user()->id;
+        $action->created_at = $property->created_at;
         $action->name = 'created'; // Use the custom message if provided
 
         if (Auth::check() && Auth::user()->hasRole('admin')) {
