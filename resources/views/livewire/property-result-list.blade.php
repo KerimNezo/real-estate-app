@@ -50,8 +50,12 @@
                             </div>
                         @endforeach
                     </div>
+
+                    <!-- Pagination -->
+                    <div class="static flex items-center justify-between w-full py-2">
+                        {{ $this->properties->links() }}
+                    </div>
                 @endif
             </div>
-            
     </div>
 </div>

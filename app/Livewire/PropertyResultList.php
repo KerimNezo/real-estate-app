@@ -6,9 +6,12 @@ use App\Models\Property;
 use Livewire\Attributes\On;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class PropertyResultList extends Component
 {
+    use WithPagination;
+
     public $filters = [
         'location' => null,
         'offer_type' => null,
@@ -21,7 +24,13 @@ class PropertyResultList extends Component
     #[On('form-submitted')]
     public function updateFilters($filters) 
     {
+        $this->resetPage();
         $this->filters = $filters;
+    }
+
+    public function updatedFilters()
+    {
+        $this->resetPage();
     }
 
     #[Computed]
@@ -73,7 +82,7 @@ class PropertyResultList extends Component
             }
         }
 
-        return $query->get();
+        return $query->paginate(8);
     }
 }
 
