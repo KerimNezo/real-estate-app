@@ -17,9 +17,12 @@ class PropertyObserver
         $action = new Actions();
 
         $action->property_id = $property->id;
-        $action->user_id = Auth::user()->id;
         $action->created_at = $property->created_at;
         $action->name = 'created'; // Use the custom message if provided
+
+        // With this we're assinging default user_id of action to 1 of there is no auth user at the time of property update. 
+        // Created so that observer works with seeders.
+        $action->user_id = Auth::user() ? Auth::user()->id : 1;
 
         if (Auth::check() && Auth::user()->hasRole('admin')) {
             $action->message = 'Property added to the system by Admin';
@@ -54,8 +57,15 @@ class PropertyObserver
         $action = new Actions();
 
         $action->property_id = $property->id;
-        $action->user_id = Auth::user()->id;
         $action->message = '';
+
+        // With this we're assinging default user_id of action to 1 of there is no auth user at the time of property update. 
+        // Created so that observer works with seeders.
+        $action->user_id = Auth::user() ? Auth::user()->id : 1;
+
+        if (!Auth::user()){
+            $action->created_at = $property->created_at;
+        }
 
         // This way I could be able to somehow store and, on view of single action, be able to display change that happened on that action.
         // $dirtyProperties = $property->getDirty();
