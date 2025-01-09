@@ -15,7 +15,11 @@ class ActionsTable extends Component
             ->select(['id', 'property_id', 'user_id', 'name', 'created_at'])
             ->latest()
             ->limit(5)
-            ->with(['user', 'property'])
+            ->with(['user' => function ($query) {
+                $query->select('id', 'name');
+            }, 'property' => function ($query) {
+                $query->select('id', 'name', 'user_id');
+            }])
             ->get();
 
         // trebas sad ovdje još dodati da od usera uzmes ime samo a od propertya uzmes isto samo ime.
