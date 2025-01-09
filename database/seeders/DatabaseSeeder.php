@@ -84,7 +84,6 @@ class DatabaseSeeder extends Seeder
         $this->call(PropertySeeder::class);
 
         /**
-         * Promijeniti im created_at
          * Editovati ih da ima raznih statusa i prodanih ovakvih onakvih.
          * Srediti akcije da budu kako treba
          */
