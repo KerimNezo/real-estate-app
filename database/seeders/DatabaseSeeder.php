@@ -77,20 +77,8 @@ class DatabaseSeeder extends Seeder
 
         $admin->assignRole($adminRole);
 
-        Auth::login($admin);
-
         $this->call(UserSeeder::class);
         $this->call(TypeSeeder::class);
         $this->call(PropertySeeder::class);
-
-        /**
-         * Editovati ih da ima raznih statusa i prodanih ovakvih onakvih.
-         * Srediti akcije da budu kako treba
-         */
-
-        // ovdje sad treba napraviti seeder neki koji edituje podatke propertya. Ili vidjeti može li se to uraditi odma tamo.
-        // mogu to uraditi u property seederu, da im created_at manipulišem.
-
-        Auth::logout();
     }
 }
