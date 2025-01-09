@@ -73,30 +73,48 @@ class PropertyController extends Controller
     {
         // Define weights for each attribute
         $weights = [
-            'price' => 0.3,
-            'surface' => 0.2,
+            'city' => 0.3,
+            'lease_duration' => 0.3,
+            'type_id' => 0.3,
+            'price' => 0.01,
+            'surface' => 0.1,
             'rooms' => 0.1,
-            'toilets' => 0.1,
-            'bedrooms' => 0.1,
-            'garage' => 0.1,
+            'garage' => 0.7,
             'furnished' => 0.05,
-            'garden' => 0.05,
         ];
 
         $distance = 0;
 
-        // Calculate weighted Euclidean distance
         foreach ($weights as $attribute => $weight) {
             $valueA = $a->$attribute ?? 0;
             $valueB = $b->$attribute ?? 0;
 
-            $distance += $weight * pow($valueA - $valueB, 2);
+            if ($attribute === 'city') {
+                // Categorical comparison for city
+                $distance += $weight * (($valueA === $valueB) ? 0.5 : 0);
+            } elseif ($attribute === 'lease_duration' || $attribute === 'type_id') {
+                // Categorical comparison for lease_duration and type_id
+                if ($attribute === 'type_id' && $valueA === 1) {
+                    $distance += $weight * (($valueA === $valueB) ? 0 : 1);
+                } else {
+                    $distance += $weight * (($valueA === $valueB) ? 0 : 1);
+                }
+            } elseif ($attribute === 'price') {
+                // Normalize price difference
+                $maxPrice = max($valueA, $valueB);
+                $priceDifference = ($maxPrice > 0) ? abs($valueA - $valueB) / $maxPrice : 0;
+                $distance += $weight * pow($priceDifference, 2);
+            } else {
+                // Numerical comparison for other attributes
+                $distance += $weight * pow($valueA - $valueB, 2);
+            }
         }
+
+        // Sredi dodatno ako je ofis u pitanju. Da bolje preporučuju.
 
         // Return similarity (inverse of distance)
         return 1 / (1 + sqrt($distance));
     }
-
 
     /**
      * Display the specified resource.
