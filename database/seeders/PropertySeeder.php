@@ -21,11 +21,11 @@ class PropertySeeder extends Seeder
         $propertyCity = ['Zenica', 'Sarajevo', 'Mostar', 'Banja Luka'];
 
         $currentDate = Carbon::now();
-        $monthsToSeed = 36; // Seed data for the past 12 months
+        $monthsToSeed = 12; // Seed data for the past 12 months
 
         foreach ($propertyType as $type) {
             for ($i = 0; $i < 3; $i++){
-                for ($x = 0; $x < 12; $x++) {
+                for ($x = 0; $x < $monthsToSeed; $x++) {
                     $date = $currentDate->copy()->subMonths($x); // Get the unique month going backward
                     $formattedDate = $date->toDateTimeString();
     
@@ -82,6 +82,20 @@ class PropertySeeder extends Seeder
                         $property->addMedia(public_path('photos/' . $propertyPhoto[$type - 1] . 's/' . $propertyPhoto[$type - 1] . $y . '.jpg'))
                             ->preservingOriginal()
                             ->toMediaCollection('property-photos');
+                    }
+
+                    // Setting transaction_at to some properties 
+                    if ($i === 0 || $i === 2) {
+                        $property->transaction_at = $date->copy()->addHour();
+                        if ($property->lease_duration > 0) {
+                            $property->status = "Rented";
+
+                            $property->save();
+                        } else {
+                            $property->status = "Sold";
+                             
+                            $property->save();
+                        }
                     }
                 }
             }
