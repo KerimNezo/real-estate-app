@@ -59,9 +59,7 @@ Route::middleware(['role:admin', 'auth', 'verified'])->group(function () {
 
     Route::put('admin/agent/{user}', [AdminController::class, 'updateAgent'])
         ->name('update-agent');
-
-    //
-    //
+    
     // Property routes
     Route::get('admin/property/index', [AdminController::class, 'indexProperites'])
         ->name('admin-properties');
@@ -84,9 +82,6 @@ Route::middleware(['role:admin', 'auth', 'verified'])->group(function () {
         ->missing(function (Request $request) {
             return Redirect::route('admin-properties')->with('error', 'Property does not exist.');
         });
-
-    Route::put('admin/property/{property}', [PropertyController::class, 'update'])
-        ->name('update-property');
 
     Route::delete('admin/property/{property}', [PropertyController::class, 'destroy'])
         ->name('delete-property');
