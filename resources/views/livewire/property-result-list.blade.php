@@ -18,7 +18,7 @@
         <div class="w-full h-full py-5 text-black bg-white " id="featured-properties" >
             <!-- Grid display of property cards -->
             <div class="relative text-xl text-center">
-                @if (false)
+                @if ($this->properties->isEmpty())
                     <div class="flex-col items-center justify-center mx-auto">
                         <div class="pt-[100px]">
                             <img src="./photos/icons/no-result.svg" alt="" class="w-[100px] mx-auto">
