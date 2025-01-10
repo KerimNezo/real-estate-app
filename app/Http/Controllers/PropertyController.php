@@ -53,10 +53,16 @@ class PropertyController extends Controller
     {
 
         //treba i type_id
-        $properties = Property::where('id', '!=', $property->id)
+        $properties = Property::query()
+            ->where('id', '!=', $property->id)
             ->where('status', 'available')
             ->where('lease_duration', $property->lease_duration)
-            ->where('city', $property->city) // Ensure only available properties
+            ->where('city', $property->city)
+            ->when($property->type_id === 1, function ($query) {
+                $query->where('type_id', 1);
+            }, function ($query) {
+                $query->where('type_id', '!=', 1);
+            })
             ->get();
 
         // Compute similarity scores
@@ -77,10 +83,7 @@ class PropertyController extends Controller
     {
         // Define weights for each attribute
         $weights = [
-            'city' => 0.3,
-            'lease_duration' => 0.3,
-            'type_id' => 0.3,
-            'price' => 0.01,
+            'price' => 0.4,
             'surface' => 0.1,
             'rooms' => 0.1,
             'garage' => 0.7,
@@ -93,17 +96,7 @@ class PropertyController extends Controller
             $valueA = $a->$attribute ?? 0;
             $valueB = $b->$attribute ?? 0;
 
-            if ($attribute === 'city') {
-                // Categorical comparison for city
-                $distance += $weight * (($valueA === $valueB) ? 0.5 : 0);
-            } elseif ($attribute === 'lease_duration' || $attribute === 'type_id') {
-                // Categorical comparison for lease_duration and type_id
-                if ($attribute === 'type_id' && $valueA === 1) {
-                    $distance += $weight * (($valueA === $valueB) ? 0 : 1);
-                } else {
-                    $distance += $weight * (($valueA === $valueB) ? 0 : 1);
-                }
-            } elseif ($attribute === 'price') {
+            if ($attribute === 'price') {
                 // Normalize price difference
                 $maxPrice = max($valueA, $valueB);
                 $priceDifference = ($maxPrice > 0) ? abs($valueA - $valueB) / $maxPrice : 0;
@@ -113,8 +106,6 @@ class PropertyController extends Controller
                 $distance += $weight * pow($valueA - $valueB, 2);
             }
         }
-
-        // Sredi dodatno ako je ofis u pitanju. Da bolje preporučuju.
 
         // Return similarity (inverse of distance)
         return 1 / (1 + sqrt($distance));
