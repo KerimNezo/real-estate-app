@@ -51,8 +51,12 @@ class PropertyController extends Controller
 
     public static function recommendSimilar(Property $property, int $count = 3)
     {
+
+        //treba i type_id
         $properties = Property::where('id', '!=', $property->id)
-            ->where('status', 'available') // Ensure only available properties
+            ->where('status', 'available')
+            ->where('lease_duration', $property->lease_duration)
+            ->where('city', $property->city) // Ensure only available properties
             ->get();
 
         // Compute similarity scores
@@ -121,16 +125,13 @@ class PropertyController extends Controller
      */
     public function show(string $id)
     {
-        /*
-        Ovdje ću morati ubaciti item-based collaborative filtering sistem,
-        To zamišljam kao neku funkciju koja će raditi taj filtering
-        similarProperties($property)
-        i vraća mi listu koja ima 5 property-a koji su slični
-        primarno se gleda, sell/rent->lokacija->price->kvadratura.... ugl trebat će istražiti tačno kako jedan takav sistem radi
-        */
         $property = Property::query()
             ->with(['media', 'user', 'type']) // Adjust relations as needed
             ->findOrFail($id);
+
+        if ($property->status !== 'Available') {
+            return redirect()->route('all-properties');
+        }
 
         $similarProperties = $this->recommendSimilar($property);
 
