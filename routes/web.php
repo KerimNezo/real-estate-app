@@ -10,10 +10,17 @@ use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Auth;
 
 Route::fallback(function () {
-    return redirect('/');
-});
+    if (Auth::user()->hasRole('admin')) {
+        return redirect()->route('dashboard');
+    } elseif (Auth::user()->hasRole('agent')) {
+        return redirect()->route('agent-dashboard');
+    } else {
+        return redirect('/');
+    }
+}); 
 
 Route::get('/', WelcomeController::class)
     ->name('home');
@@ -30,6 +37,7 @@ Route::get('property/{id}', [PropertyController::class, 'show'])
 Route::get('search', SearchController::class);
 
 Route::middleware(['role:admin', 'auth', 'verified'])->group(function () {
+
     Route::get('admin/dashboard', function () {
         return view('admin.dashboard');
     })
@@ -98,6 +106,7 @@ Route::middleware(['role:admin', 'auth', 'verified'])->group(function () {
 });
 
 Route::middleware(['role:agent', 'auth', 'verified'])->group(function () {
+   
     Route::get('agent/dashboard', [AgentController::class, 'dashboard'])
         ->name('agent-dashboard');
 
