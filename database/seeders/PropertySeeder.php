@@ -38,12 +38,15 @@ class PropertySeeder extends Seeder
                     $rooms = ($type == 2 || $type == 3) ? $type + 1 : null;
                     $garage = ($x % 2 == 0) ? 2 : null;
                     $bedrooms = ($type == 2 || $type == 3) ? $type + 1 : null;
-    
+                    $price = ($lease == 5) ? round(rand(500, 6000), -1) : round(rand(60000, 200000), -2);
+
                     $toilets = match ($type) {
                         1 => 3,
                         2 => 2,
                         default => 1,
                     };
+
+
     
                     $status = ($x % 4 === 0 || $x % 4 === 3)
                         ? 'Unavailable'
@@ -51,6 +54,7 @@ class PropertySeeder extends Seeder
     
                     $property = Property::factory()->create([
                         'name' => $propertyName[$type - 1],
+                        'price' => $price,
                         'lease_duration' => $lease,
                         'user_id' => $x % 4 + 2,
                         'type_id' => Type::firstWhere('id', '=', $type),
