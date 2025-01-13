@@ -21,8 +21,6 @@ class ActionsTable extends Component
                 $query->select('id', 'name', 'user_id');
             }])
             ->get();
-
-        // trebas sad ovdje još dodati da od usera uzmes ime samo a od propertya uzmes isto samo ime.
     }
 
     public function refreshActions()

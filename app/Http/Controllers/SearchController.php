@@ -8,7 +8,8 @@ use Illuminate\Http\Request;
 class SearchController extends Controller
 {
     /**
-     * Invokeable search controller that just checks for inputs from entered from user and sends them to index page, ResultList component.
+     * Invokeable SearchController that just checks for inputs entered by user and sends them to properties.index 
+     * then passing them to ResultList component.
      */
     public function __invoke(Request $request)
     {

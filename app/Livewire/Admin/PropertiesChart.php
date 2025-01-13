@@ -22,6 +22,7 @@ class PropertiesChart extends Component
 
         $this->series = [];
 
+        // For admin we will fetch data of all agents, for agents only their data
         if(Auth::user()->hasRole('admin')){
             $data = Property::query()
                 ->withTrashed()
@@ -39,6 +40,7 @@ class PropertiesChart extends Component
                 ->get();
         }
 
+        // Sorting fetched data by the property type
         foreach ($data as $property) {
             if ($property->type_id === 1) {
                 $this->series[] = $property->total;
@@ -52,6 +54,7 @@ class PropertiesChart extends Component
             }
         }
 
+        // Dispatching event to js script inside components blade file.
         $this->dispatch('updateDonutChart', ['labels' => $this->labels, 'series' => $this->series]);
     }
 

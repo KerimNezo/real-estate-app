@@ -72,6 +72,7 @@ class EditProperty extends Component
             ->get();
     }
 
+    // Function that triggers when new photos are added to the component
     public function updatedNewPhotos()
     {
         foreach ($this->newPhotos as $photo) {
@@ -81,6 +82,7 @@ class EditProperty extends Component
         }
     }
 
+    // Function to rename newly added property photos
     public function sanitizePhotoName($photo)
     {
         $nameWithoutExtension = pathinfo($photo->getClientOriginalName(), PATHINFO_FILENAME);
@@ -91,6 +93,7 @@ class EditProperty extends Component
         return $sanitized;
     }
 
+    // Function that removes new photos added to the component
     public function removeNewPhoto($filename)
     {
         foreach ($this->newPhotoArray as $index => $photo) {
@@ -101,20 +104,25 @@ class EditProperty extends Component
         }
     }
 
+    // Function to remove existing property photo from displaying on screen
     public function removePhoto($index, $id)
     {
+        // We add the photos id to an array
         $this->removedPhotoIds[] = $id;
 
         $this->tempPhotos = $this->tempPhotos->filter(fn ($photo) => $photo->id !== $id)->values();
     }
 
+    // Function to reset photo properties so stored property photos are displayed again
     public function resetPhotos()
     {
         $this->tempPhotos = $this->propertyMedia;
+
+        // We clear properties that interact with new and existing photos in component
         $this->reset('newPhotos', 'removedPhotoIds', 'newPhotoArray');
     }
 
-    // Main usage of the function is to reorder property photos so that their order_column values are in sync
+    // Function to reorder property photos so that their order_column values are in asc order with no skipping (relevant for display of photos)
     public function reorderPhotos()
     {
         $mediaItems = $this->property->getMedia('property-photos');
@@ -125,7 +133,8 @@ class EditProperty extends Component
         }
     }
 
-    // Function that sets property as sold/rented.
+    // Sell/Rent property (button)
+    // Function that sets property status as sold/rented and generates dateTime for transaction_at
     public function makeTransaction()
     {
         $this->property->transaction_at = now();
@@ -144,22 +153,27 @@ class EditProperty extends Component
         }
     }
 
+    // Update property (button)
+    // Function that handles the update of property with new data from the form
     public function saveProperty()
     {
         logger('Before validation');
 
+        // Validating the new data
         $this->validate();
 
         logger('Validation passed');
 
         logger('-------------------------------------------------');
 
+        // Assigning models properties with new data
         $this->property->name = $this->tempTitle;
         $this->property->description = $this->tempDescription;
         $this->property->user_id = $this->tempAgent;
         $this->property->price = $this->tempPrice;
         $this->property->status = $this->tempStatus;
 
+        // Setting and assigning property lease_duration based on offer entered in form
         if ($this->tempOffer === 'Sale') {
             $this->property->lease_duration = 0;
         } elseif ($this->tempOffer === 'Rent') {
@@ -168,10 +182,12 @@ class EditProperty extends Component
             logger("Something's wrong with the status");
         }
 
+        // Adding new photos to properties mediaCollection
         foreach ($this->newPhotoArray as $key => $photo) {
             $this->property->addMedia($photo)->toMediaCollection('property-photos');
         }
 
+        // Removing photos stored in db
         foreach ($this->removedPhotoIds as $photoId) {
             $mediaItem = $this->property->media()->find($photoId);
             if ($mediaItem) {
@@ -179,6 +195,7 @@ class EditProperty extends Component
             }
         }
 
+        // Reordering photos left in mediaCollection so their order_column are in asc order
         $this->reorderPhotos();
 
         $this->property->save();

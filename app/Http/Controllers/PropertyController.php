@@ -6,8 +6,6 @@ use App\Models\Property;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-// OVDJE IMA POSLA ZNAČI MILION, ali kasnije malo. index i show, sad, a ovi ostali su tek kasnije kad agente ubacimo
-
 class PropertyController extends Controller
 {
     /**
@@ -36,36 +34,23 @@ class PropertyController extends Controller
         return view('agent.property.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        // Ovo stavi u createProperty formu
-
-        // return redirect()->route('properties.index');
-    }
-
-
-    // Functions used for item-to-item based collaboration algorithm.
-
+    // Function that returns 3 properties most similar to property passed as argument.
     public static function recommendSimilar(Property $property, int $count = 3)
     {
-
-        //treba i type_id
+        // Query all properties which share same city, offer and similar property_type
         $properties = Property::query()
             ->where('id', '!=', $property->id)
             ->where('status', 'available')
             ->where('lease_duration', $property->lease_duration)
             ->where('city', $property->city)
             ->when($property->type_id === 1, function ($query) {
-                $query->where('type_id', 1);
-            }, function ($query) {
-                $query->where('type_id', '!=', 1);
-            })
+                    $query->where('type_id', 1);
+                }, function ($query) {
+                    $query->where('type_id', '!=', 1);
+                })
             ->get();
 
-        // Compute similarity scores
+        // Compute similarity scores for each queries property
         $recommendations = $properties->map(function ($otherProperty) use ($property) {
             $similarity = self::computeSimilarity($property, $otherProperty);
             logger("Property id: {$otherProperty->id}, similarity score: {$similarity}");
@@ -75,10 +60,19 @@ class PropertyController extends Controller
             ];
         });
 
-        // Sort by similarity and return top N
+        // Sort by similarity and return top n properties (default 3)
         return $recommendations->sortByDesc('similarity')->take($count)->pluck('property');
     }
 
+    /** 
+     * Function that computes similarity between two properties
+     * We're computing the similarity based on each properites weighted attribute score
+     * Based on the attribute, we use different calculation
+     * This algoritham can, of course, be improved. 
+     * The way we calculate distance for each score can be done more thoroughly, but I am satisfied with this for now.
+     * Link to the Euclidean distance: https://en.wikipedia.org/wiki/Euclidean_distance
+     * similarity score of 1 indicated identical properties, and similarity score close to 0 indicated dissimilar properties.
+     */
     private static function computeSimilarity(Property $a, Property $b)
     {
         // Define weights for each attribute
@@ -90,8 +84,10 @@ class PropertyController extends Controller
             'furnished' => 0.05,
         ];
 
+        // Defire Euclidean distance
         $distance = 0;
 
+        // Iterate over each wieghted attribute of property 
         foreach ($weights as $attribute => $weight) {
             $valueA = $a->$attribute ?? 0;
             $valueB = $b->$attribute ?? 0;
@@ -107,7 +103,7 @@ class PropertyController extends Controller
             }
         }
 
-        // Return similarity (inverse of distance)
+        // Return similarity (inverse of Euclidean distance)
         return 1 / (1 + sqrt($distance));
     }
 
@@ -117,16 +113,15 @@ class PropertyController extends Controller
     public function show(string $id)
     {
         $property = Property::query()
-            ->with(['media', 'user', 'type']) // Adjust relations as needed
+            ->with(['media', 'user', 'type'])
             ->findOrFail($id);
 
         if ($property->status !== 'Available') {
             return redirect()->route('all-properties');
         }
 
+        // Getting similar properties of $property
         $similarProperties = $this->recommendSimilar($property);
-
-        logger($similarProperties);
 
         return view('properties.show', [
             'property' => $property,
@@ -139,6 +134,7 @@ class PropertyController extends Controller
      */
     public function edit(Property $property)
     {
+        // Checking if property can be edited by its status.
         if ($property->status === 'Available' || $property->status === 'Unavailable') {
             $propertyMedia = $property->getMedia('property-photos')->sortBy('order_column');
 
@@ -151,55 +147,26 @@ class PropertyController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Property $property)
-    {
-        // Dolazi nam ovdje, sad ga samo treba hendlat
-
-        logger($request);
-
-        // $property = Property::findOrFail($property);
-
-        // // Update text data
-        // $property->update([
-        //     'title' => $request->data['title'],
-        //     'description' => $request->data['description'],
-        // ]);
-
-        // // Handle photo additions
-        // foreach ($request->data['addedPhotos'] as $photo) {
-        //     $property->addMedia($photo->getPath())->toMediaCollection('property-photos');
-        // }
-
-        // // Handle photo deletions
-        // Media::destroy($request->data['removedPhotoIds']);
-
-        // return redirect()->back()->with('status', 'Property updated successfully!');
-
-        return redirect()->route('admin-properties')->with('success', 'Property updated successfully');
-    }
-
-    /**
      * Remove the specified resource from storage.
      */
     public function destroy($id)
     {
-        logger($id);
-
         $property = Property::find($id);
 
+        // Checking if property exist. Although I think it can't come to this here, bcs I think we're checking for this in route.
         if ($property === null) {
-            return redirect()->route('admin-properties')->with('error', 'This property does not exist in the database');
+            return redirect()->route('admin-properties')->with('error', 'This property does not exist');
         }
 
         try {
             if (Auth::user()->hasRole('admin') || Auth::id() === $property->user_id) {
-                // Delete the property
+                // Updating property status
                 $property->status = 'Removed';
 
+                // Saving property update without sending event to observer.
                 $property->saveQuietly();
 
+                // Soft deleting the property
                 $property->delete();
 
                 // Return a success response

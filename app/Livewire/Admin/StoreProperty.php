@@ -98,6 +98,7 @@ class StoreProperty extends Component
         $this->reset('mediaArray', 'media');
     }
 
+    // pint made them all go into each separate row... Not bothered enought to fix pint, if I can...
     // Ako ćeš koristiti ovo, moraš ovo da koristiš wire:model.blur="", tj real-time validation
     #[Validate]
     public $user_id;
@@ -323,44 +324,11 @@ class StoreProperty extends Component
 
     public function storeProperty()
     {
-        logger('>---------------------------------------------<');
-
-        logger('Before validation');
-
-        logger('user_id: '.$this->user_id);
-        logger('type_id: '.$this->type_id);
-        logger('name: '.$this->name);
-        logger('price: '.$this->price);
-        logger('surface: '.$this->surface);
-        logger('lat: '.$this->lat);
-        logger('lon: '.$this->lon);
-        logger('rooms: '.$this->rooms);
-        logger('toilets: '.$this->toilets);
-        logger('bedrooms: '.$this->bedrooms);
-        logger('garage: '.$this->garage);
-        logger('furnished: '.$this->furnished);
-        logger('floors: '.$this->floors);
-        logger('lease_duration: '.$this->lease_duration);
-        logger('video_intercom: '.$this->video_intercom);
-        logger('keycard_entry: '.$this->keycard_entry);
-        logger('elevator: '.$this->elevator);
-        logger('city: '.$this->city);
-        logger('street: '.$this->street);
-        logger('country: '.$this->country);
-        logger('description: '.$this->description);
-        logger('year_built: '.$this->year_built);
-        logger('garden: '.$this->garden);
-        logger('status: '.$this->status);
-
         if(Auth::user()->hasRole('agent')) {
             $this->user_id = Auth::user()->id;
         }
 
         $this->validate();
-
-        logger('Validation passed');
-
-        logger('>---------------------------------------------<');
 
         $property = new Property();
 
@@ -380,8 +348,6 @@ class StoreProperty extends Component
         foreach ($this->mediaArray as $key => $photo) {
             $property->addMedia($photo)->toMediaCollection('property-photos');
         }
-
-        //$this->reorderPhotos($property->getMedia('property-photos'));
 
         $property->status = 'Available';
         $property->save();

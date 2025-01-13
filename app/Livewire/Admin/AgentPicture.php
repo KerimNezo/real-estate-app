@@ -26,13 +26,17 @@ class AgentPicture extends Component
         return $this->agent->getFirstMedia('agent-pfps');
     }
 
+    // Function that triggers when new photo is updated
     public function updatedNewPhoto()
     {
+        // Validation of new photo
         $this->validate();
 
+        // We set pullPhoto to be realPath of uploaded photo.
         $this->pullPhoto = $this->newPhoto ? $this->newPhoto->getRealPath() : null;
     }
 
+    // Validation rules
     public function rules()
     {
         return [
@@ -40,6 +44,7 @@ class AgentPicture extends Component
         ];
     }
 
+    // Validation error messages
     public function messages()
     {
         return [

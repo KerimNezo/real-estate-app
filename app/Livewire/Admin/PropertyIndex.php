@@ -53,9 +53,6 @@ class PropertyIndex extends Component
                 $userQuery->select('id', 'name');
             }]);
 
-        // Ovdje loadam sve slike, samo 6 ako mu slučajno spasi više, jer šaljemo cijeli property objekat na rutu
-        // da ne bih morao queryat ponovo na show-property ruti
-
         if (! is_null($this->assetLocation) && $this->assetLocation != '') {
             $prop = $prop->where('city', '=', $this->assetLocation);
         }
@@ -92,7 +89,7 @@ class PropertyIndex extends Component
            Sto nije ono što želimo. Ovako kada grupišeš where i orWhere klauze, dobiješ status available ILI (lease 0 ili lease null) što želimo.
          */
 
-        // Added this to check if agent is using this class, to only display him available properties
+        // Added this to check if agent is using this class and if he does, he only has access to properties of status 'Available' and 'Unavailable'
         if (Auth::user()->hasRole('agent')) {
             $prop = $prop->where(function ($query) {
                 $query->where('status', '=', 'Available')
@@ -105,11 +102,11 @@ class PropertyIndex extends Component
         return $prop->paginate(10);
     }
 
+    // This action here will just change the values of component properties, and when those change
+    // by default the computed property will update.
     public function submitForm()
     {
         $this->resetPage();
         logger('Form submitted');
-        // this action here will just change the values of component properties, and when those change
-        // by default the computed property will update.
     }
 }

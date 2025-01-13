@@ -26,7 +26,7 @@ class StoreAgent extends Component
     #[Validate]
     public $newPhoto;
 
-    // validation error rules
+    // Validation error rules
     public function rules()
     {
         return [
@@ -65,20 +65,10 @@ class StoreAgent extends Component
         ];
     }
 
+    // Function that handles the storing of Agent model to DB
     public function storeAgent()
     {
-        logger('>---------------------------------------------<');
-
-        logger('name '.$this->name);
-        logger('email '.$this->email);
-        logger('phoneNumber '.$this->phoneNumber);
-        logger('password '.$this->password);
-
-        logger('Before validation');
-
         $this->validate();
-
-        logger('Validation passed');
 
         $agent = new User();
 

@@ -85,6 +85,3 @@ class PropertyResultList extends Component
         return $query->paginate(8);
     }
 }
-
-// Ovo treba biti computed, te search treba samo proslijediti filtere ovdje. Kada bude computed možemo onda da ih sortiramo kako nam je volja. I think
-// SOURCE: https://livewire.laravel.com/docs/properties#eloquent-constraints-arent-preserved-between-requests

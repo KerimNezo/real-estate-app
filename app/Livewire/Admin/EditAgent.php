@@ -27,16 +27,16 @@ class EditAgent extends Component
 
     public $agent;
 
+    public $agentPicture;
+
+    public $photoData;
+
     public function mount()
     {
         $this->name = $this->agent->name;
         $this->email = $this->agent->email;
         $this->phoneNumber = $this->agent->phone_number;
     }
-
-    public $agentPicture;
-
-    public $photoData;
 
     #[On('photoDataUpdated')]
     public function updatePhotoData($picture)
@@ -45,7 +45,7 @@ class EditAgent extends Component
         $this->photoData = $picture;
     }
 
-    // validation error rules
+    // Validation rules
     public function rules()
     {
         return [
@@ -61,7 +61,7 @@ class EditAgent extends Component
         ];
     }
 
-    // validation error messages
+    // Validation error messages
     public function messages()
     {
         return [
@@ -81,21 +81,10 @@ class EditAgent extends Component
         ];
     }
 
+    // Function that handles agent model update
     public function saveAgent()
     {
-        logger('>---------------------------------------------<');
-
-        logger('name '.$this->name);
-        logger('email '.$this->email);
-        logger('phoneNumber '.$this->phoneNumber);
-        logger('password '.$this->password);
-        logger('password_confirmation '.$this->password_confirmation);
-
-        logger('Before validation');
-
         $this->validate();
-
-        logger('Validation passed');
 
         $slika = $this->pull('novaSlika');
         // ovo sad ovdje nam daje path slike gdje je ona temporary storana, što nam treba za njen upload
@@ -108,18 +97,11 @@ class EditAgent extends Component
             if ($deletePhoto) {
                 $deletePhoto->delete();
             }
-            // ovo brise sve slike iz kolekcije profilne slike agenta
 
             $this->agent->addMedia($slika)->toMediaCollection('agent-pfps');
-            // dodajemo novu sliku u media-library, ime će biti
         }
 
-        // trebaš još dodati logiku za storeanje ostalih ovih podataka
-        // 1. provjeriti koji su promijenjeni i pass je li korektan
-        // 2. one koji su promijenjeni, storeaj, koji nisu skipaj ih.
-        // 3. to je to
-        // to sutra uradi.
-
+        // Update agents data 
         $this->agent->name = $this->name;
         $this->agent->email = $this->email;
         $this->agent->phone_number = $this->phoneNumber;

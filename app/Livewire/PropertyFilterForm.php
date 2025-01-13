@@ -39,8 +39,3 @@ class PropertyFilterForm extends Component
         return view('livewire.property-filter-form');
     }
 }
-
-/**
- * render() - expected to return a view. It gets called on initial page load and every subsequent component update.
- *            Kad god se odradi neka component funkcija, na njenom zavrsetku ce se callat i render funkcija
- */

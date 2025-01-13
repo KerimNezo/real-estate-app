@@ -10,7 +10,7 @@ class ProfitChart extends Component
 {
     public function mount()
     {
-
+        // Displays the ChartData for last months (Default first view)
         $this->updateChartData(3);
     }
 
@@ -40,7 +40,6 @@ class ProfitChart extends Component
             $current->modify('first day of next month');
         }
 
-        // Query actions table
         $actions = Actions::query()
             ->join('properties', 'actions.property_id', '=', 'properties.id')
             ->whereBetween('actions.created_at', [$startDate, $endDate])
@@ -62,7 +61,6 @@ class ProfitChart extends Component
             ];
         });
 
-        // Prepare the chart data
         $chartData = [
             'labels' => [],
             'rented' => [],
@@ -79,6 +77,7 @@ class ProfitChart extends Component
 
             // Extract month part
             list($year, $monthNum) = explode("-", $month);
+
             // Format month number to get the abbreviated month name
             $monthLabel = date('M', strtotime("2024-$monthNum-01"));
 
@@ -91,7 +90,7 @@ class ProfitChart extends Component
 
         // logger($chartData);
 
-        // Dispatch chart update event
+        // Dispatch chart update event to components blade JS
         $this->dispatch('updateLineChart', [
             'labels' => $chartData['labels'],
             'totalSeries' => $chartData['total'],

@@ -6,6 +6,10 @@ use App\Models\Property;
 
 class WelcomeController extends Controller
 {
+    /**
+     * Invokeable WelcomeController that queries 6 latest properties with 'Available' status and their first image
+     * Return welcome blade
+     */
     public function __invoke()
     {
         $properties = Property::query()
@@ -19,10 +23,7 @@ class WelcomeController extends Controller
             ->take(6)
             ->get();
 
-        $propertyCount = $properties->count();
-
         return view('welcome')
-            ->with('properties', $properties)
-            ->with('property_count', $propertyCount);
+            ->with('properties', $properties);
     }
 }
