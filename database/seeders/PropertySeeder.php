@@ -33,6 +33,11 @@ class PropertySeeder extends Seeder
                     // Setting other data inputs we'll use in create function
                     $street = ($x % 2 == 0) ? 'Mejdandžik 11' : 'Adolfa Goldberga 5';
                     $lease = ($x % 2 == 0) ? 1 : 0;
+                    if ($lease === 1 && $i === 0) {
+                        $lease = 0;
+                    } elseif ($lease === 0 && $i === 0) {
+                        $lease = 1;
+                    }
                     $elevator = ($type != 2 && $x % 2 == 0) ? 1 : null;
                     $keycard = ($type != 2 && $x % 2 == 0) ? 1 : null;
                     $floors = ($type == 2 || $type % 2 == 0) ? 2 : null;
@@ -40,7 +45,7 @@ class PropertySeeder extends Seeder
                     $rooms = ($type == 2 || $type == 3) ? $type + 1 : null;
                     $garage = ($x % 2 == 0) ? 2 : null;
                     $bedrooms = ($type == 2 || $type == 3) ? $type + 1 : null;
-                    $price = ($lease == 5) ? round(rand(2000, 10000), -1) : round(rand(60000, 200000), -2);
+                    $price = ($lease == 1) ? round(rand(2000, 12000), -1) : round(rand(60000, 150000), -2);
                     $toilets = match ($type) {
                         1 => 3,
                         2 => 2,
