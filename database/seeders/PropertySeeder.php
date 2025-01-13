@@ -40,7 +40,7 @@ class PropertySeeder extends Seeder
                     $rooms = ($type == 2 || $type == 3) ? $type + 1 : null;
                     $garage = ($x % 2 == 0) ? 2 : null;
                     $bedrooms = ($type == 2 || $type == 3) ? $type + 1 : null;
-                    $price = ($lease == 5) ? round(rand(500, 6000), -1) : round(rand(60000, 200000), -2);
+                    $price = ($lease == 5) ? round(rand(2000, 10000), -1) : round(rand(60000, 200000), -2);
                     $toilets = match ($type) {
                         1 => 3,
                         2 => 2,
