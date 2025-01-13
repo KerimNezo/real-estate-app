@@ -16,7 +16,7 @@
             <select wire:loading.attr="disabled" wire:change="updateLineChart($event.target.value)" name="propertyProfitChart" id="propertyProfitChart" class="bg-gray-900 rounded-[10px] pl-2 p-1 pr-8 text-sm">
                 <option value="3">3 Months</option>
                 <option value="6">6 Months</option>
-                <option value="12">Last Year</option>
+                <option value="11">Last Year</option>
             </select>
         </div>
 
