@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Property;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\PropertyDataController;
 
 class AgentController extends Controller
 {
@@ -18,6 +19,7 @@ class AgentController extends Controller
         $agent = Auth::user();
         $agentData = $agent->getAttributes();
 
+        // Unsetting properties we don't want to be returned to user.
         unset($agentData['id'], $agentData['created_at'], $agentData['updated_at'], $agentData['email_verified_at'], $agentData['password'], $agentData['remember_token'], $agentData['deleted_at']);
 
         return view('agent.show')
@@ -25,9 +27,9 @@ class AgentController extends Controller
             ->with('agentData', $agentData);
     }
 
+    // Function that returns index page of properties.
     public function indexProperties(Request $request)
     {
-        // action that returns index blade that displays all properties
         $cities = Property::query()
             ->select('city')
             ->distinct()
@@ -46,25 +48,19 @@ class AgentController extends Controller
             ->with('assetTypeId', $assetId);
     }
 
-    public function editProperty(Property $property)
-    {
-        $propertyMedia = $property->getMedia('property-photos')->sortBy('order_column');
-
-        return view('agent.property.edit')
-            ->with('property', $property)
-            ->with('propertyMedia', $propertyMedia);
-    }
-
+    // Function that returns single property page
     public function showProperty(Property $property)
     {
-        // action that return blade that displays single property data
-
+        // Get list of user and property attributes
         $propertyData = $property->getAttributes();
         $userData = $property->user->getAttributes();
 
         $media = $property->getMedia('property-photos');
 
-        $propertyData['Type'] = $this->changeTypeData($propertyData['type_id']);
+        // Initializing the propertyDataController
+        $propertyDataController = new PropertyDataController();
+
+        $propertyData['Type'] = $propertyDataController->changeTypeData($propertyData['type_id']);
 
         $lon = $propertyData['lon'];
         $lat = $propertyData['lat'];
@@ -81,14 +77,14 @@ class AgentController extends Controller
             $urlovi = 0;
         }
 
-        $propertyData['garden'] = $this->numberToBool($propertyData['garden']);
-        $propertyData['furnished'] = $this->numberToBool($propertyData['furnished']);
-        $propertyData['keycard_entry'] = $this->numberToBool($propertyData['keycard_entry']);
-        $propertyData['elevator'] = $this->numberToBool($propertyData['elevator']);
-        $propertyData['video_intercom'] = $this->numberToBool($propertyData['video_intercom']);
-        $propertyData['garage'] = $this->numberOrNo($propertyData['garage']);
+        $propertyData['garden'] = $propertyDataController->numberToBool($propertyData['garden']);
+        $propertyData['furnished'] = $propertyDataController->numberToBool($propertyData['furnished']);
+        $propertyData['keycard_entry'] = $propertyDataController->numberToBool($propertyData['keycard_entry']);
+        $propertyData['elevator'] = $propertyDataController->numberToBool($propertyData['elevator']);
+        $propertyData['video_intercom'] = $propertyDataController->numberToBool($propertyData['video_intercom']);
+        $propertyData['garage'] = $propertyDataController->numberOrNo($propertyData['garage']);
 
-        $propertyData = $this->reorderArray($propertyData);
+        $propertyData = $propertyDataController->reorderArray($propertyData);
 
         return view('agent.property.show')
             ->with('property', $property)
@@ -98,60 +94,5 @@ class AgentController extends Controller
             ->with('urlovi', $urlovi)
             ->with('lon', $lon)
             ->with('lat', $lat);
-    }
-
-    // sve ove funkcije iza možeš staviti u jedan controller (propertyDataController) i pozvati ga ovdje i u adminController da možeš
-    // ove funckije koristiti bez da ih napišeš dva puta. Trenutno nek stoje dva put samo da ima
-
-    public function changeTypeData(int $number)
-    {
-        switch ($number) {
-            case 1:
-                return 'Office';
-            case 2:
-                return 'House';
-            case 3:
-                return 'Appartement';
-            default:
-                return 'Unknown';
-        }
-    }
-
-    public function reorderArray($array)
-    {
-        $reorderedArray = [];
-
-        $desiredOrder = [
-            'name', 'Type', 'price', 'city', 'street', 'country', 'surface',
-            'year_built', 'status', 'lat', 'lon', 'rooms', 'bedrooms', 'toilets',
-            'garage', 'furnished', 'floors', 'garden', 'lease_duration',
-            'video_intercom', 'keycard_entry', 'elevator', 'description',
-        ];
-
-        foreach ($desiredOrder as $key) {
-            if (isset($array[$key])) {
-                $reorderedArray[$key] = $array[$key];
-            }
-        }
-
-        return $reorderedArray;
-    }
-
-    public function numberToBool($value)
-    {
-        if ($value === 0 || $value === null) {
-            return $value = 'No';
-        } else {
-            return $value = 'Yes';
-        }
-    }
-
-    public function numberOrNo($value)
-    {
-        if ($value === null || $value === 0) {
-            return $value = 'No';
-        } else {
-            return $value;
-        }
     }
 }

@@ -5,20 +5,17 @@ namespace App\Http\Controllers;
 use App\Models\Property;
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Controllers\PropertyDataController;
 
 class AdminController extends Controller
 {
     public function indexAgent()
     {
-        // action that returns the blade that displays all agents from the db
-
         return view('admin.agent.index');
     }
 
     public function showAgent(User $user)
     {
-        // action that displays single agents data
-
         $agentData = $user->getAttributes();
 
         unset($agentData['id'], $agentData['created_at'], $agentData['updated_at'], $agentData['email_verified_at'], $agentData['password'], $agentData['remember_token'], $agentData['deleted_at']);
@@ -30,22 +27,11 @@ class AdminController extends Controller
 
     public function createAgent()
     {
-        //action that opens up a page with a form to create new agent
-
         return view('admin.agent.create');
-    }
-
-    public function storeAgent()
-    {
-        // stores the new User object with the data passed from the form
-
-        // return view of agent-index
     }
 
     public function editAgent(User $user)
     {
-        // action that opens up blade that displays form for editing a agent.
-
         return view('admin.agent.edit')
             ->with('agent', $user);
     }
@@ -53,8 +39,6 @@ class AdminController extends Controller
     // Property Routes
     public function indexProperites(Request $request)
     {
-        // action that returns index blade that displays all properties
-
         $cities = Property::query()
             ->select('city')
             ->distinct()
@@ -75,21 +59,19 @@ class AdminController extends Controller
 
     public function createProperty()
     {
-        // action that returns blade which contains form with which we will create the property
-
         return view('admin.property.create');
     }
 
     public function showProperty(User $user, Property $property)
     {
-        // action that return blade that displays single property data
-
         $propertyData = $property->getAttributes();
         $userData = $user->getAttributes();
 
         $media = $property->getMedia('property-photos');
 
-        $propertyData['Type'] = $this->changeTypeData($propertyData['type_id']);
+        $propertyDataController = new PropertyDataController();
+
+        $propertyData['Type'] = $propertyDataController->changeTypeData($propertyData['type_id']);
 
         $lon = $propertyData['lon'];
         $lat = $propertyData['lat'];
@@ -106,14 +88,14 @@ class AdminController extends Controller
             $urlovi = 0;
         }
 
-        $propertyData['garden'] = $this->numberToBool($propertyData['garden']);
-        $propertyData['furnished'] = $this->numberToBool($propertyData['furnished']);
-        $propertyData['keycard_entry'] = $this->numberToBool($propertyData['keycard_entry']);
-        $propertyData['elevator'] = $this->numberToBool($propertyData['elevator']);
-        $propertyData['video_intercom'] = $this->numberToBool($propertyData['video_intercom']);
-        $propertyData['garage'] = $this->numberOrNo($propertyData['garage']);
+        $propertyData['garden'] = $propertyDataController->numberToBool($propertyData['garden']);
+        $propertyData['furnished'] = $propertyDataController->numberToBool($propertyData['furnished']);
+        $propertyData['keycard_entry'] = $propertyDataController->numberToBool($propertyData['keycard_entry']);
+        $propertyData['elevator'] = $propertyDataController->numberToBool($propertyData['elevator']);
+        $propertyData['video_intercom'] = $propertyDataController->numberToBool($propertyData['video_intercom']);
+        $propertyData['garage'] = $propertyDataController->numberOrNo($propertyData['garage']);
 
-        $propertyData = $this->reorderArray($propertyData);
+        $propertyData = $propertyDataController->reorderArray($propertyData);
 
         return view('admin.property.show')
             ->with('property', $property)
@@ -123,57 +105,5 @@ class AdminController extends Controller
             ->with('urlovi', $urlovi)
             ->with('lon', $lon)
             ->with('lat', $lat);
-    }
-
-    public function changeTypeData(int $number)
-    {
-        switch ($number) {
-            case 1:
-                return 'Office';
-            case 2:
-                return 'House';
-            case 3:
-                return 'Appartement';
-            default:
-                return 'Unknown';
-        }
-    }
-
-    public function reorderArray($array)
-    {
-        $reorderedArray = [];
-
-        $desiredOrder = [
-            'name', 'Type', 'price', 'city', 'street', 'country', 'surface',
-            'year_built', 'status', 'lat', 'lon', 'rooms', 'bedrooms', 'toilets',
-            'garage', 'furnished', 'floors', 'garden', 'lease_duration',
-            'video_intercom', 'keycard_entry', 'elevator', 'description',
-        ];
-
-        foreach ($desiredOrder as $key) {
-            if (isset($array[$key])) {
-                $reorderedArray[$key] = $array[$key];
-            }
-        }
-
-        return $reorderedArray;
-    }
-
-    public function numberToBool($value)
-    {
-        if ($value === 0 || $value === null) {
-            return $value = 'No';
-        } else {
-            return $value = 'Yes';
-        }
-    }
-
-    public function numberOrNo($value)
-    {
-        if ($value === null || $value === 0) {
-            return $value = 'No';
-        } else {
-            return $value;
-        }
     }
 }
