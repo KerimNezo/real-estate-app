@@ -26,11 +26,13 @@ class PropertySeeder extends Seeder
         foreach ($propertyType as $type) {
             for ($i = 0; $i < 3; $i++){
                 for ($x = 0; $x < $monthsToSeed; $x++) {
-                    $date = $currentDate->copy()->subMonths($x); // Get the unique month going backward
+                    // Setting up different dates going up to 12 months back to save at created_at
+                    $date = $currentDate->copy()->subMonths($x);
                     $formattedDate = $date->toDateTimeString();
-    
+
+                    // Setting other data inputs we'll use in create function
                     $street = ($x % 2 == 0) ? 'Mejdandžik 11' : 'Adolfa Goldberga 5';
-                    $lease = ($x % 2 == 0) ? 5 : 0; // Lease duration will be 5 or null
+                    $lease = ($x % 2 == 0) ? 1 : 0;
                     $elevator = ($type != 2 && $x % 2 == 0) ? 1 : null;
                     $keycard = ($type != 2 && $x % 2 == 0) ? 1 : null;
                     $floors = ($type == 2 || $type % 2 == 0) ? 2 : null;
@@ -39,19 +41,18 @@ class PropertySeeder extends Seeder
                     $garage = ($x % 2 == 0) ? 2 : null;
                     $bedrooms = ($type == 2 || $type == 3) ? $type + 1 : null;
                     $price = ($lease == 5) ? round(rand(500, 6000), -1) : round(rand(60000, 200000), -2);
-
                     $toilets = match ($type) {
                         1 => 3,
                         2 => 2,
                         default => 1,
                     };
-
-
     
+                    // Setting default status values for properties.
                     $status = ($x % 4 === 0 || $x % 4 === 3)
                         ? 'Unavailable'
                         : 'Available';
     
+                    // Creating property with data generated above
                     $property = Property::factory()->create([
                         'name' => $propertyName[$type - 1],
                         'price' => $price,
@@ -73,7 +74,7 @@ class PropertySeeder extends Seeder
                         'street' => $street,
                         'description' => "If you have older kids or frequent guests, this home is meant for you. A spacious loft at the top of the stairs adjoins two bedrooms with walk-in closets and a shared bath, providing just the right amount of privacy for everyone.With an open-concept layout in the great room, kitchen and casual dining, there's plenty of space and seating to bring the whole family together. Stream your favorite videos. Adjust the lighting. Check the front door without leaving your comfy seat. Our HomeSmart features are included and connect tech to your device.",
                         'status' => $status,
-                        'created_at' => $formattedDate, // Unique month and year
+                        'created_at' => $formattedDate,
                     ]);
     
                     // Adding first property photo
