@@ -83,13 +83,13 @@ class PropertySeeder extends Seeder
                     ]);
     
                     // Adding first property photo
-                    $property->addMedia(public_path('photos/' . $propertyPhoto[$type - 1] . 's/' . $propertyPhoto[$type - 1] . '0.jpg'))
+                    $property->addMedia(public_path('photos/' . $propertyPhoto[$type - 1] . 's/' . $propertyPhoto[$type - 1] . '0.webp'))
                         ->preservingOriginal()
                         ->toMediaCollection('property-photos');
     
                     // Adding rest of property photos
                     for ($y = 1; $y < 6; $y++) {
-                        $property->addMedia(public_path('photos/' . $propertyPhoto[$type - 1] . 's/' . $propertyPhoto[$type - 1] . $y . '.jpg'))
+                        $property->addMedia(public_path('photos/' . $propertyPhoto[$type - 1] . 's/' . $propertyPhoto[$type - 1] . $y . '.webp'))
                             ->preservingOriginal()
                             ->toMediaCollection('property-photos');
                     }
