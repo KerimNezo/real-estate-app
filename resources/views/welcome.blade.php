@@ -4,7 +4,7 @@
     </x-slot>
 
     <!-- Hero section of the page -->
-    <div class="py-32 text-center text-black bg-white h-fit bg-hero-image bg-cover bg-[center 900px]" id="property-query" style="background-image: url('photos/pozadina.jpg')">
+    <div class="py-32 text-center text-black bg-white h-fit bg-hero-image bg-cover bg-[center 900px]" id="property-query" style="background-image: url('photos/pozadina.webp')">
         <!-- Hero heading #1 -->
         <div class="text-lg pb-[20px] pt-[40px] sm:text-2xl sm:pb-[54px] sm:pt-[103px]" id="query-title">
             <h1 class="text-color">WELCOME TO OUR PAGE</h1>
