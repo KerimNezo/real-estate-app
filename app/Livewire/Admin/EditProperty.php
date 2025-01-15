@@ -156,8 +156,8 @@ class EditProperty extends Component
 
     protected function convertToWebp($path)
     {
-        logger($path);
-        $image = Image::read($path)->toWebp(); // Convert to WebP with 90% quality
+        // Convert to WebP with 90% quality
+        $image = Image::read($path)->toWebp();
 
         // Save the WebP image to a temporary location
         $webpTempPath = sys_get_temp_dir() . '/' . uniqid() . '.webp';
@@ -200,6 +200,7 @@ class EditProperty extends Component
             // Convert the uploaded photo to WebP format
             $webpFilePath = $this->convertToWebp($photo->getRealPath());
 
+            // Add converted file to mediaCollection
             $this->property->addMedia($webpFilePath)->toMediaCollection('property-photos');
         }
 
