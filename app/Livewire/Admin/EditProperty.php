@@ -9,6 +9,7 @@ use Livewire\Attributes\Validate;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Auth;
+use Intervention\Image\Laravel\Facades\Image;
 
 class EditProperty extends Component
 {
@@ -153,6 +154,18 @@ class EditProperty extends Component
         }
     }
 
+    protected function convertToWebp($path)
+    {
+        logger($path);
+        $image = Image::read($path)->toWebp(); // Convert to WebP with 90% quality
+
+        // Save the WebP image to a temporary location
+        $webpTempPath = sys_get_temp_dir() . '/' . uniqid() . '.webp';
+        $image->save($webpTempPath);
+
+        return $webpTempPath;
+    }
+
     // Update property (button)
     // Function that handles the update of property with new data from the form
     public function saveProperty()
@@ -184,7 +197,10 @@ class EditProperty extends Component
 
         // Adding new photos to properties mediaCollection
         foreach ($this->newPhotoArray as $key => $photo) {
-            $this->property->addMedia($photo)->toMediaCollection('property-photos');
+            // Convert the uploaded photo to WebP format
+            $webpFilePath = $this->convertToWebp($photo->getRealPath());
+
+            $this->property->addMedia($webpFilePath)->toMediaCollection('property-photos');
         }
 
         // Removing photos stored in db
