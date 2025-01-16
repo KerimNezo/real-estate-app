@@ -5,6 +5,7 @@ namespace App\Livewire\Admin;
 use App\Models\Actions;
 use Carbon\Carbon;
 use Livewire\Component;
+use Illuminate\Support\Facades\Auth;
 
 class ProfitChart extends Component
 {
@@ -44,6 +45,9 @@ class ProfitChart extends Component
             ->join('properties', 'actions.property_id', '=', 'properties.id')
             ->whereBetween('actions.created_at', [$startDate, $endDate])
             ->whereIn('actions.name', ['rented', 'sold'])
+            ->when(Auth::user()->hasRole('agent'), function ($query) {
+                $query->where('properties.user_id', Auth::user()->id);
+            })
             ->selectRaw('
                 DATE_FORMAT(actions.created_at, "%Y-%m") as month,
                 actions.name,
