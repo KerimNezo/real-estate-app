@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use App\Services\ImageConversionService;
+use App\Services\PropertyDataConversionService;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -14,6 +15,10 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->singleton(ImageConversionService::class, function () {
             return new ImageConversionService();
+        });
+
+        $this->app->singleton(PropertyDataConversionService::class, function () {
+            return new PropertyDataConversionService();
         });
     }
 
