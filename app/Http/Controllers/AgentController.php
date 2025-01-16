@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Property;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\PropertyDataController;
+use App\Services\PropertyDataConversionService;
 
 class AgentController extends Controller
 {
@@ -57,10 +57,10 @@ class AgentController extends Controller
 
         $media = $property->getMedia('property-photos');
 
-        // Initializing the propertyDataController
-        $propertyDataController = new PropertyDataController();
+        // Initializing the propertyDataConversion service
+        $propertyDataService = app(PropertyDataConversionService::class);
 
-        $propertyData['Type'] = $propertyDataController->changeTypeData($propertyData['type_id']);
+        $propertyData['Type'] = $propertyDataService->changeTypeData($propertyData['type_id']);
 
         $lon = $propertyData['lon'];
         $lat = $propertyData['lat'];
@@ -77,14 +77,14 @@ class AgentController extends Controller
             $urlovi = 0;
         }
 
-        $propertyData['garden'] = $propertyDataController->numberToBool($propertyData['garden']);
-        $propertyData['furnished'] = $propertyDataController->numberToBool($propertyData['furnished']);
-        $propertyData['keycard_entry'] = $propertyDataController->numberToBool($propertyData['keycard_entry']);
-        $propertyData['elevator'] = $propertyDataController->numberToBool($propertyData['elevator']);
-        $propertyData['video_intercom'] = $propertyDataController->numberToBool($propertyData['video_intercom']);
-        $propertyData['garage'] = $propertyDataController->numberOrNo($propertyData['garage']);
+        $propertyData['garden'] = $propertyDataService->numberToBool($propertyData['garden']);
+        $propertyData['furnished'] = $propertyDataService->numberToBool($propertyData['furnished']);
+        $propertyData['keycard_entry'] = $propertyDataService->numberToBool($propertyData['keycard_entry']);
+        $propertyData['elevator'] = $propertyDataService->numberToBool($propertyData['elevator']);
+        $propertyData['video_intercom'] = $propertyDataService->numberToBool($propertyData['video_intercom']);
+        $propertyData['garage'] = $propertyDataService->numberOrNo($propertyData['garage']);
 
-        $propertyData = $propertyDataController->reorderArray($propertyData);
+        $propertyData = $propertyDataService->reorderArray($propertyData);
 
         return view('agent.property.show')
             ->with('property', $property)
