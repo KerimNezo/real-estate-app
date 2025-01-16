@@ -348,7 +348,7 @@ class StoreProperty extends Component
 
         foreach ($this->mediaArray as $key => $photo) {
 
-            // ImageConversionService to change uploaded photo to webp.
+            // ImageConversionService to change uploaded photo to webp and upload them to 'property-photos' media collection
             $imageService = app(ImageConversionService::class);
             $imageService->convertAndUpload($photo,$property,'property-photos');
         }

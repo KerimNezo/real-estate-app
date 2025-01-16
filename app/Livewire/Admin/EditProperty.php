@@ -183,7 +183,7 @@ class EditProperty extends Component
             logger("Something's wrong with the status");
         }
 
-        // Adding new photos to properties mediaCollection (using the imageConversionService)
+        // Adding new photos to properties mediaCollection (using the imageConversionService) and storing to 'property-photos' media collection
         foreach ($this->newPhotoArray as $key => $photo) {
             $imageService = app(ImageConversionService::class);
             $imageService->convertAndUpload($photo->getRealPath(),$this->property,'property-photos');

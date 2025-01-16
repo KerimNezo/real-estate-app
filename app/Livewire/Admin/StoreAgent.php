@@ -78,7 +78,7 @@ class StoreAgent extends Component
         $agent->phone_number = $this->phoneNumber;
         $agent->password = bcrypt($this->password);
 
-        // Converting uploaded photo to webp and storing it to db
+        // Converting uploaded photo to webp and storing it to db media collection 'agent-pfps'
         $imageService = app(ImageConversionService::class);
         $imageService->convertAndUpload($this->newPhoto->getRealPath(),$agent,'agent-pfps');
         

@@ -98,7 +98,7 @@ class EditAgent extends Component
                 $deletePhoto->delete();
             }
 
-            // ImageConversionService to change uploaded photo to webp.
+            // ImageConversionService to change uploaded photo to webp and upload it to 'agent-pfps' mediaCollection
             $imageService = app(ImageConversionService::class);
             $imageService->convertAndUpload($slika,$this->agent,'agent-pfps');
         }
