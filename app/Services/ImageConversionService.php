@@ -14,10 +14,11 @@ class ImageConversionService
      * @param string $collection
      * @return void
      */
-    public function convertAndUpload($image, $model, $collection)
+    public function convertAndUpload($imageRealPath, $model, $collection)
     {
         // Convert the image to WebP format
-        $webpFilePath = $this->convertToWebp($image->getRealPath());
+        // $image needs to be of format ->getRealPath().
+        $webpFilePath = $this->convertToWebp($imageRealPath);
 
         // Upload the WebP image to the specified media collection
         $model->addMedia($webpFilePath)->toMediaCollection($collection);
