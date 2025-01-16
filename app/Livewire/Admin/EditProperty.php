@@ -185,8 +185,8 @@ class EditProperty extends Component
 
         // Adding new photos to properties mediaCollection (using the imageConversionService)
         foreach ($this->newPhotoArray as $key => $photo) {
-            $imageService = app(ImageConversionService::class); // Or inject directly if needed
-            $imageService->convertAndUpload($photo,$this->property,'property-photos');
+            $imageService = app(ImageConversionService::class);
+            $imageService->convertAndUpload($photo->getRealPath(),$this->property,'property-photos');
         }
 
         // Removing photos stored in db

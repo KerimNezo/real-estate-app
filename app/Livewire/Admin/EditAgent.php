@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Admin;
 
+use App\Services\ImageConversionService;
 use Livewire\Attributes\On;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
@@ -93,12 +94,13 @@ class EditAgent extends Component
 
         if ($slika !== null) {
             $deletePhoto = $this->agent->getFirstMedia('agent-pfps');
-            logger($deletePhoto);
             if ($deletePhoto) {
                 $deletePhoto->delete();
             }
 
-            $this->agent->addMedia($slika)->toMediaCollection('agent-pfps');
+            // ImageConversionService to change uploaded photo to webp.
+            $imageService = app(ImageConversionService::class);
+            $imageService->convertAndUpload($slika,$this->agent,'agent-pfps');
         }
 
         // Update agents data 
@@ -109,7 +111,6 @@ class EditAgent extends Component
         // Update password if provided
         if (! empty($this->password)) {
             $this->agent->password = bcrypt($this->password);
-            logger('Password updated.');
         }
 
         // Save the agent's data

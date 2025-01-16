@@ -4,6 +4,7 @@ namespace App\Livewire\Admin;
 
 use App\Models\Property;
 use App\Models\User;
+use App\Services\ImageConversionService;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\On;
 use Livewire\Attributes\Validate;
@@ -346,7 +347,10 @@ class StoreProperty extends Component
         }
 
         foreach ($this->mediaArray as $key => $photo) {
-            $property->addMedia($photo)->toMediaCollection('property-photos');
+
+            // ImageConversionService to change uploaded photo to webp.
+            $imageService = app(ImageConversionService::class);
+            $imageService->convertAndUpload($photo,$property,'property-photos');
         }
 
         $property->status = 'Available';

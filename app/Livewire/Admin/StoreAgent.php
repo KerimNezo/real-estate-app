@@ -3,6 +3,7 @@
 namespace App\Livewire\Admin;
 
 use App\Models\User;
+use App\Services\ImageConversionService;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -77,8 +78,11 @@ class StoreAgent extends Component
         $agent->phone_number = $this->phoneNumber;
         $agent->password = bcrypt($this->password);
 
-        // ovdje ćemo storeati unesenu sliku
-        $agent->addMedia($this->newPhoto->getRealPath())->toMediaCollection('agent-pfps');
+        // Converting uploaded photo to webp and storing it to db
+        $imageService = app(ImageConversionService::class);
+        $imageService->convertAndUpload($this->newPhoto->getRealPath(),$agent,'agent-pfps');
+        
+        // Assigning role to user
         $agent->assignRole('agent');
 
         $agent->save();
