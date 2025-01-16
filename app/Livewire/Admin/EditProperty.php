@@ -3,13 +3,13 @@
 namespace App\Livewire\Admin;
 
 use App\Models\User;
+use App\Services\ImageConversionService;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Locked;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Auth;
-use Intervention\Image\Laravel\Facades\Image;
 
 class EditProperty extends Component
 {
@@ -154,18 +154,6 @@ class EditProperty extends Component
         }
     }
 
-    protected function convertToWebp($path)
-    {
-        // Convert to WebP with 90% quality
-        $image = Image::read($path)->toWebp();
-
-        // Save the WebP image to a temporary location
-        $webpTempPath = sys_get_temp_dir() . '/' . uniqid() . '.webp';
-        $image->save($webpTempPath);
-
-        return $webpTempPath;
-    }
-
     // Update property (button)
     // Function that handles the update of property with new data from the form
     public function saveProperty()
@@ -195,13 +183,10 @@ class EditProperty extends Component
             logger("Something's wrong with the status");
         }
 
-        // Adding new photos to properties mediaCollection
+        // Adding new photos to properties mediaCollection (using the imageConversionService)
         foreach ($this->newPhotoArray as $key => $photo) {
-            // Convert the uploaded photo to WebP format
-            $webpFilePath = $this->convertToWebp($photo->getRealPath());
-
-            // Add converted file to mediaCollection
-            $this->property->addMedia($webpFilePath)->toMediaCollection('property-photos');
+            $imageService = app(ImageConversionService::class); // Or inject directly if needed
+            $imageService->convertAndUpload($photo,$this->property,'property-photos');
         }
 
         // Removing photos stored in db
