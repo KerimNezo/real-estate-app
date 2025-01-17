@@ -26,12 +26,13 @@ class PropertyFilterForm extends Component
     public function clearForm()
     {
         $this->reset('filters');
+        $this->dispatch('form-submitted', filters: $this->filters);
     }
 
     public function submitForm()
     {
         $this->dispatch('form-submitted', filters: $this->filters);
-        $this->clearForm();
+        $this->reset('filters');
     }
 
     public function render()
