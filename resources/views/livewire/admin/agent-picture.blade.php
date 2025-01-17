@@ -7,6 +7,7 @@
                 Profile picture:
             </p>
 
+            {{-- Buttons above displayed agent photo --}}
             <div class="flex items-center justify-center w-full gap-4 pt-4 mr-0 sm:pt-0">
                 <button type="button" onclick="document.getElementById('file-upload').click()" class="px-3 py-2 ml-0 mr-auto text-base text-white bg-green-600 rounded-lg sm:ml-auto sm:mr-0">
                     <p>New photo</p>
@@ -24,12 +25,13 @@
             </div>
         </div>
 
+        {{-- Photo gallery main section. Agents photo --}}
         <div class="flex flex-col items-center justify-center w-full py-8">
             <div class="relative">
                 @if ($this->newPhoto !== null && $this->newPhoto->getMimeType() !== '')
-                    <img src="{{ $newPhoto->temporaryUrl() }}" name="newPhoto" alt="Agent's new profile picture" class="bg-gray-800 border-4 border-gray-900 sm:h-72 h-52">
+                    <img src="data:image/{{ $this->newPhoto->getClientOriginalExtension() }};base64,{{ $this->newPhotoBase64 }}" data-src="{{ $this->newPhoto->getClientOriginalExtension() }}" id="photo" name="newPhoto" alt="Agent's new profile picture" class="bg-gray-800 border-4 border-gray-900 sm:h-72 h-52">
                 @else
-                    <img src="{{ $this->tempPhoto->getUrl() }}" alt="Agent's profile picture" class="bg-gray-800 border-4 border-gray-900 sm:h-72 h-52">
+                    <img src="{{ $this->tempPhoto->getUrl() }}" id="photo" alt="Agent's profile picture" class="bg-gray-800 border-4 border-gray-900 sm:h-72 h-52">
                 @endif
 
                 <!-- Loader Overlay, shown while newPhoto is being updated or loading -->

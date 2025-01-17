@@ -6,7 +6,7 @@
                 <!-- Status (Sold - For Sale - Rent) -->
                 <div class="flex-col items-center justify-center pb-2 lg:pr-3 lg:mr-0 lg:ml-auto sm:ml-0 sm:mr-auto lg:pb-0">
                     <select id="" wire:model="actionName" class="rounded-[5px] h-[40px] pl-[10px] pr-8 text-[#989898]-black bg-gray-800 w-full" name="asset-offer-id">
-                        <option value="0" selected>Action</option>
+                        <option value="0" selected>Activitiy</option>
                         <option value="Sold">Sold</option>
                         <option value="Created">Created</option>
                         <option value="Deleted">Deleted</option>
@@ -52,7 +52,7 @@
             <!-- Table Header-->
             <div>
                 <p class="pb-2 pl-4 text-sm text-left">
-                    Actions table
+                    Activities table
                 </p>
             </div>
 
@@ -72,7 +72,7 @@
                                 <x-table.table-header title="Agent" />
 
                                 <!-- Action -->
-                                <x-table.table-header title="Action" />
+                                <x-table.table-header title="Activity" />
 
                                 <!-- Property-->
                                 <x-table.table-header title="Property" />

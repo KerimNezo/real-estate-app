@@ -95,10 +95,10 @@ Route::middleware(['role:admin', 'auth', 'verified'])->group(function () {
         ->name('delete-property');
 
     // Action routes
-    Route::get('admin/action/index', [ActionsController::class, 'index'])
+    Route::get('admin/activity/index', [ActionsController::class, 'index'])
         ->name('admin-actions');
 
-    Route::get('admin/action/{id}', [ActionsController::class, 'show'])
+    Route::get('admin/activity/{id}', [ActionsController::class, 'show'])
         ->name('admin-single-action')
         ->missing(function (Request $request) {
             return Redirect::route('admin-actions')->with('error', 'Action does not exist.');

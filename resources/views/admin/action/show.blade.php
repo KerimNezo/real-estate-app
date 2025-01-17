@@ -21,7 +21,7 @@
                         {{-- Table header --}}
                         <div>
                             <p class="pb-2 pl-4 text-sm text-left">
-                                Action information
+                                Activity information
                             </p>
                         </div>
 

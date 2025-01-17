@@ -3,7 +3,7 @@
         <!-- Table Header-->
         <div>
             <p class="pb-2 pl-4 text-sm text-left">
-                Actions table
+                Activities table
             </p>
         </div>
 
@@ -22,7 +22,7 @@
                             <x-table.table-header title="Agent" />
 
                             <!-- Action -->
-                            <x-table.table-header title="Action" />
+                            <x-table.table-header title="Activity" />
 
                             <!-- Property-->
                             <x-table.table-header title="Property" />
