@@ -106,7 +106,7 @@
                         const animationDefinition = {
                             'stroke-dashoffset': {
                                 id: 'anim' + data.index,
-                                dur: 2000,
+                                dur: 1000,
                                 from: -pathLength + 'px',
                                 to: '0px',
                                 easing: Chartist.Svg.Easing.easeOutQuint,
@@ -128,7 +128,7 @@
                 if (wasEmpty) {
                     setTimeout(() => {
                         donutChart.update();
-                    }, 5);
+                    }, 1);
                 }
             });
 
