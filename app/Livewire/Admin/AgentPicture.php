@@ -17,6 +17,8 @@ class AgentPicture extends Component
     #[Validate]
     public $newPhoto = null;
 
+    public $newPhotoBase64 = null;
+
     #[Modelable]
     public $pullPhoto;
 
@@ -31,6 +33,10 @@ class AgentPicture extends Component
     {
         // Validation of new photo
         $this->validate();
+
+        if ($this->newPhoto) {
+            $this->newPhotoBase64 = base64_encode(file_get_contents($this->newPhoto->getRealPath()));
+        }
 
         // We set pullPhoto to be realPath of uploaded photo.
         $this->pullPhoto = $this->newPhoto ? $this->newPhoto->getRealPath() : null;
@@ -56,6 +62,7 @@ class AgentPicture extends Component
     public function resetPhoto()
     {
         $this->newPhoto = null;
+        $this->newPhotoBase64 = null;
         $this->updatedNewPhoto();
     }
 }
