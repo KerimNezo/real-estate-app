@@ -1,4 +1,4 @@
-<footer class="py-3 text-center text-sm text-white bg-[#0047AB] mt-auto" id="contact-section">
+<footer class="py-3 mt-auto text-sm text-center text-white bg-neutral-800" id="contact-section">
     <div class="flex items-center justify-center">
         <div class="" id="left-footer">
             <div class="sm:w-[50%] w-[100%] h-[90%] flex flex-col justify-center items-left">

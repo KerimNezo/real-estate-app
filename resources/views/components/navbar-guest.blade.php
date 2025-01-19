@@ -1,5 +1,5 @@
 <!-- Desktop view navbar-->
-<div id="guest-navbar">
+<div id="guest-navbar" class="bg-neutral-800">
     <header class="grid grid-cols-2 items-center lg:grid-cols-2 py-[24px] w-[80%] ml-[10%]">
         <div class="pr-auto w-[220px] h-[55px]">
             <a href="{{ route('home') }}">
