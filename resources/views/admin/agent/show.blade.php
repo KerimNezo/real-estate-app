@@ -19,10 +19,23 @@
                     <!-- table to display property agent data -->
                     <div class="py-8 text-xl text-center px-[6%] w-full">
                         {{-- Table header --}}
-                        <div>
-                            <p class="pb-2 pl-4 text-sm text-left">
-                                {{ ucwords($agent->getRoleNames()[0]) }} information
-                            </p>
+                        <div class="flex items-center justify-center w-full">
+                            <div class="mr-auto">
+                                <p class="pb-2 pl-4 text-sm text-left">
+                                    {{ ucwords($agent->getRoleNames()[0]) }} information
+                                </p>
+                            </div>
+
+                            @if ($agent->id !== 1)
+                                <div class="px-4 pb-2 ml-auto">
+                                    <a href="{{ route('edit-agent', $agent) }}" class="hover:text-white">
+                                        <div class="flex items-center justify-center"> 
+                                            <p class="px-2 text-sm">Edit agent</p>
+                                            <x-feathericon-edit class="w-[20px] h-[20px]" />
+                                        </div>
+                                    </a>
+                                </div>
+                            @endif
                         </div>
 
                         {{-- Table content --}}
@@ -54,7 +67,7 @@
                                         <!-- Agent data -->
                                         <tr class="w-full border-t border-gray-700">
                                             <!-- Agent profile image title -->
-                                            <td class="px-4 py-4 text-base leading-6">
+                                            <td class="w-[20%] px-4 py-4 text-base leading-6">
                                                 <div class="flex items-center justify-start">
                                                     <p class="text-left w-36">
                                                         Avatar
@@ -63,14 +76,14 @@
                                             </td>
 
                                             <!-- Agent profile image content -->
-                                            <td class="w-full px-4 py-4 text-base leading-6">
+                                            <td class="w-[80%] px-4 py-4 text-base leading-6">
                                                 <div class="flex items-center justify-start">
                                                     <p class="text-left">
-                                                    @if ($agent->id === 1)
-                                                        <img src="{{ $agent->getFirstMediaUrl('admin-pfp') }}" alt="" class="rounded-[5px] h-[100px] w-[100px]">
-                                                    @else
-                                                        <img src="{{ $agent->getFirstMediaUrl('agent-pfps') }}" alt="" class="rounded-[5px] h-[100px] w-[100px]">
-                                                    @endif
+                                                        @if ($agent->id === 1)
+                                                            <img src="{{ $agent->getFirstMediaUrl('admin-pfp') }}" alt="" class="rounded-[5px] h-[100px] w-[100px]">
+                                                        @else
+                                                            <img src="{{ $agent->getFirstMediaUrl('agent-pfps') }}" alt="" class="rounded-[5px] h-[100px] w-[100px]">
+                                                        @endif
                                                     </p>
                                                 </div>
                                             </td>
