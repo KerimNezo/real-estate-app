@@ -50,7 +50,7 @@
                     <div class="flex flex-col items-center justify-center w-full py-8">
                         <div class="relative">
                             @if ($this->newPhoto !== null && $this->newPhoto->getMimeType() !== '')
-                                <img src="{{ $newPhoto->temporaryUrl() }}" name="newPhoto" alt="Agent's new profile picture" class="bg-gray-800 border-4 border-gray-900 sm:h-72 h-52">
+                                <img src="data:image/{{ $this->newPhoto->getClientOriginalExtension() }};base64,{{ $this->newPhotoBase64 }}" data-src="{{ $this->newPhoto->getClientOriginalExtension() }}" id="photo" name="newPhoto" alt="Agent's new profile picture" class="bg-gray-800 border-4 border-gray-900 sm:h-72 h-52">
                             @else
                                 <img src="{{ asset('photos/icons/realestateagent.png') }}" alt="Agent's profile picture" class="bg-gray-800 border-4 border-gray-900 sm:h-72 h-52 opacity-30">
                             @endif

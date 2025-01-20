@@ -27,6 +27,8 @@ class StoreAgent extends Component
     #[Validate]
     public $newPhoto;
 
+    public $newPhotoBase64 = null;
+
     // Validation error rules
     public function rules()
     {
@@ -64,6 +66,13 @@ class StoreAgent extends Component
             'newPhoto.mimetypes' => 'Please upload a photo',
             'newPhoto.max' => 'Please upload smaller photo',
         ];
+    }
+
+    public function updatedNewPhoto()
+    {
+        if ($this->newPhoto) {
+            $this->newPhotoBase64 = base64_encode(file_get_contents($this->newPhoto->getRealPath()));
+        }
     }
 
     // Function that handles the storing of Agent model to DB
