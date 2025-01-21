@@ -1,5 +1,5 @@
 <!-- Desktop view navbar-->
-<div id="guest-navbar" class="bg-neutral-800">
+<div id="guest-navbar" class="bg-[#8E8A8D]">
     <header class="grid grid-cols-2 items-center lg:grid-cols-2 py-[24px] w-[80%] ml-[10%]">
         <div class="pr-auto w-[220px] h-[55px]">
             <a href="{{ route('home') }}">
@@ -28,7 +28,7 @@
 </div>
 
 <!-- Mobile view navbar -->
-<div id="mobile-guest-navbar">
+<div id="mobile-guest-navbar" class="bg-[#8E8A8D]">
     <header class="flex justify-start items-center text-center py-[24px] w-full">
         <div class="ml-[10%] h-[50px] flex justify-center items-center mr-auto">
             <a href="/">
@@ -43,7 +43,7 @@
         </div>
 
     </header>
-    <div class="origin-top pt-[10px]" id="mobile-guest-collapse-content" style="display: none;">
+    <div class="origin-top pt-[10px] bg-[#8E8A8D]" id="mobile-guest-collapse-content" style="display: none;">
         <div class="flex flex-row items-center w-[100%] gap-4 mx-auto">
             <div class="w-[50%] pl-[5%]">
                 <a rel="noopener" href="{{ route('all-properties') }}">

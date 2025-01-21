@@ -7,7 +7,7 @@
 
             <!-- Filter button-->
             <div class="ml-auto w-fit">
-                <button wire:click="clearForm" id="filter-button" class="!bg-[#ef5d60] h-[48px] rounded-[5px] text-base px-4 flex justify-center items-center gap-2" type="button">
+                <button wire:click="clearForm" id="filter-button" class="!bg-teal-800 text-white h-[48px] rounded-[5px] text-base px-4 flex justify-center items-center gap-2" type="button">
                     <div wire:loading wire:target="clearForm" class="flex items-center justify-center">
                         <img src="{{ asset('photos/redSpinner.svg') }}" class="w-5 h-5"></img> <!-- SVG loading spinner -->
                     </div>
@@ -18,7 +18,7 @@
         </div>
 
         <!-- Query form -->
-        <div id="query-form-all-properties" class="bg-[#5eb1f0] h-full rounded-[5px] w-full flex justify-center items-center mt-5">
+        <div id="query-form-all-properties" class="bg-[#8E8A8D] bg-opacity-20 h-full rounded-[5px] w-full flex justify-center items-center mt-5">
             <table class="w-full h-full pb-auto" wire:loading.class="opacity-50">
                 <form wire:submit="submitForm">
                     <!-- Property location input-->
@@ -48,17 +48,15 @@
                     <tr class="w-full h-full mt-auto">
                         <td class="py-[10px] w-full align-bottom">
                             <div class="flex-col items-center justify-center w-full">
-                                <div class="text-left mb-[5px] w-[80%] pl-[10%]">
-                                    <span>
-                                        Price
-                                    </span>
+                                <div class="text-left mb-[5px] w-[80%] pl-[10%] text-black">
+                                    Price
                                 </div>
 
                                 <div class="flex flex-row justify-center items-center w-[90%] pl-[10%]">
                                     <input wire:model.defer="filters.min_price" type="text" placeholder="1200" class="rounded-[5px] border-2 border-[#989898] border-solid w-[45%] h-[35px] text-black" name="min-price">
 
                                     <div class="w-[10%] flex ">
-                                        <span class="ml-auto mr-auto">to</span>
+                                        <p class="ml-auto mr-auto text-black">to</p>
                                     </div>
 
                                     <input wire:model.defer="filters.max_price" type="text" placeholder="100000" class="rounded-[5px] border-2 border-[#989898] border-solid w-[45%] h-[35px] text-black" name="max-price">
@@ -71,7 +69,7 @@
                     <tr>
                         <td class="px-[10%] py-[20px] pb-5 mb-auto w-auto">
                             <div class="flex flex-col justify-end h-full">
-                                <button wire:loading.attr="disabled" class="w-full rounded-[5px] h-16 bg-[#ef5d60] align-bottom flex items-center justify-center gap-3">
+                                <button wire:loading.attr="disabled" class="w-full rounded-[5px] h-16 bg-teal-800 text-white align-bottom flex items-center justify-center gap-3">
                                     <div wire:loading wire:target="submitForm" class="flex items-center justify-center">
                                         <img src="{{ asset('photos/redSpinner.svg') }}" class="w-5 h-5"></img> <!-- SVG loading spinner -->
                                     </div>

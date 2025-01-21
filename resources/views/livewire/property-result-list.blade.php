@@ -1,4 +1,4 @@
-<div class="flex-grow w-full">
+<div class="flex-grow w-full bg-gray-300">
     <!-- Property query result -->
     <div id="properites-list" class="flex flex-col items-center justify-center w-full h-full">
         <!-- Header of query result section-->
@@ -6,7 +6,7 @@
             <p class="mr-auto text-lg text-black">We found {{ count($this->properties) }} properties you</p>
 
             <div id="property-list-button" class="relative">
-                <select wire:loading.attr="disabled" wire:model.live="filters.sort" id="dropdown-button" class="w-full !bg-[#ef5d60] h-[48px] rounded-[5px] px-2 text-base">
+                <select wire:loading.attr="disabled" wire:model.live="filters.sort" id="dropdown-button" class="w-full !bg-teal-800 h-[48px] rounded-[5px] px-2 text-base text-white">
                     <option value="created_at">Most recent</option>
                     <option value="lowestfirst">Price: Low - High ↓</option>
                     <option value="highestfirst">Price: High - Low ↑</option>
@@ -15,13 +15,13 @@
         </div>
 
         <!-- Content of query result section-->
-        <div class="w-full h-full py-5 text-black bg-white " id="featured-properties" >
+        <div class="w-full h-full py-5 text-black bg-gray-300 " id="featured-properties" >
             <!-- Grid display of property cards -->
             <div class="relative text-xl text-center">
                 @if ($this->properties->isEmpty())
                     <div class="flex-col items-center justify-center mx-auto">
                         <div class="pt-[100px]">
-                            <img src="./photos/icons/no-result.svg" alt="" class="w-[100px] mx-auto">
+                            <img src="./photos/icons/no-result-teal.svg" alt="" class="w-[100px] mx-auto">
                         </div>
             
                         <div class="pt-[40px]">

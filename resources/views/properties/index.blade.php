@@ -4,8 +4,8 @@
     </x-slot>
 
     <main>
-        <div class="w-full pt-24 bg-white ">
-            <div id="property-index-content" class="relative items-start justify-center w-full h-full mx-auto bg-white py-9">
+        <div class="w-full pt-24 bg-gray-300 ">
+            <div id="property-index-content" class="relative items-start justify-center w-full h-full mx-auto bg-gray-300 py-9">
                 <!-- Property query filter form -->
                 <livewire:property-filter-form />
 

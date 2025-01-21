@@ -7,12 +7,12 @@
     <div class="py-32 text-center text-black bg-white h-fit bg-hero-image bg-cover bg-[center 900px]" id="property-query" style="background-image: url('photos/pozadina.webp')">
         <!-- Hero heading #1 -->
         <div class="text-lg pb-[20px] pt-[40px] sm:text-2xl sm:pb-[54px] sm:pt-[103px]" id="query-title">
-            <h1 class="text-color">WELCOME TO OUR PAGE</h1>
+            <h1 class="text-teal-900">WELCOME TO OUR PAGE</h1>
         </div>
 
         <!-- Hero heading #2 -->
         <div class="text-2xl pb-[60px] sm:text-5xl sm:pb-[160px]" id="query-sub-title">
-            <h1 class="text-color">One step closer to your dream home...</h1>
+            <h1 class="text-teal-900">One step closer to your dream home...</h1>
         </div>
 
         <!-- Form for property query -->
@@ -23,7 +23,7 @@
 
     <!-- Display of featured properties -->
     <main>
-        <div class="w-full py-16 text-black bg-white h-fit" id="featured-properties">
+        <div class="w-full py-16 text-black bg-gray-300 h-fit" id="featured-properties">
             <!-- Title -->
             <x-title position="left" text="Featured Properties"/> <!-- Ovo ako je left, ide lijevo, ako nije left, ide u centar -->
 
@@ -45,25 +45,26 @@
             <!-- All properties button -->
             <div class="text-xl text-center">
                 <a href="all-properties">
-                    <span>See all properties →</span>
+                    <span class="text-teal-900">See all properties →</span>
                 </a>
             </div>
         </div>
     </main>
 
     <!-- Type of properties we have to offer -->
-    <div class="pt-16 text-center text-sm text-black bg-[#5eb1f0]"  id="property-types">
+    <div class="pt-16 text-sm text-center text-black bg-teal-900"  id="property-types">
         <!-- Title -->
-        <x-title text="Looking to buy or rent a property..." position="center"/>
+        <h1 class="py-3 text-3xl text-center text-gray-300">Looking to buy or rent a property...</h1>
+        <hr class="mx-auto w-[100px] h-1 border-[0px] bg-gray-300 rounded-[5px]" >
 
         <!-- Content -->
         <div class="flex items-center justify-center">
             <div class="py-16 w-full sm:w-[80%] ">
                 <div class="flex flex-row items-center justify-center ">
                     <x-property-query-card logo="./photos/icons/property_types/House.svg" text="House" link="/search?type-of-asset-id=2" />
-                    <hr class="h-[100px] w-[2px] border-[0px] bg-black mb-[30px]">
+                    <hr class="h-[100px] w-[2px] border-[0px] bg-gray-300 mb-[30px]">
                     <x-property-query-card logo="./photos/icons/property_types/Appartement.svg" text="Appartement" link="/search?type-of-asset-id=3" />
-                    <hr class="h-[100px] w-[2px] border-[0px] bg-black mb-[30px]">
+                    <hr class="h-[100px] w-[2px] border-[0px] bg-gray-300 mb-[30px]">
                     <x-property-query-card logo="./photos/icons/property_types/Office.svg" text="Office" link="/search?type-of-asset-id=1" />
                 </div>
             </div>
@@ -71,14 +72,14 @@
     </div>
 
     <!-- About us section -->
-    <div class="py-8 text-sm text-center text-black bg-white"  id="about-section">
+    <div class="py-8 text-sm text-center text-black bg-gray-300"  id="about-section">
         <x-title position="center" text="About Us"></x-title>
 
         <div class="flex items-center justify-center">
             <div class="py-16 w-[80%] ">
                 <div class="" id="about-us-section">
                     <div class="" id="about-us-photo">
-                        <img src="./photos/estate.jpg" alt="photo" class="border-[5px] w-[100%] rounded-lg border-[#6369D1]">
+                        <img src="./photos/estate.jpg" alt="photo" class="border-[5px] w-[100%] rounded-lg border-teal-800">
                     </div>
 
                     <div class="" id="about-us-text">

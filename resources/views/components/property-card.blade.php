@@ -20,18 +20,18 @@
     </div>
 
     <!-- section about property attributes -->
-    <div id="attributes" class="flex w-full pb-4 text-base item-start">
+    <div id="attributes" class="flex items-start w-full pb-4 text-base bg-gradient-to-t rounded-b-[15px] from-gray-800 via-transparent to-transparent">
         @switch($property->type_id)
             @case(1)    <!-- office -->
                 <x-card-footer-office :$property/>
                 @break
-
+    
             @case(2)    <!-- kuca -->
                 <x-card-footer-house :$property/>
                 @break
-
+    
             @default    <!-- stan -->
                 <x-card-footer-appartement :$property/>
         @endswitch
-    </div>
+    </div>    
 </div>

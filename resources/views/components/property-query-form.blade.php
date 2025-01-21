@@ -1,11 +1,11 @@
 
 
-<div id="query-form">
+<div id="query-form" class="bg-[#8E8A8D] bg-opacity-20">
     <table class="w-full h-full mb-auto">
         <tr class="w-full h-full mt-auto">
             <form action="/search" method="GET">
                 @csrf
-                <td class="pb-[20px] pl-[30px] w-[220px] align-bottom">
+                <td class="pb-[20px] pl-[30px] w-[220px] align-bottom opacity-100">
                     <div class="flex flex-col justify-end h-full">
                         <span class="mb-[5px] w-[220px] text-left">Property type</span>
 
@@ -42,7 +42,7 @@
 
                 <td class="pr-[30px] pb-5 mb-auto w-auto">
                     <div class="flex flex-col justify-end h-full">
-                        <button class="w-[220px] rounded-[5px] h-16 bg-[#ef5d60] align-bottom ml-auto">Submit</button>
+                        <button class="w-[220px] rounded-[5px] h-16 bg-teal-800 align-bottom ml-auto text-gray-300">Submit</button>
                     </div>
                 </td>
             </form>
@@ -51,7 +51,7 @@
 </div>
 
 <!-- Mobile view query form -->
-<div id="mobile-query-form">
+<div id="mobile-query-form" class="bg-[#8E8A8D] bg-opacity-20">
     <table class="w-full h-full mb-auto ">
         <form action="/search" method="GET">
             <tr class="w-full h-full mt-auto">
@@ -93,7 +93,7 @@
             <tr>
                 <td class="px-[10%] py-[20px] pb-5 mb-auto w-auto">
                     <div class="flex flex-col justify-end h-full">
-                        <button class="w-full rounded-[5px] h-16 bg-[#ef5d60] align-bottom ">Submit</button>
+                        <button class="w-full rounded-[5px] h-16 bg-teal-800 text-gray-300 align-bottom ">Submit</button>
                     </div>
                 </td>
             </tr>
