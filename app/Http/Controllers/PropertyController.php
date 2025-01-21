@@ -80,7 +80,7 @@ class PropertyController extends Controller
             'price' => 0.4,
             'surface' => 0.1,
             'rooms' => 0.1,
-            'garage' => 0.7,
+            'garage' => 0.07,
             'furnished' => 0.05,
         ];
 
