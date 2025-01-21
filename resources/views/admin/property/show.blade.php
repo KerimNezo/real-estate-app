@@ -113,11 +113,25 @@
                     <div class="items-stretch justify-center w-full gap-2 pb-8 text-xl text-center lg:flex sm:flex">
                         <!-- Property data -->
                         <div class="lg:w-[50%] sm:w-full pb-2">
-                            <div>
-                                <p class="pb-2 pl-4 text-sm text-left">
-                                    Property information
-                                </p>
+                            <div class="flex items-center justify-center">
+                                <div class="mr-auto">
+                                    <p class="pb-2 pl-4 text-sm text-left">
+                                        Property information
+                                    </p>
+                                </div>
+
+                                @if ($property->status === 'Available' || $property->status === 'Unavailable')
+                                    <div class="px-4 pb-2 ml-auto">
+                                        <a href="{{ route('edit-property', $property)}}" class="hover:text-white">
+                                            <div class="flex items-center justify-center"> 
+                                                <p class="px-2 text-sm">Edit property</p>
+                                                <x-feathericon-edit class="w-[20px] h-[20px]" />
+                                            </div>
+                                        </a>
+                                    </div>
+                                @endif
                             </div>
+
                             <div class="w-full overflow-x-auto">
                                 <table class="min-w-full overflow-hidden bg-gray-800 rounded-xl">
                                     <!-- Header of the table -->
