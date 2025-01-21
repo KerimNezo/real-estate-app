@@ -94,21 +94,23 @@
                     <!-- General property data -->
                     <div class="w-full">
                         <!-- Property agent -->
-                        <div class="mb-4 mr-auto">
-                            <label for="name" class="block mb-2 font-bold">Agent:</label>
-                            <select wire:model="tempAgent" class="w-full px-3 py-2 bg-gray-800 rounded-lg" >
-                                @foreach ($this->agents as $agent)
-                                    @if ($agent->id === $tempAgent)
-                                        <option value="{{$agent->id}}" selected>{{$agent->name}}</option>
-                                    @else
-                                        <option value="{{$agent->id}}">{{$agent->name}}</option>
-                                    @endif
-                                @endforeach
-                            </select>
-                            @error('tempAgent')
-                                <p class="text-sm text-red-500">{{ $message }}</p>
-                            @enderror
-                        </div>
+                        @if (Auth::user()->hasRole('admin'))
+                            <div class="mb-4 mr-auto">
+                                <label for="name" class="block mb-2 font-bold">Agent:</label>
+                                <select wire:model="tempAgent" class="w-full px-3 py-2 bg-gray-800 rounded-lg" >
+                                    @foreach ($this->agents as $agent)
+                                        @if ($agent->id === $tempAgent)
+                                            <option value="{{$agent->id}}" selected>{{$agent->name}}</option>
+                                        @else
+                                            <option value="{{$agent->id}}">{{$agent->name}}</option>
+                                        @endif
+                                    @endforeach
+                                </select>
+                                @error('tempAgent')
+                                    <p class="text-sm text-red-500">{{ $message }}</p>
+                                @enderror
+                            </div>
+                        @endif
 
                         <!-- Property Name -->
                         <div class="mb-4 mr-auto">
