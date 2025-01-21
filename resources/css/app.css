@@ -6,12 +6,15 @@
     width: 120px;
 }
 
+#dropdown-button {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23ffffff' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+}
+
 #guest-navbar {
     display: none;
 }
 
 #mobile-guest-navbar {
-    background-color: #6369D1;
     height: 100px;
     width: 100%; /*Ovako iznad ograničivaš max width, tako ćeš i srediti da ti ide*/
     position: fixed;
@@ -26,7 +29,6 @@
 }
 
 #mobile-query-form {
-    background-color: #5eb1f0;
     width: 90%;
     height: full;
     border-radius: 5px;
@@ -45,7 +47,6 @@
     position: absolute;
     width: 100%;
     display: none;
-    background-color: #6369D1;
     overflow: hidden;
     transition: height 0.5s ease-in-out, padding 0.5s ease-in-out;
     box-sizing: border-box;
@@ -232,7 +233,6 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-    gap: 20px;
 }
 
 #show-information-section {
@@ -543,7 +543,6 @@
         align-items: center;
         justify-content: center;
         width: 100%;
-        gap: 35px;
     }
 
     #filter-button {
@@ -652,7 +651,6 @@
     }
 
     #query-form {
-        background-color: #5eb1f0;
         width: 80%;
         height: 120px;
         border-radius: 5px;
@@ -898,11 +896,14 @@ body, html{
 
 .navbar-text {
     font-size: large;
-    color: #e5e7eb;
+    color: #ffffff;
+}
+
+.navbar-text:hover {
+    color: #d1d5db;
 }
 
 a.property-type-query:hover {
-    background-color: #e5e7eb;
     border-radius: 5px;
     transition-duration: 0.5s;
 }
