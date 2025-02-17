@@ -13,9 +13,9 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Auth;
 
 Route::fallback(function () {
-    if (Auth::user()->hasRole('admin')) {
+    if (Auth::user() !== null && Auth::user()->hasRole('admin')) {
         return redirect()->route('dashboard');
-    } elseif (Auth::user()->hasRole('agent')) {
+    } elseif (Auth::user() !== null && Auth::user()->hasRole('agent')) {
         return redirect()->route('agent-dashboard');
     } else {
         return redirect('/');
