@@ -16,7 +16,7 @@ class PropertySeeder extends Seeder
     {
         // 1 - office, 2 - house, 3 - appartement
         $propertyType = [1, 2, 3];
-        $propertyName = ['Business Center', 'Modern 3 Bedroom House', '2     Bedroom Appartement'];
+        $propertyName = ['Business Center', 'Modern 3 Bedroom House', '2 Bedroom Appartement'];
         $propertyPhoto = ['office', 'house', 'appartement'];
         $propertyCity = ['Zenica', 'Sarajevo', 'Mostar', 'Banja Luka'];
 
