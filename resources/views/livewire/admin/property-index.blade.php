@@ -5,7 +5,7 @@
 
             <!-- new property button -->
             @if (Auth::user()->hasRole('admin'))
-                <a wire href="{{ route('new-property') }}" class="bg-green-600 py-2 px-4 rounded-[5px] hover:bg-green-500 mb-2 lg:mb-0">
+                <a href="{{ route('new-property') }}" class="bg-green-600 py-2 px-4 rounded-[5px] hover:bg-green-500 mb-2 lg:mb-0">
                     <p class="text-base text-center">Add new</p>
                 </a>
             @else
