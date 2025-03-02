@@ -134,13 +134,19 @@ class PropertyController extends Controller
      */
     public function edit(Property $property)
     {
-        // Checking if property can be edited by its status.
-        if ($property->status === 'Available' || $property->status === 'Unavailable') {
-            $propertyMedia = $property->getMedia('property-photos')->sortBy('order_column');
+        if (Auth::user()->hasRole('admin') || Auth::id() === $property->user_id) {
+            // Checking if property can be edited by its status.
+            if ($property->status === 'Available' || $property->status === 'Unavailable') {
+                $propertyMedia = $property->getMedia('property-photos')->sortBy('order_column');
 
-            return view('admin.property.edit')
-                ->with('property', $property)
-                ->with('propertyMedia', $propertyMedia);
+                return view('admin.property.edit')
+                    ->with('property', $property)
+                    ->with('propertyMedia', $propertyMedia);
+            }
+        } 
+        
+        if (Auth::user()->hasRole('agent')) {
+            return redirect()->route('agent-properties')->with('error', 'Unable to edit property.');
         }
 
         return redirect()->route('admin-properties')->with('error', 'Unable to edit property.');
