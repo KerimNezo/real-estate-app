@@ -51,6 +51,10 @@ class AgentController extends Controller
     // Function that returns single property page
     public function showProperty(Property $property)
     {
+        if ($property->status !== 'Available' && $property->status !== 'Unavailable') {
+            return redirect()->route('agent-properties')->with('error', 'You can not view this property.');
+        }
+
         // Get list of user and property attributes
         $propertyData = $property->getAttributes();
         $userData = $property->user->getAttributes();
