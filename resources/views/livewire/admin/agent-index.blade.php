@@ -153,7 +153,7 @@
 
                                                 {{-- Form footer containing two buttons --}}
                                                 <div class="flex w-full px-5 py-5">
-                                                    <button class="px-4 py-2 mr-auto bg-green-600 rounded-[10px]" onclick="closeConfirmationModal()">
+                                                    <button class="px-4 py-2 mr-auto bg-green-600 rounded-[10px]" onclick="closeModal('confirmation{{$agent->id}}')">
                                                         Cancel
                                                     </button>
 
