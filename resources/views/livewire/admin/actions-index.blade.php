@@ -16,7 +16,7 @@
                     </select>
                 </div>
 
-                <!-- cities -->
+                <!-- Agent -->
                 <div class="flex-col items-center justify-center pb-2 lg:pr-3 lg:pb-0 sm:mr-auto lg:mr-0">
                     <select id="" wire:model="agentId" class="rounded-[5px] h-[40px] pl-[10px] pr-8 text-[#989898]-black bg-gray-800 w-full" name="asset-location">
                         <option value="" selected>Agent</option>
