@@ -1,6 +1,6 @@
 <div>
     <div class="flex w-full p-1">
-        <p class="pl-3 mr-auto text-sm">Profit</p>
+        <p class="pl-3 mr-auto text-sm">Sales</p>
 
         <div id="chart-legend">
             <x-chart-color-text text="Total" color="bg-[#2563eb]" />
