@@ -1,6 +1,5 @@
 <div>
     <form id="storeForm" enctype="multipart/form-data" wire:submit.prevent="storeAgent">
-        @csrf
         <!-- Table to display agent data-->
         <div class="flex flex-col w-full gap-4 lg:flex-row">
             <!-- General property data -->
@@ -32,7 +31,7 @@
             <!-- Agent profile picture section (will be a livewire component) -->
             <div class="w-full sm:w-[60%]">
                 <div class="flex flex-col items-center justify-center w-full">
-                    <!-- Photo gallery header with buttons -->
+                    <!-- Agent profile photo input -->
                     <div class="flex flex-col items-center justify-center w-full pb-4 sm:flex-row">
                         <p class="mr-auto text-lg font-bold text-left whitespace-nowrap">
                             Profile picture:
