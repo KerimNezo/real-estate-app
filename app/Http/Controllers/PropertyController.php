@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Property;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class PropertyController extends Controller
 {
@@ -83,26 +84,40 @@ class PropertyController extends Controller
             'garage' => 0.07,
             'furnished' => 0.05,
         ];
-
-        // Defire Euclidean distance
+    
+        // Initialize Euclidean distance
         $distance = 0;
-
-        // Iterate over each wieghted attribute of property 
+    
+        // Function to normalize values
+        function normalize($value, $maxValue)
+        {
+            return ($maxValue > 0) ? $value / $maxValue : 0;
+        }
+    
+        // Iterate over each weighted attribute
         foreach ($weights as $attribute => $weight) {
             $valueA = $a->$attribute ?? 0;
             $valueB = $b->$attribute ?? 0;
-
+    
+            // Normalize values for numerical attributes
             if ($attribute === 'price') {
-                // Normalize price difference
                 $maxPrice = max($valueA, $valueB);
-                $priceDifference = ($maxPrice > 0) ? abs($valueA - $valueB) / $maxPrice : 0;
-                $distance += $weight * pow($priceDifference, 2);
-            } else {
-                // Numerical comparison for other attributes
-                $distance += $weight * pow($valueA - $valueB, 2);
+                $valueA = normalize($valueA, $maxPrice);
+                $valueB = normalize($valueB, $maxPrice);
+            } elseif ($attribute === 'surface' || $attribute === 'rooms' || $attribute === 'garage') {
+                $maxValue = max($valueA, $valueB);
+                $valueA = normalize($valueA, $maxValue);
+                $valueB = normalize($valueB, $maxValue);
+            } elseif ($attribute === 'furnished') {
+                // Convert boolean to numerical value
+                $valueA = $valueA ? 1 : 0;
+                $valueB = $valueB ? 1 : 0;
             }
+    
+            // Calculate weighted squared difference
+            $distance += $weight * pow($valueA - $valueB, 2);
         }
-
+    
         // Return similarity (inverse of Euclidean distance)
         return 1 / (1 + sqrt($distance));
     }
@@ -112,21 +127,30 @@ class PropertyController extends Controller
      */
     public function show(string $id)
     {
-        $property = Property::query()
-            ->with(['media', 'user', 'type'])
-            ->findOrFail($id);
-
-        if ($property->status !== 'Available') {
-            return redirect()->route('all-properties');
+        try {
+            $property = Property::query()
+                ->with(['media', 'user', 'type'])
+                ->findOrFail($id);
+        
+            if ($property->status !== 'Available') {
+                return redirect()->route('all-properties');
+            }
+        
+            // Getting similar properties of $property
+            $similarProperties = $this->recommendSimilar($property);
+        
+            return view('properties.show', [
+                'property' => $property,
+                'similarProperties' => $similarProperties,
+            ]);
+        
+        } catch (ModelNotFoundException $e) {
+            // Handle the case where the property is not found
+            return redirect()->route('all-properties')->with('error', 'Property not found.');
+        } catch (\Exception $e) {
+            // Handle any other exceptions that might occur
+            return redirect()->route('all-properties')->with('error', 'An error occurred while fetching the property.');
         }
-
-        // Getting similar properties of $property
-        $similarProperties = $this->recommendSimilar($property);
-
-        return view('properties.show', [
-            'property' => $property,
-            'similarProperties' => $similarProperties,
-        ]);
     }
 
     /**
