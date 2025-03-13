@@ -15,19 +15,19 @@
                         </p>
 
                         <div class="flex items-center justify-center w-full gap-4 mr-0">
-                            <button type="button" onclick="document.getElementById('file-upload').click()" class="px-3 py-2 ml-0 mr-auto text-base text-white bg-green-600 rounded-lg sm:ml-auto sm:mr-0">
-                                <p>New photo</p>
-                            </button>
-
-                            <input type="file" multiple id="file-upload" class="hidden" wire:model="newPhotos">
-
-                            <button type="button" wire:click="resetPhotos" class="flex items-center justify-center gap-2 px-3 py-2 text-base text-white bg-blue-600 rounded-lg">
+                            <button type="button" wire:click="resetPhotos" class="flex items-center justify-center px-3 py-2 ml-auto mr-0 text-base text-white bg-blue-600 rounded-lg sm:ml-auto sm:mr-0">
                                 <div wire:loading wire:target="resetPhotos">
-                                    <img src="{{ asset('photos/spinner.svg') }}" wire:loading class="w-6 h-6"></img> <!-- SVG loading spinner -->
+                                    <img src="{{ asset('photos/spinner.svg') }}" wire:loading class="w-5 h-5 mr-1"></img> <!-- SVG loading spinner -->
                                 </div>
 
                                 <p>Reset photos</p>
                             </button>
+                            
+                            <button type="button" onclick="document.getElementById('file-upload').click()" class="gap-2 px-3 py-2 text-base text-white bg-green-600 rounded-lg">
+                                <p>New photo</p>
+                            </button>
+
+                            <input type="file" multiple id="file-upload" class="hidden" wire:model="newPhotos">
                         </div>
                     </div>
 
@@ -59,7 +59,7 @@
                             @foreach($newPhotoArray as $key => $photo)
                                 <div class="relative" wire:key="{{ $key }}">
                                     <img src="{{ $photo->temporaryUrl() }}"
-                                        alt="Loading Photo"
+                                        alt="loading..."
                                         class="w-[150px] h-[90px] object-cover rounded-lg cursor-pointer">
 
                                     <button type="button" class="absolute flex items-center justify-center w-5 h-5 text-xs text-black bg-white rounded-full top-1 right-1"
