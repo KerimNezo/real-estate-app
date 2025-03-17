@@ -39,7 +39,11 @@
                                 <td id="table-data">
                                     <div class="flex items-center justify-start">
                                         <p>
-                                            <img src="{{ $agent->getFirstMediaUrl('agent-pfps') }}" id="agentPhoto" alt="Agent Profile Photo" class="w-[65px] h-[65px] object-cover rounded-[5px]">
+                                            @if ($agent->getFirstMedia('agent-pfps') !== null)
+                                                <img src="{{ $agent->getFirstMediaUrl('agent-pfps') }}" id="agentPhoto" alt="Agent Profile Photo" class="w-[65px] h-[65px] object-cover rounded-[5px]">
+                                            @else 
+                                                <img src="{{ asset('photos/icons/realestateagent.png') }}" id="photo" alt="Agent's profile picture" class="bg-gray-800 h-[65px]">
+                                            @endif
                                         </p>
                                     </div>
                                 </td>

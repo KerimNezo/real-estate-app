@@ -30,8 +30,10 @@
             <div class="relative">
                 @if ($this->newPhoto !== null && $this->newPhoto->getMimeType() !== '')
                     <img src="data:image/{{ $this->newPhoto->getClientOriginalExtension() }};base64,{{ $this->newPhotoBase64 }}" data-src="{{ $this->newPhoto->getClientOriginalExtension() }}" id="photo" name="newPhoto" alt="Agent's new profile picture" class="bg-gray-800 border-4 border-gray-900 sm:h-72 h-52">
-                @else
+                @elseif ($this->tempPhoto !== null)
                     <img src="{{ $this->tempPhoto->getUrl() }}" id="photo" alt="Agent's profile picture" class="bg-gray-800 border-4 border-gray-900 sm:h-72 h-52">
+                @else 
+                    <img src="{{ asset('photos/icons/realestateagent.png') }}" id="photo" alt="Agent's profile picture" class="bg-gray-800 sm:h-72 h-52">
                 @endif
 
                 <!-- Loader Overlay, shown while newPhoto is being updated or loading -->

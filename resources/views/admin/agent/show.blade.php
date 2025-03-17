@@ -81,8 +81,10 @@
                                                     <p class="text-left">
                                                         @if ($agent->id === 1)
                                                             <img src="{{ $agent->getFirstMediaUrl('admin-pfp') }}" alt="" class="rounded-[5px] h-[100px] w-[100px]">
-                                                        @else
+                                                        @elseif ($agent->getFirstMedia('agent-pfps') !== null)
                                                             <img src="{{ $agent->getFirstMediaUrl('agent-pfps') }}" alt="" class="rounded-[5px] h-[100px] w-[100px]">
+                                                        @elseif ($agent->getFirstMedia('agent-pfps') === null)
+                                                            <img src="{{ asset('photos/icons/realestateagent.png') }}" alt="" class="rounded-[5px] h-[100px] w-[100px]">
                                                         @endif
                                                     </p>
                                                 </div>
