@@ -65,6 +65,13 @@ class PropertyController extends Controller
         return $recommendations->sortByDesc('similarity')->take($count)->pluck('property');
     }
 
+    // Function to normalize values
+    public static function normalize($value, $maxValue)
+    {
+        logger("Value: {$value}, Max Value: {$maxValue}");
+        return ($maxValue > 0) ? $value / $maxValue : 0;
+    }
+
     /** 
      * Function that computes similarity between two properties
      * We're computing the similarity based on each properites weighted attribute score
@@ -88,12 +95,6 @@ class PropertyController extends Controller
         // Initialize Euclidean distance
         $distance = 0;
     
-        // Function to normalize values
-        function normalize($value, $maxValue)
-        {
-            return ($maxValue > 0) ? $value / $maxValue : 0;
-        }
-    
         // Iterate over each weighted attribute
         foreach ($weights as $attribute => $weight) {
             $valueA = $a->$attribute ?? 0;
@@ -102,12 +103,12 @@ class PropertyController extends Controller
             // Normalize values for numerical attributes
             if ($attribute === 'price') {
                 $maxPrice = max($valueA, $valueB);
-                $valueA = normalize($valueA, $maxPrice);
-                $valueB = normalize($valueB, $maxPrice);
+                $valueA = self::normalize($valueA, $maxPrice);
+                $valueB = self::normalize($valueB, $maxPrice);
             } elseif ($attribute === 'surface' || $attribute === 'rooms' || $attribute === 'garage') {
                 $maxValue = max($valueA, $valueB);
-                $valueA = normalize($valueA, $maxValue);
-                $valueB = normalize($valueB, $maxValue);
+                $valueA = self::normalize($valueA, $maxValue);
+                $valueB = self::normalize($valueB, $maxValue);
             } elseif ($attribute === 'furnished') {
                 // Convert boolean to numerical value
                 $valueA = $valueA ? 1 : 0;
