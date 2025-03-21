@@ -21,6 +21,7 @@ class ActionsIndex extends Component
     {
         return User::query()
             ->select('id', 'name')
+            ->withTrashed()
             ->get();
     }
 
@@ -30,7 +31,11 @@ class ActionsIndex extends Component
         $actions = Actions::query()
             ->select(['id', 'property_id', 'user_id', 'name', 'created_at'])
             ->latest()
-            ->with(['user', 'property']);
+            ->with(['user' => function ($query) {
+                $query->select('id', 'name')->withTrashed();
+            }, 'property' => function ($query) {
+                $query->select('id', 'name', 'user_id')->withTrashed();
+            }]);
 
         if (! is_null($this->actionName) && $this->actionName != '') {
             $actions = $actions->where('name', '=', $this->actionName);

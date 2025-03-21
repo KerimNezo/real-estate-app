@@ -16,9 +16,9 @@ class ActionsTable extends Component
             ->latest()
             ->limit(5)
             ->with(['user' => function ($query) {
-                $query->select('id', 'name');
+                $query->select('id', 'name')->withTrashed();
             }, 'property' => function ($query) {
-                $query->select('id', 'name', 'user_id');
+                $query->select('id', 'name', 'user_id')->withTrashed();
             }])
             ->get();
     }
