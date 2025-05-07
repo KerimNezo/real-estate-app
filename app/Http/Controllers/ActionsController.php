@@ -17,7 +17,11 @@ class ActionsController extends Controller
         $action = Actions::query()
             ->select('id', 'user_id', 'property_id', 'name', 'message', 'created_at')
             ->with(['user', 'property']) // Adjust relations as needed
-            ->findOrFail($id);
+            ->find($id);
+        
+        if (!$action) {
+            return redirect()->route('admin-actions')->with('error', 'Action does not exist.');
+        }
 
         $actionData = $action->getAttributes();
 

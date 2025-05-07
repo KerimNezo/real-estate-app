@@ -32,7 +32,7 @@ Route::get('property/{id}', [PropertyController::class, 'show'])
     ->name('single-property')
     ->missing(function (Request $request) {
         return Redirect::route('all-properties')->with('error', 'Property does not exist.');
-    });;
+    });
 
 Route::get('search', SearchController::class);
 
@@ -99,10 +99,7 @@ Route::middleware(['role:admin', 'auth', 'verified'])->group(function () {
         ->name('admin-actions');
 
     Route::get('admin/activity/{id}', [ActionsController::class, 'show'])
-        ->name('admin-single-action')
-        ->missing(function (Request $request) {
-            return Redirect::route('admin-actions')->with('error', 'Action does not exist.');
-        });
+        ->name('admin-single-action');
 });
 
 Route::middleware(['role:agent', 'auth', 'verified'])->group(function () {
