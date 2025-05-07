@@ -7,6 +7,7 @@ use App\Services\ImageConversionService;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use Illuminate\Validation\Rule;
 
 class StoreAgent extends Component
 {
@@ -34,12 +35,16 @@ class StoreAgent extends Component
     {
         return [
             'name' => 'required|min:3',
-            'email' => 'required|email|unique:users,email',
+            'email' => [
+                'required',
+                'email',
+                Rule::unique('users', 'email')->whereNull('deleted_at'),
+            ],
             'phoneNumber' => 'required|regex:/^\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{3,4}$/',
             'password' => [
                 'required',
                 'min:8',
-                'regex:/^(?=.*[0-9])[a-zA-Z0-9]+$/',
+                'regex:/^(?=.*[0-9])(?=.*[a-zA-Z])[a-zA-Z0-9]+$/',
             ],
             'newPhoto' => 'required|mimetypes:image/jpg,image/jpeg,image/png,image/webp|max:1024',
         ];
