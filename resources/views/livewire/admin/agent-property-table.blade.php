@@ -29,7 +29,7 @@
             </div>
 
             <div class="w-full overflow-x-auto">
-                <table class="min-w-full overflow-hidden bg-gray-800 rounded-xl">
+                <table class="min-w-full overflow-hidden bg-gray-800 rounded-xl" wire:loading.class="opacity-50">
                     <thead class="bg-gray-800 border-gray-700">
                         <tr id="table-header">
                             <!-- Image -->
@@ -53,7 +53,7 @@
                         <tr class="border-t border-gray-700" wire:key="{{ $property->id }}">
                             <!-- Image -->
                             <td id="table-data">
-                                <div class="flex items-center justify-start">
+                                <div class="flex items-center justify-start" wire:loading.remove>
                                     <p>
                                         @if(Auth::user()->hasRole('admin'))
                                             <a href=" {{ route('admin-single-property', ['property' => $property, 'user' => $agent])}}">
@@ -68,7 +68,7 @@
                                         @else
                                             <a href=" {{ route('agent-single-property', ['property' => $property])}}">
                                                 @if ($property->getMedia('property-photos')->isNotEmpty())
-                                                    <img src="{{ $property->getFirstMediaUrl('property-photos') }}" alt="Property Image" class="w-[100px] h-[75px] object-cover rounded-lg">
+                                                    <img src="{{ $property->getFirstMediaUrl('property-photos') }}" alt="Property Image"  class="w-[100px] h-[75px] object-cover rounded-lg">
                                                 @else
                                                     <div class="flex items-center justify-center w-[100px]">
                                                         <x-ionicon-image-sharp class="h-[75px] mx-auto"/>
@@ -77,6 +77,15 @@
                                             </a>
                                         @endif
                                     </p>
+                                </div>
+
+                                {{-- placeholder image that displays while component is loading --}}
+                                <div wire:loading>
+                                    <a>
+                                        <div class="flex items-center justify-center w-[100px]">
+                                            <x-ionicon-image-sharp class="h-[75px] mx-auto"/>
+                                        </div>
+                                    </a>
                                 </div>
                             </td>
 
@@ -176,7 +185,7 @@
 
                             <!-- Row options -->
                             <td id="table-data">
-                                <div class="flex items-center justify-start gap-4">
+                                <div class="flex items-center justify-start gap-4" wire:loading.remove>
                                     @if (Auth::user()->hasRole('admin'))
                                         <a href="{{ route('admin-single-property', ['property' => $property, 'user' => $property->user]) }}" class="hover:text-red-400">
                                             <x-carbon-view class="w-[25px]"/>
@@ -210,6 +219,13 @@
                                             @endif
                                         @endif
                                     @endif
+                                </div>
+
+                                {{-- placeholder text that displays while component is loading --}}
+                                <div wire:loading>
+                                    <p>
+                                        Property options
+                                    </p>
                                 </div>
                             </td>
                         </tr>
